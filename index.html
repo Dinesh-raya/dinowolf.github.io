@@ -2,16 +2,48 @@
 layout: default
 title: Home
 ---
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAYA Learning</title>
+    <style>
+        body {font-family:Arial,sans-serif;background:#fff;color:#202124;margin:0;padding:40px 20px;}
+        h1 {text-align:center;margin-bottom:40px;font-size:2.8em;}
+        .cards {display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:25px;max-width:1200px;margin:0 auto;}
+        .card {background:white;border:1px solid #ddd;padding:30px;border-radius:12px;transition:all .3s;cursor:pointer;text-align:center;}
+        .card:hover {box-shadow:0 10px 30px rgba(0,0,0,.12);transform:translateY(-6px);}
+        .card img {width:90px;height:90px;margin-bottom:15px;}
+    </style>
+</head>
+<body>
+    <h1>IMY Learning</h1>
+    <div class="cards">
+        <!-- Your Manual Static Cards -->
+        <div class="card" onclick="window.location='/sql-projects'">
+            <img src="https://storage.googleapis.com/imy-bucket-prod/icons/datanalysticon.svg">
+            <h3>SQL 50 Projects</h3>
+            <p>Real World YouTube Data</p>
+        </div>
+        <div class="card">
+            <img src="https://storage.googleapis.com/imy-bucket-prod/icons/datanalysticon.svg">
+            <h3>Data Analyst Course</h3>
+            <p>Recorded Batch</p>
+        </div>
+        <div class="card">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/b/b0/Claude_AI_symbol.svg">
+            <h3>Claude Leak</h3>
+        </div>
 
-<!-- Row 1: Main Content Section -->
-<div class="card-row">
-  {% for post in site.posts %}
-    <a href="{{ post.url }}" class="item-card">
-      <div class="icon-box">📝</div>
-      <div class="card-title">{{ post.title }}</div>
-      {% if post.new %}
-        <span class="badge">NEW</span>
-      {% endif %}
-    </a>
-  {% endfor %}
-</div>
+        <!-- Dynamic Blog Post Cards (They will match your custom styling seamlessly!) -->
+        {% for post in site.posts %}
+        <div class="card" onclick="window.location='{{ post.url }}'">
+            <img src="https://storage.googleapis.com/imy-bucket-prod/icons/datanalysticon.svg">
+            <h3>{{ post.title }}</h3>
+            <p>{{ post.description }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
