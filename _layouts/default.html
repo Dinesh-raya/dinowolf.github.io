@@ -14,6 +14,9 @@
       --text-main: #111111;
       --border-radius: 20px;
     }
+    * {
+      -webkit-tap-highlight-color: transparent;
+    }
     body {
       margin: 0;
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -58,6 +61,37 @@
       gap: 24px;
     }
 
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+      padding: 8px;
+      margin-right: 12px;
+    }
+
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: block;
+      }
+      nav .nav-links {
+        display: none;
+        position: fixed;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: #000;
+        flex-direction: column;
+        padding: 20px 40px;
+        gap: 16px;
+        z-index: 999;
+      }
+      nav .nav-links.open {
+        display: flex;
+      }
+    }
+
     footer {
       background: #000;
       color: #fff;
@@ -74,15 +108,30 @@
     footer a:hover {
       color: #fff;
     }
+    @media (max-width: 768px) {
+      footer a {
+        display: inline-block;
+        margin: 4px 10px;
+        font-size: 0.85rem;
+      }
+    }
   </style>
 </head>
 <body>
 
   <header>
     <nav>
-      <a href="/"><img src="/raya.svg" alt="RAYA" style="height:32px;display:block"></a>
-      <div class="nav-links">
-        <a href="/">Home</a>
+      <div style="display:flex;align-items:center;">
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 12H21" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M3 6H21" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M3 18H21" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <a href="/"><img src="/raya.svg" alt="RAYA" style="height:32px;display:block"></a>
+      </div>
+      <div class="nav-links" id="navLinks">
         <a href="/admin/">Manage</a>
       </div>
     </nav>
@@ -95,12 +144,18 @@
   <footer>
     <a href="/">Home</a>
     <a href="/admin/">Admin</a>
-    <a href="/about/">About</a>
-    <a href="/contact/">Contact</a>
-    <a href="/privacy/">Privacy</a>
-    <a href="/terms/">Terms</a>
+    <a href="/about/">About Us</a>
+    <a href="/contact/">Contact Us</a>
+    <a href="/privacy/">Privacy Policy</a>
+    <a href="/terms/">Terms &amp; Conditions</a>
     <span>&copy; {{ site.time | date: '%Y' }} {{ site.title }}</span>
   </footer>
+
+  <script>
+    document.getElementById('menuToggle')?.addEventListener('click', function() {
+      document.getElementById('navLinks').classList.toggle('open');
+    });
+  </script>
 
 </body>
 </html>

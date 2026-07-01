@@ -1,12 +1,35 @@
 ---
-layout: default
+layout: cheatsheet
 title: Tableau 250+ Formulas
 permalink: /tableau-250-formulas/
+categories:
+  - name: Basic Aggregations
+    id: basic-aggregations
+  - name: Date Functions
+    id: date-functions
+  - name: Logical & Type
+    id: logical-type
+  - name: Mapping & Geo
+    id: mapping-geo
+  - name: Number Functions
+    id: number-functions
+  - name: String Functions
+    id: string-functions
+  - name: Table Calculations
+    id: table-calculations
+  - name: Dashboards & Actions
+    id: dashboards-actions
+  - name: Level of Detail (LOD)
+    id: lod
+  - name: Statistical & Analytics
+    id: statistical-analytics
+  - name: User Functions & Security
+    id: user-security
 ---
 
 ## Tableau 250+ Formulas
 
-### Basic Aggregations Formulas
+### Basic Aggregations Formulas {: #basic-aggregations }
 - `SUM()` : `SUM([Sales])` : Adds up all values in the selected field
 - `AVG()` : `AVG([Discount])` : Computes the arithmetic mean
 - `MIN()` : `MIN([Order Date])` : Returns the earliest or smallest value
@@ -18,7 +41,7 @@ permalink: /tableau-250-formulas/
 - `ZN()` : `ZN([Profit])` : Replaces null values with zero
 - `SIZE()` : `SIZE()` : Returns the row count in the current partition
 
-### Date Functions
+### Date Functions {: #date-functions }
 - `TODAY()` : `TODAY()` : Returns the current date
 - `NOW()` : `NOW()` : Returns the current date and time
 - `YEAR()` : `YEAR([Order Date])` : Extracts the year from a date
@@ -35,7 +58,7 @@ permalink: /tableau-250-formulas/
 - `MIN()` : `MIN([Order Date])` : Returns the earliest date in the partition
 - `MAX()` : `MAX([Order Date])` : Returns the latest date in the partition
 
-### Logical & Type Formulas
+### Logical & Type Formulas {: #logical-type }
 - `IF / THEN / ELSE` : `IF [Profit]>0 THEN 'Positive' ELSE 'Negative' END` : Applies row-level conditional logic
 - `IIF()` : `IIF([Ship Mode]='Same Day',1,0)` : Inline conditional with three arguments
 - `CASE` : `CASE [Segment] WHEN 'Consumer' THEN 1 WHEN 'Corporate' THEN 2 END` : Evaluates multiple equality conditions cleanly
@@ -47,7 +70,7 @@ permalink: /tableau-250-formulas/
 - `INT()` : `INT([Order ID])` : Casts a value to an integer
 - `FLOAT()` : `FLOAT([Quantity])` : Casts a value to a floating-point number
 
-### Mapping & Geo Formulas
+### Mapping & Geo Formulas {: #mapping-geo }
 - `MAKEPOINT()` : `MAKEPOINT([Lat],[Lon])` : Creates a spatial point from latitude and longitude
 - `MAKELINE()` : `MAKELINE([Start], [End])` : Creates a line between two spatial points for routes
 - `DISTANCE()` : `DISTANCE([Start],[End],'mile')` : Computes the distance between two points in given units
@@ -57,7 +80,7 @@ permalink: /tableau-250-formulas/
 - `REGION()` : `[Postal Code] recognized` : Automatically assigns geographic roles
 - `Spatial Join` : `Join two spatial layers on intersection` : Combines polygon or point layers based on spatial overlap
 
-### Number Functions
+### Number Functions {: #number-functions }
 - `ABS()` : `ABS([Profit])` : Returns the absolute value of a number
 - `CEILING()` : `CEILING([Discount])` : Rounds a number up to the nearest integer
 - `FLOOR()` : `FLOOR([Discount])` : Rounds a number down to the nearest integer
@@ -71,7 +94,7 @@ permalink: /tableau-250-formulas/
 - `MOD()` : `MOD([Row ID],2)` : Returns the remainder of a division operation
 - `SIGN()` : `SIGN([Profit])` : Returns 1 for positive, -1 for negative, and 0 for zero
 
-### String Functions Formulas
+### String Functions Formulas {: #string-functions }
 - `LEFT()` : `LEFT([Product Name],3)` : Returns the leftmost N characters
 - `RIGHT()` : `RIGHT([Category],2)` : Returns the rightmost N characters
 - `MID()` : `MID([SKU],2,4)` : Extracts a substring starting at a given position
@@ -91,7 +114,7 @@ permalink: /tableau-250-formulas/
 - `SPACE()` : `SPACE(5)` : Returns a string of N spaces
 - `URLENCODE()` : `URLENCODE([URL])` : Encodes special characters in a URL string
 
-### Table Calculations Formuulas
+### Table Calculations Formuulas {: #table-calculations }
 - `WINDOW_SUM()` : `WINDOW_SUM(SUM([Sales]))` : Sums values across the window defined by compute-using
 - `WINDOW_AVG()` : `WINDOW_AVG(AVG([Profit]))` : Averages values across the window
 - `WINDOW_MIN()` : `WINDOW_MIN(MIN([Sales]))` : Returns the minimum across the window
@@ -113,7 +136,7 @@ permalink: /tableau-250-formulas/
 - `WINDOW_STDEV()` : `WINDOW_STDEV(SUM([Sales]))` : Computes the standard deviation across the window
 - `WINDOW_VAR()` : `WINDOW_VAR(SUM([Sales]))` : Computes the variance across the window
 
-### Dashboards & Actions Formulas
+### Dashboards & Actions Formulas {: #dashboards-actions }
 - `Show Filter` : `Right-click dimension > Show Filter` : Displays an interactive filter for end users
 - `Dashboard Action Filter` : `Dashboard > Actions > Add Filter` : Passes selections between dashboard sheets
 - `Highlight Action` : `Add Highlight` : Emphasizes related marks across views
@@ -123,7 +146,7 @@ permalink: /tableau-250-formulas/
 - `Story Point` : `New Story` : Creates a sequence of dashboard pages for narrative flow
 - `Device Layout` : `Dashboard > Device Preview` : Optimizes the dashboard layout for mobile screens
 
-### Level of Detail (LOD) Formulas
+### Level of Detail (LOD) Formulas {: #lod }
 - `{ FIXED : ... }` : `{ FIXED : SUM([Sales]) }` : Computes an aggregate at the total level regardless of view dimensions
 - `{ FIXED [State] : ... }` : `{ FIXED [State] : AVG([Profit]) }` : Computes a state-level aggregate independent of the view
 - `{ INCLUDE [Product] : ... }` : `{ INCLUDE [Product] : SUM([Sales]) }` : Adds finer granularity beyond the view level
@@ -135,7 +158,7 @@ permalink: /tableau-250-formulas/
 - `LOD Filtering` : `IF { EXCLUDE [Customer ID] : SUM([Sales]) } > 1000 THEN 'VIP' END` : Filters rows based on group-level metrics
 - `REFERENCE` : `SUM([Sales]) / { FIXED : SUM([Sales]) }` : Computes a percentage of the overall total
 
-### Statistical & Analytics Formulas
+### Statistical & Analytics Formulas {: #statistical-analytics }
 - `MEDIAN()` : `MEDIAN([Sales])` : Returns the median value of a field
 - `STDEV()` : `STDEV([Sales])` : Computes the sample standard deviation
 - `VAR()` : `VAR([Sales])` : Computes the sample variance
@@ -152,7 +175,7 @@ permalink: /tableau-250-formulas/
 - `BIN()` : `BIN([Age],5)` : Groups continuous values into fixed-size bins
 - `Histogram` : `Show Me > Histogram` : Creates a distribution view of a single measure
 
-### User Functions & Security Formulas
+### User Functions & Security Formulas {: #user-security }
 - `USERNAME()` : `USERNAME()` : Returns the current Tableau Server or Tableau Cloud username
 - `ISMEMBEROF()` : `ISMEMBEROF('Sales')` : Checks whether the current user belongs to a specified group
 - `FULLNAME()` : `FULLNAME()` : Displays the full display name of the current user

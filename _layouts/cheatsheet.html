@@ -1,0 +1,203 @@
+---
+layout: default
+---
+<style>
+  .cheatsheet-wrap {
+    display: flex;
+    gap: 32px;
+    align-items: flex-start;
+  }
+  .cheatsheet-sidebar {
+    width: 280px;
+    flex-shrink: 0;
+    background: #000;
+    color: #fff;
+    border-radius: 16px;
+    padding: 20px;
+    position: sticky;
+    top: 90px;
+    max-height: calc(100vh - 110px);
+    overflow-y: auto;
+  }
+  .cheatsheet-sidebar::-webkit-scrollbar {
+    width: 6px;
+  }
+  .cheatsheet-sidebar::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 3px;
+  }
+  .sidebar-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    padding-left: 8px;
+  }
+  .unit-wrap {
+    margin-bottom: 8px;
+  }
+  .unit-header {
+    padding: 10px 12px;
+    cursor: pointer;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #b0b0b0;
+    transition: all 0.2s;
+  }
+  .unit-header:hover {
+    color: #fff;
+    background: rgba(255,255,255,0.05);
+  }
+  .unit-header.active {
+    color: #fff;
+    background: rgba(255,255,255,0.08);
+  }
+  .subtopics {
+    display: none;
+    padding-left: 0;
+  }
+  .subtopics.show {
+    display: block;
+  }
+  .subtopic-link {
+    display: block;
+    padding: 8px 12px 8px 24px;
+    text-decoration: none;
+    color: #888;
+    font-size: 0.85rem;
+    border-left: 2px solid transparent;
+    transition: all 0.2s;
+  }
+  .subtopic-link:hover {
+    color: #fff;
+    border-left-color: rgba(255,255,255,0.3);
+  }
+  .subtopic-link.active {
+    color: #fff;
+    border-left-color: #276EF1;
+    background: rgba(255,255,255,0.03);
+  }
+  .cheatsheet-main {
+    flex: 1;
+    min-width: 0;
+    background: #fff;
+    border-radius: 16px;
+    padding: 32px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+  }
+  .cheatsheet-main h2 {
+    margin-top: 0;
+    font-size: 1.5em;
+  }
+  .cheatsheet-main h3 {
+    font-size: 1.15em;
+    margin: 32px 0 16px;
+    padding-top: 8px;
+    scroll-margin-top: 100px;
+  }
+  .cheatsheet-main h3:first-of-type {
+    margin-top: 0;
+  }
+  .cheatsheet-main ul {
+    padding-left: 20px;
+  }
+  .cheatsheet-main li {
+    margin-bottom: 8px;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+  .cheatsheet-main code {
+    background: #f0f0f0;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.9em;
+  }
+
+  .menu-toggle-sidebar {
+    display: none;
+    background: #000;
+    color: #fff;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-bottom: 16px;
+    width: 100%;
+  }
+
+  @media (max-width: 850px) {
+    .cheatsheet-wrap {
+      flex-direction: column;
+    }
+    .cheatsheet-sidebar {
+      width: 100%;
+      position: static;
+      max-height: none;
+      display: none;
+    }
+    .cheatsheet-sidebar.open {
+      display: block;
+    }
+    .menu-toggle-sidebar {
+      display: block;
+    }
+    .cheatsheet-main {
+      padding: 20px;
+    }
+  }
+</style>
+
+<button class="menu-toggle-sidebar" id="sidebarToggle">☰ Categories</button>
+
+<div class="cheatsheet-wrap">
+  <aside class="cheatsheet-sidebar" id="cheatSidebar">
+    <div class="sidebar-title">{{ page.title }}</div>
+    {% for cat in page.categories %}
+    <div class="unit-wrap">
+      <div class="unit-header" data-target="{{ cat.id }}">
+        <span>{{ cat.name }}</span>
+        <span style="font-size:0.8rem;">&#9660;</span>
+      </div>
+      <div class="subtopics" data-parent="{{ cat.id }}">
+        <a href="#{{ cat.id }}" class="subtopic-link">{{ cat.name }}</a>
+      </div>
+    </div>
+    {% endfor %}
+  </aside>
+
+  <main class="cheatsheet-main">
+    {{ content }}
+  </main>
+</div>
+
+<script>
+  (function() {
+    var headers = document.querySelectorAll('.unit-header');
+    headers.forEach(function(h) {
+      h.addEventListener('click', function() {
+        var sub = this.nextElementSibling;
+        sub.classList.toggle('show');
+        this.classList.toggle('active');
+      });
+    });
+
+    document.getElementById('sidebarToggle')?.addEventListener('click', function() {
+      document.getElementById('cheatSidebar').classList.toggle('open');
+    });
+
+    var links = document.querySelectorAll('.subtopic-link');
+    links.forEach(function(link) {
+      link.addEventListener('click', function() {
+        links.forEach(function(l) { l.classList.remove('active'); });
+        this.classList.add('active');
+        if (window.innerWidth <= 850) {
+          document.getElementById('cheatSidebar').classList.remove('open');
+        }
+      });
+    });
+  })();
+</script>

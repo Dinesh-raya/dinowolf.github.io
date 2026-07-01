@@ -1,12 +1,45 @@
 ---
-layout: default
+layout: cheatsheet
 title: SQL 250+ Formulas
 permalink: /sql-250-formulas/
+categories:
+  - name: Basic Retrieval
+    id: basic-retrieval
+  - name: Filtering & Boolean Logic
+    id: filtering-boolean
+  - name: Set & Join Operations
+    id: set-join
+  - name: Aggregation & Grouping
+    id: aggregation-grouping
+  - name: Window Functions
+    id: window-functions
+  - name: String Functions
+    id: string-functions
+  - name: Numeric Functions
+    id: numeric-functions
+  - name: Date & Time Functions
+    id: date-time
+  - name: Control Flow Statements
+    id: control-flow
+  - name: Data Manipulation (DML)
+    id: dml
+  - name: Data Definition (DDL)
+    id: ddl
+  - name: Constraints & Relationships
+    id: constraints
+  - name: Transactions & Locks
+    id: transactions-locks
+  - name: Stored Routines & Scheduler
+    id: stored-routines
+  - name: JSON Functions
+    id: json-functions
+  - name: Admin & Security
+    id: admin-security
 ---
 
 ## SQL 250+ Formulas
 
-### Basic Retrieval Formulas
+### Basic Retrieval Formulas {: #basic-retrieval }
 - **SELECT**: `SELECT first_name, last_name FROM employees;` — Pulls particular columns from a database table
 - **SELECT ***: `SELECT * FROM products;` — Grabs every column, handy for initial data exploration
 - **DISTINCT**: `SELECT DISTINCT country FROM customers;` — Eliminates duplicate rows to show only unique values
@@ -33,7 +66,7 @@ permalink: /sql-250-formulas/
 - **SQL_MODE**: `SET sql_mode='STRICT_ALL_TABLES';` — Adjusts SQL behavior like strictness or compatibility for the session
 - **SELECT INTO OUTFILE**: `SELECT * FROM employees INTO OUTFILE '/tmp/emp.csv' FIELDS TERMINATED BY ',';` — Writes query results directly to a file on the server
 
-### Filtering & Boolean Logic Formulas
+### Filtering & Boolean Logic Formulas {: #filtering-boolean }
 - **WHERE**: `SELECT * FROM orders WHERE amount > 500;` — Restricts rows to those meeting a specified condition
 - **AND / OR / NOT**: `SELECT * FROM users WHERE active=1 AND NOT country='IN';` — Combines multiple filter conditions with logical operators
 - **Comparison Operators**: `SELECT * FROM items WHERE qty <> 0;` — Compares column values against constants or other columns (=, <>, >, <, >=, <=)
@@ -59,7 +92,7 @@ permalink: /sql-250-formulas/
 - **Row Sub-query**: `WHERE (a,b) IN (SELECT x,y FROM t2);` — Compares multiple columns as a composite key against a subquery result
 - **WITH RECURSIVE**: `WITH RECURSIVE nums AS (...) SELECT * FROM nums;` — Builds recursive CTEs for hierarchical or sequential data
 
-### Set & Join Operations Formulas
+### Set & Join Operations Formulas {: #set-join }
 - **INNER JOIN**: `SELECT e.name,d.name FROM emp e INNER JOIN dept d ON e.dept_id=d.id;` — Returns only rows where the join condition is met in both tables
 - **LEFT JOIN**: `SELECT * FROM a LEFT JOIN b ON a.id=b.id;` — Preserves every row from the left table, filling in NULLs when no match exists on the right
 - **RIGHT JOIN**: `SELECT * FROM a RIGHT JOIN b ON a.id=b.id;` — Preserves every row from the right table, filling in NULLs when no match exists on the left
@@ -78,7 +111,7 @@ permalink: /sql-250-formulas/
 - **MERGE**: `MERGE INTO dest USING src ON(dest.id=src.id) WHEN MATCHED THEN UPDATE SET ...;` — Performs an upsert (insert or update) in a single atomic statement (ANSI SQL)
 - **PIVOT / UNPIVOT**: `SELECT ... PIVOT(SUM(amt) FOR qtr IN ('Q1','Q2','Q3','Q4')) AS p;` — Rotates row values into column headers (or vice versa) for reporting
 
-### Aggregation & Grouping Formulas
+### Aggregation & Grouping Formulas {: #aggregation-grouping }
 - **GROUP BY**: `SELECT dept,COUNT(*) c FROM emp GROUP BY dept;` — Groups rows that share the same values in specified columns for aggregate computation
 - **HAVING**: `SELECT dept,COUNT(*) c FROM emp GROUP BY dept HAVING c>5;` — Filters groups after aggregation, just like WHERE filters rows before
 - **COUNT()**: `SELECT COUNT(*) FROM t;` — Counts the number of rows or non-NULL values in a group
@@ -90,7 +123,7 @@ permalink: /sql-250-formulas/
 - **ANY_VALUE()**: `SELECT year,ANY_VALUE(product) FROM sales GROUP BY year;` — Returns an arbitrary value from a non-aggregated column, bypassing ONLY_FULL_GROUP_BY restrictions
 - **STDDEV() / VARIANCE()**: `SELECT STDDEV(population) FROM cities;` — Measures statistical dispersion (how spread out the values are)
 
-### Window Functions Formulas
+### Window Functions Formulas {: #window-functions }
 - **ROW_NUMBER()**: `SELECT ROW_NUMBER() OVER(ORDER BY score DESC) AS rnk FROM exams;` — Assigns a unique sequential integer to each row within the window partition
 - **RANK()**: `SELECT RANK() OVER(PARTITION BY dept ORDER BY salary DESC) r FROM emp;` — Ranks rows with gaps when ties occur (1, 1, 3, 4)
 - **DENSE_RANK()**: `SELECT DENSE_RANK() OVER(PARTITION BY dept ORDER BY salary DESC) dr FROM emp;` — Ranks rows consecutively without gaps (1, 1, 2, 3)
@@ -107,7 +140,7 @@ permalink: /sql-250-formulas/
 - **EXCLUDE CURRENT ROW**: `AVG(score) OVER(ORDER BY score DESC EXCLUDE CURRENT ROW);` — Removes the current row from the window frame calculation
 - **WINDOW NAMED clause**: `SELECT SUM(v) OVER w FROM t WINDOW w AS (PARTITION BY c);` — Defines a reusable window spec to avoid repeating the same OVER clause
 
-### String Functions Formulas
+### String Functions Formulas {: #string-functions }
 - **CONCAT()**: `SELECT CONCAT(first,' ',last) AS fullname FROM users;` — Joins two or more strings end-to-end
 - **CONCAT_WS()**: `SELECT CONCAT_WS('-',year,month,day) FROM dates;` — Concatenates strings with a separator placed between each element
 - **SUBSTRING()**: `SELECT SUBSTRING(code,1,3) FROM sku;` — Extracts a portion of a string starting at a given position
@@ -149,7 +182,7 @@ permalink: /sql-250-formulas/
 - **MD5()**: `SELECT MD5('password');` — Computes the 128-bit MD5 hash of a string
 - **SHA2()**: `SELECT SHA2('password',256);` — Generates a SHA-2 hash of the specified bit length (224, 256, 384, 512)
 
-### Numeric Functions Formulas
+### Numeric Functions Formulas {: #numeric-functions }
 - **ABS()**: `SELECT ABS(-9);` — Returns the absolute (non-negative) value of a number
 - **SIGN()**: `SELECT SIGN(-9);` — Returns -1, 0, or 1 indicating whether the input is negative, zero, or positive
 - **CEIL()**: `SELECT CEIL(4.2);` — Rounds a number up to the nearest integer
@@ -179,7 +212,7 @@ permalink: /sql-250-formulas/
 - **CRC32()**: `SELECT CRC32('abc');` — Computes a 32-bit cyclic redundancy check checksum
 - **WIDTH_BUCKET()**: `SELECT WIDTH_BUCKET(score,0,100,4) FROM exams;` — Assigns a value to one of N equally sized buckets between specified bounds
 
-### Date & Time Functions Formulas
+### Date & Time Functions Formulas {: #date-time }
 - **NOW()**: `SELECT NOW();` — Returns the current date and time in the session's time zone
 - **CURRENT_TIMESTAMP**: `SELECT CURRENT_TIMESTAMP;` — ANSI-standard synonym for NOW()
 - **CURDATE()**: `SELECT CURDATE();` — Returns the current date without the time component
@@ -221,7 +254,7 @@ permalink: /sql-250-formulas/
 - **FROM_UNIXTIME()**: `SELECT FROM_UNIXTIME(1700000000);` — Converts a Unix epoch timestamp (seconds) into a readable datetime
 - **GET_FORMAT()**: `SELECT DATE_FORMAT(NOW(), GET_FORMAT(DATE,'EUR'));` — Returns a locale-specific format string for date/time formatting
 
-### Control Flow Statements Formulas
+### Control Flow Statements Formulas {: #control-flow }
 - **CASE (searched)**: `SELECT CASE WHEN score>=80 THEN 'A' WHEN score>=60 THEN 'B' END AS grade FROM exams;` — Returns a value based on conditions evaluated in order within a SELECT
 - **IF()**: `SELECT IF(active,'Y','N') FROM users;` — MySQL's inline ternary: returns the second argument when the condition is true, the third otherwise
 - **IFNULL()**: `SELECT IFNULL(phone,'N/A') FROM contacts;` — Substitutes a NULL value with a fallback, but only handles one argument at a time
@@ -233,7 +266,7 @@ permalink: /sql-250-formulas/
 - **DECLARE ...**: `DECLARE v INT DEFAULT 0;` — Declares a local variable, cursor, or condition handler inside a stored program
 - **LEAVE / ITERATE**: `LEAVE my_loop;` — Exits (LEAVE) or jumps to the next iteration (ITERATE) of a loop inside a stored routine
 
-### Data Manipulation (DML) Formulas
+### Data Manipulation (DML) Formulas {: #dml }
 - **INSERT**: `INSERT INTO emp(name,salary) VALUES('Ram',50000);` — Adds one or more new rows of data into a table
 - **INSERT SET**: `INSERT INTO emp SET name='Asha',salary=40000;` — MySQL-specific syntax using column=value pairs instead of positional lists
 - **ON DUPLICATE KEY UPDATE**: `INSERT INTO stats(id,val) VALUES(1,10) ON DUPLICATE KEY UPDATE val=VALUES(val);` — Inserts a row, or updates it if a unique key conflict is found (upsert)
@@ -247,7 +280,7 @@ permalink: /sql-250-formulas/
 - **LOAD DATA INFILE**: `LOAD DATA INFILE '/tmp/file.csv' INTO TABLE t FIELDS TERMINATED BY ',';` — Bulk-imports data from a text file into a table very efficiently
 - **CALL (proc)**: `CALL raise_salary(1001,5000);` — Executes a previously defined stored procedure
 
-### Data Definition (DDL) Formulas
+### Data Definition (DDL) Formulas {: #ddl }
 - **CREATE DATABASE**: `CREATE DATABASE salesdb CHARACTER SET utf8mb4;` — Creates a new database with an optional character set and collation
 - **ALTER DATABASE**: `ALTER DATABASE salesdb COLLATE utf8mb4_0900_ai_ci;` — Modifies database-level properties like character set or collation
 - **DROP DATABASE**: `DROP DATABASE olddb;` — Permanently deletes a database and everything inside it
@@ -269,7 +302,7 @@ permalink: /sql-250-formulas/
 - **CREATE SEQUENCE**: `CREATE SEQUENCE seq START WITH 1 INCREMENT BY 1;` — Defines a sequence object that generates incremental numeric values (MariaDB/PostgreSQL)
 - **AUTO_INCREMENT**: `id INT AUTO_INCREMENT PRIMARY KEY;` — MySQL column attribute that automatically assigns incrementing integers to new rows
 
-### Constraints & Relationships Formulas
+### Constraints & Relationships Formulas {: #constraints }
 - **PRIMARY KEY**: `PRIMARY KEY(id)` — Uniquely identifies every row in a table; no duplicates or NULLs allowed
 - **UNIQUE**: `UNIQUE(email)` — Ensures every value in a column (or column set) is distinct across rows
 - **NOT NULL**: `name VARCHAR(100) NOT NULL` — Forces a column to always hold a value (no NULLs)
@@ -279,7 +312,7 @@ permalink: /sql-250-formulas/
 - **ON DELETE CASCADE**: `ON DELETE CASCADE` — Automatically removes child rows when the referenced parent row is deleted
 - **ON UPDATE SET NULL**: `ON UPDATE SET NULL` — Sets the foreign key column to NULL when the referenced parent key value is updated
 
-### Transactions & Locks Formulas
+### Transactions & Locks Formulas {: #transactions-locks }
 - **SET autocommit**: `SET autocommit=0;` — Disables automatic committing so you can control when changes become permanent
 - **START TRANSACTION**: `START TRANSACTION;` — Begins an explicit transaction block where all statements are atomic
 - **SAVEPOINT**: `SAVEPOINT sp1;` — Marks a point within a transaction that you can roll back to without ending the whole transaction
@@ -291,7 +324,7 @@ permalink: /sql-250-formulas/
 - **SET TRANSACTION ISOLATION LEVEL**: `SET TRANSACTION ISOLATION LEVEL READ COMMITTED;` — Controls which concurrency phenomena (dirty reads, non-repeatable reads, phantoms) are permitted
 - **SHOW ENGINE INNODB STATUS**: `SHOW ENGINE INNODB STATUS;` — Displays InnoDB diagnostics including lock waits, deadlocks, and buffer pool stats
 
-### Stored Routines & Scheduler Formulas
+### Stored Routines & Scheduler Formulas {: #stored-routines }
 - **DELIMITER**: `DELIMITER $$ ... $$ DELIMITER ;` — Temporarily changes the statement terminator so you can define routines containing semicolons
 - **CREATE PROCEDURE**: `CREATE PROCEDURE p() BEGIN SELECT NOW(); END;` — Encapsulates reusable SQL logic as a callable routine
 - **ALTER PROCEDURE**: `ALTER PROCEDURE p COMMENT 'Returns DT';` — Modifies metadata (comment, SQL security, etc.) of a stored procedure
@@ -305,7 +338,7 @@ permalink: /sql-250-formulas/
 - **DROP EVENT**: `DROP EVENT e_cleanup;` — Deletes a scheduled event entirely
 - **PREPARE / EXECUTE / DEALLOCATE**: `PREPARE stmt FROM 'SELECT ?+?'; EXECUTE stmt USING @a,@b; DEALLOCATE PREPARE stmt;` — Compiles and runs dynamically constructed SQL statements safely
 
-### JSON Functions Formulas
+### JSON Functions Formulas {: #json-functions }
 - **JSON_OBJECT()**: `SELECT JSON_OBJECT('id',id,'name',name) FROM users;` — Builds a JSON object from alternating key-value pairs
 - **JSON_ARRAY()**: `SELECT JSON_ARRAY(col1,col2) FROM t;` — Creates a JSON array from a list of values
 - **JSON_EXTRACT()**: `SELECT JSON_EXTRACT(json,'$.path') FROM t;` — Retrieves a value from a JSON document by its path expression
@@ -325,7 +358,7 @@ permalink: /sql-250-formulas/
 - **JSON_TABLE()**: `SELECT * FROM JSON_TABLE(json,'$[*]' COLUMNS(id INT PATH '$.id')) AS jt;` — Converts JSON array elements into relational rows and columns
 - **JSON_PRETTY()**: `SELECT JSON_PRETTY(json);` — Formats a JSON string with indentation and line breaks for human readability
 
-### Admin & Security Formulas
+### Admin & Security Formulas {: #admin-security }
 - **CREATE USER**: `CREATE USER 'u'@'%' IDENTIFIED BY 'p';` — Creates a new MySQL login account with a host specification
 - **ALTER USER**: `ALTER USER 'u'@'%' IDENTIFIED WITH 'mysql_native_password' BY 'np';` — Changes a user's authentication method or password
 - **DROP USER**: `DROP USER 'u'@'%';` — Permanently removes a user account from the server
