@@ -37,7 +37,8 @@ categories:
 
 # Power BI 250+ Formulas
 
-## Basic Aggregations Formulas {: #basic-aggregations }
+## Basic Aggregations Formulas
+{: #basic-aggregations }
 
 MAX(): MAX( Profit ) : Returns the highest value from the specified column
 
@@ -63,7 +64,8 @@ STDEV.P(): STDEV.P( Sales ) : Calculates the population standard deviation
 
 VAR.S(): VAR.S( Profit ) : Computes the sample variance
 
-## Date & Time Formulas {: #date-time }
+## Date & Time Formulas
+{: #date-time }
 
 TODAY(): TODAY() : Returns the current date based on the model timezone
 
@@ -95,7 +97,8 @@ TOTALYTD(): TOTALYTD( SUM( Sales ), Dates[Date] ) : Computes a year-to-date runn
 
 WEEKNUM(): WEEKNUM( Orders[Order Date] ) : Returns the ISO week number for a date
 
-## Filter & Context Formulas {: #filter-context }
+## Filter & Context Formulas
+{: #filter-context }
 
 CALCULATE(): CALCULATE( SUM( Sales ), Year = 2025 ) : Modifies the filter context to evaluate an expression under different conditions
 
@@ -127,7 +130,8 @@ RELATED(): RELATED( Product[Category] ) : Fetches a related value from the one-s
 
 RELATEDTABLE(): RELATEDTABLE( Sales ) : Returns rows from the many-side table in a relationship
 
-## Iterator & Table Functions Formulas {: #iterator-table }
+## Iterator & Table Functions Formulas
+{: #iterator-table }
 
 SUMX(): SUMX( Orders, Orders[Quantity] * Orders[UnitPrice] ) : Evaluates an expression for each row then sums the results
 
@@ -159,7 +163,8 @@ CROSSJOIN(): CROSSJOIN( Products, Colors ) : Generates the Cartesian product of 
 
 GENERATE(): GENERATE( Customers, Orders ) : Combines each row of one table with a related table expression
 
-## Logical & Testing Formulas {: #logical-testing }
+## Logical & Testing Formulas
+{: #logical-testing }
 
 IF(): IF( Profit>0, "Positive","Negative" ) : Performs conditional branching based on a logical test
 
@@ -191,7 +196,8 @@ ISFILTERED(): ISFILTERED( Orders[Region] ) : Tests whether a column has an activ
 
 ISINSCOPE(): ISINSCOPE( Date[Month] ) : Tests whether a column is part of the current hierarchy level
 
-## Math & Trigonometry Formulas {: #math-trig }
+## Math & Trigonometry Formulas
+{: #math-trig }
 
 ABS(): ABS( Profit ) : Returns the absolute value of a number
 
@@ -223,7 +229,8 @@ RANDBETWEEN(): RANDBETWEEN(1,100) : Returns a random integer within a specified 
 
 SIGN(): SIGN( Profit ) : Returns the sign of a number (1, -1, or 0)
 
-## Misc Extras Formulas {: #misc-extras }
+## Misc Extras Formulas
+{: #misc-extras }
 
 DATEDIFF (MONTH): DATEDIFF( Earliest[Date], Latest[Date], MONTH ) : Returns the number of months between two dates
 
@@ -245,7 +252,8 @@ NETWORKDAYS(): NETWORKDAYS( Start, End ) : Calculates working days between two d
 
 EARLIER(): EARLIER( Table[Column] ) : Accesses the row context from an outer iteration
 
-## Power Query - Text & Number Formulas {: #pq-text-number }
+## Power Query - Text & Number Formulas
+{: #pq-text-number }
 
 Text.Upper: Text.Upper([Name]) : Converts text to uppercase in Power Query
 
@@ -267,7 +275,8 @@ DateTime.LocalNow: DateTime.LocalNow() : Returns the current local date and time
 
 Csv.Document: Csv.Document(File.Contents(path)) : Parses a CSV file into a table
 
-## Power Query - Table Ops Formulas {: #pq-table-ops }
+## Power Query - Table Ops Formulas
+{: #pq-table-ops }
 
 Table.SelectRows: Table.SelectRows(Source, each [Sales] > 1000) : Filters rows in a Power Query table based on a condition
 
@@ -299,7 +308,8 @@ List.Generate: List.Generate(()=>0, each _<10, each _+1) : Generates a list prog
 
 Excel.Workbook: Excel.Workbook(File.Contents(path)) : Imports Excel workbook sheets as tables
 
-## Power Query - Extras Formulas {: #pq-extras }
+## Power Query - Extras Formulas
+{: #pq-extras }
 
 Table.RemoveRows : Table.RemoveRows(Source,0,1) : Removes a specified number of rows from the start of a table
 
@@ -321,7 +331,8 @@ List.Sort : List.Sort([Values]) : Sorts list items in ascending order
 
 List.Contains : List.Contains([Values], "A") : Checks whether a list contains a specified value
 
-## Text & Info Formulas {: #text-info }
+## Text & Info Formulas
+{: #text-info }
 
 CONCATENATE() : CONCATENATE( FirstName, " ", LastName ) : Joins multiple text strings into one
 
@@ -353,7 +364,8 @@ FORMAT() : FORMAT( Sales, "#,##0.00" ) : Formats a number or date as a string
 
 BLANK() : BLANK() : Returns a blank value
 
-## Stat & Ranking Formulas {: #stat-ranking }
+## Stat & Ranking Formulas
+{: #stat-ranking }
 
 PERCENTILEX.INC() : PERCENTILEX.INC( Orders, Orders[Sales], 0.9 ) : Returns the inclusive percentile of an expression evaluated row by row
 
@@ -375,7 +387,8 @@ MODE.SNGL() : MODE.SNGL( Orders[Ship Mode] ) : Returns the most frequently occur
 
 CORR() : CORR( Sales[Amount], Profit[Amount] ) : Returns the correlation coefficient between two columns
 
-## Additional DAX Formulas {: #additional-dax }
+## Additional DAX Formulas
+{: #additional-dax }
 
 CURRENCY() : CURRENCY( Sales ) : Converts a numeric value to the currency data type
 
@@ -417,7 +430,8 @@ RANK.EQ() : RANK.EQ( [Sales] ) : Returns the Excel-style rank (tie gives same ra
 
 RANK.AVG() : RANK.AVG( [Sales] ) : Returns the average rank for tied values
 
-## Advanced Context & Hierarchy Formulas {: #advanced-context }
+## Advanced Context & Hierarchy Formulas
+{: #advanced-context }
 
 VAR : VAR _sales = SUM( Sales ) : Defines a reusable variable within a measure or calculated column
 
@@ -439,7 +453,8 @@ PATHCONTAINS() : PATHCONTAINS( PathCol, SelectedID ) : Checks whether a specifie
 
 PATHITEM() : PATHITEM( PathCol, 2, INTEGER ) : Returns a specific element from a path string at a given position
 
-## User & Security Formulas {: #user-security }
+## User & Security Formulas
+{: #user-security }
 
 USERPRINCIPALNAME() : USERPRINCIPALNAME() : Returns the current user's UPN for use in row-level security
 

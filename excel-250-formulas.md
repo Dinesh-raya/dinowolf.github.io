@@ -27,7 +27,8 @@ categories:
 
 ## Excel 250+ Formulas
 
-### Basic Aggregations Formulas {: #basic-aggregations }
+### Basic Aggregations Formulas
+{: #basic-aggregations }
 - `SUM()` = `=SUM(B2:B10)` : Calculates the total of selected numbers
 - `AVERAGE()` = `=AVERAGE(C2:C10)` : Returns the arithmetic mean of values
 - `COUNT()` = `=COUNT(A2:A10)` : Counts cells that contain numeric values
@@ -47,7 +48,8 @@ categories:
 - `AVERAGEIF()` = `=AVERAGEIF(A2:A10,"East",B2:B10)` : Calculates average based on one condition
 - `AVERAGEIFS()` = `=AVERAGEIFS(B2:B10,A2:A10,"East",C2:C10,">100")` : Calculates average based on multiple conditions
 
-### Date & Time Formulas {: #date-time }
+### Date & Time Formulas
+{: #date-time }
 - `TODAY()` = `=TODAY()` : Returns the current date, updates daily
 - `NOW()` = `=NOW()` : Returns the current date and time together
 - `DATE()` = `=DATE(2025,4,23)` : Creates a date from individual year, month, and day values
@@ -71,7 +73,8 @@ categories:
 - `MINUTE()` = `=MINUTE(B2)` : Extracts the minute portion from a time value
 - `SECOND()` = `=SECOND(B2)` : Extracts the second portion from a time value
 
-### Dynamic Array Functions Formulas {: #dynamic-array }
+### Dynamic Array Functions Formulas
+{: #dynamic-array }
 - `UNIQUE()` = `=UNIQUE(A2:A100)` : Returns a list of distinct values from a range
 - `FILTER()` = `=FILTER(A2:D100,B2:B100="East")` : Filters a range based on a logical condition
 - `SORT()` = `=SORT(A2:B100,2,-1)` : Sorts a range by a specified column in ascending or descending order
@@ -89,7 +92,8 @@ categories:
 - `LET()` = `=LET(rng,A2:A10,AVG,AVERAGE(rng),AVG)` : Assigns names to values and intermediate calculations for cleaner formulas
 - `LAMBDA()` = `=LAMBDA(x,y,x+y)(2,3)` : Defines a custom reusable function using parameters and a calculation
 
-### Excel Features & Shortcuts Formulas {: #excel-features }
+### Excel Features & Shortcuts Formulas
+{: #excel-features }
 - `Absolute Reference` = `$A$1` : Locks a cell reference so it does not change when copying the formula
 - `Named Range` = `Formulas > Define Name` : Assigns a descriptive name to a cell or range for simpler formulas
 - `Data Validation` = `Data > Data Validation` : Restricts what type of data can be entered into a cell
@@ -103,7 +107,8 @@ categories:
 - `Ctrl+;` = `Insert today's date` : Quickly enters the current date into the active cell
 - `Ctrl+Shift+!` = `Apply number formatting` : Applies the default number format with two decimal places
 
-### Information Formulas {: #information }
+### Information Formulas
+{: #information }
 - `ISBLANK()` = `=ISBLANK(A2)` : Checks whether a cell is empty and returns TRUE or FALSE
 - `ISNUMBER()` = `=ISNUMBER(A2)` : Checks whether a value is numeric
 - `ISTEXT()` = `=ISTEXT(A2)` : Checks whether a value is text
@@ -118,7 +123,8 @@ categories:
 - `INFO()` = `=INFO("obversion")` : Returns details about the current operating environment
 - `ERROR.TYPE()` = `=ERROR.TYPE(A2)` : Returns a number that corresponds to a specific error type
 
-### Logical & Error Handling Formulas {: #logical-error }
+### Logical & Error Handling Formulas
+{: #logical-error }
 - `IF()` = `=IF(D2>0,"Profit","Loss")` : Returns one value if a condition is true and another if false
 - `IFS()` = `=IFS(B2>90,"A",B2>80,"B",TRUE,"C")` : Evaluates multiple conditions and returns the first matching result without nesting
 - `AND()` = `=AND(A2>0,B2>0)` : Returns TRUE only when all conditions evaluate to true
@@ -131,7 +137,8 @@ categories:
 - `CHOOSE()` = `=CHOOSE(3,"Red","Blue","Green","Yellow")` : Selects a value from a list based on a positional index number
 - `LET()` = `=LET(taxRate,0.18,Price*taxRate)` : Assigns intermediate variables within a formula for readability and performance
 
-### Lookup & Reference Formulas {: #lookup-reference }
+### Lookup & Reference Formulas
+{: #lookup-reference }
 - `VLOOKUP()` = `=VLOOKUP(E2,$A$2:$C$10,3,0)` : Looks up a value in the leftmost column and returns a corresponding value from a specified column to the right
 - `HLOOKUP()` = `=HLOOKUP(B5,$A$1:$G$3,3,FALSE)` : Searches for a value in the top row and returns a value from a specified row below
 - `XLOOKUP()` = `=XLOOKUP(E2,$A$2:$A$10,$B$2:$B$10,"NF")` : Searches a range and returns a matching result with support for vertical, horizontal, and reverse lookups
@@ -153,7 +160,8 @@ categories:
 - `SORTBY()` = `=SORTBY(A2:B10,B2:B10,-1)` : Sorts a range using a separate helper column as the sorting key
 - `SEQUENCE()` = `=SEQUENCE(10,1,1,1)` : Creates a sequential list of numbers in an array that spills automatically
 
-### Math & Trig Formulas {: #math-trig }
+### Math & Trig Formulas
+{: #math-trig }
 - `ROUND()` = `=ROUND(A2,2)` : Rounds a number to a specified number of decimal places
 - `ROUNDUP()` = `=ROUNDUP(A2,0)` : Rounds a number up toward zero regardless of the digit value
 - `ROUNDDOWN()` = `=ROUNDDOWN(A2,0)` : Rounds a number down toward zero regardless of the digit value
@@ -174,7 +182,8 @@ categories:
 - `LOG10()` = `=LOG10(A2)` : Computes the base-10 logarithm of a number
 - `PRODUCT()` = `=PRODUCT(B2:B10)` : Multiplies all numbers in a range and returns the product
 
-### Statistical Formulas {: #statistical }
+### Statistical Formulas
+{: #statistical }
 - `MEDIAN()` = `=MEDIAN(A2:A10)` : Returns the middle value from a sorted set of numbers
 - `MODE.SNGL()` = `=MODE.SNGL(A2:A10)` : Returns the most frequently occurring value in a dataset
 - `PERCENTILE.EXC()` = `=PERCENTILE.EXC(A2:A10,0.9)` : Returns the k-th percentile excluding 0 and 1 boundaries
@@ -190,7 +199,8 @@ categories:
 - `TREND()` = `=TREND(known_y,known_x,new_x)` : Fits a line to known data points and predicts values along that line
 - `FORECAST.LINEAR()` = `=FORECAST.LINEAR(new_x,known_y,known_x)` : Predicts a future value using linear regression based on historical data
 
-### Text Functions Formulas {: #text-functions }
+### Text Functions Formulas
+{: #text-functions }
 - `LEFT()` = `=LEFT(A2,3)` : Returns the specified number of characters from the start of a text string
 - `RIGHT()` = `=RIGHT(A2,2)` : Returns the specified number of characters from the end of a text string
 - `MID()` = `=MID(A2,2,4)` : Returns a substring starting at a given position with a specified length
