@@ -1,9 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
-  <script>
-    (function(){var s=localStorage.getItem('raya-theme');if(s==='dark'){document.documentElement.setAttribute('data-theme','dark')}})();
-  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ page.title }} | {{ site.title }}</title>
@@ -44,34 +41,6 @@
       --link-color: #000000;
       --hr-color: #eeeeee;
       --border-radius: 20px;
-      --toggle-bg: #333333;
-    }
-    [data-theme="dark"] {
-      --bg: #121212;
-      --surface: #1e1e1e;
-      --surface-alt: #252525;
-      --text: #e0e0e0;
-      --text-secondary: #cccccc;
-      --text-muted: #999999;
-      --text-light: #aaaaaa;
-      --border: #444444;
-      --border-light: #555555;
-      --card-shadow: 0 2px 4px rgba(0,0,0,0.3);
-      --card-shadow-hover: 0 8px 12px rgba(0,0,0,0.4);
-      --inline-code-bg: #2a2a2a;
-      --blockquote-bg: #1e1e1e;
-      --blockquote-color: #aaaaaa;
-      --table-header-bg: #2a2a2a;
-      --table-border: #444444;
-      --h3-card-color: #e0e0e0;
-      --icon-bg: #2a2a2a;
-      --copyright-color: #888888;
-      --footer-link: #999999;
-      --back-link: #aaaaaa;
-      --back-link-hover: #ffffff;
-      --link-color: #80b4ff;
-      --hr-color: #444444;
-      --toggle-bg: #555555;
     }
     * {
       -webkit-tap-highlight-color: transparent;
@@ -104,7 +73,7 @@
       align-items: center;
       justify-content: space-between;
     }
-    nav a, .theme-toggle {
+    nav a {
       color: #fff;
       text-decoration: none;
       font-size: 16px;
@@ -112,28 +81,8 @@
       opacity: 0.8;
       transition: opacity 0.2s;
     }
-    nav a:hover, .theme-toggle:hover {
+    nav a:hover {
       opacity: 1;
-    }
-    .theme-toggle {
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 4px 8px;
-      font-size: 18px;
-      line-height: 1;
-    }
-    .back-nav {
-      margin-bottom: 24px;
-    }
-    .back-nav a {
-      color: var(--back-link);
-      text-decoration: none;
-      font-size: 14px;
-      transition: color 0.2s;
-    }
-    .back-nav a:hover {
-      color: var(--back-link-hover);
     }
 
     footer {
@@ -158,11 +107,8 @@
         flex-wrap: wrap;
         gap: 8px;
       }
-      nav a, .theme-toggle {
+      nav a {
         font-size: 14px;
-      }
-      .theme-toggle {
-        font-size: 16px;
       }
       footer {
         padding: 20px 10px;
@@ -182,17 +128,11 @@
         <a href="/">Home</a>
         <a href="/cheatsheet/">Cheatsheet</a>
         <a href="/claude-leak/">Claude Leak</a>
-        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">&#9790;</button>
       </div>
     </nav>
   </header>
 
   <div class="container">
-    {% unless page.url == '/' %}
-    <div class="back-nav">
-      <a href="#" onclick="history.back(); return false;">&larr; Back</a>
-    </div>
-    {% endunless %}
     {{ content }}
   </div>
 
@@ -207,29 +147,6 @@
       &copy; {{ site.time | date: '%Y' }} {{ site.title }}
     </div>
   </footer>
-
-  <script>
-    (function() {
-      var html = document.documentElement;
-      var stored = localStorage.getItem('raya-theme');
-      if (stored === 'dark') {
-        html.setAttribute('data-theme', 'dark');
-      }
-      var btn = document.getElementById('themeToggle');
-      if (btn) {
-        btn.addEventListener('click', function() {
-          var isDark = html.getAttribute('data-theme') === 'dark';
-          if (isDark) {
-            html.removeAttribute('data-theme');
-            localStorage.setItem('raya-theme', 'light');
-          } else {
-            html.setAttribute('data-theme', 'dark');
-            localStorage.setItem('raya-theme', 'dark');
-          }
-        });
-      }
-    })();
-  </script>
 
 </body>
 </html>
