@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: Dinesh-raya/dinesh-raya.github.io # ◄ Verify this matches your exact username casing!
+  repo: Dinesh-raya/dinesh-raya.github.io  # Verify this matches your exact username casing!
   branch: main
   base_url: https://github-oauth-gate.dineshraya365.workers.dev # We will link your free login key here
 

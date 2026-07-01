@@ -16,9 +16,8 @@ title: Home
     box-sizing: border-box;
   }
   .course-grid {
-    display: grid !important;
-    /* CHANGED: Switched to a fixed 4-column layout on desktop so the theme container CANNOT force a vertical stack */
-    grid-template-columns: repeat(4, 1fr) !important;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
     gap: 16px;
     align-items: stretch;
   }
