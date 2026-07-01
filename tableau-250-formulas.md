@@ -29,8 +29,7 @@ categories:
 
 ## Tableau 250+ Formulas
 
-### Basic Aggregations Formulas
-{: #basic-aggregations }
+<h3 id="basic-aggregations">Basic Aggregations Formulas</h3>
 - `SUM()` : `SUM([Sales])` : Adds up all values in the selected field
 - `AVG()` : `AVG([Discount])` : Computes the arithmetic mean
 - `MIN()` : `MIN([Order Date])` : Returns the earliest or smallest value
@@ -42,8 +41,7 @@ categories:
 - `ZN()` : `ZN([Profit])` : Replaces null values with zero
 - `SIZE()` : `SIZE()` : Returns the row count in the current partition
 
-### Date Functions
-{: #date-functions }
+<h3 id="date-functions">Date Functions</h3>
 - `TODAY()` : `TODAY()` : Returns the current date
 - `NOW()` : `NOW()` : Returns the current date and time
 - `YEAR()` : `YEAR([Order Date])` : Extracts the year from a date
@@ -60,8 +58,7 @@ categories:
 - `MIN()` : `MIN([Order Date])` : Returns the earliest date in the partition
 - `MAX()` : `MAX([Order Date])` : Returns the latest date in the partition
 
-### Logical & Type Formulas
-{: #logical-type }
+<h3 id="logical-type">Logical & Type Formulas</h3>
 - `IF / THEN / ELSE` : `IF [Profit]>0 THEN 'Positive' ELSE 'Negative' END` : Applies row-level conditional logic
 - `IIF()` : `IIF([Ship Mode]='Same Day',1,0)` : Inline conditional with three arguments
 - `CASE` : `CASE [Segment] WHEN 'Consumer' THEN 1 WHEN 'Corporate' THEN 2 END` : Evaluates multiple equality conditions cleanly
@@ -73,8 +70,7 @@ categories:
 - `INT()` : `INT([Order ID])` : Casts a value to an integer
 - `FLOAT()` : `FLOAT([Quantity])` : Casts a value to a floating-point number
 
-### Mapping & Geo Formulas
-{: #mapping-geo }
+<h3 id="mapping-geo">Mapping & Geo Formulas</h3>
 - `MAKEPOINT()` : `MAKEPOINT([Lat],[Lon])` : Creates a spatial point from latitude and longitude
 - `MAKELINE()` : `MAKELINE([Start], [End])` : Creates a line between two spatial points for routes
 - `DISTANCE()` : `DISTANCE([Start],[End],'mile')` : Computes the distance between two points in given units
@@ -84,8 +80,7 @@ categories:
 - `REGION()` : `[Postal Code] recognized` : Automatically assigns geographic roles
 - `Spatial Join` : `Join two spatial layers on intersection` : Combines polygon or point layers based on spatial overlap
 
-### Number Functions
-{: #number-functions }
+<h3 id="number-functions">Number Functions</h3>
 - `ABS()` : `ABS([Profit])` : Returns the absolute value of a number
 - `CEILING()` : `CEILING([Discount])` : Rounds a number up to the nearest integer
 - `FLOOR()` : `FLOOR([Discount])` : Rounds a number down to the nearest integer
@@ -99,8 +94,7 @@ categories:
 - `MOD()` : `MOD([Row ID],2)` : Returns the remainder of a division operation
 - `SIGN()` : `SIGN([Profit])` : Returns 1 for positive, -1 for negative, and 0 for zero
 
-### String Functions Formulas
-{: #string-functions }
+<h3 id="string-functions">String Functions Formulas</h3>
 - `LEFT()` : `LEFT([Product Name],3)` : Returns the leftmost N characters
 - `RIGHT()` : `RIGHT([Category],2)` : Returns the rightmost N characters
 - `MID()` : `MID([SKU],2,4)` : Extracts a substring starting at a given position
@@ -120,8 +114,7 @@ categories:
 - `SPACE()` : `SPACE(5)` : Returns a string of N spaces
 - `URLENCODE()` : `URLENCODE([URL])` : Encodes special characters in a URL string
 
-### Table Calculations Formuulas
-{: #table-calculations }
+<h3 id="table-calculations">Table Calculations Formuulas</h3>
 - `WINDOW_SUM()` : `WINDOW_SUM(SUM([Sales]))` : Sums values across the window defined by compute-using
 - `WINDOW_AVG()` : `WINDOW_AVG(AVG([Profit]))` : Averages values across the window
 - `WINDOW_MIN()` : `WINDOW_MIN(MIN([Sales]))` : Returns the minimum across the window
@@ -143,8 +136,7 @@ categories:
 - `WINDOW_STDEV()` : `WINDOW_STDEV(SUM([Sales]))` : Computes the standard deviation across the window
 - `WINDOW_VAR()` : `WINDOW_VAR(SUM([Sales]))` : Computes the variance across the window
 
-### Dashboards & Actions Formulas
-{: #dashboards-actions }
+<h3 id="dashboards-actions">Dashboards & Actions Formulas</h3>
 - `Show Filter` : `Right-click dimension > Show Filter` : Displays an interactive filter for end users
 - `Dashboard Action Filter` : `Dashboard > Actions > Add Filter` : Passes selections between dashboard sheets
 - `Highlight Action` : `Add Highlight` : Emphasizes related marks across views
@@ -154,8 +146,7 @@ categories:
 - `Story Point` : `New Story` : Creates a sequence of dashboard pages for narrative flow
 - `Device Layout` : `Dashboard > Device Preview` : Optimizes the dashboard layout for mobile screens
 
-### Level of Detail (LOD) Formulas
-{: #lod }
+<h3 id="lod">Level of Detail (LOD) Formulas</h3>
 - `{ FIXED : ... }` : `{ FIXED : SUM([Sales]) }` : Computes an aggregate at the total level regardless of view dimensions
 - `{ FIXED [State] : ... }` : `{ FIXED [State] : AVG([Profit]) }` : Computes a state-level aggregate independent of the view
 - `{ INCLUDE [Product] : ... }` : `{ INCLUDE [Product] : SUM([Sales]) }` : Adds finer granularity beyond the view level
@@ -167,8 +158,7 @@ categories:
 - `LOD Filtering` : `IF { EXCLUDE [Customer ID] : SUM([Sales]) } > 1000 THEN 'VIP' END` : Filters rows based on group-level metrics
 - `REFERENCE` : `SUM([Sales]) / { FIXED : SUM([Sales]) }` : Computes a percentage of the overall total
 
-### Statistical & Analytics Formulas
-{: #statistical-analytics }
+<h3 id="statistical-analytics">Statistical & Analytics Formulas</h3>
 - `MEDIAN()` : `MEDIAN([Sales])` : Returns the median value of a field
 - `STDEV()` : `STDEV([Sales])` : Computes the sample standard deviation
 - `VAR()` : `VAR([Sales])` : Computes the sample variance
@@ -185,8 +175,7 @@ categories:
 - `BIN()` : `BIN([Age],5)` : Groups continuous values into fixed-size bins
 - `Histogram` : `Show Me > Histogram` : Creates a distribution view of a single measure
 
-### User Functions & Security Formulas
-{: #user-security }
+<h3 id="user-security">User Functions & Security Formulas</h3>
 - `USERNAME()` : `USERNAME()` : Returns the current Tableau Server or Tableau Cloud username
 - `ISMEMBEROF()` : `ISMEMBEROF('Sales')` : Checks whether the current user belongs to a specified group
 - `FULLNAME()` : `FULLNAME()` : Displays the full display name of the current user
