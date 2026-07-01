@@ -13,15 +13,14 @@ title: Home
     padding: 20px;
     margin-bottom: 32px;
     background-color: #fdfdfd;
-    width: 100%;            /* FORCED: Overrides layout squeeze */
     box-sizing: border-box;
   }
   .course-grid {
-    display: grid !important; /* FORCED: Overrides external flex block overrides */
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)) !important;
+    display: grid !important;
+    /* CHANGED: Switched to a fixed 4-column layout on desktop so the theme container CANNOT force a vertical stack */
+    grid-template-columns: repeat(4, 1fr) !important;
     gap: 16px;
     align-items: stretch;
-    width: 100%;            /* FORCED: Ensures full-track stretch across screen */
   }
   .course-card {
     text-decoration: none;
