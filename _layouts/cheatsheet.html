@@ -27,24 +27,31 @@ layout: default
     border-radius: 3px;
   }
   .sidebar-title {
-    font-size: 1.1rem;
+    font-size: 1.25rem;
     font-weight: 700;
-    margin-bottom: 20px;
-    padding-left: 8px;
+    margin-bottom: 24px;
+    padding-left: 12px;
+    letter-spacing: -0.02em;
   }
   .unit-wrap {
-    margin-bottom: 8px;
+    margin-bottom: 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 8px;
+  }
+  .unit-wrap:last-child {
+    border-bottom: none;
   }
   .unit-header {
-    padding: 10px 12px;
+    padding: 14px 12px;
     cursor: pointer;
     border-radius: 6px;
     font-weight: 600;
-    font-size: 0.9rem;
+    font-size: 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
     color: #b0b0b0;
+    letter-spacing: 0.01em;
     transition: all 0.2s;
   }
   .unit-header:hover {
@@ -58,22 +65,30 @@ layout: default
   .subtopics {
     display: none;
     padding-left: 0;
+    margin-top: 4px;
   }
   .subtopics.show {
     display: block;
+    animation: slideDown 0.3s ease-out;
+  }
+  @keyframes slideDown {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
   }
   .subtopic-link {
     display: block;
-    padding: 8px 12px 8px 24px;
+    padding: 10px 12px 10px 24px;
     text-decoration: none;
     color: #888;
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     border-left: 2px solid transparent;
+    margin-bottom: 2px;
     transition: all 0.2s;
   }
   .subtopic-link:hover {
     color: #fff;
     border-left-color: rgba(255,255,255,0.3);
+    padding-left: 28px;
   }
   .subtopic-link.active {
     color: #fff;
