@@ -2,6 +2,7 @@
 layout: default
 title: Claude Leak
 permalink: /claude-leak/
+description: Learn about the 2026 Claude Code source code leak — what happened, what was exposed, and how Anthropic responded.
 ---
 
 <style>

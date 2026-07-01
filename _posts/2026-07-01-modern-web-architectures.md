@@ -2,7 +2,7 @@
 layout: post
 title: Modern web Architectures
 date: 2026-07-01T16:04:00.000+05:30
-description: check1
+description: A look at modern decoupled web architectures — static site generators, serverless authentication, and headless CMS setups.
 ---
 Welcome to my digital space! This platform is built using a decoupled architecture: a lightning-fast static site generator on the frontend, backed by secure authentication routed straight through serverless edge computing workers.
 

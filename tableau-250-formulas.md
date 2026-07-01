@@ -1,6 +1,7 @@
 ---
 layout: cheatsheet
 title: Tableau 250+ Formulas
+description: Over 250 Tableau formulas explained — aggregations, table calculations, LOD expressions, date functions, and more.
 permalink: /tableau-250-formulas/
 categories:
   - name: Basic Aggregations

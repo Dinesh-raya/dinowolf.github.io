@@ -2,6 +2,7 @@
 layout: default
 title: About
 permalink: /about/
+description: Learn about RAYA — a free learning platform for data analytics, SQL, Excel, Power BI, and Tableau.
 ---
 
 <style>

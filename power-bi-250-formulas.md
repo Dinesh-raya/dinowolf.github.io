@@ -1,6 +1,7 @@
 ---
 layout: cheatsheet
 title: Power BI 250+ Formulas
+description: Over 250 Power BI DAX formulas explained — aggregations, filters, time intelligence, iterators, and more.
 permalink: /power-bi-250-formulas/
 categories:
   - name: Basic Aggregations

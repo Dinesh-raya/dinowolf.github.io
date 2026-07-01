@@ -4,7 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ page.title }} | {{ site.title }}</title>
-  <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}RAYA — Learn data analytics, SQL, Excel, Power BI, and Tableau with free cheatsheets and tutorials.{% endif %}">
+  <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
+  <meta property="og:title" content="{{ page.title }} | {{ site.title }}">
+  <meta property="og:description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="{{ site.url }}{{ page.url }}">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" type="image/svg+xml" href="/raya.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -73,6 +79,16 @@
       color: #fff;
     }
     @media (max-width: 768px) {
+      header {
+        padding: 16px 20px;
+      }
+      nav {
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      nav a {
+        font-size: 14px;
+      }
       footer {
         padding: 20px 10px;
       }
@@ -87,6 +103,10 @@
   <header>
     <nav>
       <a href="/"><img src="/raya.svg" alt="RAYA" style="height:40px;display:block"></a>
+      <div style="display:flex;align-items:center;gap:24px;">
+        <a href="/cheatsheet/">Cheatsheet</a>
+        <a href="/claude-leak/">Claude Leak</a>
+      </div>
     </nav>
   </header>
 

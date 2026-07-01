@@ -1,6 +1,7 @@
 ---
 layout: cheatsheet
 title: Excel 250+ Formulas
+description: Over 250 Excel formulas explained — aggregations, date/time, lookup, text, statistical, and more.
 permalink: /excel-250-formulas/
 categories:
   - name: Basic Aggregations

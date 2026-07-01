@@ -2,6 +2,7 @@
 layout: default
 title: Cheatsheet
 permalink: /cheatsheet/
+description: Free cheatsheets for Excel, Power BI, Tableau, and SQL — 250+ formulas each with clear explanations.
 ---
 
 <style>

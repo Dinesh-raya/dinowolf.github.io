@@ -2,6 +2,7 @@
 layout: default
 title: Contact
 permalink: /contact/
+description: Contact RAYA — reach out via email at drraya2026@outlook.com.
 ---
 
 <style>

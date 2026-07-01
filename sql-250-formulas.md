@@ -1,6 +1,7 @@
 ---
 layout: cheatsheet
 title: SQL 250+ Formulas
+description: Over 250 SQL queries and functions explained — SELECT, joins, window functions, DDL, DML, and more.
 permalink: /sql-250-formulas/
 categories:
   - name: Basic Retrieval

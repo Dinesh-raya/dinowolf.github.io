@@ -2,6 +2,7 @@
 layout: default
 title: Terms & Conditions
 permalink: /terms/
+description: RAYA Terms and Conditions — educational use only. Read our terms before using this site.
 ---
 
 <style>

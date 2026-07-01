@@ -2,6 +2,7 @@
 layout: default
 title: Privacy Policy
 permalink: /privacy/
+description: RAYA Privacy Policy — we do not collect personal data. This site is statically generated with no cookies or tracking.
 ---
 
 <style>
