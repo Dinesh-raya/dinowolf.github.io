@@ -1,0 +1,6 @@
+title: My Professional Technical Blog
+theme: jekyll-theme-minimal # A clean, fast default theme to start
+permalink: /posts/:title/
+markdown: kramdown
+plugins:
+  - jekyll-feed
