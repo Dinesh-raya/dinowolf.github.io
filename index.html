@@ -106,33 +106,35 @@ title: Home
   }
 </style>
 
-<div class="section-wrap">
-  <div class="course-grid">
-    <a class="course-card" href="/claude-leak/">
-      <div class="course-card-inner">
-        <div class="icon-container">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/b/b0/Claude_AI_symbol.svg" alt="Claude Leak">
+<div style="background: transparent; box-shadow: none; padding: 10px 0;">
+  <div class="section-wrap">
+    <div class="course-grid">
+      <a class="course-card" href="/claude-leak/">
+        <div class="course-card-inner">
+          <div class="icon-container">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/b/b0/Claude_AI_symbol.svg" alt="Claude Leak">
+          </div>
+          <h3>Claude Leak</h3>
         </div>
-        <h3>Claude Leak</h3>
-      </div>
-    </a>
-    <a class="course-card" href="/cheatsheet/">
-      <div class="course-card-inner">
-        <div class="icon-container">
-          <img src="https://storage.googleapis.com/imy-bucket-prod/icons/page.png" alt="Cheatsheet">
+      </a>
+      <a class="course-card" href="/cheatsheet/">
+        <div class="course-card-inner">
+          <div class="icon-container">
+            <img src="https://storage.googleapis.com/imy-bucket-prod/icons/page.png" alt="Cheatsheet">
+          </div>
+          <h3>Cheatsheet</h3>
         </div>
-        <h3>Cheatsheet</h3>
-      </div>
-    </a>
-    {% for post in site.posts %}
-    <a class="course-card" href="{{ post.url }}">
-      <div class="course-card-inner">
-        <div class="icon-container">
-          <img src="https://storage.googleapis.com/imy-bucket-prod/icons/datanalysticon.svg" alt="Blog">
+      </a>
+      {% for post in site.posts %}
+      <a class="course-card" href="{{ post.url }}">
+        <div class="course-card-inner">
+          <div class="icon-container">
+            <img src="https://storage.googleapis.com/imy-bucket-prod/icons/datanalysticon.svg" alt="Blog">
+          </div>
+          <h3>{{ post.title }}</h3>
         </div>
-        <h3>{{ post.title }}</h3>
-      </div>
-    </a>
-    {% endfor %}
+      </a>
+      {% endfor %}
+    </div>
   </div>
 </div>

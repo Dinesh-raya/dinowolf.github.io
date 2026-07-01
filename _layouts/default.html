@@ -9,7 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-color: #f4f6f8;
+      --bg-color: #F3F3F3;
       --card-bg: #ffffff;
       --text-main: #111111;
       --border-radius: 20px;
@@ -60,24 +60,23 @@
     footer {
       background: #000;
       color: #fff;
-      padding: 24px 40px;
-      text-align: center;
+      padding: 20px 40px;
       font-size: 14px;
     }
     footer a {
       color: #ccc;
       text-decoration: none;
-      margin: 0 14px;
       transition: color 0.2s;
     }
     footer a:hover {
       color: #fff;
     }
     @media (max-width: 768px) {
+      footer {
+        padding: 20px 10px;
+      }
       footer a {
-        display: inline-block;
-        margin: 4px 10px;
-        font-size: 0.85rem;
+        font-size: 0.75rem;
       }
     }
   </style>
@@ -86,7 +85,7 @@
 
   <header>
     <nav>
-      <a href="/"><img src="/raya.svg" alt="RAYA" style="height:32px;display:block"></a>
+      <a href="/"><img src="/raya.svg" alt="RAYA" style="height:40px;display:block"></a>
     </nav>
   </header>
 
@@ -95,11 +94,15 @@
   </div>
 
   <footer>
-    <a href="/about/">About Us</a>
-    <a href="/contact/">Contact Us</a>
-    <a href="/privacy/">Privacy Policy</a>
-    <a href="/terms/">Terms &amp; Conditions</a>
-    <span>&copy; {{ site.time | date: '%Y' }} {{ site.title }}</span>
+    <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+      <a href="/about/">About Us</a>
+      <a href="/contact/">Contact Us</a>
+      <a href="/privacy/">Privacy Policy</a>
+      <a href="/terms/">Terms &amp; Conditions</a>
+    </div>
+    <div style="text-align: center; margin-top: 10px; color: #666; font-size: 0.8rem;">
+      &copy; {{ site.time | date: '%Y' }} {{ site.title }}
+    </div>
   </footer>
 
 </body>
