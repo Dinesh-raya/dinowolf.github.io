@@ -47,6 +47,17 @@ title: Home
     transform: translateY(-2px);
     box-shadow: 0 8px 12px rgba(0,0,0,0.05);
   }
+  .card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    flex: 1;
+    justify-content: flex-start;
+  }
+  .card-text-wrap {
+    width: 100%;
+  }
   .icon-container {
     width: 64px;
     height: 64px;
@@ -71,6 +82,8 @@ title: Home
     line-height: 1.4;
     color: #111827;
     word-break: break-word;
+    white-space: normal;
+    padding: 0 4px;
   }
   .badge-new {
     font-size: 0.75rem;
@@ -97,6 +110,7 @@ title: Home
     }
     .course-card-inner h3 {
       font-size: 0.8rem !important;
+      word-wrap: break-word;
     }
     .icon-container {
       width: 36px !important;
@@ -111,27 +125,39 @@ title: Home
     <div class="course-grid">
       <a class="course-card" href="/claude-leak/">
         <div class="course-card-inner">
-          <div class="icon-container">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/b/b0/Claude_AI_symbol.svg" alt="Claude Leak">
+          <div class="card-content">
+            <div class="icon-container">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/b/b0/Claude_AI_symbol.svg" alt="Claude Leak">
+            </div>
+            <div class="card-text-wrap">
+              <h3>Claude Leak</h3>
+            </div>
           </div>
-          <h3>Claude Leak</h3>
         </div>
       </a>
       <a class="course-card" href="/cheatsheet/">
         <div class="course-card-inner">
-          <div class="icon-container">
-            <img src="https://storage.googleapis.com/imy-bucket-prod/icons/page.png" alt="Cheatsheet">
+          <div class="card-content">
+            <div class="icon-container">
+              <img src="https://storage.googleapis.com/imy-bucket-prod/icons/page.png" alt="Cheatsheet">
+            </div>
+            <div class="card-text-wrap">
+              <h3>Cheatsheet</h3>
+            </div>
           </div>
-          <h3>Cheatsheet</h3>
         </div>
       </a>
       {% for post in site.posts %}
       <a class="course-card" href="{{ post.url }}">
         <div class="course-card-inner">
-          <div class="icon-container">
-            <img src="https://storage.googleapis.com/imy-bucket-prod/icons/datanalysticon.svg" alt="Blog">
+          <div class="card-content">
+            <div class="icon-container">
+              <img src="https://storage.googleapis.com/imy-bucket-prod/icons/datanalysticon.svg" alt="Blog">
+            </div>
+            <div class="card-text-wrap">
+              <h3>{{ post.title }}</h3>
+            </div>
           </div>
-          <h3>{{ post.title }}</h3>
         </div>
       </a>
       {% endfor %}
