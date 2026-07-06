@@ -1,0 +1,1248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Excel 250+ Formulas | RAYA</title>
+  <meta name="description" content="Over 250 Excel formulas explained — aggregations, date/time, lookup, text, statistical, and more.">
+  <meta property="og:title" content="Excel 250+ Formulas | RAYA">
+  <meta property="og:description" content="Over 250 Excel formulas explained — aggregations, date/time, lookup, text, statistical, and more.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://dinesh-raya.github.io/excel-250-formulas/">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" type="image/svg+xml" href="/raya.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="alternate" type="application/atom+xml" title="RAYA Blog" href="/atom.xml">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "RAYA",
+    "url": "https://dinesh-raya.github.io",
+    "description": "RAYA — Learn data analytics, SQL, Excel, Power BI, and Tableau with free cheatsheets and tutorials."
+  }
+  </script>
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Excel 250+ Formulas",
+    "url": "https://dinesh-raya.github.io/excel-250-formulas/",
+    "description": "Over 250 Excel formulas explained — aggregations, date/time, lookup, text, statistical, and more.",
+    "publisher": { "@type": "Organization", "name": "RAYA" },
+    "datePublished": null
+  }
+  </script>
+  
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #F3F3F3;
+      --surface: #ffffff;
+      --surface-alt: #fdfdfd;
+      --text: #111111;
+      --text-secondary: #333333;
+      --text-muted: #666666;
+      --text-light: #888888;
+      --border: #dddddd;
+      --border-light: #eeeeee;
+      --card-shadow: 0 4px 24px rgba(0,0,0,0.06);
+      --card-shadow-hover: 0 8px 32px rgba(0,0,0,0.12);
+      --inline-code-bg: #f0f0f0;
+      --blockquote-bg: #f8f8f8;
+      --blockquote-color: #555555;
+      --table-header-bg: #f8f8f8;
+      --table-border: #e0e0e0;
+      --h3-card-color: #111827;
+      --icon-bg: #ffffff;
+      --copyright-color: #666666;
+      --footer-link: #cccccc;
+      --back-link: #666666;
+      --back-link-hover: #111111;
+      --link-color: #000000;
+      --hr-color: #eeeeee;
+      --accent: #276EF1;
+      --accent-hover: #1e5bc0;
+      --border-radius: 20px;
+    }
+    html.dark {
+      --bg: #0f0f0f;
+      --surface: #1a1a1a;
+      --surface-alt: #222222;
+      --text: #e5e5e5;
+      --text-secondary: #b0b0b0;
+      --text-muted: #888888;
+      --text-light: #666666;
+      --border: #333333;
+      --border-light: #2a2a2a;
+      --card-shadow: 0 4px 24px rgba(0,0,0,0.4);
+      --card-shadow-hover: 0 8px 32px rgba(0,0,0,0.6);
+      --inline-code-bg: #2a2a2a;
+      --blockquote-bg: #1a1a1a;
+      --blockquote-color: #999999;
+      --table-header-bg: #222222;
+      --table-border: #333333;
+      --h3-card-color: #e5e5e5;
+      --icon-bg: #1a1a1a;
+      --copyright-color: #888888;
+      --footer-link: #666666;
+      --back-link: #999999;
+      --back-link-hover: #ffffff;
+      --link-color: #e5e5e5;
+      --hr-color: #333333;
+    }
+    html { scroll-padding-top: 80px; }
+    * {
+      -webkit-tap-highlight-color: transparent;
+    }
+    body {
+      margin: 0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      -webkit-font-smoothing: antialiased;
+    }
+    header {
+      background: #000;
+      color: #fff;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    header .logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    header .logo a {
+      display: block;
+    }
+    header .logo img {
+      height: 40px;
+      display: block;
+    }
+    .logo-by {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      opacity: 0.7;
+    }
+    header nav {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+    header nav a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 400;
+      opacity: 0.8;
+      transition: opacity 0.2s;
+    }
+    header nav a:hover {
+      opacity: 1;
+    }
+    header nav a.active, .mobile-nav a.active {
+      font-weight: 700;
+      opacity: 1;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+    .theme-toggle {
+      background: none;
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #fff;
+      font-size: 1rem;
+      cursor: pointer;
+      padding: 6px 10px;
+      line-height: 1;
+      border-radius: 6px;
+      transition: border-color 0.2s, opacity 0.2s;
+      opacity: 0.7;
+    }
+    .theme-toggle:hover { opacity: 1; border-color: rgba(255,255,255,0.5); }
+    .search-btn {
+      background: none;
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #fff;
+      font-size: 1rem;
+      cursor: pointer;
+      padding: 6px 10px;
+      line-height: 1;
+      border-radius: 6px;
+      transition: border-color 0.2s, opacity 0.2s;
+      opacity: 0.7;
+    }
+    .search-btn:hover { opacity: 1; border-color: rgba(255,255,255,0.5); }
+    #searchOverlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      z-index: 2000;
+      align-items: flex-start;
+      justify-content: center;
+      padding-top: 80px;
+    }
+    #searchOverlay.active { display: flex; }
+    #searchOverlay .search-modal {
+      background: var(--surface);
+      border-radius: 12px;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.3);
+      width: 90%;
+      max-width: 640px;
+      max-height: 80vh;
+      overflow-y: auto;
+      padding: 20px;
+    }
+    #searchOverlay .search-input-wrap { margin-bottom: 16px; }
+    #searchOverlay .search-input-wrap input {
+      width: 100%; padding: 12px 16px; border: 2px solid var(--border);
+      border-radius: 8px; font-size: 1rem; background: var(--bg);
+      color: var(--text); outline: none; box-sizing: border-box;
+    }
+    #searchOverlay .search-input-wrap input:focus {
+      border-color: var(--accent);
+    }
+    #searchResults { list-style: none; padding: 0; margin: 0; }
+    #searchResults li { padding: 10px 12px; border-radius: 6px; cursor: pointer; }
+    #searchResults li:hover, #searchResults li.selected { background: var(--accent-light, rgba(39,110,241,0.1)); }
+    #searchResults a { color: var(--text); text-decoration: none; display: block; }
+    #searchResults .result-title { font-weight: 600; margin-bottom: 2px; }
+    #searchResults .result-url { font-size: 0.78rem; color: var(--accent); }
+    #searchResults .result-excerpt { font-size: 0.82rem; color: var(--text-muted); margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    #searchStatus { color: var(--text-muted); font-size: 0.85rem; text-align: center; padding: 20px 0; }
+    .search-close {
+      float: right;
+      background: none;
+      border: none;
+      font-size: 1.4rem;
+      cursor: pointer;
+      color: var(--text-muted);
+      padding: 0 4px;
+      line-height: 1;
+    }
+    .search-close:hover { color: var(--text); }
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 1.6rem;
+      cursor: pointer;
+      padding: 4px;
+      line-height: 1;
+      -webkit-appearance: none;
+    }
+    .container {
+      max-width: 1600px;
+      margin: 0 auto;
+      padding: 24px 20px;
+      flex: 1;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    footer {
+      background: #000;
+      color: #fff;
+      padding: 20px 40px;
+      margin-top: auto;
+    }
+    footer .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    footer .footer-links a {
+      color: var(--footer-link);
+      text-decoration: none;
+      font-size: 14px;
+      transition: color 0.2s;
+    }
+    footer .footer-links a:hover {
+      color: #fff;
+    }
+    footer .copyright {
+      text-align: center;
+      margin-top: 10px;
+      color: var(--copyright-color);
+      font-size: 0.8rem;
+    }
+    footer .footer-social {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 12px;
+    }
+    footer .footer-social a {
+      color: var(--footer-link);
+      transition: color 0.2s;
+      display: inline-flex;
+      align-items: center;
+      padding: 6px;
+    }
+    footer .footer-social a:hover {
+      color: #fff;
+    }
+
+    .page { max-width: 720px; margin: 0 auto; }
+    .page h1 { font-size: 2em; margin-bottom: 8px; }
+    .page h2 { font-size: 1.3em; margin: 28px 0 12px; }
+    .page p { font-size: 17px; line-height: 1.7; color: var(--text-secondary); margin-bottom: 16px; }
+    .page ul { margin: 0 0 20px; padding-left: 24px; }
+    .page li { font-size: 17px; line-height: 1.7; color: var(--text-secondary); margin-bottom: 8px; }
+
+    .mobile-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.6);
+      z-index: 998;
+    }
+    .mobile-overlay.active {
+      display: block;
+    }
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      top: 70px;
+      left: 0;
+      width: 85%;
+      max-width: 320px;
+      height: calc(100vh - 70px);
+      background: #000;
+      z-index: 999;
+      flex-direction: column;
+      padding: 20px;
+      box-sizing: border-box;
+      transform: translateX(-100%);
+      transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+      box-shadow: 4px 0 16px rgba(0,0,0,0.3);
+    }
+    .mobile-nav.open {
+      transform: translateX(0);
+    }
+    .mobile-nav a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 16px;
+      padding: 14px 12px;
+      border-radius: 6px;
+      transition: background 0.2s;
+    }
+    .mobile-nav a:hover {
+      background: rgba(255,255,255,0.05);
+    }
+
+    @media (max-width: 850px) {
+      header {
+        padding: 16px 20px;
+      }
+      header nav {
+        display: none;
+      }
+      .menu-toggle {
+        display: block;
+      }
+      .mobile-nav {
+        display: flex;
+      }
+      .container {
+        padding: 16px;
+      }
+      footer {
+        padding: 20px 10px;
+      }
+      footer .footer-links a {
+        font-size: 0.75rem;
+      }
+    }
+
+    /* Scroll to Top */
+    .scroll-top-btn {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(10px);
+      transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
+      z-index: 999;
+      padding: 0;
+    }
+    .scroll-top-btn.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    .scroll-top-btn:hover {
+      opacity: 0.9;
+    }
+
+    /* Global Skeleton Loading */
+    @keyframes shimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+    .skeleton {
+      background: linear-gradient(90deg, var(--border-light) 25%, #e8e8e8 50%, var(--border-light) 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.5s ease-in-out infinite;
+      border-radius: 4px;
+    }
+    .skeleton-line { height: 14px; margin-bottom: 8px; width: 100%; }
+    .skeleton-line:nth-child(2) { width: 85%; }
+    .skeleton-line:nth-child(3) { width: 70%; }
+    .skeleton-block { height: 100px; margin-bottom: 12px; }
+    .skeleton-ring { width: 44px; height: 44px; border-radius: 50%; }
+    .dark .skeleton {
+      background: linear-gradient(90deg, #222 25%, #333 50%, #222 75%);
+      background-size: 200% 100%;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="mobile-overlay" id="mobileOverlay"></div>
+  <div class="mobile-nav" id="mobileNav">
+    <a href="/">Home</a>
+    <a href="/cheatsheet/">Cheatsheet</a>
+    <a href="/sql-project/">SQL Project</a>
+    <a href="/excel-project/">Excel Project</a>
+    <a href="/python-project/">Python Project</a>
+    <a href="/admin/">Manage</a>
+    <button class="theme-toggle" id="themeToggleMobile" aria-label="Toggle dark mode" style="margin-top:12px;width:100%;text-align:center;padding:12px;border-color:rgba(255,255,255,0.15);font-size:15px">🌙 Dark Mode</button>
+  </div>
+
+  <header>
+    <div class="logo">
+      <a href="/"><img src="/raya.svg" alt="RAYA"></a>
+      <span class="logo-by">by Dinesh Raya</span>
+    </div>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/cheatsheet/">Cheatsheet</a>
+      <a href="/sql-project/">SQL Project</a>
+      <a href="/excel-project/">Excel Project</a>
+      <a href="/python-project/">Python Project</a>
+      <a href="/admin/">Manage</a>
+    </nav>
+    <button class="search-btn" id="searchBtn" aria-label="Search">🔍</button>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">🌙</button>
+    <button class="menu-toggle" id="menuToggle">☰</button>
+  </header>
+
+  <div class="container">
+    <style>
+  .cheatsheet-wrap {
+    display: flex;
+    gap: 32px;
+    align-items: flex-start;
+  }
+  .cheatsheet-sidebar {
+    width: 280px;
+    flex-shrink: 0;
+    background: #000;
+    color: #fff;
+    border-radius: 16px;
+    padding: 20px;
+    position: sticky;
+    top: 90px;
+    max-height: calc(100vh - 110px);
+    overflow-y: auto;
+  }
+  .cheatsheet-sidebar::-webkit-scrollbar {
+    width: 6px;
+  }
+  .cheatsheet-sidebar::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 3px;
+  }
+  .sidebar-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 24px;
+    padding-left: 12px;
+    letter-spacing: -0.02em;
+  }
+  .unit-wrap {
+    margin-bottom: 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 8px;
+  }
+  .unit-wrap:last-child {
+    border-bottom: none;
+  }
+  .unit-header {
+    padding: 14px 12px;
+    cursor: pointer;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #b0b0b0;
+    letter-spacing: 0.01em;
+    transition: all 0.2s;
+  }
+  .unit-header:hover {
+    color: #fff;
+    background: rgba(255,255,255,0.05);
+  }
+  .unit-header.active {
+    color: #fff;
+    background: rgba(255,255,255,0.08);
+  }
+  .subtopics {
+    display: none;
+    padding-left: 0;
+    margin-top: 4px;
+  }
+  .subtopics.show {
+    display: block;
+    animation: slideDown 0.3s ease-out;
+  }
+  @keyframes slideDown {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .subtopic-link {
+    display: block;
+    padding: 10px 12px 10px 24px;
+    text-decoration: none;
+    color: #888;
+    font-size: 0.9rem;
+    border-left: 2px solid transparent;
+    margin-bottom: 2px;
+    transition: all 0.2s;
+  }
+  .subtopic-link:hover {
+    color: #fff;
+    border-left-color: rgba(255,255,255,0.3);
+    padding-left: 28px;
+  }
+  .subtopic-link.active {
+    color: #fff;
+    border-left-color: #276EF1;
+    background: rgba(255,255,255,0.03);
+  }
+  .cheatsheet-main {
+    flex: 1;
+    min-width: 0;
+    background: var(--surface);
+    border-radius: 16px;
+    padding: 32px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+  }
+  .cheatsheet-main h2 {
+    margin-top: 0;
+    font-size: 1.5em;
+  }
+  .cheatsheet-main h3 {
+    font-size: 1.15em;
+    margin: 32px 0 16px;
+    padding-top: 8px;
+    scroll-margin-top: 100px;
+  }
+  .cheatsheet-main h3:first-of-type {
+    margin-top: 0;
+  }
+  .cheatsheet-main ul {
+    padding-left: 20px;
+  }
+  .cheatsheet-main li {
+    margin-bottom: 8px;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+  .cheatsheet-main code {
+    background: var(--inline-code-bg);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.9em;
+  }
+  .cheatsheet-main li.hidden {
+    display: none;
+  }
+
+  #cheatSearch {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: inherit;
+    outline: none;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+  }
+  #cheatSearch:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px rgba(39,110,241,0.15);
+  }
+
+  .menu-toggle-sidebar {
+    display: none;
+    background: #000;
+    color: #fff;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-bottom: 16px;
+    width: 100%;
+    font-weight: 600;
+  }
+  .menu-toggle-sidebar:hover {
+    background: #222;
+  }
+
+  @media (max-width: 850px) {
+    .cheatsheet-wrap {
+      flex-direction: column;
+    }
+    .cheatsheet-sidebar {
+      width: 100%;
+      position: static;
+      max-height: none;
+      display: none;
+    }
+    .cheatsheet-sidebar.open {
+      display: block;
+    }
+    .menu-toggle-sidebar {
+      display: block;
+    }
+    .cheatsheet-main {
+      padding: 20px;
+    }
+  }
+</style>
+
+<button class="menu-toggle-sidebar" id="sidebarToggle">☰ Categories</button>
+
+<div class="cheatsheet-wrap">
+  <aside class="cheatsheet-sidebar" id="cheatSidebar">
+    <div class="sidebar-title">Excel 250+ Formulas</div>
+    
+    <div class="unit-wrap">
+      <div class="unit-header" data-target="basic-aggregations">
+        <span>Basic Aggregations</span>
+        <span style="font-size:0.8rem;">&#9660;</span>
+      </div>
+      <div class="subtopics" data-parent="basic-aggregations">
+        <a href="#basic-aggregations" class="subtopic-link">Basic Aggregations</a>
+      </div>
+    </div>
+    
+    <div class="unit-wrap">
+      <div class="unit-header" data-target="date-time">
+        <span>Date & Time</span>
+        <span style="font-size:0.8rem;">&#9660;</span>
+      </div>
+      <div class="subtopics" data-parent="date-time">
+        <a href="#date-time" class="subtopic-link">Date & Time</a>
+      </div>
+    </div>
+    
+    <div class="unit-wrap">
+      <div class="unit-header" data-target="dynamic-array">
+        <span>Dynamic Array Functions</span>
+        <span style="font-size:0.8rem;">&#9660;</span>
+      </div>
+      <div class="subtopics" data-parent="dynamic-array">
+        <a href="#dynamic-array" class="subtopic-link">Dynamic Array Functions</a>
+      </div>
+    </div>
+    
+    <div class="unit-wrap">
+      <div class="unit-header" data-target="excel-features">
+        <span>Excel Features & Shortcuts</span>
+        <span style="font-size:0.8rem;">&#9660;</span>
+      </div>
+      <div class="subtopics" data-parent="excel-features">
+        <a href="#excel-features" class="subtopic-link">Excel Features & Shortcuts</a>
+      </div>
+    </div>
+    
+    <div class="unit-wrap">
+      <div class="unit-header" data-target="information">
+        <span>Information</span>
+        <span style="font-size:0.8rem;">&#9660;</span>
+      </div>
+      <div class="subtopics" data-parent="information">
+        <a href="#information" class="subtopic-link">Information</a>
+      </div>
+    </div>
+    
+    <div class="unit-wrap">
+      <div class="unit-header" data-target="logical-error">
+        <span>Logical & Error Handling</span>
+        <span style="font-size:0.8rem;">&#9660;</span>
+      </div>
+      <div class="subtopics" data-parent="logical-error">
+        <a href="#logical-error" class="subtopic-link">Logical & Error Handling</a>
+      </div>
+    </div>
+    
+    <div class="unit-wrap">
+      <div class="unit-header" data-target="lookup-reference">
+        <span>Lookup & Reference</span>
+        <span style="font-size:0.8rem;">&#9660;</span>
+      </div>
+      <div class="subtopics" data-parent="lookup-reference">
+        <a href="#lookup-reference" class="subtopic-link">Lookup & Reference</a>
+      </div>
+    </div>
+    
+    <div class="unit-wrap">
+      <div class="unit-header" data-target="math-trig">
+        <span>Math & Trig</span>
+        <span style="font-size:0.8rem;">&#9660;</span>
+      </div>
+      <div class="subtopics" data-parent="math-trig">
+        <a href="#math-trig" class="subtopic-link">Math & Trig</a>
+      </div>
+    </div>
+    
+    <div class="unit-wrap">
+      <div class="unit-header" data-target="statistical">
+        <span>Statistical</span>
+        <span style="font-size:0.8rem;">&#9660;</span>
+      </div>
+      <div class="subtopics" data-parent="statistical">
+        <a href="#statistical" class="subtopic-link">Statistical</a>
+      </div>
+    </div>
+    
+    <div class="unit-wrap">
+      <div class="unit-header" data-target="text-functions">
+        <span>Text Functions</span>
+        <span style="font-size:0.8rem;">&#9660;</span>
+      </div>
+      <div class="subtopics" data-parent="text-functions">
+        <a href="#text-functions" class="subtopic-link">Text Functions</a>
+      </div>
+    </div>
+    
+  </aside>
+
+  <main class="cheatsheet-main">
+    <input type="text" id="cheatSearch" placeholder="Search formulas..." autocomplete="off">
+    <h2 id="excel-250-formulas">Excel 250+ Formulas</h2>
+
+<h3 id="basic-aggregations">Basic Aggregations Formulas</h3>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">SUM()</code> = <code class="language-plaintext highlighter-rouge">=SUM(B2:B10)</code> : Calculates the total of selected numbers</li>
+  <li><code class="language-plaintext highlighter-rouge">AVERAGE()</code> = <code class="language-plaintext highlighter-rouge">=AVERAGE(C2:C10)</code> : Returns the arithmetic mean of values</li>
+  <li><code class="language-plaintext highlighter-rouge">COUNT()</code> = <code class="language-plaintext highlighter-rouge">=COUNT(A2:A10)</code> : Counts cells that contain numeric values</li>
+  <li><code class="language-plaintext highlighter-rouge">COUNTA()</code> = <code class="language-plaintext highlighter-rouge">=COUNTA(A2:A10)</code> : Counts all non-empty cells in a range</li>
+  <li><code class="language-plaintext highlighter-rouge">COUNTBLANK()</code> = <code class="language-plaintext highlighter-rouge">=COUNTBLANK(A2:A10)</code> : Counts empty cells within a range</li>
+  <li><code class="language-plaintext highlighter-rouge">MAX()</code> = <code class="language-plaintext highlighter-rouge">=MAX(D2:D10)</code> : Finds the highest value in a dataset</li>
+  <li><code class="language-plaintext highlighter-rouge">MIN()</code> = <code class="language-plaintext highlighter-rouge">=MIN(D2:D10)</code> : Finds the lowest value in a dataset</li>
+  <li><code class="language-plaintext highlighter-rouge">LARGE()</code> = <code class="language-plaintext highlighter-rouge">=LARGE(D2:D10,3)</code> : Returns the nth largest value from a set</li>
+  <li><code class="language-plaintext highlighter-rouge">SMALL()</code> = <code class="language-plaintext highlighter-rouge">=SMALL(D2:D10,2)</code> : Returns the nth smallest value from a set</li>
+  <li><code class="language-plaintext highlighter-rouge">SUBTOTAL()</code> = <code class="language-plaintext highlighter-rouge">=SUBTOTAL(109,E2:E10)</code> : Performs aggregations on filtered or visible rows only</li>
+  <li><code class="language-plaintext highlighter-rouge">AGGREGATE()</code> = <code class="language-plaintext highlighter-rouge">=AGGREGATE(14,6,F2:F10)</code> : Applies aggregate functions with options to ignore errors or hidden rows</li>
+  <li><code class="language-plaintext highlighter-rouge">SUMPRODUCT()</code> = <code class="language-plaintext highlighter-rouge">=SUMPRODUCT(B2:B10,C2:C10)</code> : Multiplies arrays element-wise and returns the sum of products</li>
+  <li><code class="language-plaintext highlighter-rouge">SUMIF()</code> = <code class="language-plaintext highlighter-rouge">=SUMIF(A2:A10,"East",B2:B10)</code> : Adds values that meet a single specified condition</li>
+  <li><code class="language-plaintext highlighter-rouge">SUMIFS()</code> = <code class="language-plaintext highlighter-rouge">=SUMIFS(B2:B10,A2:A10,"East",C2:C10,"&gt;100")</code> : Adds values that meet multiple criteria</li>
+  <li><code class="language-plaintext highlighter-rouge">COUNTIF()</code> = <code class="language-plaintext highlighter-rouge">=COUNTIF(A2:A10,"&lt;&gt;"&amp;"")</code> : Counts cells matching a single condition</li>
+  <li><code class="language-plaintext highlighter-rouge">COUNTIFS()</code> = <code class="language-plaintext highlighter-rouge">=COUNTIFS(A2:A10,"East",C2:C10,"&gt;100")</code> : Counts cells matching multiple conditions</li>
+  <li><code class="language-plaintext highlighter-rouge">AVERAGEIF()</code> = <code class="language-plaintext highlighter-rouge">=AVERAGEIF(A2:A10,"East",B2:B10)</code> : Calculates average based on one condition</li>
+  <li><code class="language-plaintext highlighter-rouge">AVERAGEIFS()</code> = <code class="language-plaintext highlighter-rouge">=AVERAGEIFS(B2:B10,A2:A10,"East",C2:C10,"&gt;100")</code> : Calculates average based on multiple conditions</li>
+</ul>
+
+<h3 id="date-time">Date &amp; Time Formulas</h3>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">TODAY()</code> = <code class="language-plaintext highlighter-rouge">=TODAY()</code> : Returns the current date, updates daily</li>
+  <li><code class="language-plaintext highlighter-rouge">NOW()</code> = <code class="language-plaintext highlighter-rouge">=NOW()</code> : Returns the current date and time together</li>
+  <li><code class="language-plaintext highlighter-rouge">DATE()</code> = <code class="language-plaintext highlighter-rouge">=DATE(2025,4,23)</code> : Creates a date from individual year, month, and day values</li>
+  <li><code class="language-plaintext highlighter-rouge">DATEVALUE()</code> = <code class="language-plaintext highlighter-rouge">=DATEVALUE("23-Apr-2025")</code> : Converts a date stored as text into a serial date number</li>
+  <li><code class="language-plaintext highlighter-rouge">TIME()</code> = <code class="language-plaintext highlighter-rouge">=TIME(14,30,0)</code> : Constructs a time value from hours, minutes, and seconds</li>
+  <li><code class="language-plaintext highlighter-rouge">TIMEVALUE()</code> = <code class="language-plaintext highlighter-rouge">=TIMEVALUE("14:30")</code> : Converts a text representation of time into a serial time number</li>
+  <li><code class="language-plaintext highlighter-rouge">YEAR()</code> = <code class="language-plaintext highlighter-rouge">=YEAR(A2)</code> : Extracts the year from a given date</li>
+  <li><code class="language-plaintext highlighter-rouge">MONTH()</code> = <code class="language-plaintext highlighter-rouge">=MONTH(A2)</code> : Extracts the month number (1–12) from a date</li>
+  <li><code class="language-plaintext highlighter-rouge">DAY()</code> = <code class="language-plaintext highlighter-rouge">=DAY(A2)</code> : Extracts the day of the month from a date</li>
+  <li><code class="language-plaintext highlighter-rouge">WEEKDAY()</code> = <code class="language-plaintext highlighter-rouge">=WEEKDAY(A2,2)</code> : Returns the day of the week as a number based on your chosen return type</li>
+  <li><code class="language-plaintext highlighter-rouge">WEEKNUM()</code> = <code class="language-plaintext highlighter-rouge">=WEEKNUM(A2,21)</code> : Returns the ISO week number for a given date</li>
+  <li><code class="language-plaintext highlighter-rouge">EOMONTH()</code> = <code class="language-plaintext highlighter-rouge">=EOMONTH(A2,0)</code> : Returns the last day of the month relative to the given date</li>
+  <li><code class="language-plaintext highlighter-rouge">EDATE()</code> = <code class="language-plaintext highlighter-rouge">=EDATE(A2,3)</code> : Shifts a date forward or backward by a specified number of months</li>
+  <li><code class="language-plaintext highlighter-rouge">DAYS()</code> = <code class="language-plaintext highlighter-rouge">=DAYS(B2,A2)</code> : Computes the number of days between two dates</li>
+  <li><code class="language-plaintext highlighter-rouge">NETWORKDAYS()</code> = <code class="language-plaintext highlighter-rouge">=NETWORKDAYS(A2,B2)</code> : Counts working days between two dates excluding weekends</li>
+  <li><code class="language-plaintext highlighter-rouge">NETWORKDAYS.INTL()</code> = <code class="language-plaintext highlighter-rouge">=NETWORKDAYS.INTL(A2,B2,"0000011")</code> : Counts working days using a custom definition of weekends</li>
+  <li><code class="language-plaintext highlighter-rouge">WORKDAY()</code> = <code class="language-plaintext highlighter-rouge">=WORKDAY(A2,5)</code> : Returns a date after adding a number of workdays, skipping weekends</li>
+  <li><code class="language-plaintext highlighter-rouge">WORKDAY.INTL()</code> = <code class="language-plaintext highlighter-rouge">=WORKDAY.INTL(A2,10,"0000011")</code> : Adds workdays with a customizable weekend pattern</li>
+  <li><code class="language-plaintext highlighter-rouge">YEARFRAC()</code> = <code class="language-plaintext highlighter-rouge">=YEARFRAC(A2,B2)</code> : Calculates the fraction of a year between two dates</li>
+  <li><code class="language-plaintext highlighter-rouge">HOUR()</code> = <code class="language-plaintext highlighter-rouge">=HOUR(B2)</code> : Extracts the hour portion from a time value</li>
+  <li><code class="language-plaintext highlighter-rouge">MINUTE()</code> = <code class="language-plaintext highlighter-rouge">=MINUTE(B2)</code> : Extracts the minute portion from a time value</li>
+  <li><code class="language-plaintext highlighter-rouge">SECOND()</code> = <code class="language-plaintext highlighter-rouge">=SECOND(B2)</code> : Extracts the second portion from a time value</li>
+</ul>
+
+<h3 id="dynamic-array">Dynamic Array Functions Formulas</h3>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">UNIQUE()</code> = <code class="language-plaintext highlighter-rouge">=UNIQUE(A2:A100)</code> : Returns a list of distinct values from a range</li>
+  <li><code class="language-plaintext highlighter-rouge">FILTER()</code> = <code class="language-plaintext highlighter-rouge">=FILTER(A2:D100,B2:B100="East")</code> : Filters a range based on a logical condition</li>
+  <li><code class="language-plaintext highlighter-rouge">SORT()</code> = <code class="language-plaintext highlighter-rouge">=SORT(A2:B100,2,-1)</code> : Sorts a range by a specified column in ascending or descending order</li>
+  <li><code class="language-plaintext highlighter-rouge">SORTBY()</code> = <code class="language-plaintext highlighter-rouge">=SORTBY(A2:B100,B2:B100,-1)</code> : Sorts a range using values from a separate column as the sort key</li>
+  <li><code class="language-plaintext highlighter-rouge">SEQUENCE()</code> = <code class="language-plaintext highlighter-rouge">=SEQUENCE(10,1,1,1)</code> : Generates a sequential list of numbers in rows and columns</li>
+  <li><code class="language-plaintext highlighter-rouge">RANDARRAY()</code> = <code class="language-plaintext highlighter-rouge">=RANDARRAY(5,3,1,100,TRUE)</code> : Creates an array of random numbers within a specified range</li>
+  <li><code class="language-plaintext highlighter-rouge">XLOOKUP()</code> = <code class="language-plaintext highlighter-rouge">=XLOOKUP(E2,A2:A10,B2:B10,"NF")</code> : Searches a range and returns a matching value from another range</li>
+  <li><code class="language-plaintext highlighter-rouge">XMATCH()</code> = <code class="language-plaintext highlighter-rouge">=XMATCH(E2,A2:A10)</code> : Returns the position of a value within an array with enhanced options</li>
+  <li><code class="language-plaintext highlighter-rouge">CHOOSECOLS()</code> = <code class="language-plaintext highlighter-rouge">=CHOOSECOLS(A2:F10,1,4)</code> : Returns specific columns from a range as a new array</li>
+  <li><code class="language-plaintext highlighter-rouge">CHOOSEROWS()</code> = <code class="language-plaintext highlighter-rouge">=CHOOSEROWS(A2:F10,1,-1)</code> : Returns specific rows from a range as a new array</li>
+  <li><code class="language-plaintext highlighter-rouge">TAKE()</code> = <code class="language-plaintext highlighter-rouge">=TAKE(A2:F100,5)</code> : Returns the first N rows or columns from an array</li>
+  <li><code class="language-plaintext highlighter-rouge">DROP()</code> = <code class="language-plaintext highlighter-rouge">=DROP(A2:F100,-3)</code> : Removes the last N rows or columns from an array</li>
+  <li><code class="language-plaintext highlighter-rouge">WRAPROWS()</code> = <code class="language-plaintext highlighter-rouge">=WRAPROWS(B2:B13,3)</code> : Converts a one-dimensional list into rows of a fixed width</li>
+  <li><code class="language-plaintext highlighter-rouge">WRAPCOLS()</code> = <code class="language-plaintext highlighter-rouge">=WRAPCOLS(B2:B13,3)</code> : Converts a one-dimensional list into columns of a fixed width</li>
+  <li><code class="language-plaintext highlighter-rouge">LET()</code> = <code class="language-plaintext highlighter-rouge">=LET(rng,A2:A10,AVG,AVERAGE(rng),AVG)</code> : Assigns names to values and intermediate calculations for cleaner formulas</li>
+  <li><code class="language-plaintext highlighter-rouge">LAMBDA()</code> = <code class="language-plaintext highlighter-rouge">=LAMBDA(x,y,x+y)(2,3)</code> : Defines a custom reusable function using parameters and a calculation</li>
+</ul>
+
+<h3 id="excel-features">Excel Features &amp; Shortcuts Formulas</h3>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Absolute Reference</code> = <code class="language-plaintext highlighter-rouge">$A$1</code> : Locks a cell reference so it does not change when copying the formula</li>
+  <li><code class="language-plaintext highlighter-rouge">Named Range</code> = <code class="language-plaintext highlighter-rouge">Formulas &gt; Define Name</code> : Assigns a descriptive name to a cell or range for simpler formulas</li>
+  <li><code class="language-plaintext highlighter-rouge">Data Validation</code> = <code class="language-plaintext highlighter-rouge">Data &gt; Data Validation</code> : Restricts what type of data can be entered into a cell</li>
+  <li><code class="language-plaintext highlighter-rouge">Conditional Formatting</code> = <code class="language-plaintext highlighter-rouge">Home &gt; Conditional Formatting</code> : Applies formatting automatically based on cell values or rules</li>
+  <li><code class="language-plaintext highlighter-rouge">Freeze Panes</code> = <code class="language-plaintext highlighter-rouge">View &gt; Freeze Panes</code> : Keeps specific rows or columns visible while scrolling through the sheet</li>
+  <li><code class="language-plaintext highlighter-rouge">PivotTable</code> = <code class="language-plaintext highlighter-rouge">Insert &gt; PivotTable</code> : Summarizes and analyzes large datasets interactively</li>
+  <li><code class="language-plaintext highlighter-rouge">Flash Fill</code> = <code class="language-plaintext highlighter-rouge">Data &gt; Flash Fill</code> : Automatically detects and fills patterns from your data entry</li>
+  <li><code class="language-plaintext highlighter-rouge">Quick Analysis</code> = <code class="language-plaintext highlighter-rouge">Ctrl+Q</code> : Opens a menu of recommended charts, totals, and formatting options</li>
+  <li><code class="language-plaintext highlighter-rouge">AutoFilter</code> = <code class="language-plaintext highlighter-rouge">Data &gt; Filter</code> : Adds dropdown arrows to column headers for quick data filtering</li>
+  <li><code class="language-plaintext highlighter-rouge">CTRL+Shift+L</code> = <code class="language-plaintext highlighter-rouge">Toggle filters</code> : Keyboard shortcut to turn column filters on or off</li>
+  <li><code class="language-plaintext highlighter-rouge">Ctrl+;</code> = <code class="language-plaintext highlighter-rouge">Insert today's date</code> : Quickly enters the current date into the active cell</li>
+  <li><code class="language-plaintext highlighter-rouge">Ctrl+Shift+!</code> = <code class="language-plaintext highlighter-rouge">Apply number formatting</code> : Applies the default number format with two decimal places</li>
+</ul>
+
+<h3 id="information">Information Formulas</h3>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">ISBLANK()</code> = <code class="language-plaintext highlighter-rouge">=ISBLANK(A2)</code> : Checks whether a cell is empty and returns TRUE or FALSE</li>
+  <li><code class="language-plaintext highlighter-rouge">ISNUMBER()</code> = <code class="language-plaintext highlighter-rouge">=ISNUMBER(A2)</code> : Checks whether a value is numeric</li>
+  <li><code class="language-plaintext highlighter-rouge">ISTEXT()</code> = <code class="language-plaintext highlighter-rouge">=ISTEXT(A2)</code> : Checks whether a value is text</li>
+  <li><code class="language-plaintext highlighter-rouge">ISERROR()</code> = <code class="language-plaintext highlighter-rouge">=ISERROR(A2/B2)</code> : Checks whether a value results in any error type</li>
+  <li><code class="language-plaintext highlighter-rouge">ISERR()</code> = <code class="language-plaintext highlighter-rouge">=ISERR(A2/B2)</code> : Checks for any error except the #N/A error</li>
+  <li><code class="language-plaintext highlighter-rouge">ISNA()</code> = <code class="language-plaintext highlighter-rouge">=ISNA(VLOOKUP(...))</code> : Checks specifically for the #N/A error</li>
+  <li><code class="language-plaintext highlighter-rouge">TYPE()</code> = <code class="language-plaintext highlighter-rouge">=TYPE(A2)</code> : Returns a numeric code indicating the data type of a value</li>
+  <li><code class="language-plaintext highlighter-rouge">CELL()</code> = <code class="language-plaintext highlighter-rouge">=CELL("address",A2)</code> : Returns information about a cell such as its address or formatting</li>
+  <li><code class="language-plaintext highlighter-rouge">FORMULATEXT()</code> = <code class="language-plaintext highlighter-rouge">=FORMULATEXT(A2)</code> : Displays the formula from a referenced cell as a text string</li>
+  <li><code class="language-plaintext highlighter-rouge">N()</code> = <code class="language-plaintext highlighter-rouge">=N(A2)</code> : Converts a value to a number; returns 0 for text values</li>
+  <li><code class="language-plaintext highlighter-rouge">T()</code> = <code class="language-plaintext highlighter-rouge">=T(A2)</code> : Returns the text from a value or blank if the value is not text</li>
+  <li><code class="language-plaintext highlighter-rouge">INFO()</code> = <code class="language-plaintext highlighter-rouge">=INFO("osversion")</code> : Returns details about the current operating environment</li>
+  <li><code class="language-plaintext highlighter-rouge">ERROR.TYPE()</code> = <code class="language-plaintext highlighter-rouge">=ERROR.TYPE(A2)</code> : Returns a number that corresponds to a specific error type</li>
+</ul>
+
+<h3 id="logical-error">Logical &amp; Error Handling Formulas</h3>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">IF()</code> = <code class="language-plaintext highlighter-rouge">=IF(D2&gt;0,"Profit","Loss")</code> : Returns one value if a condition is true and another if false</li>
+  <li><code class="language-plaintext highlighter-rouge">IFS()</code> = <code class="language-plaintext highlighter-rouge">=IFS(B2&gt;90,"A",B2&gt;80,"B",TRUE,"C")</code> : Evaluates multiple conditions and returns the first matching result without nesting</li>
+  <li><code class="language-plaintext highlighter-rouge">AND()</code> = <code class="language-plaintext highlighter-rouge">=AND(A2&gt;0,B2&gt;0)</code> : Returns TRUE only when all conditions evaluate to true</li>
+  <li><code class="language-plaintext highlighter-rouge">OR()</code> = <code class="language-plaintext highlighter-rouge">=OR(A2&gt;100,B2&gt;100)</code> : Returns TRUE if at least one of the conditions is true</li>
+  <li><code class="language-plaintext highlighter-rouge">NOT()</code> = <code class="language-plaintext highlighter-rouge">=NOT(A2="Yes")</code> : Reverses the logical value of its argument</li>
+  <li><code class="language-plaintext highlighter-rouge">XOR()</code> = <code class="language-plaintext highlighter-rouge">=XOR(A2&gt;0,B2&gt;0)</code> : Returns TRUE when an odd number of arguments are true</li>
+  <li><code class="language-plaintext highlighter-rouge">SWITCH()</code> = <code class="language-plaintext highlighter-rouge">=SWITCH(A2,"M",1,"F",2,0)</code> : Matches an expression against a list of values and returns the corresponding result</li>
+  <li><code class="language-plaintext highlighter-rouge">IFERROR()</code> = <code class="language-plaintext highlighter-rouge">=IFERROR(A2/B2,0)</code> : Catches any error and returns a fallback value instead</li>
+  <li><code class="language-plaintext highlighter-rouge">IFNA()</code> = <code class="language-plaintext highlighter-rouge">=IFNA(VLOOKUP(E2,$A$2:$B$10,2,0),"Not Found")</code> : Catches #N/A errors specifically and returns a custom alternative</li>
+  <li><code class="language-plaintext highlighter-rouge">CHOOSE()</code> = <code class="language-plaintext highlighter-rouge">=CHOOSE(3,"Red","Blue","Green","Yellow")</code> : Selects a value from a list based on a positional index number</li>
+  <li><code class="language-plaintext highlighter-rouge">LET()</code> = <code class="language-plaintext highlighter-rouge">=LET(taxRate,0.18,Price*taxRate)</code> : Assigns intermediate variables within a formula for readability and performance</li>
+</ul>
+
+<h3 id="lookup-reference">Lookup &amp; Reference Formulas</h3>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">VLOOKUP()</code> = <code class="language-plaintext highlighter-rouge">=VLOOKUP(E2,$A$2:$C$10,3,0)</code> : Looks up a value in the leftmost column and returns a corresponding value from a specified column to the right</li>
+  <li><code class="language-plaintext highlighter-rouge">HLOOKUP()</code> = <code class="language-plaintext highlighter-rouge">=HLOOKUP(B5,$A$1:$G$3,3,FALSE)</code> : Searches for a value in the top row and returns a value from a specified row below</li>
+  <li><code class="language-plaintext highlighter-rouge">XLOOKUP()</code> = <code class="language-plaintext highlighter-rouge">=XLOOKUP(E2,$A$2:$A$10,$B$2:$B$10,"NF")</code> : Searches a range and returns a matching result with support for vertical, horizontal, and reverse lookups</li>
+  <li><code class="language-plaintext highlighter-rouge">LOOKUP()</code> = <code class="language-plaintext highlighter-rouge">=LOOKUP(2,1/(A2:A10&lt;&gt;""),A2:A10)</code> : Returns the last non-empty value in a column using vector form</li>
+  <li><code class="language-plaintext highlighter-rouge">INDEX()</code> = <code class="language-plaintext highlighter-rouge">=INDEX(B2:B10,5)</code> : Returns a value from a specific position within a range</li>
+  <li><code class="language-plaintext highlighter-rouge">MATCH()</code> = <code class="language-plaintext highlighter-rouge">=MATCH(E2,A2:A10,0)</code> : Returns the relative position of a value within a range</li>
+  <li><code class="language-plaintext highlighter-rouge">INDEX+MATCH</code> = <code class="language-plaintext highlighter-rouge">=INDEX(B2:B10,MATCH(E2,A2:A10,0))</code> : Combines INDEX and MATCH for flexible lookups without column order restrictions</li>
+  <li><code class="language-plaintext highlighter-rouge">OFFSET()</code> = <code class="language-plaintext highlighter-rouge">=OFFSET(A1,5,2)</code> : Returns a range that is offset from a starting cell by a given number of rows and columns</li>
+  <li><code class="language-plaintext highlighter-rouge">INDIRECT()</code> = <code class="language-plaintext highlighter-rouge">=INDIRECT("B"&amp;ROW())</code> : Converts a text string into a valid cell reference</li>
+  <li><code class="language-plaintext highlighter-rouge">ADDRESS()</code> = <code class="language-plaintext highlighter-rouge">=ADDRESS(ROW(),COLUMN())</code> : Creates a cell address as text from given row and column numbers</li>
+  <li><code class="language-plaintext highlighter-rouge">ROW()</code> = <code class="language-plaintext highlighter-rouge">=ROW(A5)</code> : Returns the row number of a referenced cell</li>
+  <li><code class="language-plaintext highlighter-rouge">COLUMN()</code> = <code class="language-plaintext highlighter-rouge">=COLUMN(D2)</code> : Returns the column number of a referenced cell</li>
+  <li><code class="language-plaintext highlighter-rouge">ROWS()</code> = <code class="language-plaintext highlighter-rouge">=ROWS(A2:C10)</code> : Counts the total number of rows in a reference</li>
+  <li><code class="language-plaintext highlighter-rouge">COLUMNS()</code> = <code class="language-plaintext highlighter-rouge">=COLUMNS(A2:C10)</code> : Counts the total number of columns in a reference</li>
+  <li><code class="language-plaintext highlighter-rouge">XMATCH()</code> = <code class="language-plaintext highlighter-rouge">=XMATCH(E2,A2:A10,0)</code> : Modern version of MATCH with support for reverse search and wildcards</li>
+  <li><code class="language-plaintext highlighter-rouge">FILTER()</code> = <code class="language-plaintext highlighter-rouge">=FILTER(A2:C10,B2:B10&gt;100)</code> : Extracts rows that satisfy a logical condition into a spill range</li>
+  <li><code class="language-plaintext highlighter-rouge">UNIQUE()</code> = <code class="language-plaintext highlighter-rouge">=UNIQUE(A2:A100)</code> : Extracts distinct values from a range and spills them into adjacent cells</li>
+  <li><code class="language-plaintext highlighter-rouge">SORT()</code> = <code class="language-plaintext highlighter-rouge">=SORT(A2:B10,2,-1)</code> : Orders a range by a specified column index and direction</li>
+  <li><code class="language-plaintext highlighter-rouge">SORTBY()</code> = <code class="language-plaintext highlighter-rouge">=SORTBY(A2:B10,B2:B10,-1)</code> : Sorts a range using a separate helper column as the sorting key</li>
+  <li><code class="language-plaintext highlighter-rouge">SEQUENCE()</code> = <code class="language-plaintext highlighter-rouge">=SEQUENCE(10,1,1,1)</code> : Creates a sequential list of numbers in an array that spills automatically</li>
+</ul>
+
+<h3 id="math-trig">Math &amp; Trig Formulas</h3>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">ROUND()</code> = <code class="language-plaintext highlighter-rouge">=ROUND(A2,2)</code> : Rounds a number to a specified number of decimal places</li>
+  <li><code class="language-plaintext highlighter-rouge">ROUNDUP()</code> = <code class="language-plaintext highlighter-rouge">=ROUNDUP(A2,0)</code> : Rounds a number up toward zero regardless of the digit value</li>
+  <li><code class="language-plaintext highlighter-rouge">ROUNDDOWN()</code> = <code class="language-plaintext highlighter-rouge">=ROUNDDOWN(A2,0)</code> : Rounds a number down toward zero regardless of the digit value</li>
+  <li><code class="language-plaintext highlighter-rouge">MROUND()</code> = <code class="language-plaintext highlighter-rouge">=MROUND(A2,5)</code> : Rounds a number to the nearest multiple of a given value</li>
+  <li><code class="language-plaintext highlighter-rouge">INT()</code> = <code class="language-plaintext highlighter-rouge">=INT(A2)</code> : Truncates a number to its integer portion by removing the decimal part</li>
+  <li><code class="language-plaintext highlighter-rouge">MOD()</code> = <code class="language-plaintext highlighter-rouge">=MOD(A2,3)</code> : Returns the remainder after dividing one number by another</li>
+  <li><code class="language-plaintext highlighter-rouge">CEILING()</code> = <code class="language-plaintext highlighter-rouge">=CEILING(A2,10)</code> : Rounds a number up to the nearest multiple of a specified significance</li>
+  <li><code class="language-plaintext highlighter-rouge">FLOOR()</code> = <code class="language-plaintext highlighter-rouge">=FLOOR(A2,10)</code> : Rounds a number down to the nearest multiple of a specified significance</li>
+  <li><code class="language-plaintext highlighter-rouge">ABS()</code> = <code class="language-plaintext highlighter-rouge">=ABS(A2)</code> : Returns the absolute value of a number, removing its sign</li>
+  <li><code class="language-plaintext highlighter-rouge">POWER()</code> = <code class="language-plaintext highlighter-rouge">=POWER(A2,3)</code> : Raises a number to a specified exponent</li>
+  <li><code class="language-plaintext highlighter-rouge">SQRT()</code> = <code class="language-plaintext highlighter-rouge">=SQRT(A2)</code> : Calculates the square root of a positive number</li>
+  <li><code class="language-plaintext highlighter-rouge">RAND()</code> = <code class="language-plaintext highlighter-rouge">=RAND()</code> : Generates a random decimal between 0 and 1, recalculating on every worksheet change</li>
+  <li><code class="language-plaintext highlighter-rouge">RANDBETWEEN()</code> = <code class="language-plaintext highlighter-rouge">=RANDBETWEEN(1,100)</code> : Generates a random integer within a specified lower and upper bound</li>
+  <li><code class="language-plaintext highlighter-rouge">PI()</code> = <code class="language-plaintext highlighter-rouge">=PI()</code> : Returns the mathematical constant pi to 15 decimal places</li>
+  <li><code class="language-plaintext highlighter-rouge">EXP()</code> = <code class="language-plaintext highlighter-rouge">=EXP(1)</code> : Returns e raised to the power of a given number</li>
+  <li><code class="language-plaintext highlighter-rouge">LN()</code> = <code class="language-plaintext highlighter-rouge">=LN(A2)</code> : Computes the natural logarithm (base e) of a number</li>
+  <li><code class="language-plaintext highlighter-rouge">LOG()</code> = <code class="language-plaintext highlighter-rouge">=LOG(A2,10)</code> : Computes the logarithm of a number with a specified base</li>
+  <li><code class="language-plaintext highlighter-rouge">LOG10()</code> = <code class="language-plaintext highlighter-rouge">=LOG10(A2)</code> : Computes the base-10 logarithm of a number</li>
+  <li><code class="language-plaintext highlighter-rouge">PRODUCT()</code> = <code class="language-plaintext highlighter-rouge">=PRODUCT(B2:B10)</code> : Multiplies all numbers in a range and returns the product</li>
+</ul>
+
+<h3 id="statistical">Statistical Formulas</h3>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">MEDIAN()</code> = <code class="language-plaintext highlighter-rouge">=MEDIAN(A2:A10)</code> : Returns the middle value from a sorted set of numbers</li>
+  <li><code class="language-plaintext highlighter-rouge">MODE.SNGL()</code> = <code class="language-plaintext highlighter-rouge">=MODE.SNGL(A2:A10)</code> : Returns the most frequently occurring value in a dataset</li>
+  <li><code class="language-plaintext highlighter-rouge">PERCENTILE.EXC()</code> = <code class="language-plaintext highlighter-rouge">=PERCENTILE.EXC(A2:A10,0.9)</code> : Returns the k-th percentile excluding 0 and 1 boundaries</li>
+  <li><code class="language-plaintext highlighter-rouge">PERCENTILE.INC()</code> = <code class="language-plaintext highlighter-rouge">=PERCENTILE.INC(A2:A10,0.9)</code> : Returns the k-th percentile including 0 and 1 as boundaries</li>
+  <li><code class="language-plaintext highlighter-rouge">QUARTILE.EXC()</code> = <code class="language-plaintext highlighter-rouge">=QUARTILE.EXC(A2:A10,1)</code> : Returns a quartile value excluding the minimum and maximum from the calculation</li>
+  <li><code class="language-plaintext highlighter-rouge">QUARTILE.INC()</code> = <code class="language-plaintext highlighter-rouge">=QUARTILE.INC(A2:A10,1)</code> : Returns a quartile value including the minimum and maximum in the calculation</li>
+  <li><code class="language-plaintext highlighter-rouge">STDEV.P()</code> = <code class="language-plaintext highlighter-rouge">=STDEV.P(A2:A10)</code> : Calculates standard deviation based on the entire population</li>
+  <li><code class="language-plaintext highlighter-rouge">STDEV.S()</code> = <code class="language-plaintext highlighter-rouge">=STDEV.S(A2:A10)</code> : Estimates standard deviation based on a sample of the population</li>
+  <li><code class="language-plaintext highlighter-rouge">VAR.P()</code> = <code class="language-plaintext highlighter-rouge">=VAR.P(A2:A10)</code> : Computes variance based on the entire population</li>
+  <li><code class="language-plaintext highlighter-rouge">VAR.S()</code> = <code class="language-plaintext highlighter-rouge">=VAR.S(A2:A10)</code> : Estimates variance based on a sample of the population</li>
+  <li><code class="language-plaintext highlighter-rouge">COVARIANCE.P()</code> = <code class="language-plaintext highlighter-rouge">=COVARIANCE.P(A2:A10,B2:B10)</code> : Measures the covariance between two datasets for the full population</li>
+  <li><code class="language-plaintext highlighter-rouge">CORREL()</code> = <code class="language-plaintext highlighter-rouge">=CORREL(A2:A10,B2:B10)</code> : Returns the correlation coefficient indicating the strength of a linear relationship between two variables</li>
+  <li><code class="language-plaintext highlighter-rouge">TREND()</code> = <code class="language-plaintext highlighter-rouge">=TREND(known_y,known_x,new_x)</code> : Fits a line to known data points and predicts values along that line</li>
+  <li><code class="language-plaintext highlighter-rouge">FORECAST.LINEAR()</code> = <code class="language-plaintext highlighter-rouge">=FORECAST.LINEAR(new_x,known_y,known_x)</code> : Predicts a future value using linear regression based on historical data</li>
+</ul>
+
+<h3 id="text-functions">Text Functions Formulas</h3>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">LEFT()</code> = <code class="language-plaintext highlighter-rouge">=LEFT(A2,3)</code> : Returns the specified number of characters from the start of a text string</li>
+  <li><code class="language-plaintext highlighter-rouge">RIGHT()</code> = <code class="language-plaintext highlighter-rouge">=RIGHT(A2,2)</code> : Returns the specified number of characters from the end of a text string</li>
+  <li><code class="language-plaintext highlighter-rouge">MID()</code> = <code class="language-plaintext highlighter-rouge">=MID(A2,2,4)</code> : Returns a substring starting at a given position with a specified length</li>
+  <li><code class="language-plaintext highlighter-rouge">LEN()</code> = <code class="language-plaintext highlighter-rouge">=LEN(A2)</code> : Counts the number of characters in a text string including spaces</li>
+  <li><code class="language-plaintext highlighter-rouge">FIND()</code> = <code class="language-plaintext highlighter-rouge">=FIND("@",A2)</code> : Locates the position of a substring within text using case-sensitive matching</li>
+  <li><code class="language-plaintext highlighter-rouge">SEARCH()</code> = <code class="language-plaintext highlighter-rouge">=SEARCH("cat",A2)</code> : Locates the position of a substring within text ignoring case</li>
+  <li><code class="language-plaintext highlighter-rouge">SUBSTITUTE()</code> = <code class="language-plaintext highlighter-rouge">=SUBSTITUTE(A2,"-","")</code> : Replaces occurrences of a specific text pattern with new text</li>
+  <li><code class="language-plaintext highlighter-rouge">REPLACE()</code> = <code class="language-plaintext highlighter-rouge">=REPLACE(A2,1,3,"New")</code> : Replaces characters at a specific position and length within text</li>
+  <li><code class="language-plaintext highlighter-rouge">TEXT()</code> = <code class="language-plaintext highlighter-rouge">=TEXT(A2,"dd-mmm-yyyy")</code> : Formats a number or date as text using a specified format pattern</li>
+  <li><code class="language-plaintext highlighter-rouge">TEXTJOIN()</code> = <code class="language-plaintext highlighter-rouge">=TEXTJOIN(", ",TRUE,A2:A5)</code> : Joins multiple text values from a range using a delimiter and ignores empty cells</li>
+  <li><code class="language-plaintext highlighter-rouge">CONCAT()</code> = <code class="language-plaintext highlighter-rouge">=CONCAT(A2:A5)</code> : Combines text from multiple cells into one string without delimiters</li>
+  <li><code class="language-plaintext highlighter-rouge">CONCATENATE()</code> = <code class="language-plaintext highlighter-rouge">=CONCATENATE(A2," ",B2)</code> : Joins up to 255 text items into one string (legacy function)</li>
+  <li><code class="language-plaintext highlighter-rouge">TRIM()</code> = <code class="language-plaintext highlighter-rouge">=TRIM(A2)</code> : Removes all extra spaces from text except single spaces between words</li>
+  <li><code class="language-plaintext highlighter-rouge">UPPER()</code> = <code class="language-plaintext highlighter-rouge">=UPPER(A2)</code> : Converts all letters in a text string to uppercase</li>
+  <li><code class="language-plaintext highlighter-rouge">LOWER()</code> = <code class="language-plaintext highlighter-rouge">=LOWER(A2)</code> : Converts all letters in a text string to lowercase</li>
+  <li><code class="language-plaintext highlighter-rouge">PROPER()</code> = <code class="language-plaintext highlighter-rouge">=PROPER(A2)</code> : Capitalizes the first letter of each word in a text string</li>
+  <li><code class="language-plaintext highlighter-rouge">VALUE()</code> = <code class="language-plaintext highlighter-rouge">=VALUE(A2)</code> : Converts a text string that represents a number into an actual numeric value</li>
+  <li><code class="language-plaintext highlighter-rouge">EXACT()</code> = <code class="language-plaintext highlighter-rouge">=EXACT(A2,B2)</code> : Compares two text strings and returns TRUE if they are exactly the same including case</li>
+  <li><code class="language-plaintext highlighter-rouge">CHAR()</code> = <code class="language-plaintext highlighter-rouge">=CHAR(10)</code> : Returns the character that corresponds to a given ASCII or Unicode code</li>
+  <li><code class="language-plaintext highlighter-rouge">CODE()</code> = <code class="language-plaintext highlighter-rouge">=CODE("A")</code> : Returns the numeric ASCII code for the first character of a text string</li>
+</ul>
+
+  </main>
+</div>
+
+<script>
+  (function() {
+    var search = document.getElementById('cheatSearch');
+    if (search) {
+      search.addEventListener('input', function() {
+        var q = this.value.toLowerCase();
+        document.querySelectorAll('.cheatsheet-main li').forEach(function(li) {
+          li.classList.toggle('hidden', q && !li.textContent.toLowerCase().includes(q));
+        });
+        document.querySelectorAll('.cheatsheet-main h3').forEach(function(h3) {
+          var next = h3.nextElementSibling;
+          var visible = next && next.tagName === 'UL' && Array.from(next.querySelectorAll('li')).some(function(li) { return !li.classList.contains('hidden'); });
+          h3.style.display = (!q || visible) ? '' : 'none';
+          if (next && next.tagName === 'UL') next.style.display = (!q || visible) ? '' : 'none';
+        });
+      });
+    }
+
+    var headers = document.querySelectorAll('.unit-header');
+    headers.forEach(function(h) {
+      h.addEventListener('click', function() {
+        var sub = this.nextElementSibling;
+        sub.classList.toggle('show');
+        this.classList.toggle('active');
+      });
+    });
+
+    document.getElementById('sidebarToggle')?.addEventListener('click', function() {
+      document.getElementById('cheatSidebar').classList.toggle('open');
+    });
+
+    var links = document.querySelectorAll('.subtopic-link');
+    links.forEach(function(link) {
+      link.addEventListener('click', function() {
+        links.forEach(function(l) { l.classList.remove('active'); });
+        this.classList.add('active');
+        if (window.innerWidth <= 850) {
+          document.getElementById('cheatSidebar').classList.remove('open');
+        }
+      });
+    });
+  })();
+</script>
+
+  </div>
+
+  <footer>
+    <div class="footer-links">
+      <a href="/about/">About the Creator</a>
+      <a href="mailto:contact@dinesh-raya.dev">Contact Dinesh</a>
+      <a href="/privacy/">Privacy</a>
+      <a href="/terms/">Terms</a>
+    </div>
+    <div class="copyright">
+      &copy; 2026 RAYA &middot; Built by Dinesh Raya
+    </div>
+    <div class="footer-social">
+      <a href="https://github.com/Dinesh-raya" target="_blank" rel="noopener" aria-label="GitHub">
+        <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      </a>
+      <a href="https://linkedin.com/in/dinesh-raya" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      </a>
+    </div>
+  </footer>
+
+  <div id="searchOverlay"><div class="search-modal"><button class="search-close" id="searchClose">&times;</button><div class="search-input-wrap"><input type="text" id="searchInput" placeholder="Search pages and posts..." autocomplete="off"></div><div id="searchStatus">Type to search...</div><ul id="searchResults"></ul></div></div>
+
+  <button class="scroll-top-btn" id="scrollTopBtn" aria-label="Scroll to top">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"></polyline></svg>
+  </button>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha384-203J0SNzyqHby3iU6hzvzltrWi/M41wOP5Gu+BiJMz5nwKykbkUx8Kp7iti0Lpli" crossorigin="anonymous"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js');
+    }
+  </script>
+  <script>
+    (function() {
+      var stored = localStorage.getItem('theme');
+      var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      var isDark = stored ? stored === 'dark' : prefersDark;
+      if (isDark) document.documentElement.classList.add('dark');
+      var themeBtn = document.getElementById('themeToggle');
+      var themeBtnMob = document.getElementById('themeToggleMobile');
+      function setTheme(dark) {
+        isDark = dark;
+        document.documentElement.classList.toggle('dark', dark);
+        localStorage.setItem('theme', dark ? 'dark' : 'light');
+        themeBtn && (themeBtn.textContent = dark ? '☀️' : '🌙');
+        themeBtnMob && (themeBtnMob.innerHTML = dark ? '☀️ Light' : '🌙 Dark');
+      }
+      function toggleTheme() { setTheme(!isDark); }
+      themeBtn && themeBtn.addEventListener('click', toggleTheme);
+      themeBtnMob && themeBtnMob.addEventListener('click', toggleTheme);
+
+      var toggle = document.getElementById('menuToggle');
+      var nav = document.getElementById('mobileNav');
+      var overlay = document.getElementById('mobileOverlay');
+      if (toggle && nav && overlay) {
+        var links = Array.prototype.slice.call(nav.querySelectorAll('a'));
+        function isOpen() { return nav.classList.contains('open'); }
+        function closeMenu() {
+          nav.classList.remove('open');
+          overlay.classList.remove('active');
+          document.body.style.overflow = '';
+          toggle.focus();
+        }
+        function openMenu(focusTarget) {
+          nav.classList.add('open');
+          overlay.classList.add('active');
+          document.body.style.overflow = 'hidden';
+          if (focusTarget && focusTarget.focus) focusTarget.focus();
+          else if (links.length) links[0].focus();
+        }
+        function toggleMenu() {
+          if (isOpen()) closeMenu();
+          else openMenu();
+        }
+        toggle.addEventListener('click', toggleMenu);
+        overlay.addEventListener('click', closeMenu);
+        links.forEach(function(link) {
+          link.addEventListener('click', closeMenu);
+        });
+        nav.addEventListener('keydown', function(e) {
+          if (e.key === 'Escape') { closeMenu(); return; }
+          if (e.key !== 'Tab') return;
+          var active = document.activeElement;
+          var idx = links.indexOf(active);
+          if (idx === -1) return;
+          e.preventDefault();
+          if (e.shiftKey) {
+            idx = idx === 0 ? links.length - 1 : idx - 1;
+          } else {
+            idx = idx === links.length - 1 ? 0 : idx + 1;
+          }
+          links[idx].focus();
+        });
+        document.addEventListener('keydown', function(e) {
+          e.key === 'Escape' && isOpen() && closeMenu();
+        });
+      }
+
+      var searchBtn = document.getElementById('searchBtn');
+      var searchOverlay = document.getElementById('searchOverlay');
+      var searchClose = document.getElementById('searchClose');
+      var searchInput = document.getElementById('searchInput');
+      var searchResults = document.getElementById('searchResults');
+      var searchStatus = document.getElementById('searchStatus');
+      var lunrIndex = null;
+      var searchTimer = null;
+      var docs = {};
+
+      function openSearch() {
+        if (!searchOverlay) return;
+        searchOverlay.classList.add('active');
+        setTimeout(function() {
+          searchInput && searchInput.focus();
+        }, 100);
+      }
+      function closeSearch() {
+        searchOverlay && searchOverlay.classList.remove('active');
+      }
+
+      function stripHTML(str) {
+        return str.replace(/<[^>]*>/g, '');
+      }
+
+      function doSearch() {
+        searchTimer = null;
+        var query = searchInput.value.trim();
+        if (query.length < 2) {
+          searchResults.innerHTML = '';
+          searchStatus.textContent = 'Type to search...';
+          return;
+        }
+        if (!lunrIndex) {
+          searchStatus.textContent = 'Loading search index...';
+          return;
+        }
+        searchStatus.textContent = 'Searching...';
+        try {
+          var results = lunrIndex.search(query);
+          if (results.length === 0) {
+            searchStatus.textContent = 'No results found.';
+            searchResults.innerHTML = '';
+            return;
+          }
+          searchStatus.textContent = '';
+          searchResults.innerHTML = results.slice(0, 12).map(function(r) {
+            var doc = docs[r.ref];
+            if (!doc) return '';
+            var content = doc.content || '';
+            var idx = content.toLowerCase().indexOf(query.toLowerCase());
+            var start = idx > 40 ? idx - 40 : 0;
+            var excerpt = content.substring(start, start + 160);
+            return '<li><a href="' + doc.url + '"><div class="result-title">' + doc.title + '</div><div class="result-excerpt">' + stripHTML(excerpt) + '</div></a></li>';
+          }).join('');
+        } catch (e) {
+          searchStatus.textContent = 'Search error.';
+        }
+      }
+
+      function onSearchInput() {
+        searchTimer && clearTimeout(searchTimer);
+        searchTimer = setTimeout(doSearch, 200);
+      }
+
+      function loadSearchIndex() {
+        fetch('/search.json').then(function(res) {
+          return res.json();
+        }).then(function(data) {
+          docs = {};
+          var items = [];
+          data.forEach(function(d, i) {
+            if (d.title && d.url) {
+              var item = { title: d.title, url: d.url, content: d.content || '' };
+              items.push(item);
+              docs[i] = item;
+            }
+          });
+          lunrIndex = lunr(function() {
+            this.ref('ref');
+            this.field('title');
+            this.field('content');
+            var self = this;
+            items.forEach(function(item, idx) {
+              item.ref = idx;
+              self.add(item);
+            });
+          });
+        }).catch(function(err) {
+          searchStatus && (searchStatus.textContent = 'Search unavailable.');
+        });
+      }
+
+      searchBtn && searchBtn.addEventListener('click', openSearch);
+      searchClose && searchClose.addEventListener('click', closeSearch);
+      searchOverlay && searchOverlay.addEventListener('click', function(e) {
+        if (e.target === searchOverlay) closeSearch();
+      });
+      searchInput && searchInput.addEventListener('input', onSearchInput);
+      document.addEventListener('keydown', function(e) {
+        if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+          e.preventDefault();
+          openSearch();
+        }
+        if (e.key === 'Escape' && searchOverlay && searchOverlay.classList.contains('active')) {
+          closeSearch();
+        }
+      });
+      loadSearchIndex();
+    })();
+
+    // Active nav state
+    (function() {
+      var path = window.location.pathname;
+      document.querySelectorAll('header nav a, .mobile-nav a').forEach(function(a) {
+        var href = a.getAttribute('href');
+        if (href === '/' && path === '/') { a.classList.add('active'); return; }
+        if (href && href !== '/' && path.indexOf(href) === 0) { a.classList.add('active'); }
+      });
+    })();
+
+    // Scroll to top
+    (function() {
+      var btn = document.getElementById('scrollTopBtn');
+      if (!btn) return;
+      window.addEventListener('scroll', function() {
+        btn.classList.toggle('visible', window.scrollY > 400);
+      });
+      btn.addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    })();
+  </script>
+</body>
+</html>

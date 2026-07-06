@@ -1,0 +1,372 @@
+(function () {
+  'use strict';
+
+  var SQL, db, editor;
+
+  var _ = __shared;
+  var escapeHtml = _.escapeHtml;
+  var showError = _.showError;
+  var toggle = _.toggle;
+
+  function arraysEqual(a, b) {
+    if (a.length !== b.length) return false;
+    for (var i = 0; i < a.length; i++) {
+      if (a[i].length !== b[i].length) return false;
+      for (var j = 0; j < a[i].length; j++) {
+        if (String(a[i][j]) !== String(b[i][j])) return false;
+      }
+    }
+    return true;
+  }
+
+  function formatValue(v) {
+    if (v === null || v === undefined) return '<span class="null-value">NULL</span>';
+    if (typeof v === 'boolean') return v ? 'TRUE' : 'FALSE';
+    return escapeHtml(v);
+  }
+
+  var showError = _.showError;
+
+  function showResult(columns, rows, valid) {
+    var el = document.getElementById('resultArea');
+    if (!el) return;
+    var h = '';
+    if (valid === true) {
+      h += '<div class="validation-badge valid"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg> Correct!</div>';
+    } else if (valid === false) {
+      h += '<div class="validation-badge invalid"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg> Incorrect — output doesn\'t match expected</div>';
+    }
+    if (!rows || rows.length === 0) {
+      el.innerHTML = h + '<div class="result-empty">Query executed successfully. No rows returned.</div>';
+      return;
+    }
+    var formattedRows = rows.map(function (r) {
+      return r.map(function (v) { return formatValue(v); });
+    });
+    h += _.buildTable(columns, formattedRows);
+    h += '<div class="result-info">' + rows.length + ' row' + (rows.length !== 1 ? 's' : '') + ' returned</div>';
+    el.innerHTML = h;
+    var table = el.querySelector('.data-table');
+    if (table) {
+      table.addEventListener('click', function (e) {
+        var th = e.target.closest('th');
+        if (th && th.getAttribute('data-col') !== null) {
+          _.sortTable(table, parseInt(th.getAttribute('data-col'), 10));
+        }
+      });
+    }
+  }
+
+  function padCol(v, len) {
+    v = v === null ? 'NULL' : String(v);
+    while (v.length < len) v += ' ';
+    return v;
+  }
+
+  function renderAsciiTable(columns, rows) {
+    var colW = columns.map(function(c, i) {
+      var max = c.length;
+      rows.forEach(function(r) {
+        var v = r[i] === null || r[i] === undefined ? 'NULL' : String(r[i]);
+        if (v.length > max) max = v.length;
+      });
+      return max;
+    });
+    var line = '+';
+    colW.forEach(function(w) { line += '-'.repeat(w + 2) + '+'; });
+    var h = line + '\n|';
+    columns.forEach(function(c, i) { h += ' ' + padCol(c, colW[i]) + ' |'; });
+    h += '\n' + line;
+    rows.forEach(function(r) {
+      h += '\n|';
+      r.forEach(function(v, i) { h += ' ' + padCol(v, colW[i]) + ' |'; });
+    });
+    h += '\n' + line;
+    return h;
+  }
+
+  function renderSchemaAscii(tables, masterSchema) {
+    var lines = [];
+    tables.forEach(function(tName) {
+      var tDef = masterSchema[tName];
+      if (!tDef) return;
+      var cols = tDef.columns;
+      var colW = 10;
+      var typeW = 8;
+      cols.forEach(function(c) {
+        if (c.name.length > colW) colW = c.name.length;
+        if (c.type.length > typeW) typeW = c.type.length;
+      });
+      var sep = '+' + '-'.repeat(colW + 2) + '+' + '-'.repeat(typeW + 2) + '+';
+      lines.push(sep);
+      lines.push('| ' + padCol('Column Name', colW) + ' | ' + padCol('Type', typeW) + ' |');
+      lines.push(sep);
+      cols.forEach(function(c) {
+        lines.push('| ' + padCol(c.name, colW) + ' | ' + padCol(c.type, typeW) + ' |');
+      });
+      lines.push(sep);
+      lines.push(tName + ' contains one row per ' + tName.slice(0, -1) + '.');
+      lines.push(tName.slice(0, -1) + '_id is the primary key for this table.');
+    });
+    return lines.join('\n');
+  }
+
+  function getSampleData(problem) {
+    if (!db) return {};
+    var result = {};
+    problem.tables.forEach(function(tName) {
+      try {
+        var r = db.exec('SELECT * FROM ' + tName + ' LIMIT 5');
+        if (r && r.length > 0) result[tName] = { columns: r[0].columns, rows: r[0].values };
+      } catch(e) {}
+    });
+    return result;
+  }
+
+  function initDB(problem) {
+    if (!problem) return;
+    db.run('PRAGMA foreign_keys = OFF');
+    var schema = problem.schema || '';
+    if (schema) {
+      var stmts = schema.split(';').filter(Boolean);
+      stmts.forEach(function (s) {
+        try { db.run(s.trim() + ';'); } catch (e) {}
+      });
+    }
+    var data = problem.sample_data || {};
+    Object.keys(data).forEach(function (table) {
+      var insertSQL = data[table];
+      if (insertSQL) {
+        try { db.run(insertSQL); } catch (e) {
+          console.warn('Insert error for ' + table + ':', e.message);
+        }
+      }
+    });
+    db.run('PRAGMA foreign_keys = ON');
+  }
+
+  function runQuery() {
+    if (!db || !editor) return;
+    var sql = editor.getValue().trim();
+    if (!sql) { showError('Please enter a SQL query.'); return; }
+    var runBtn = document.getElementById('runBtn');
+    var statusEl = document.getElementById('editorStatus');
+    if (runBtn) runBtn.disabled = true;
+    if (statusEl) statusEl.textContent = 'Running...';
+    try {
+      var results = db.exec(sql);
+      var columns = [], rows = [];
+      if (results && results.length > 0) {
+        var r = results[0];
+        columns = r.columns;
+        rows = r.values;
+      }
+      var problem = window.__currentProblem;
+      var expected = problem && problem.expected_output;
+      var valid = undefined;
+      if (expected && expected.columns && expected.rows) {
+        var colMatch = expected.columns.length === columns.length;
+        if (colMatch) {
+          for (var i = 0; i < expected.columns.length; i++) {
+            if (expected.columns[i] !== columns[i]) { colMatch = false; break; }
+          }
+        }
+        if (colMatch) {
+          valid = arraysEqual(rows, expected.rows);
+        } else {
+          valid = false;
+        }
+      }
+      showResult(columns, rows, valid);
+      if (valid === true) {
+        var markBtn = document.getElementById('markSolvedBtn');
+        if (markBtn && markBtn.textContent !== '\u2713 Solved') {
+          markBtn.click();
+        }
+      }
+    } catch (e) {
+      showError(e.message);
+    }
+    if (runBtn) runBtn.disabled = false;
+    if (statusEl) statusEl.textContent = 'Ready';
+  }
+
+  function resetDB() {
+    if (!db) return;
+    try { db.close(); } catch (e) {}
+    db = new SQL.Database();
+    var problem = window.__currentProblem;
+    if (problem) initDB(problem);
+    showResult([], []);
+    var statusEl = document.getElementById('editorStatus');
+    if (statusEl) statusEl.textContent = 'Reset';
+    setTimeout(function () { if (statusEl) statusEl.textContent = 'Ready'; }, 800);
+  }
+
+  window.initSQLProject = function () {
+    if (typeof initSqlJs === 'undefined') {
+      showError('SQL.js library failed to load. Check your internet connection.');
+      return;
+    }
+    initSqlJs({
+      locateFile: function (file) { return 'https://cdn.jsdelivr.net/npm/sql.js@1.10.3/dist/' + file; }
+    }).then(function (SQLlib) {
+      SQL = SQLlib;
+      db = new SQL.Database();
+
+      var id = parseInt(new URLSearchParams(window.location.search).get('id'), 10);
+      if (!id) { showError('No problem ID specified.'); return; }
+
+      var statusEl = document.getElementById('editorStatus');
+      if (statusEl) statusEl.textContent = 'Loading...';
+
+      _.fetchJson('/sql-project/problems.json')
+        .then(function (data) {
+          var problem = data.problems.find(function (p) { return p.id === id; });
+          if (!problem) { showError('Problem #' + id + ' not found.'); return; }
+          window.__currentProblem = problem;
+          initDB(problem);
+          renderProblem(problem, data.schema);
+          if (statusEl) statusEl.textContent = 'Ready';
+        })
+        .catch(function (err) {
+          showError('Failed to load problem data: ' + err.message);
+        });
+    }).catch(function (err) {
+      showError('Failed to initialize SQL engine: ' + err.message);
+    });
+  };
+
+  var toggle = _.toggle;
+
+  function renderProblem(problem, masterSchema) {
+    document.getElementById('problemTitle').textContent = problem.id + '. ' + problem.title;
+
+    var diffEl = document.getElementById('problemDifficulty');
+    diffEl.textContent = problem.difficulty;
+    diffEl.className = 'badge ' + problem.difficulty.toLowerCase();
+
+    document.getElementById('problemTables').textContent = problem.tables.join(', ');
+
+    document.getElementById('problemDescription').textContent = problem.description;
+
+    document.getElementById('schemaDisplay').innerHTML = '<pre>' + escapeHtml(renderSchemaAscii(problem.tables, masterSchema)) + '</pre>';
+
+    // Render Mermaid ER diagram
+    var mermaidDef = 'erDiagram\n';
+    problem.tables.forEach(function(tName) {
+      var tDef = masterSchema[tName];
+      if (!tDef) return;
+      mermaidDef += '  ' + tName + ' {\n';
+      tDef.columns.forEach(function(c) {
+        var pk = tName.slice(0, -1) + '_id' === c.name ? ' PK' : '';
+        mermaidDef += '    ' + c.type + ' ' + c.name + pk + '\n';
+      });
+      mermaidDef += '  }\n';
+    });
+    var diagEl = document.getElementById('schemaDiagram');
+    if (diagEl && typeof mermaid !== 'undefined') {
+      diagEl.innerHTML = '<div class="mermaid">' + mermaidDef + '</div>';
+      mermaid.run();
+    }
+
+    var hintEl = document.getElementById('hintText');
+    if (problem.hint) {
+      hintEl.innerHTML = '<strong>Tip:</strong> ' + escapeHtml(problem.hint);
+    } else {
+      hintEl.style.display = 'none';
+    }
+
+    var sampleData = getSampleData(problem);
+    var sampleLines = [];
+    problem.tables.forEach(function(tName) {
+      if (sampleData[tName]) {
+        sampleLines.push(tName + ' table:');
+        sampleLines.push(renderAsciiTable(sampleData[tName].columns, sampleData[tName].rows));
+      }
+    });
+    document.getElementById('sampleDataDisplay').innerHTML = '<pre>' + escapeHtml(sampleLines.join('\n')) + '</pre>';
+
+    var exp = problem.expected_output;
+    if (exp && exp.columns && exp.rows) {
+      document.getElementById('expectedOutputDisplay').innerHTML = '<pre>Output:\n' + escapeHtml(renderAsciiTable(exp.columns, exp.rows)) + '</pre>';
+    }
+
+    if (problem.explanation) {
+      document.getElementById('explanationText').textContent = problem.explanation;
+    }
+
+    if (problem.solution) {
+      document.getElementById('solutionSQL').textContent = problem.solution;
+    }
+
+    if (typeof CodeMirror !== 'undefined') {
+      if (_.getCodeTheme() === 'material') _.loadCodeThemeCSS();
+      editor = CodeMirror(document.getElementById('editorContainer'), {
+        value: 'SELECT * FROM ' + (problem.tables[0] || '') + ';',
+        mode: 'text/x-sql',
+        theme: _.getCodeTheme(),
+        lineNumbers: true,
+        indentWithTabs: true,
+        smartIndent: true,
+        lineWrapping: true,
+        extraKeys: { 'Ctrl-Enter': runQuery, 'Cmd-Enter': runQuery }
+      });
+      _.registerEditor(editor);
+    } else {
+      var ta = document.createElement('textarea');
+      ta.style.cssText = 'width:100%;height:120px;padding:10px;font-family:monospace;font-size:14px;border:none;resize:vertical;';
+      ta.value = 'SELECT * FROM ' + (problem.tables[0] || '') + ';';
+      document.getElementById('editorContainer').appendChild(ta);
+      editor = ta;
+    }
+
+    document.getElementById('runBtn').addEventListener('click', runQuery);
+    document.getElementById('resetBtn').addEventListener('click', resetDB);
+
+    var hintToggle = document.getElementById('hintToggle');
+    var hintContent = document.getElementById('hintContent');
+    hintToggle.addEventListener('click', function () {
+      toggle(hintToggle, hintContent, null, null);
+      hintToggle.classList.toggle('open', !hintContent.hasAttribute('hidden'));
+    });
+
+    var solutionBtn = document.getElementById('toggleSolution');
+    var solutionBox = document.getElementById('solutionBox');
+    solutionBtn.addEventListener('click', function () {
+      var hidden = !solutionBox.hasAttribute('hidden');
+      toggle(solutionBtn, solutionBox, 'Hide Solution', 'Solution');
+      solutionBtn.classList.toggle('hide', !hidden);
+    });
+
+    _.setupCopyBtn();
+
+    _.setupSolvedBtn('sql', problem.id);
+
+    document.title = '#' + problem.id + ' ' + problem.title + ' | SQL Project';
+    var ld = document.getElementById('problemLd');
+    if (!ld) {
+      ld = document.createElement('script');
+      ld.id = 'problemLd';
+      ld.type = 'application/ld+json';
+      document.head.appendChild(ld);
+    }
+    ld.textContent = JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'LearningResource',
+      'name': '#' + problem.id + ' ' + problem.title,
+      'description': (problem.description || '').substring(0, 300),
+      'educationalLevel': problem.difficulty,
+      'teaches': 'SQL (' + problem.tables.join(', ') + ')',
+      'audience': { '@type': 'Audience', 'audienceType': 'Data Analyst' }
+    });
+    _.showPlaceholder();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', window.initSQLProject);
+  } else {
+    window.initSQLProject();
+  }
+
+})();

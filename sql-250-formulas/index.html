@@ -1,0 +1,1471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SQL 250+ Formulas | RAYA</title>
+  <meta name="description" content="Over 250 SQL queries and functions explained — SELECT, joins, window functions, DDL, DML, and more.">
+  <meta property="og:title" content="SQL 250+ Formulas | RAYA">
+  <meta property="og:description" content="Over 250 SQL queries and functions explained — SELECT, joins, window functions, DDL, DML, and more.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://dinesh-raya.github.io/sql-250-formulas/">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" type="image/svg+xml" href="/raya.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="alternate" type="application/atom+xml" title="RAYA Blog" href="/atom.xml">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "RAYA",
+    "url": "https://dinesh-raya.github.io",
+    "description": "RAYA — Learn data analytics, SQL, Excel, Power BI, and Tableau with free cheatsheets and tutorials."
+  }
+  </script>
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "SQL 250+ Formulas",
+    "url": "https://dinesh-raya.github.io/sql-250-formulas/",
+    "description": "Over 250 SQL queries and functions explained — SELECT, joins, window functions, DDL, DML, and more.",
+    "publisher": { "@type": "Organization", "name": "RAYA" },
+    "datePublished": null
+  }
+  </script>
+  
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #F3F3F3;
+      --surface: #ffffff;
+      --surface-alt: #fdfdfd;
+      --text: #111111;
+      --text-secondary: #333333;
+      --text-muted: #666666;
+      --text-light: #888888;
+      --border: #dddddd;
+      --border-light: #eeeeee;
+      --card-shadow: 0 4px 24px rgba(0,0,0,0.06);
+      --card-shadow-hover: 0 8px 32px rgba(0,0,0,0.12);
+      --inline-code-bg: #f0f0f0;
+      --blockquote-bg: #f8f8f8;
+      --blockquote-color: #555555;
+      --table-header-bg: #f8f8f8;
+      --table-border: #e0e0e0;
+      --h3-card-color: #111827;
+      --icon-bg: #ffffff;
+      --copyright-color: #666666;
+      --footer-link: #cccccc;
+      --back-link: #666666;
+      --back-link-hover: #111111;
+      --link-color: #000000;
+      --hr-color: #eeeeee;
+      --accent: #276EF1;
+      --accent-hover: #1e5bc0;
+      --border-radius: 20px;
+    }
+    html.dark {
+      --bg: #0f0f0f;
+      --surface: #1a1a1a;
+      --surface-alt: #222222;
+      --text: #e5e5e5;
+      --text-secondary: #b0b0b0;
+      --text-muted: #888888;
+      --text-light: #666666;
+      --border: #333333;
+      --border-light: #2a2a2a;
+      --card-shadow: 0 4px 24px rgba(0,0,0,0.4);
+      --card-shadow-hover: 0 8px 32px rgba(0,0,0,0.6);
+      --inline-code-bg: #2a2a2a;
+      --blockquote-bg: #1a1a1a;
+      --blockquote-color: #999999;
+      --table-header-bg: #222222;
+      --table-border: #333333;
+      --h3-card-color: #e5e5e5;
+      --icon-bg: #1a1a1a;
+      --copyright-color: #888888;
+      --footer-link: #666666;
+      --back-link: #999999;
+      --back-link-hover: #ffffff;
+      --link-color: #e5e5e5;
+      --hr-color: #333333;
+    }
+    html { scroll-padding-top: 80px; }
+    * {
+      -webkit-tap-highlight-color: transparent;
+    }
+    body {
+      margin: 0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      -webkit-font-smoothing: antialiased;
+    }
+    header {
+      background: #000;
+      color: #fff;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    header .logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    header .logo a {
+      display: block;
+    }
+    header .logo img {
+      height: 40px;
+      display: block;
+    }
+    .logo-by {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      opacity: 0.7;
+    }
+    header nav {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+    header nav a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 400;
+      opacity: 0.8;
+      transition: opacity 0.2s;
+    }
+    header nav a:hover {
+      opacity: 1;
+    }
+    header nav a.active, .mobile-nav a.active {
+      font-weight: 700;
+      opacity: 1;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+    .theme-toggle {
+      background: none;
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #fff;
+      font-size: 1rem;
+      cursor: pointer;
+      padding: 6px 10px;
+      line-height: 1;
+      border-radius: 6px;
+      transition: border-color 0.2s, opacity 0.2s;
+      opacity: 0.7;
+    }
+    .theme-toggle:hover { opacity: 1; border-color: rgba(255,255,255,0.5); }
+    .search-btn {
+      background: none;
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #fff;
+      font-size: 1rem;
+      cursor: pointer;
+      padding: 6px 10px;
+      line-height: 1;
+      border-radius: 6px;
+      transition: border-color 0.2s, opacity 0.2s;
+      opacity: 0.7;
+    }
+    .search-btn:hover { opacity: 1; border-color: rgba(255,255,255,0.5); }
+    #searchOverlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      z-index: 2000;
+      align-items: flex-start;
+      justify-content: center;
+      padding-top: 80px;
+    }
+    #searchOverlay.active { display: flex; }
+    #searchOverlay .search-modal {
+      background: var(--surface);
+      border-radius: 12px;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.3);
+      width: 90%;
+      max-width: 640px;
+      max-height: 80vh;
+      overflow-y: auto;
+      padding: 20px;
+    }
+    #searchOverlay .search-input-wrap { margin-bottom: 16px; }
+    #searchOverlay .search-input-wrap input {
+      width: 100%; padding: 12px 16px; border: 2px solid var(--border);
+      border-radius: 8px; font-size: 1rem; background: var(--bg);
+      color: var(--text); outline: none; box-sizing: border-box;
+    }
+    #searchOverlay .search-input-wrap input:focus {
+      border-color: var(--accent);
+    }
+    #searchResults { list-style: none; padding: 0; margin: 0; }
+    #searchResults li { padding: 10px 12px; border-radius: 6px; cursor: pointer; }
+    #searchResults li:hover, #searchResults li.selected { background: var(--accent-light, rgba(39,110,241,0.1)); }
+    #searchResults a { color: var(--text); text-decoration: none; display: block; }
+    #searchResults .result-title { font-weight: 600; margin-bottom: 2px; }
+    #searchResults .result-url { font-size: 0.78rem; color: var(--accent); }
+    #searchResults .result-excerpt { font-size: 0.82rem; color: var(--text-muted); margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    #searchStatus { color: var(--text-muted); font-size: 0.85rem; text-align: center; padding: 20px 0; }
+    .search-close {
+      float: right;
+      background: none;
+      border: none;
+      font-size: 1.4rem;
+      cursor: pointer;
+      color: var(--text-muted);
+      padding: 0 4px;
+      line-height: 1;
+    }
+    .search-close:hover { color: var(--text); }
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 1.6rem;
+      cursor: pointer;
+      padding: 4px;
+      line-height: 1;
+      -webkit-appearance: none;
+    }
+    .container {
+      max-width: 1600px;
+      margin: 0 auto;
+      padding: 24px 20px;
+      flex: 1;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    footer {
+      background: #000;
+      color: #fff;
+      padding: 20px 40px;
+      margin-top: auto;
+    }
+    footer .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    footer .footer-links a {
+      color: var(--footer-link);
+      text-decoration: none;
+      font-size: 14px;
+      transition: color 0.2s;
+    }
+    footer .footer-links a:hover {
+      color: #fff;
+    }
+    footer .copyright {
+      text-align: center;
+      margin-top: 10px;
+      color: var(--copyright-color);
+      font-size: 0.8rem;
+    }
+    footer .footer-social {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 12px;
+    }
+    footer .footer-social a {
+      color: var(--footer-link);
+      transition: color 0.2s;
+      display: inline-flex;
+      align-items: center;
+      padding: 6px;
+    }
+    footer .footer-social a:hover {
+      color: #fff;
+    }
+
+    .page { max-width: 720px; margin: 0 auto; }
+    .page h1 { font-size: 2em; margin-bottom: 8px; }
+    .page h2 { font-size: 1.3em; margin: 28px 0 12px; }
+    .page p { font-size: 17px; line-height: 1.7; color: var(--text-secondary); margin-bottom: 16px; }
+    .page ul { margin: 0 0 20px; padding-left: 24px; }
+    .page li { font-size: 17px; line-height: 1.7; color: var(--text-secondary); margin-bottom: 8px; }
+
+    .mobile-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.6);
+      z-index: 998;
+    }
+    .mobile-overlay.active {
+      display: block;
+    }
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      top: 70px;
+      left: 0;
+      width: 85%;
+      max-width: 320px;
+      height: calc(100vh - 70px);
+      background: #000;
+      z-index: 999;
+      flex-direction: column;
+      padding: 20px;
+      box-sizing: border-box;
+      transform: translateX(-100%);
+      transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+      box-shadow: 4px 0 16px rgba(0,0,0,0.3);
+    }
+    .mobile-nav.open {
+      transform: translateX(0);
+    }
+    .mobile-nav a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 16px;
+      padding: 14px 12px;
+      border-radius: 6px;
+      transition: background 0.2s;
+    }
+    .mobile-nav a:hover {
+      background: rgba(255,255,255,0.05);
+    }
+
+    @media (max-width: 850px) {
+      header {
+        padding: 16px 20px;
+      }
+      header nav {
+        display: none;
+      }
+      .menu-toggle {
+        display: block;
+      }
+      .mobile-nav {
+        display: flex;
+      }
+      .container {
+        padding: 16px;
+      }
+      footer {
+        padding: 20px 10px;
+      }
+      footer .footer-links a {
+        font-size: 0.75rem;
+      }
+    }
+
+    /* Scroll to Top */
+    .scroll-top-btn {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(10px);
+      transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
+      z-index: 999;
+      padding: 0;
+    }
+    .scroll-top-btn.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    .scroll-top-btn:hover {
+      opacity: 0.9;
+    }
+
+    /* Global Skeleton Loading */
+    @keyframes shimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+    .skeleton {
+      background: linear-gradient(90deg, var(--border-light) 25%, #e8e8e8 50%, var(--border-light) 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.5s ease-in-out infinite;
+      border-radius: 4px;
+    }
+    .skeleton-line { height: 14px; margin-bottom: 8px; width: 100%; }
+    .skeleton-line:nth-child(2) { width: 85%; }
+    .skeleton-line:nth-child(3) { width: 70%; }
+    .skeleton-block { height: 100px; margin-bottom: 12px; }
+    .skeleton-ring { width: 44px; height: 44px; border-radius: 50%; }
+    .dark .skeleton {
+      background: linear-gradient(90deg, #222 25%, #333 50%, #222 75%);
+      background-size: 200% 100%;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="mobile-overlay" id="mobileOverlay"></div>
+  <div class="mobile-nav" id="mobileNav">
+    <a href="/">Home</a>
+    <a href="/cheatsheet/">Cheatsheet</a>
+    <a href="/sql-project/">SQL Project</a>
+    <a href="/excel-project/">Excel Project</a>
+    <a href="/python-project/">Python Project</a>
+    <a href="/admin/">Manage</a>
+    <button class="theme-toggle" id="themeToggleMobile" aria-label="Toggle dark mode" style="margin-top:12px;width:100%;text-align:center;padding:12px;border-color:rgba(255,255,255,0.15);font-size:15px">🌙 Dark Mode</button>
+  </div>
+
+  <header>
+    <div class="logo">
+      <a href="/"><img src="/raya.svg" alt="RAYA"></a>
+      <span class="logo-by">by Dinesh Raya</span>
+    </div>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/cheatsheet/">Cheatsheet</a>
+      <a href="/sql-project/">SQL Project</a>
+      <a href="/excel-project/">Excel Project</a>
+      <a href="/python-project/">Python Project</a>
+      <a href="/admin/">Manage</a>
+    </nav>
+    <button class="search-btn" id="searchBtn" aria-label="Search">🔍</button>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">🌙</button>
+    <button class="menu-toggle" id="menuToggle">☰</button>
+  </header>
+
+  <div class="container">
+    <style>
+  .cheatsheet-wrap {
+    display: flex;
+    gap: 32px;
+    align-items: flex-start;
+  }
+  .cheatsheet-sidebar {
+    width: 280px;
+    flex-shrink: 0;
+    background: #000;
+    color: #fff;
+    border-radius: 16px;
+    padding: 20px;
+    position: sticky;
+    top: 90px;
+    max-height: calc(100vh - 110px);
+    overflow-y: auto;
+  }
+  .cheatsheet-sidebar::-webkit-scrollbar {
+    width: 6px;
+  }
+  .cheatsheet-sidebar::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 3px;
+  }
+  .sidebar-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 24px;
+    padding-left: 12px;
+    letter-spacing: -0.02em;
+  }
+  .unit-wrap {
+    margin-bottom: 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 8px;
+  }
+  .unit-wrap:last-child {
+    border-bottom: none;
+  }
+  .unit-header {
+    padding: 14px 12px;
+    cursor: pointer;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #b0b0b0;
+    letter-spacing: 0.01em;
+    transition: all 0.2s;
+  }
+  .unit-header:hover {
+    color: #fff;
+    background: rgba(255,255,255,0.05);
+  }
+  .unit-header.active {
+    color: #fff;
+    background: rgba(255,255,255,0.08);
+  }
+  .subtopics {
+    display: none;
+    padding-left: 0;
+    margin-top: 4px;
+  }
+  .subtopics.show {
+    display: block;
+    animation: slideDown 0.3s ease-out;
+  }
+  @keyframes slideDown {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .subtopic-link {
+    display: block;
+    padding: 10px 12px 10px 24px;
+    text-decoration: none;
+    color: #888;
+    font-size: 0.9rem;
+    border-left: 2px solid transparent;
+    margin-bottom: 2px;
+    transition: all 0.2s;
+  }
+  .subtopic-link:hover {
+    color: #fff;
+    border-left-color: rgba(255,255,255,0.3);
+    padding-left: 28px;
+  }
+  .subtopic-link.active {
+    color: #fff;
+    border-left-color: #276EF1;
+    background: rgba(255,255,255,0.03);
+  }
+  .cheatsheet-main {
+    flex: 1;
+    min-width: 0;
+    background: var(--surface);
+    border-radius: 16px;
+    padding: 32px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+  }
+  .cheatsheet-main h2 {
+    margin-top: 0;
+    font-size: 1.5em;
+  }
+  .cheatsheet-main h3 {
+    font-size: 1.15em;
+    margin: 32px 0 16px;
+    padding-top: 8px;
+    scroll-margin-top: 100px;
+  }
+  .cheatsheet-main h3:first-of-type {
+    margin-top: 0;
+  }
+  .cheatsheet-main ul {
+    padding-left: 20px;
+  }
+  .cheatsheet-main li {
+    margin-bottom: 8px;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+  .cheatsheet-main code {
+    background: var(--inline-code-bg);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.9em;
+  }
+  .cheatsheet-main li.hidden {
+    display: none;
+  }
+
+  #cheatSearch {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: inherit;
+    outline: none;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+  }
+  #cheatSearch:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px rgba(39,110,241,0.15);
+  }
+
+  .menu-toggle-sidebar {
+    display: none;
+    background: #000;
+    color: #fff;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-bottom: 16px;
+    width: 100%;
+    font-weight: 600;
+  }
+  .menu-toggle-sidebar:hover {
+    background: #222;
+  }
+
+  @media (max-width: 850px) {
+    .cheatsheet-wrap {
+      flex-direction: column;
+    }
+    .cheatsheet-sidebar {
+      width: 100%;
+      position: static;
+      max-height: none;
+      display: none;
+    }
+    .cheatsheet-sidebar.open {
+      display: block;
+    }
+    .menu-toggle-sidebar {
+      display: block;
+    }
+    .cheatsheet-main {
+      padding: 20px;
+    }
+  }
+</style>
+
+<button class="menu-toggle-sidebar" id="sidebarToggle">☰ Categories</button>
+
+<div class="cheatsheet-wrap">
+  <aside class="cheatsheet-sidebar" id="cheatSidebar">
+    <div class="sidebar-title">SQL 250+ Formulas</div>
+    
+    <div class="unit-wrap">
+      <div class="unit-header" data-target="basic-retrieval">
+        <span>Basic Retrieval</span>
+        <span style="font-size:0.8rem;">&#9660;</span>
+      </div>
+      <div class="subtopics" data-parent="basic-retrieval">
+        <a href="#basic-retrieval" class="subtopic-link">Basic Retrieval</a>
+      </div>
+    </div>
+    
+    <div class="unit-wrap">
+      <div class="unit-header" data-target="filtering-boolean">
+        <span>Filtering & Boolean Logic</span>
+        <span style="font-size:0.8rem;">&#9660;</span>
+      </div>
+      <div class="subtopics" data-parent="filtering-boolean">
+        <a href="#filtering-boolean" class="subtopic-link">Filtering & Boolean Logic</a>
+      </div>
+    </div>
+    
+    <div class="unit-wrap">
+      <div class="unit-header" data-target="set-join">
+        <span>Set & Join Operations</span>
+        <span style="font-size:0.8rem;">&#9660;</span>
+      </div>
+      <div class="subtopics" data-parent="set-join">
+        <a href="#set-join" class="subtopic-link">Set & Join Operations</a>
+      </div>
+    </div>
+    
+    <div class="unit-wrap">
+      <div class="unit-header" data-target="aggregation-grouping">
+        <span>Aggregation & Grouping</span>
+        <span style="font-size:0.8rem;">&#9660;</span>
+      </div>
+      <div class="subtopics" data-parent="aggregation-grouping">
+        <a href="#aggregation-grouping" class="subtopic-link">Aggregation & Grouping</a>
+      </div>
+    </div>
+    
+    <div class="unit-wrap">
+      <div class="unit-header" data-target="window-functions">
+        <span>Window Functions</span>
+        <span style="font-size:0.8rem;">&#9660;</span>
+      </div>
+      <div class="subtopics" data-parent="window-functions">
+        <a href="#window-functions" class="subtopic-link">Window Functions</a>
+      </div>
+    </div>
+    
+    <div class="unit-wrap">
+      <div class="unit-header" data-target="string-functions">
+        <span>String Functions</span>
+        <span style="font-size:0.8rem;">&#9660;</span>
+      </div>
+      <div class="subtopics" data-parent="string-functions">
+        <a href="#string-functions" class="subtopic-link">String Functions</a>
+      </div>
+    </div>
+    
+    <div class="unit-wrap">
+      <div class="unit-header" data-target="numeric-functions">
+        <span>Numeric Functions</span>
+        <span style="font-size:0.8rem;">&#9660;</span>
+      </div>
+      <div class="subtopics" data-parent="numeric-functions">
+        <a href="#numeric-functions" class="subtopic-link">Numeric Functions</a>
+      </div>
+    </div>
+    
+    <div class="unit-wrap">
+      <div class="unit-header" data-target="date-time">
+        <span>Date & Time Functions</span>
+        <span style="font-size:0.8rem;">&#9660;</span>
+      </div>
+      <div class="subtopics" data-parent="date-time">
+        <a href="#date-time" class="subtopic-link">Date & Time Functions</a>
+      </div>
+    </div>
+    
+    <div class="unit-wrap">
+      <div class="unit-header" data-target="control-flow">
+        <span>Control Flow Statements</span>
+        <span style="font-size:0.8rem;">&#9660;</span>
+      </div>
+      <div class="subtopics" data-parent="control-flow">
+        <a href="#control-flow" class="subtopic-link">Control Flow Statements</a>
+      </div>
+    </div>
+    
+    <div class="unit-wrap">
+      <div class="unit-header" data-target="dml">
+        <span>Data Manipulation (DML)</span>
+        <span style="font-size:0.8rem;">&#9660;</span>
+      </div>
+      <div class="subtopics" data-parent="dml">
+        <a href="#dml" class="subtopic-link">Data Manipulation (DML)</a>
+      </div>
+    </div>
+    
+    <div class="unit-wrap">
+      <div class="unit-header" data-target="ddl">
+        <span>Data Definition (DDL)</span>
+        <span style="font-size:0.8rem;">&#9660;</span>
+      </div>
+      <div class="subtopics" data-parent="ddl">
+        <a href="#ddl" class="subtopic-link">Data Definition (DDL)</a>
+      </div>
+    </div>
+    
+    <div class="unit-wrap">
+      <div class="unit-header" data-target="constraints">
+        <span>Constraints & Relationships</span>
+        <span style="font-size:0.8rem;">&#9660;</span>
+      </div>
+      <div class="subtopics" data-parent="constraints">
+        <a href="#constraints" class="subtopic-link">Constraints & Relationships</a>
+      </div>
+    </div>
+    
+    <div class="unit-wrap">
+      <div class="unit-header" data-target="transactions-locks">
+        <span>Transactions & Locks</span>
+        <span style="font-size:0.8rem;">&#9660;</span>
+      </div>
+      <div class="subtopics" data-parent="transactions-locks">
+        <a href="#transactions-locks" class="subtopic-link">Transactions & Locks</a>
+      </div>
+    </div>
+    
+    <div class="unit-wrap">
+      <div class="unit-header" data-target="stored-routines">
+        <span>Stored Routines & Scheduler</span>
+        <span style="font-size:0.8rem;">&#9660;</span>
+      </div>
+      <div class="subtopics" data-parent="stored-routines">
+        <a href="#stored-routines" class="subtopic-link">Stored Routines & Scheduler</a>
+      </div>
+    </div>
+    
+    <div class="unit-wrap">
+      <div class="unit-header" data-target="json-functions">
+        <span>JSON Functions</span>
+        <span style="font-size:0.8rem;">&#9660;</span>
+      </div>
+      <div class="subtopics" data-parent="json-functions">
+        <a href="#json-functions" class="subtopic-link">JSON Functions</a>
+      </div>
+    </div>
+    
+    <div class="unit-wrap">
+      <div class="unit-header" data-target="admin-security">
+        <span>Admin & Security</span>
+        <span style="font-size:0.8rem;">&#9660;</span>
+      </div>
+      <div class="subtopics" data-parent="admin-security">
+        <a href="#admin-security" class="subtopic-link">Admin & Security</a>
+      </div>
+    </div>
+    
+  </aside>
+
+  <main class="cheatsheet-main">
+    <input type="text" id="cheatSearch" placeholder="Search formulas..." autocomplete="off">
+    <h2 id="sql-250-formulas">SQL 250+ Formulas</h2>
+
+<h3 id="basic-retrieval">Basic Retrieval Formulas</h3>
+<ul>
+  <li><strong>SELECT</strong>: <code class="language-plaintext highlighter-rouge">SELECT first_name, last_name FROM employees;</code> — Pulls particular columns from a database table</li>
+  <li><em>*SELECT **</em>: <code class="language-plaintext highlighter-rouge">SELECT * FROM products;</code> — Grabs every column, handy for initial data exploration</li>
+  <li><strong>DISTINCT</strong>: <code class="language-plaintext highlighter-rouge">SELECT DISTINCT country FROM customers;</code> — Eliminates duplicate rows to show only unique values</li>
+  <li><strong>FROM (sub-query)</strong>: <code class="language-plaintext highlighter-rouge">SELECT * FROM (SELECT * FROM sales WHERE year=2025) AS y25;</code> — Uses an inner query result as a virtual input table</li>
+  <li><strong>AS (alias)</strong>: <code class="language-plaintext highlighter-rouge">SELECT price AS unit_price FROM sales;</code> — Gives a column or table a temporary friendly name</li>
+  <li><strong>Literals</strong>: <code class="language-plaintext highlighter-rouge">SELECT 'John' AS name, 123 AS num, NULL AS nothing;</code> — Inserts hard-coded values straight into the output</li>
+  <li><strong>Expression (arith)</strong>: <code class="language-plaintext highlighter-rouge">SELECT price*qty AS total FROM order_items;</code> — Calculates new values directly inside the query</li>
+  <li><strong>ORDER BY</strong>: <code class="language-plaintext highlighter-rouge">SELECT * FROM students ORDER BY score DESC;</code> — Sorts the result set by one or more columns</li>
+  <li><strong>ASC / DESC</strong>: <code class="language-plaintext highlighter-rouge">SELECT * FROM flights ORDER BY depart_dt ASC;</code> — Chooses ascending (low-to-high) or descending (high-to-low) sort order</li>
+  <li><strong>LIMIT</strong>: <code class="language-plaintext highlighter-rouge">SELECT * FROM logs LIMIT 100;</code> — Cuts the output to only the first N rows</li>
+  <li><strong>OFFSET</strong>: <code class="language-plaintext highlighter-rouge">SELECT * FROM logs LIMIT 50 OFFSET 100;</code> — Skips a number of rows before returning results, great for pagination</li>
+  <li><strong>FETCH FIRST</strong>: <code class="language-plaintext highlighter-rouge">SELECT * FROM employees ORDER BY hire_date FETCH FIRST 5 ROWS ONLY;</code> — ANSI-standard way to restrict row count</li>
+  <li><strong>TOP (T-SQL)</strong>: <code class="language-plaintext highlighter-rouge">SELECT TOP 10 * FROM Customers;</code> — SQL Server’s non-standard equivalent of LIMIT</li>
+  <li><strong>User Variable</strong>: <code class="language-plaintext highlighter-rouge">SET @row_num:=0; SELECT @row_num:=@row_num+1 AS n, name FROM people;</code> — Stores a value in a session variable for reuse later</li>
+  <li><strong>USE (DB)</strong>: <code class="language-plaintext highlighter-rouge">USE sakila;</code> — Switches the active database context</li>
+  <li><strong>SHOW DATABASES</strong>: <code class="language-plaintext highlighter-rouge">SHOW DATABASES;</code> — Lists every database on the server</li>
+  <li><strong>SHOW TABLES</strong>: <code class="language-plaintext highlighter-rouge">SHOW TABLES FROM sakila;</code> — Lists every table inside a specific database</li>
+  <li><strong>DESCRIBE / DESC</strong>: <code class="language-plaintext highlighter-rouge">DESC employees;</code> — Shows the column structure (names, types, nullability) of a table</li>
+  <li><strong>EXPLAIN</strong>: <code class="language-plaintext highlighter-rouge">EXPLAIN SELECT * FROM sales WHERE id=1;</code> — Displays how the query executor plans to run the statement</li>
+  <li><strong>HELP</strong>: <code class="language-plaintext highlighter-rouge">HELP SELECT;</code> — Brings up built-in MySQL documentation for a keyword</li>
+  <li><strong>COMMENT in DDL</strong>: <code class="language-plaintext highlighter-rouge">CREATE TABLE t(id INT COMMENT 'Primary key');</code> — Attaches a human-readable note to a schema object like a column</li>
+  <li><strong>Inline Comments</strong>: <code class="language-plaintext highlighter-rouge">-- Single line comment</code> — Lets you annotate SQL code or temporarily disable part of a query</li>
+  <li><strong>FORCE INDEX()</strong>: <code class="language-plaintext highlighter-rouge">SELECT * FROM t FORCE INDEX(idx_col) WHERE col=1;</code> — Tells the optimizer to use a specific index regardless of cost estimates</li>
+  <li><strong>SQL_MODE</strong>: <code class="language-plaintext highlighter-rouge">SET sql_mode='STRICT_ALL_TABLES';</code> — Adjusts SQL behavior like strictness or compatibility for the session</li>
+  <li><strong>SELECT INTO OUTFILE</strong>: <code class="language-plaintext highlighter-rouge">SELECT * FROM employees INTO OUTFILE '/tmp/emp.csv' FIELDS TERMINATED BY ',';</code> — Writes query results directly to a file on the server</li>
+</ul>
+
+<h3 id="filtering-boolean">Filtering &amp; Boolean Logic Formulas</h3>
+<ul>
+  <li><strong>WHERE</strong>: <code class="language-plaintext highlighter-rouge">SELECT * FROM orders WHERE amount &gt; 500;</code> — Restricts rows to those meeting a specified condition</li>
+  <li><strong>AND / OR / NOT</strong>: <code class="language-plaintext highlighter-rouge">SELECT * FROM users WHERE active=1 AND NOT country='IN';</code> — Combines multiple filter conditions with logical operators</li>
+  <li><strong>Comparison Operators</strong>: <code class="language-plaintext highlighter-rouge">SELECT * FROM items WHERE qty &lt;&gt; 0;</code> — Compares column values against constants or other columns (=, &lt;&gt;, &gt;, &lt;, &gt;=, &lt;=)</li>
+  <li><strong>BETWEEN</strong>: <code class="language-plaintext highlighter-rouge">WHERE order_date BETWEEN '2025-01-01' AND '2025-01-31';</code> — Filters for values that fall inside an inclusive range</li>
+  <li><strong>NOT BETWEEN</strong>: <code class="language-plaintext highlighter-rouge">WHERE age NOT BETWEEN 18 AND 30;</code> — Excludes rows whose values lie inside a given range</li>
+  <li><strong>IN</strong>: <code class="language-plaintext highlighter-rouge">WHERE status IN ('NEW','PENDING');</code> — Checks if a value matches any item in a provided list</li>
+  <li><strong>NOT IN</strong>: <code class="language-plaintext highlighter-rouge">WHERE status NOT IN ('CANCELLED');</code> — Excludes rows where the value appears in a given list</li>
+  <li><strong>LIKE</strong>: <code class="language-plaintext highlighter-rouge">WHERE name LIKE 'A%';</code> — Searches text using <code class="language-plaintext highlighter-rouge">%</code> (any sequence) and <code class="language-plaintext highlighter-rouge">_</code> (single char) wildcards</li>
+  <li><strong>NOT LIKE</strong>: <code class="language-plaintext highlighter-rouge">WHERE code NOT LIKE 'ERR%';</code> — Removes rows whose text matches the given wildcard pattern</li>
+  <li><strong>REGEXP / RLIKE</strong>: <code class="language-plaintext highlighter-rouge">WHERE email REGEXP '@gmail\\.com$';</code> — Matches column text against a regular expression pattern</li>
+  <li><strong>NOT REGEXP</strong>: <code class="language-plaintext highlighter-rouge">WHERE phone NOT REGEXP '^\\+91';</code> — Excludes rows whose text matches a regex pattern</li>
+  <li><strong>IS NULL</strong>: <code class="language-plaintext highlighter-rouge">WHERE manager_id IS NULL;</code> — Finds rows where a column holds a missing (NULL) value</li>
+  <li><strong>IS NOT NULL</strong>: <code class="language-plaintext highlighter-rouge">WHERE manager_id IS NOT NULL;</code> — Finds rows where a column contains a real value (not NULL)</li>
+  <li><strong>EXISTS</strong>: <code class="language-plaintext highlighter-rouge">WHERE EXISTS (SELECT 1 FROM payments p WHERE p.order_id=o.id);</code> — Returns rows only when a subquery yields at least one result</li>
+  <li><strong>NOT EXISTS</strong>: <code class="language-plaintext highlighter-rouge">WHERE NOT EXISTS (SELECT 1 FROM blacklist b WHERE b.user_id=u.id);</code> — Returns rows only when a subquery yields zero results</li>
+  <li><strong>ANY / SOME / ALL</strong>: <code class="language-plaintext highlighter-rouge">WHERE salary &gt; ALL (SELECT salary FROM staff WHERE dept='HR');</code> — Compares a column against every value returned by a subquery</li>
+  <li><strong>CASE WHEN</strong>: <code class="language-plaintext highlighter-rouge">SELECT CASE WHEN score&gt;=60 THEN 'Pass' ELSE 'Fail' END AS result FROM tests;</code> — Creates conditional columns with if-then-else logic</li>
+  <li><strong>IF() (MySQL)</strong>: <code class="language-plaintext highlighter-rouge">SELECT IF(qty&gt;0,'In Stock','Out') FROM products;</code> — MySQL shorthand for a simple inline conditional expression</li>
+  <li><strong>COALESCE</strong>: <code class="language-plaintext highlighter-rouge">SELECT COALESCE(nickname,name) AS display_name FROM users;</code> — Returns the first argument that is not NULL</li>
+  <li><strong>NULLIF</strong>: <code class="language-plaintext highlighter-rouge">SELECT NULLIF(col1,col2) AS diff FROM t;</code> — Evaluates to NULL when both arguments are equal, otherwise returns the first</li>
+  <li><strong>GREATEST / LEAST</strong>: <code class="language-plaintext highlighter-rouge">SELECT GREATEST(q1,q2,q3) AS best FROM scores;</code> — Picks the largest (or smallest) value from a list of columns</li>
+  <li><strong>INTERVAL()</strong>: <code class="language-plaintext highlighter-rouge">SELECT INTERVAL(score,50,60,70) AS grade_band FROM exams;</code> — Returns the index of the bucket into which a value falls</li>
+  <li><strong>Row Sub-query</strong>: <code class="language-plaintext highlighter-rouge">WHERE (a,b) IN (SELECT x,y FROM t2);</code> — Compares multiple columns as a composite key against a subquery result</li>
+  <li><strong>WITH RECURSIVE</strong>: <code class="language-plaintext highlighter-rouge">WITH RECURSIVE nums AS (...) SELECT * FROM nums;</code> — Builds recursive CTEs for hierarchical or sequential data</li>
+</ul>
+
+<h3 id="set-join">Set &amp; Join Operations Formulas</h3>
+<ul>
+  <li><strong>INNER JOIN</strong>: <code class="language-plaintext highlighter-rouge">SELECT e.name,d.name FROM emp e INNER JOIN dept d ON e.dept_id=d.id;</code> — Returns only rows where the join condition is met in both tables</li>
+  <li><strong>LEFT JOIN</strong>: <code class="language-plaintext highlighter-rouge">SELECT * FROM a LEFT JOIN b ON a.id=b.id;</code> — Preserves every row from the left table, filling in NULLs when no match exists on the right</li>
+  <li><strong>RIGHT JOIN</strong>: <code class="language-plaintext highlighter-rouge">SELECT * FROM a RIGHT JOIN b ON a.id=b.id;</code> — Preserves every row from the right table, filling in NULLs when no match exists on the left</li>
+  <li><strong>CROSS JOIN</strong>: <code class="language-plaintext highlighter-rouge">SELECT * FROM colors CROSS JOIN sizes;</code> — Produces every possible combination (Cartesian product) of the two tables</li>
+  <li><strong>NATURAL JOIN</strong>: <code class="language-plaintext highlighter-rouge">SELECT * FROM t1 NATURAL JOIN t2;</code> — Joins tables automatically on columns that share the same name</li>
+  <li><strong>SELF JOIN</strong>: <code class="language-plaintext highlighter-rouge">SELECT a.name,b.name FROM employees a JOIN employees b ON a.manager_id=b.id;</code> — Joins a table to itself to compare rows within the same table</li>
+  <li><strong>USING()</strong>: <code class="language-plaintext highlighter-rouge">SELECT * FROM orders JOIN customers USING(customer_id);</code> — A shorter join syntax when the foreign key column name is identical in both tables</li>
+  <li><strong>UNION</strong>: <code class="language-plaintext highlighter-rouge">SELECT city FROM a UNION SELECT city FROM b;</code> — Stacks two result sets vertically, removing any duplicate rows</li>
+  <li><strong>UNION ALL</strong>: <code class="language-plaintext highlighter-rouge">SELECT city FROM a UNION ALL SELECT city FROM b;</code> — Stacks result sets vertically, keeping duplicates for faster performance</li>
+  <li><strong>INTERSECT</strong>: <code class="language-plaintext highlighter-rouge">SELECT id FROM a INTERSECT SELECT id FROM b;</code> — Returns only rows that appear in both result sets</li>
+  <li><strong>EXCEPT</strong>: <code class="language-plaintext highlighter-rouge">SELECT id FROM a EXCEPT SELECT id FROM b;</code> — Returns rows from the first query that are absent in the second</li>
+  <li><strong>APPLY (T-SQL)</strong>: <code class="language-plaintext highlighter-rouge">SELECT * FROM a CROSS APPLY dbo.fn(a.id);</code> — Invokes a table-valued function once for every row in the outer table (SQL Server)</li>
+  <li><strong>Join ON TRUE</strong>: <code class="language-plaintext highlighter-rouge">SELECT * FROM a LEFT JOIN b ON TRUE;</code> — Emulates a FULL OUTER JOIN in MySQL by unioning LEFT and RIGHT joins</li>
+  <li><strong>WINDOW clause</strong>: <code class="language-plaintext highlighter-rouge">SELECT sum(v) OVER w FROM t WINDOW w AS (PARTITION BY c);</code> — Names a window specification so it can be reused across multiple functions</li>
+  <li><strong>LATERAL</strong>: <code class="language-plaintext highlighter-rouge">SELECT * FROM t1, LATERAL (SELECT MAX(val) m FROM t2 WHERE t2.id=t1.id) AS x;</code> — Lets a subquery reference columns from tables that appear before it in the FROM clause</li>
+  <li><strong>MERGE</strong>: <code class="language-plaintext highlighter-rouge">MERGE INTO dest USING src ON(dest.id=src.id) WHEN MATCHED THEN UPDATE SET ...;</code> — Performs an upsert (insert or update) in a single atomic statement (ANSI SQL)</li>
+  <li><strong>PIVOT / UNPIVOT</strong>: <code class="language-plaintext highlighter-rouge">SELECT ... PIVOT(SUM(amt) FOR qtr IN ('Q1','Q2','Q3','Q4')) AS p;</code> — Rotates row values into column headers (or vice versa) for reporting</li>
+</ul>
+
+<h3 id="aggregation-grouping">Aggregation &amp; Grouping Formulas</h3>
+<ul>
+  <li><strong>GROUP BY</strong>: <code class="language-plaintext highlighter-rouge">SELECT dept,COUNT(*) c FROM emp GROUP BY dept;</code> — Groups rows that share the same values in specified columns for aggregate computation</li>
+  <li><strong>HAVING</strong>: <code class="language-plaintext highlighter-rouge">SELECT dept,COUNT(*) c FROM emp GROUP BY dept HAVING c&gt;5;</code> — Filters groups after aggregation, just like WHERE filters rows before</li>
+  <li><strong>COUNT()</strong>: <code class="language-plaintext highlighter-rouge">SELECT COUNT(*) FROM t;</code> — Counts the number of rows or non-NULL values in a group</li>
+  <li><strong>SUM() / AVG() / MIN() / MAX()</strong>: <code class="language-plaintext highlighter-rouge">SELECT AVG(salary) FROM emp;</code> — Computes the total, average, minimum, or maximum of a numeric column</li>
+  <li><strong>GROUP_CONCAT()</strong>: <code class="language-plaintext highlighter-rouge">SELECT GROUP_CONCAT(name ORDER BY name) FROM products;</code> — Concatenates values from grouped rows into a single string, optionally ordered</li>
+  <li><strong>ROLLUP</strong>: <code class="language-plaintext highlighter-rouge">GROUP BY year,quarter WITH ROLLUP;</code> — Generates subtotal rows at each hierarchy level plus a grand total</li>
+  <li><strong>CUBE</strong>: <code class="language-plaintext highlighter-rouge">GROUP BY CUBE(year,quarter);</code> — Produces subtotals for every combination of the grouping columns</li>
+  <li><strong>GROUPING SETS</strong>: <code class="language-plaintext highlighter-rouge">GROUP BY GROUPING SETS ((year,quarter),(year),());</code> — Defines exactly which grouping combinations to aggregate rather than all possible ones</li>
+  <li><strong>ANY_VALUE()</strong>: <code class="language-plaintext highlighter-rouge">SELECT year,ANY_VALUE(product) FROM sales GROUP BY year;</code> — Returns an arbitrary value from a non-aggregated column, bypassing ONLY_FULL_GROUP_BY restrictions</li>
+  <li><strong>STDDEV() / VARIANCE()</strong>: <code class="language-plaintext highlighter-rouge">SELECT STDDEV(population) FROM cities;</code> — Measures statistical dispersion (how spread out the values are)</li>
+</ul>
+
+<h3 id="window-functions">Window Functions Formulas</h3>
+<ul>
+  <li><strong>ROW_NUMBER()</strong>: <code class="language-plaintext highlighter-rouge">SELECT ROW_NUMBER() OVER(ORDER BY score DESC) AS rnk FROM exams;</code> — Assigns a unique sequential integer to each row within the window partition</li>
+  <li><strong>RANK()</strong>: <code class="language-plaintext highlighter-rouge">SELECT RANK() OVER(PARTITION BY dept ORDER BY salary DESC) r FROM emp;</code> — Ranks rows with gaps when ties occur (1, 1, 3, 4)</li>
+  <li><strong>DENSE_RANK()</strong>: <code class="language-plaintext highlighter-rouge">SELECT DENSE_RANK() OVER(PARTITION BY dept ORDER BY salary DESC) dr FROM emp;</code> — Ranks rows consecutively without gaps (1, 1, 2, 3)</li>
+  <li><strong>NTILE()</strong>: <code class="language-plaintext highlighter-rouge">SELECT NTILE(4) OVER(ORDER BY salary) quartile FROM emp;</code> — Divides rows into a specified number of roughly equal buckets</li>
+  <li><strong>LAG()</strong>: <code class="language-plaintext highlighter-rouge">SELECT year,sales,LAG(sales) OVER(ORDER BY year) prev FROM rev;</code> — Fetches the value from the row that comes before the current row</li>
+  <li><strong>LEAD()</strong>: <code class="language-plaintext highlighter-rouge">SELECT year,sales,LEAD(sales) OVER(ORDER BY year) next FROM rev;</code> — Fetches the value from the row that comes after the current row</li>
+  <li><strong>FIRST_VALUE()</strong>: <code class="language-plaintext highlighter-rouge">SELECT FIRST_VALUE(price) OVER(ORDER BY dt) AS first_price FROM btc;</code> — Returns the first value in the window frame</li>
+  <li><strong>LAST_VALUE()</strong>: <code class="language-plaintext highlighter-rouge">SELECT LAST_VALUE(price) OVER(ORDER BY dt RANGE BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) last_price FROM btc;</code> — Returns the last value in the window frame</li>
+  <li><strong>NTH_VALUE()</strong>: <code class="language-plaintext highlighter-rouge">SELECT NTH_VALUE(sales,3) OVER(ORDER BY year) AS third_year FROM rev;</code> — Returns the Nth value from the window frame</li>
+  <li><strong>CUME_DIST()</strong>: <code class="language-plaintext highlighter-rouge">SELECT CUME_DIST() OVER(ORDER BY score) cd FROM exams;</code> — Calculates the cumulative distribution (relative position) of a row</li>
+  <li><strong>PERCENT_RANK()</strong>: <code class="language-plaintext highlighter-rouge">SELECT PERCENT_RANK() OVER(ORDER BY score) pr FROM exams;</code> — Computes the relative rank of a row as a fraction between 0 and 1</li>
+  <li><strong>ROWS BETWEEN</strong>: <code class="language-plaintext highlighter-rouge">SUM(sales) OVER(PARTITION BY prod ORDER BY dt ROWS BETWEEN 3 PRECEDING AND CURRENT ROW);</code> — Defines a physical window frame based on row offsets</li>
+  <li><strong>RANGE BETWEEN</strong>: <code class="language-plaintext highlighter-rouge">AVG(price) OVER(ORDER BY dt RANGE BETWEEN INTERVAL 7 DAY PRECEDING AND CURRENT ROW);</code> — Defines a logical window frame based on value ranges</li>
+  <li><strong>EXCLUDE CURRENT ROW</strong>: <code class="language-plaintext highlighter-rouge">AVG(score) OVER(ORDER BY score DESC EXCLUDE CURRENT ROW);</code> — Removes the current row from the window frame calculation</li>
+  <li><strong>WINDOW NAMED clause</strong>: <code class="language-plaintext highlighter-rouge">SELECT SUM(v) OVER w FROM t WINDOW w AS (PARTITION BY c);</code> — Defines a reusable window spec to avoid repeating the same OVER clause</li>
+</ul>
+
+<h3 id="string-functions">String Functions Formulas</h3>
+<ul>
+  <li><strong>CONCAT()</strong>: <code class="language-plaintext highlighter-rouge">SELECT CONCAT(first,' ',last) AS fullname FROM users;</code> — Joins two or more strings end-to-end</li>
+  <li><strong>CONCAT_WS()</strong>: <code class="language-plaintext highlighter-rouge">SELECT CONCAT_WS('-',year,month,day) FROM dates;</code> — Concatenates strings with a separator placed between each element</li>
+  <li><strong>SUBSTRING()</strong>: <code class="language-plaintext highlighter-rouge">SELECT SUBSTRING(code,1,3) FROM sku;</code> — Extracts a portion of a string starting at a given position</li>
+  <li><strong>LEFT()</strong>: <code class="language-plaintext highlighter-rouge">SELECT LEFT(name,5) FROM customers;</code> — Takes a specified number of characters from the beginning of a string</li>
+  <li><strong>RIGHT()</strong>: <code class="language-plaintext highlighter-rouge">SELECT RIGHT(name,4) FROM customers;</code> — Takes a specified number of characters from the end of a string</li>
+  <li><strong>LENGTH()</strong>: <code class="language-plaintext highlighter-rouge">SELECT LENGTH(title) FROM books;</code> — Returns the byte length of a string</li>
+  <li><strong>CHAR_LENGTH()</strong>: <code class="language-plaintext highlighter-rouge">SELECT CHAR_LENGTH(title) FROM books;</code> — Returns the number of characters (not bytes) in a string</li>
+  <li><strong>OCTET_LENGTH()</strong>: <code class="language-plaintext highlighter-rouge">SELECT OCTET_LENGTH(title) FROM books;</code> — Returns the string length in bytes, useful for multibyte character sets</li>
+  <li><strong>TRIM()</strong>: <code class="language-plaintext highlighter-rouge">SELECT TRIM(' xyz ') AS t;</code> — Strips leading and trailing spaces from a string</li>
+  <li><strong>LTRIM()</strong>: <code class="language-plaintext highlighter-rouge">SELECT LTRIM(' abc');</code> — Removes leading (left-side) spaces only</li>
+  <li><strong>RTRIM()</strong>: <code class="language-plaintext highlighter-rouge">SELECT RTRIM('abc ');</code> — Removes trailing (right-side) spaces only</li>
+  <li><strong>LOWER()</strong>: <code class="language-plaintext highlighter-rouge">SELECT LOWER(city) FROM locations;</code> — Converts every character in a string to lowercase</li>
+  <li><strong>UPPER()</strong>: <code class="language-plaintext highlighter-rouge">SELECT UPPER(city) FROM locations;</code> — Converts every character in a string to uppercase</li>
+  <li><strong>REPLACE()</strong>: <code class="language-plaintext highlighter-rouge">SELECT REPLACE(txt,'foo','bar') FROM msgs;</code> — Substitutes every occurrence of a substring with a new string</li>
+  <li><strong>INSERT()</strong>: <code class="language-plaintext highlighter-rouge">SELECT INSERT('ABCDE',3,2,'--') AS new;</code> — Replaces a substring starting at a given position with a specified length</li>
+  <li><strong>SUBSTRING_INDEX()</strong>: <code class="language-plaintext highlighter-rouge">SELECT SUBSTRING_INDEX(email,'@',1) FROM users;</code> — Returns the part of a string before (or after) a delimiter occurrence</li>
+  <li><strong>LOCATE()</strong>: <code class="language-plaintext highlighter-rouge">SELECT LOCATE('ab',text) FROM docs;</code> — Finds the starting position of a substring within a string</li>
+  <li><strong>INSTR()</strong>: <code class="language-plaintext highlighter-rouge">SELECT INSTR(text,'ab') FROM docs;</code> — Same as LOCATE but with the argument order reversed (string, substring)</li>
+  <li><strong>POSITION()</strong>: <code class="language-plaintext highlighter-rouge">SELECT POSITION('ab' IN text) FROM docs;</code> — ANSI SQL equivalent of LOCATE using keyword syntax</li>
+  <li><strong>REPEAT()</strong>: <code class="language-plaintext highlighter-rouge">SELECT REPEAT('*',5);</code> — Returns a string formed by repeating the input N times</li>
+  <li><strong>REVERSE()</strong>: <code class="language-plaintext highlighter-rouge">SELECT REVERSE(name) FROM people;</code> — Returns the string with its characters in reverse order</li>
+  <li><strong>LPAD()</strong>: <code class="language-plaintext highlighter-rouge">SELECT LPAD(num,4,'0') FROM seq;</code> — Pads the left side of a string with given characters until it reaches a target length</li>
+  <li><strong>RPAD()</strong>: <code class="language-plaintext highlighter-rouge">SELECT RPAD(num,4,'0') FROM seq;</code> — Pads the right side of a string with given characters until it reaches a target length</li>
+  <li><strong>FORMAT()</strong>: <code class="language-plaintext highlighter-rouge">SELECT FORMAT(12345.678,2);</code> — Formats a number with grouped thousands and a specified number of decimal places</li>
+  <li><strong>QUOTE()</strong>: <code class="language-plaintext highlighter-rouge">SELECT QUOTE("O'Reilly");</code> — Returns a string properly escaped and quoted for safe SQL insertion</li>
+  <li><strong>ELT()</strong>: <code class="language-plaintext highlighter-rouge">SELECT ELT(2,'x','y','z');</code> — Returns the Nth element from a list of strings</li>
+  <li><strong>FIELD()</strong>: <code class="language-plaintext highlighter-rouge">SELECT FIELD('y','x','y','z');</code> — Returns the index (position) of a value within a list of strings</li>
+  <li><strong>MAKE_SET()</strong>: <code class="language-plaintext highlighter-rouge">SELECT MAKE_SET(5,'a','b','c','d');</code> — Creates a comma-separated string from the bits set in a number</li>
+  <li><strong>FIND_IN_SET()</strong>: <code class="language-plaintext highlighter-rouge">SELECT FIND_IN_SET('b','a,b,c');</code> — Locates a string inside a comma-separated list and returns its position</li>
+  <li><strong>SOUNDEX()</strong>: <code class="language-plaintext highlighter-rouge">SELECT SOUNDEX('juice');</code> — Generates a phonetic hash code representing how a word sounds</li>
+  <li><strong>DIFFERENCE()</strong>: <code class="language-plaintext highlighter-rouge">SELECT DIFFERENCE('juice','juce');</code> — Compares the Soundex codes of two strings and returns a similarity score (SQL Server)</li>
+  <li><strong>HEX()</strong>: <code class="language-plaintext highlighter-rouge">SELECT HEX('abc');</code> — Converts a string to its hexadecimal representation</li>
+  <li><strong>UNHEX()</strong>: <code class="language-plaintext highlighter-rouge">SELECT UNHEX('616263');</code> — Converts a hexadecimal string back to a readable binary string</li>
+  <li><strong>UUID()</strong>: <code class="language-plaintext highlighter-rouge">SELECT UUID();</code> — Generates a universally unique identifier (UUID)</li>
+  <li><strong>SPACE()</strong>: <code class="language-plaintext highlighter-rouge">SELECT CONCAT('Hi',SPACE(3),'Bye');</code> — Inserts a specific number of space characters</li>
+  <li><strong>CHAR()</strong>: <code class="language-plaintext highlighter-rouge">SELECT CHAR(65,66,67);</code> — Converts one or more ASCII codes into their corresponding characters</li>
+  <li><strong>CHARSET()</strong>: <code class="language-plaintext highlighter-rouge">SELECT CHARSET('abc');</code> — Returns the character set of the input string</li>
+  <li><strong>COLLATION()</strong>: <code class="language-plaintext highlighter-rouge">SELECT COLLATION('abc');</code> — Shows the collation (sorting/comparison rule) used for the string</li>
+  <li><strong>MD5()</strong>: <code class="language-plaintext highlighter-rouge">SELECT MD5('password');</code> — Computes the 128-bit MD5 hash of a string</li>
+  <li><strong>SHA2()</strong>: <code class="language-plaintext highlighter-rouge">SELECT SHA2('password',256);</code> — Generates a SHA-2 hash of the specified bit length (224, 256, 384, 512)</li>
+</ul>
+
+<h3 id="numeric-functions">Numeric Functions Formulas</h3>
+<ul>
+  <li><strong>ABS()</strong>: <code class="language-plaintext highlighter-rouge">SELECT ABS(-9);</code> — Returns the absolute (non-negative) value of a number</li>
+  <li><strong>SIGN()</strong>: <code class="language-plaintext highlighter-rouge">SELECT SIGN(-9);</code> — Returns -1, 0, or 1 indicating whether the input is negative, zero, or positive</li>
+  <li><strong>CEIL()</strong>: <code class="language-plaintext highlighter-rouge">SELECT CEIL(4.2);</code> — Rounds a number up to the nearest integer</li>
+  <li><strong>FLOOR()</strong>: <code class="language-plaintext highlighter-rouge">SELECT FLOOR(4.8);</code> — Rounds a number down to the nearest integer</li>
+  <li><strong>ROUND()</strong>: <code class="language-plaintext highlighter-rouge">SELECT ROUND(4.567,2);</code> — Rounds a number to a specified number of decimal places</li>
+  <li><strong>TRUNCATE()</strong>: <code class="language-plaintext highlighter-rouge">SELECT TRUNCATE(123.456,1);</code> — Truncates a number to a given number of decimal places without rounding</li>
+  <li><strong>MOD()</strong>: <code class="language-plaintext highlighter-rouge">SELECT MOD(11,4);</code> — Returns the remainder (modulo) of a division operation</li>
+  <li><strong>% operator</strong>: <code class="language-plaintext highlighter-rouge">SELECT 11 % 4;</code> — Alternate operator syntax for the modulo operation</li>
+  <li><strong>POWER()</strong>: <code class="language-plaintext highlighter-rouge">SELECT POWER(2,8);</code> — Raises a base number to the power of an exponent</li>
+  <li><strong>EXP()</strong>: <code class="language-plaintext highlighter-rouge">SELECT EXP(1);</code> — Returns Euler’s number e raised to the power of the argument</li>
+  <li><strong>SQRT()</strong>: <code class="language-plaintext highlighter-rouge">SELECT SQRT(25);</code> — Computes the square root of a non-negative number</li>
+  <li><strong>LOG()</strong>: <code class="language-plaintext highlighter-rouge">SELECT LOG(10,100);</code> — Returns the logarithm of a number with a custom base</li>
+  <li><strong>LN()</strong>: <code class="language-plaintext highlighter-rouge">SELECT LN(7);</code> — Computes the natural logarithm (base e) of a number</li>
+  <li><strong>LOG10()</strong>: <code class="language-plaintext highlighter-rouge">SELECT LOG10(100);</code> — Computes the base-10 logarithm of a number</li>
+  <li><strong>RAND()</strong>: <code class="language-plaintext highlighter-rouge">SELECT RAND();</code> — Generates a pseudo-random floating-point value between 0 and 1</li>
+  <li><strong>PI()</strong>: <code class="language-plaintext highlighter-rouge">SELECT PI();</code> — Returns the mathematical constant pi (π)</li>
+  <li><strong>SIN()</strong>: <code class="language-plaintext highlighter-rouge">SELECT SIN(PI()/2);</code> — Computes the trigonometric sine of an angle in radians</li>
+  <li><strong>COS()</strong>: <code class="language-plaintext highlighter-rouge">SELECT COS(0);</code> — Computes the trigonometric cosine of an angle in radians</li>
+  <li><strong>TAN()</strong>: <code class="language-plaintext highlighter-rouge">SELECT TAN(PI()/4);</code> — Computes the trigonometric tangent of an angle in radians</li>
+  <li><strong>ACOS()</strong>: <code class="language-plaintext highlighter-rouge">SELECT ACOS(1);</code> — Computes the inverse cosine (arccosine) of a value</li>
+  <li><strong>DEGREES()</strong>: <code class="language-plaintext highlighter-rouge">SELECT DEGREES(PI());</code> — Converts an angle from radians to degrees</li>
+  <li><strong>RADIANS()</strong>: <code class="language-plaintext highlighter-rouge">SELECT RADIANS(180);</code> — Converts an angle from degrees to radians</li>
+  <li><strong>LEAST()</strong>: <code class="language-plaintext highlighter-rouge">SELECT LEAST(5,9,3);</code> — Returns the smallest value from a list of arguments</li>
+  <li><strong>GREATEST()</strong>: <code class="language-plaintext highlighter-rouge">SELECT GREATEST(5,9,3);</code> — Returns the largest value from a list of arguments</li>
+  <li><strong>CONV()</strong>: <code class="language-plaintext highlighter-rouge">SELECT CONV(15,10,2);</code> — Converts a number from one numeric base to another (e.g., decimal to binary)</li>
+  <li><strong>BIT_COUNT()</strong>: <code class="language-plaintext highlighter-rouge">SELECT BIT_COUNT(7);</code> — Counts how many bits are set to 1 in a binary representation</li>
+  <li><strong>CRC32()</strong>: <code class="language-plaintext highlighter-rouge">SELECT CRC32('abc');</code> — Computes a 32-bit cyclic redundancy check checksum</li>
+  <li><strong>WIDTH_BUCKET()</strong>: <code class="language-plaintext highlighter-rouge">SELECT WIDTH_BUCKET(score,0,100,4) FROM exams;</code> — Assigns a value to one of N equally sized buckets between specified bounds</li>
+</ul>
+
+<h3 id="date-time">Date &amp; Time Functions Formulas</h3>
+<ul>
+  <li><strong>NOW()</strong>: <code class="language-plaintext highlighter-rouge">SELECT NOW();</code> — Returns the current date and time in the session’s time zone</li>
+  <li><strong>CURRENT_TIMESTAMP</strong>: <code class="language-plaintext highlighter-rouge">SELECT CURRENT_TIMESTAMP;</code> — ANSI-standard synonym for NOW()</li>
+  <li><strong>CURDATE()</strong>: <code class="language-plaintext highlighter-rouge">SELECT CURDATE();</code> — Returns the current date without the time component</li>
+  <li><strong>CURTIME()</strong>: <code class="language-plaintext highlighter-rouge">SELECT CURTIME();</code> — Returns the current time without the date component</li>
+  <li><strong>SYSDATE()</strong>: <code class="language-plaintext highlighter-rouge">SELECT SYSDATE();</code> — Like NOW() but reflects the exact moment the function executes, not when the query started</li>
+  <li><strong>UTC_TIMESTAMP()</strong>: <code class="language-plaintext highlighter-rouge">SELECT UTC_TIMESTAMP();</code> — Returns the current date and time in Coordinated Universal Time</li>
+  <li><strong>DATE()</strong>: <code class="language-plaintext highlighter-rouge">SELECT DATE('2025-04-23 10:20:00');</code> — Extracts just the date portion from a datetime value</li>
+  <li><strong>TIME()</strong>: <code class="language-plaintext highlighter-rouge">SELECT TIME('2025-04-23 10:20:00');</code> — Extracts just the time portion from a datetime value</li>
+  <li><strong>YEAR()</strong>: <code class="language-plaintext highlighter-rouge">SELECT YEAR(order_date) FROM orders;</code> — Pulls the four-digit year from a date or datetime</li>
+  <li><strong>MONTH()</strong>: <code class="language-plaintext highlighter-rouge">SELECT MONTH(order_date) FROM orders;</code> — Pulls the numeric month (1-12) from a date</li>
+  <li><strong>DAY()</strong>: <code class="language-plaintext highlighter-rouge">SELECT DAY(order_date) FROM orders;</code> — Pulls the day of the month (1-31) from a date</li>
+  <li><strong>DAYNAME()</strong>: <code class="language-plaintext highlighter-rouge">SELECT DAYNAME(order_date) FROM orders;</code> — Returns the full weekday name (Monday, Tuesday, etc.)</li>
+  <li><strong>MONTHNAME()</strong>: <code class="language-plaintext highlighter-rouge">SELECT MONTHNAME(order_date) FROM orders;</code> — Returns the full month name (January, February, etc.)</li>
+  <li><strong>DAYOFWEEK()</strong>: <code class="language-plaintext highlighter-rouge">SELECT DAYOFWEEK(NOW());</code> — Returns a numeric index for the day of the week (1=Sunday, 7=Saturday)</li>
+  <li><strong>DAYOFYEAR()</strong>: <code class="language-plaintext highlighter-rouge">SELECT DAYOFYEAR(NOW());</code> — Returns the day number within the year (1-366)</li>
+  <li><strong>WEEK()</strong>: <code class="language-plaintext highlighter-rouge">SELECT WEEK(NOW());</code> — Returns the ISO week number for a given date</li>
+  <li><strong>QUARTER()</strong>: <code class="language-plaintext highlighter-rouge">SELECT QUARTER(NOW());</code> — Returns the quarter of the year (1-4) for a date</li>
+  <li><strong>HOUR()</strong>: <code class="language-plaintext highlighter-rouge">SELECT HOUR(NOW());</code> — Extracts the hour portion (0-23) from a time or datetime</li>
+  <li><strong>MINUTE()</strong>: <code class="language-plaintext highlighter-rouge">SELECT MINUTE(NOW());</code> — Extracts the minute portion (0-59) from a time or datetime</li>
+  <li><strong>SECOND()</strong>: <code class="language-plaintext highlighter-rouge">SELECT SECOND(NOW());</code> — Extracts the second portion (0-59) from a time or datetime</li>
+  <li><strong>TIMESTAMP()</strong>: <code class="language-plaintext highlighter-rouge">SELECT TIMESTAMP('2025-01-01','12:34:56');</code> — Constructs a datetime value from separate date and time arguments</li>
+  <li><strong>TIMESTAMPDIFF()</strong>: <code class="language-plaintext highlighter-rouge">SELECT TIMESTAMPDIFF(DAY,'2025-01-01','2025-01-10');</code> — Returns the difference between two timestamps in a specified unit</li>
+  <li><strong>TIMESTAMPADD()</strong>: <code class="language-plaintext highlighter-rouge">SELECT TIMESTAMPADD(MONTH,3,NOW());</code> — Adds a specified interval to a timestamp</li>
+  <li><strong>DATEDIFF()</strong>: <code class="language-plaintext highlighter-rouge">SELECT DATEDIFF('2025-02-01','2025-01-01');</code> — Computes the number of days between two dates</li>
+  <li><strong>STR_TO_DATE()</strong>: <code class="language-plaintext highlighter-rouge">SELECT STR_TO_DATE('23-04-2025','%d-%m-%Y');</code> — Parses a string into a date using a format pattern</li>
+  <li><strong>DATE_FORMAT()</strong>: <code class="language-plaintext highlighter-rouge">SELECT DATE_FORMAT(NOW(),'%d-%b-%Y');</code> — Formats a date/time value into a custom string format</li>
+  <li><strong>ADDDATE()</strong>: <code class="language-plaintext highlighter-rouge">SELECT ADDDATE('2025-01-01', INTERVAL 7 DAY);</code> — Adds a time interval to a date value</li>
+  <li><strong>SUBDATE()</strong>: <code class="language-plaintext highlighter-rouge">SELECT SUBDATE('2025-01-08',INTERVAL 7 DAY);</code> — Subtracts a time interval from a date value</li>
+  <li><strong>DATE_ADD()</strong>: <code class="language-plaintext highlighter-rouge">SELECT DATE_ADD(NOW(), INTERVAL 1 HOUR);</code> — Alias for ADDDATE, adds an interval to a datetime</li>
+  <li><strong>DATE_SUB()</strong>: <code class="language-plaintext highlighter-rouge">SELECT DATE_SUB(NOW(), INTERVAL 1 HOUR);</code> — Alias for SUBDATE, subtracts an interval from a datetime</li>
+  <li><strong>MAKEDATE()</strong>: <code class="language-plaintext highlighter-rouge">SELECT MAKEDATE(2025,60);</code> — Creates a date from a year and the day-of-year number</li>
+  <li><strong>MAKETIME()</strong>: <code class="language-plaintext highlighter-rouge">SELECT MAKETIME(12,30,0);</code> — Constructs a time value from hour, minute, and second components</li>
+  <li><strong>EXTRACT()</strong>: <code class="language-plaintext highlighter-rouge">SELECT EXTRACT(YEAR FROM NOW());</code> — Pulls a specific part (year, month, day, etc.) from a date/time according to ANSI SQL</li>
+  <li><strong>LAST_DAY()</strong>: <code class="language-plaintext highlighter-rouge">SELECT LAST_DAY('2025-02-10');</code> — Returns the last day of the month that the given date falls in</li>
+  <li><strong>CONVERT_TZ()</strong>: <code class="language-plaintext highlighter-rouge">SELECT CONVERT_TZ(NOW(),'UTC','Asia/Kolkata');</code> — Converts a datetime from one time zone to another</li>
+  <li><strong>FROM_DAYS()</strong>: <code class="language-plaintext highlighter-rouge">SELECT FROM_DAYS(737791);</code> — Converts a day number (counted from year 0) into an actual date</li>
+  <li><strong>TO_DAYS()</strong>: <code class="language-plaintext highlighter-rouge">SELECT TO_DAYS(NOW());</code> — Converts a date into the number of days since year 0</li>
+  <li><strong>UNIX_TIMESTAMP()</strong>: <code class="language-plaintext highlighter-rouge">SELECT UNIX_TIMESTAMP(NOW());</code> — Returns the number of seconds since the Unix epoch (1970-01-01 00:00:00 UTC)</li>
+  <li><strong>FROM_UNIXTIME()</strong>: <code class="language-plaintext highlighter-rouge">SELECT FROM_UNIXTIME(1700000000);</code> — Converts a Unix epoch timestamp (seconds) into a readable datetime</li>
+  <li><strong>GET_FORMAT()</strong>: <code class="language-plaintext highlighter-rouge">SELECT DATE_FORMAT(NOW(), GET_FORMAT(DATE,'EUR'));</code> — Returns a locale-specific format string for date/time formatting</li>
+</ul>
+
+<h3 id="control-flow">Control Flow Statements Formulas</h3>
+<ul>
+  <li><strong>CASE (searched)</strong>: <code class="language-plaintext highlighter-rouge">SELECT CASE WHEN score&gt;=80 THEN 'A' WHEN score&gt;=60 THEN 'B' END AS grade FROM exams;</code> — Returns a value based on conditions evaluated in order within a SELECT</li>
+  <li><strong>IF()</strong>: <code class="language-plaintext highlighter-rouge">SELECT IF(active,'Y','N') FROM users;</code> — MySQL’s inline ternary: returns the second argument when the condition is true, the third otherwise</li>
+  <li><strong>IFNULL()</strong>: <code class="language-plaintext highlighter-rouge">SELECT IFNULL(phone,'N/A') FROM contacts;</code> — Substitutes a NULL value with a fallback, but only handles one argument at a time</li>
+  <li><strong>COALESCE()</strong>: <code class="language-plaintext highlighter-rouge">SELECT COALESCE(mobile,landline,'N/A') FROM contacts;</code> — Returns the first non-NULL value from a list of arguments</li>
+  <li><strong>RETURN</strong>: <code class="language-plaintext highlighter-rouge">RETURN total;</code> — Exits a stored function and sends back a value to the caller</li>
+  <li><strong>SIGNAL</strong>: <code class="language-plaintext highlighter-rouge">SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT='Oops';</code> — Raises a custom error condition from within a stored routine</li>
+  <li><strong>RESIGNAL</strong>: <code class="language-plaintext highlighter-rouge">RESIGNAL;</code> — Re-raises the caught error, optionally modifying its message or SQLSTATE</li>
+  <li><strong>HANDLER</strong>: <code class="language-plaintext highlighter-rouge">DECLARE CONTINUE HANDLER FOR NOT FOUND SET done=1;</code> — Defines what to do when a specific condition (e.g., NOT FOUND) occurs inside a routine</li>
+  <li><strong>DECLARE …</strong>: <code class="language-plaintext highlighter-rouge">DECLARE v INT DEFAULT 0;</code> — Declares a local variable, cursor, or condition handler inside a stored program</li>
+  <li><strong>LEAVE / ITERATE</strong>: <code class="language-plaintext highlighter-rouge">LEAVE my_loop;</code> — Exits (LEAVE) or jumps to the next iteration (ITERATE) of a loop inside a stored routine</li>
+</ul>
+
+<h3 id="dml">Data Manipulation (DML) Formulas</h3>
+<ul>
+  <li><strong>INSERT</strong>: <code class="language-plaintext highlighter-rouge">INSERT INTO emp(name,salary) VALUES('Ram',50000);</code> — Adds one or more new rows of data into a table</li>
+  <li><strong>INSERT SET</strong>: <code class="language-plaintext highlighter-rouge">INSERT INTO emp SET name='Asha',salary=40000;</code> — MySQL-specific syntax using column=value pairs instead of positional lists</li>
+  <li><strong>ON DUPLICATE KEY UPDATE</strong>: <code class="language-plaintext highlighter-rouge">INSERT INTO stats(id,val) VALUES(1,10) ON DUPLICATE KEY UPDATE val=VALUES(val);</code> — Inserts a row, or updates it if a unique key conflict is found (upsert)</li>
+  <li><strong>INSERT IGNORE</strong>: <code class="language-plaintext highlighter-rouge">INSERT IGNORE INTO users(id,email) VALUES(1,'x@y.com');</code> — Silently skips rows that would cause duplicate-key or other insert errors</li>
+  <li><strong>REPLACE INTO</strong>: <code class="language-plaintext highlighter-rouge">REPLACE INTO cache(key,val) VALUES('a','b');</code> — Deletes any existing row that conflicts on a unique key, then inserts the new row</li>
+  <li><strong>UPDATE</strong>: <code class="language-plaintext highlighter-rouge">UPDATE emp SET salary=salary*1.05 WHERE dept='IT';</code> — Modifies existing rows that match the WHERE condition</li>
+  <li><strong>UPDATE JOIN</strong>: <code class="language-plaintext highlighter-rouge">UPDATE emp e JOIN dept d ON e.dept_id=d.id SET e.dept_name=d.name;</code> — Updates a table using values from another table via a JOIN</li>
+  <li><strong>DELETE</strong>: <code class="language-plaintext highlighter-rouge">DELETE FROM logs WHERE created&lt;DATE_SUB(NOW(),INTERVAL 30 DAY);</code> — Removes rows that match the specified condition</li>
+  <li><strong>DELETE JOIN</strong>: <code class="language-plaintext highlighter-rouge">DELETE a FROM a JOIN b ON a.id=b.id WHERE b.flag=0;</code> — Deletes rows from one table based on join criteria with another table</li>
+  <li><strong>TRUNCATE</strong>: <code class="language-plaintext highlighter-rouge">TRUNCATE TABLE temp_data;</code> — Removes all rows from a table instantly and resets the auto-increment counter</li>
+  <li><strong>LOAD DATA INFILE</strong>: <code class="language-plaintext highlighter-rouge">LOAD DATA INFILE '/tmp/file.csv' INTO TABLE t FIELDS TERMINATED BY ',';</code> — Bulk-imports data from a text file into a table very efficiently</li>
+  <li><strong>CALL (proc)</strong>: <code class="language-plaintext highlighter-rouge">CALL raise_salary(1001,5000);</code> — Executes a previously defined stored procedure</li>
+</ul>
+
+<h3 id="ddl">Data Definition (DDL) Formulas</h3>
+<ul>
+  <li><strong>CREATE DATABASE</strong>: <code class="language-plaintext highlighter-rouge">CREATE DATABASE salesdb CHARACTER SET utf8mb4;</code> — Creates a new database with an optional character set and collation</li>
+  <li><strong>ALTER DATABASE</strong>: <code class="language-plaintext highlighter-rouge">ALTER DATABASE salesdb COLLATE utf8mb4_0900_ai_ci;</code> — Modifies database-level properties like character set or collation</li>
+  <li><strong>DROP DATABASE</strong>: <code class="language-plaintext highlighter-rouge">DROP DATABASE olddb;</code> — Permanently deletes a database and everything inside it</li>
+  <li><strong>CREATE TABLE</strong>: <code class="language-plaintext highlighter-rouge">CREATE TABLE emp(id INT PRIMARY KEY,name VARCHAR(50));</code> — Defines a new table’s structure including columns, types, and constraints</li>
+  <li><strong>CREATE TEMPORARY TABLE</strong>: <code class="language-plaintext highlighter-rouge">CREATE TEMPORARY TABLE tmp SELECT * FROM emp LIMIT 0;</code> — Creates a session-only table that disappears when the connection ends</li>
+  <li><strong>ALTER TABLE ADD</strong>: <code class="language-plaintext highlighter-rouge">ALTER TABLE emp ADD COLUMN joined DATE;</code> — Adds a new column to an existing table</li>
+  <li><strong>ALTER TABLE MODIFY</strong>: <code class="language-plaintext highlighter-rouge">ALTER TABLE emp MODIFY COLUMN name VARCHAR(100);</code> — Changes the data type or attributes of an existing column</li>
+  <li><strong>ALTER TABLE DROP</strong>: <code class="language-plaintext highlighter-rouge">ALTER TABLE emp DROP COLUMN obsolete;</code> — Removes a column from an existing table</li>
+  <li><strong>RENAME TABLE</strong>: <code class="language-plaintext highlighter-rouge">RENAME TABLE temp TO archive_emp;</code> — Renames a table to a new name</li>
+  <li><strong>DROP TABLE</strong>: <code class="language-plaintext highlighter-rouge">DROP TABLE IF EXISTS junk;</code> — Permanently removes a table and all its data from the database</li>
+  <li><strong>CREATE VIEW</strong>: <code class="language-plaintext highlighter-rouge">CREATE VIEW v_active AS SELECT * FROM users WHERE active=1;</code> — Saves a query as a virtual table (view) that can be queried like a regular table</li>
+  <li><strong>ALTER VIEW</strong>: <code class="language-plaintext highlighter-rouge">ALTER VIEW v_active AS SELECT id,name FROM users WHERE active=1;</code> — Changes the definition of an existing view</li>
+  <li><strong>DROP VIEW</strong>: <code class="language-plaintext highlighter-rouge">DROP VIEW v_active;</code> — Removes a view from the database</li>
+  <li><strong>CREATE INDEX</strong>: <code class="language-plaintext highlighter-rouge">CREATE INDEX idx_dept ON emp(dept);</code> — Builds an index on a column to speed up queries that filter or sort by that column</li>
+  <li><strong>CREATE UNIQUE INDEX</strong>: <code class="language-plaintext highlighter-rouge">CREATE UNIQUE INDEX uidx_email ON users(email);</code> — Creates an index that also enforces uniqueness on the column values</li>
+  <li><strong>DROP INDEX</strong>: <code class="language-plaintext highlighter-rouge">DROP INDEX idx_dept ON emp;</code> — Removes an index from a table</li>
+  <li><strong>FULLTEXT INDEX</strong>: <code class="language-plaintext highlighter-rouge">CREATE FULLTEXT INDEX f_idx ON docs(content);</code> — Creates a special index that enables full-text search on text columns</li>
+  <li><strong>SPATIAL INDEX</strong>: <code class="language-plaintext highlighter-rouge">CREATE SPATIAL INDEX s_idx ON geom(geo);</code> — Creates an index optimized for spatial (GIS) queries on geometry columns</li>
+  <li><strong>CREATE SEQUENCE</strong>: <code class="language-plaintext highlighter-rouge">CREATE SEQUENCE seq START WITH 1 INCREMENT BY 1;</code> — Defines a sequence object that generates incremental numeric values (MariaDB/PostgreSQL)</li>
+  <li><strong>AUTO_INCREMENT</strong>: <code class="language-plaintext highlighter-rouge">id INT AUTO_INCREMENT PRIMARY KEY;</code> — MySQL column attribute that automatically assigns incrementing integers to new rows</li>
+</ul>
+
+<h3 id="constraints">Constraints &amp; Relationships Formulas</h3>
+<ul>
+  <li><strong>PRIMARY KEY</strong>: <code class="language-plaintext highlighter-rouge">PRIMARY KEY(id)</code> — Uniquely identifies every row in a table; no duplicates or NULLs allowed</li>
+  <li><strong>UNIQUE</strong>: <code class="language-plaintext highlighter-rouge">UNIQUE(email)</code> — Ensures every value in a column (or column set) is distinct across rows</li>
+  <li><strong>NOT NULL</strong>: <code class="language-plaintext highlighter-rouge">name VARCHAR(100) NOT NULL</code> — Forces a column to always hold a value (no NULLs)</li>
+  <li><strong>DEFAULT</strong>: <code class="language-plaintext highlighter-rouge">status CHAR(1) DEFAULT 'A'</code> — Supplies a default value when none is explicitly provided during insert</li>
+  <li><strong>CHECK</strong>: <code class="language-plaintext highlighter-rouge">CHECK(qty&gt;=0)</code> — Validates that column values satisfy a specified Boolean expression</li>
+  <li><strong>FOREIGN KEY</strong>: <code class="language-plaintext highlighter-rouge">FOREIGN KEY(dept_id) REFERENCES dept(id)</code> — Links a column to a primary key in another table to enforce referential integrity</li>
+  <li><strong>ON DELETE CASCADE</strong>: <code class="language-plaintext highlighter-rouge">ON DELETE CASCADE</code> — Automatically removes child rows when the referenced parent row is deleted</li>
+  <li><strong>ON UPDATE SET NULL</strong>: <code class="language-plaintext highlighter-rouge">ON UPDATE SET NULL</code> — Sets the foreign key column to NULL when the referenced parent key value is updated</li>
+</ul>
+
+<h3 id="transactions-locks">Transactions &amp; Locks Formulas</h3>
+<ul>
+  <li><strong>SET autocommit</strong>: <code class="language-plaintext highlighter-rouge">SET autocommit=0;</code> — Disables automatic committing so you can control when changes become permanent</li>
+  <li><strong>START TRANSACTION</strong>: <code class="language-plaintext highlighter-rouge">START TRANSACTION;</code> — Begins an explicit transaction block where all statements are atomic</li>
+  <li><strong>SAVEPOINT</strong>: <code class="language-plaintext highlighter-rouge">SAVEPOINT sp1;</code> — Marks a point within a transaction that you can roll back to without ending the whole transaction</li>
+  <li><strong>ROLLBACK TO</strong>: <code class="language-plaintext highlighter-rouge">ROLLBACK TO sp1;</code> — Undoes changes back to a specific savepoint without aborting the entire transaction</li>
+  <li><strong>COMMIT</strong>: <code class="language-plaintext highlighter-rouge">COMMIT;</code> — Writes all changes made in the current transaction permanently to the database</li>
+  <li><strong>ROLLBACK</strong>: <code class="language-plaintext highlighter-rouge">ROLLBACK;</code> — Reverses every change made since the transaction began, restoring the previous state</li>
+  <li><strong>LOCK TABLES</strong>: <code class="language-plaintext highlighter-rouge">LOCK TABLES emp WRITE;</code> — Prevents other sessions from modifying (or sometimes reading) a table until the lock is released</li>
+  <li><strong>UNLOCK TABLES</strong>: <code class="language-plaintext highlighter-rouge">UNLOCK TABLES;</code> — Releases all table locks held by the current session</li>
+  <li><strong>SET TRANSACTION ISOLATION LEVEL</strong>: <code class="language-plaintext highlighter-rouge">SET TRANSACTION ISOLATION LEVEL READ COMMITTED;</code> — Controls which concurrency phenomena (dirty reads, non-repeatable reads, phantoms) are permitted</li>
+  <li><strong>SHOW ENGINE INNODB STATUS</strong>: <code class="language-plaintext highlighter-rouge">SHOW ENGINE INNODB STATUS;</code> — Displays InnoDB diagnostics including lock waits, deadlocks, and buffer pool stats</li>
+</ul>
+
+<h3 id="stored-routines">Stored Routines &amp; Scheduler Formulas</h3>
+<ul>
+  <li><strong>DELIMITER</strong>: <code class="language-plaintext highlighter-rouge">DELIMITER $$ ... $$ DELIMITER ;</code> — Temporarily changes the statement terminator so you can define routines containing semicolons</li>
+  <li><strong>CREATE PROCEDURE</strong>: <code class="language-plaintext highlighter-rouge">CREATE PROCEDURE p() BEGIN SELECT NOW(); END;</code> — Encapsulates reusable SQL logic as a callable routine</li>
+  <li><strong>ALTER PROCEDURE</strong>: <code class="language-plaintext highlighter-rouge">ALTER PROCEDURE p COMMENT 'Returns DT';</code> — Modifies metadata (comment, SQL security, etc.) of a stored procedure</li>
+  <li><strong>DROP PROCEDURE</strong>: <code class="language-plaintext highlighter-rouge">DROP PROCEDURE p;</code> — Removes a stored procedure from the database</li>
+  <li><strong>CREATE FUNCTION</strong>: <code class="language-plaintext highlighter-rouge">CREATE FUNCTION f(x INT) RETURNS INT RETURN x*2;</code> — Creates a user-defined function that returns a scalar value</li>
+  <li><strong>DROP FUNCTION</strong>: <code class="language-plaintext highlighter-rouge">DROP FUNCTION f;</code> — Removes a user-defined function from the database</li>
+  <li><strong>CREATE TRIGGER</strong>: <code class="language-plaintext highlighter-rouge">CREATE TRIGGER trg BEFORE INSERT ON emp FOR EACH ROW SET NEW.created=NOW();</code> — Automatically executes logic before or after an insert, update, or delete event</li>
+  <li><strong>DROP TRIGGER</strong>: <code class="language-plaintext highlighter-rouge">DROP TRIGGER trg;</code> — Removes a trigger from the database</li>
+  <li><strong>CREATE EVENT</strong>: <code class="language-plaintext highlighter-rouge">CREATE EVENT e_cleanup ON SCHEDULE EVERY 1 DAY DO DELETE FROM logs WHERE created&lt;DATE_SUB(NOW(),INTERVAL 30 DAY);</code> — Schedules a recurring task that runs automatically</li>
+  <li><strong>ALTER EVENT DISABLE</strong>: <code class="language-plaintext highlighter-rouge">ALTER EVENT e_cleanup DISABLE;</code> — Enables or disables a scheduled event</li>
+  <li><strong>DROP EVENT</strong>: <code class="language-plaintext highlighter-rouge">DROP EVENT e_cleanup;</code> — Deletes a scheduled event entirely</li>
+  <li><strong>PREPARE / EXECUTE / DEALLOCATE</strong>: <code class="language-plaintext highlighter-rouge">PREPARE stmt FROM 'SELECT ?+?'; EXECUTE stmt USING @a,@b; DEALLOCATE PREPARE stmt;</code> — Compiles and runs dynamically constructed SQL statements safely</li>
+</ul>
+
+<h3 id="json-functions">JSON Functions Formulas</h3>
+<ul>
+  <li><strong>JSON_OBJECT()</strong>: <code class="language-plaintext highlighter-rouge">SELECT JSON_OBJECT('id',id,'name',name) FROM users;</code> — Builds a JSON object from alternating key-value pairs</li>
+  <li><strong>JSON_ARRAY()</strong>: <code class="language-plaintext highlighter-rouge">SELECT JSON_ARRAY(col1,col2) FROM t;</code> — Creates a JSON array from a list of values</li>
+  <li><strong>JSON_EXTRACT()</strong>: <code class="language-plaintext highlighter-rouge">SELECT JSON_EXTRACT(json,'$.path') FROM t;</code> — Retrieves a value from a JSON document by its path expression</li>
+  <li><strong>-&gt; operator</strong>: <code class="language-plaintext highlighter-rouge">SELECT json-&gt;'$.path' FROM t;</code> — MySQL shorthand operator for JSON_EXTRACT</li>
+  <li><strong>JSON_UNQUOTE()</strong>: <code class="language-plaintext highlighter-rouge">SELECT JSON_UNQUOTE('"text"');</code> — Removes the surrounding double quotes from a JSON string value</li>
+  <li><strong>JSON_SET()</strong>: <code class="language-plaintext highlighter-rouge">SELECT JSON_SET(json,'$.a',1) FROM t;</code> — Inserts or replaces a value at a specified JSON path</li>
+  <li><strong>JSON_INSERT()</strong>: <code class="language-plaintext highlighter-rouge">SELECT JSON_INSERT(json,'$.a',1) FROM t;</code> — Adds a value at a path only if that path does not already exist</li>
+  <li><strong>JSON_REPLACE()</strong>: <code class="language-plaintext highlighter-rouge">SELECT JSON_REPLACE(json,'$.a',1) FROM t;</code> — Replaces a value at a path only if that path already exists</li>
+  <li><strong>JSON_REMOVE()</strong>: <code class="language-plaintext highlighter-rouge">SELECT JSON_REMOVE(json,'$.a') FROM t;</code> — Deletes the value at a specified JSON path</li>
+  <li><strong>JSON_MERGE_PATCH()</strong>: <code class="language-plaintext highlighter-rouge">SELECT JSON_MERGE_PATCH(j1,j2);</code> — Merges two JSON documents following RFC 7396 (patch semantics)</li>
+  <li><strong>JSON_CONTAINS()</strong>: <code class="language-plaintext highlighter-rouge">SELECT JSON_CONTAINS(json, '1', '$.a');</code> — Checks whether a specific value exists at a given path in a JSON document</li>
+  <li><strong>JSON_CONTAINS_PATH()</strong>: <code class="language-plaintext highlighter-rouge">SELECT JSON_CONTAINS_PATH(json,'one','$.a');</code> — Tests whether one or all of the specified paths exist in a JSON document</li>
+  <li><strong>JSON_KEYS()</strong>: <code class="language-plaintext highlighter-rouge">SELECT JSON_KEYS(json,'$.a') FROM t;</code> — Returns an array of the keys present in a JSON object at the specified path</li>
+  <li><strong>JSON_LENGTH()</strong>: <code class="language-plaintext highlighter-rouge">SELECT JSON_LENGTH(json,'$.array') FROM t;</code> — Counts the number of elements in a JSON array or keys in a JSON object</li>
+  <li><strong>JSON_TYPE()</strong>: <code class="language-plaintext highlighter-rouge">SELECT JSON_TYPE(json,'$.a') FROM t;</code> — Returns the data type of the value at a specified JSON path</li>
+  <li><strong>JSON_VALID()</strong>: <code class="language-plaintext highlighter-rouge">SELECT JSON_VALID(json) FROM t;</code> — Checks whether a string is well-formed JSON</li>
+  <li><strong>JSON_TABLE()</strong>: <code class="language-plaintext highlighter-rouge">SELECT * FROM JSON_TABLE(json,'$[*]' COLUMNS(id INT PATH '$.id')) AS jt;</code> — Converts JSON array elements into relational rows and columns</li>
+  <li><strong>JSON_PRETTY()</strong>: <code class="language-plaintext highlighter-rouge">SELECT JSON_PRETTY(json);</code> — Formats a JSON string with indentation and line breaks for human readability</li>
+</ul>
+
+<h3 id="admin-security">Admin &amp; Security Formulas</h3>
+<ul>
+  <li><strong>CREATE USER</strong>: <code class="language-plaintext highlighter-rouge">CREATE USER 'u'@'%' IDENTIFIED BY 'p';</code> — Creates a new MySQL login account with a host specification</li>
+  <li><strong>ALTER USER</strong>: <code class="language-plaintext highlighter-rouge">ALTER USER 'u'@'%' IDENTIFIED WITH 'mysql_native_password' BY 'np';</code> — Changes a user’s authentication method or password</li>
+  <li><strong>DROP USER</strong>: <code class="language-plaintext highlighter-rouge">DROP USER 'u'@'%';</code> — Permanently removes a user account from the server</li>
+  <li><strong>GRANT</strong>: <code class="language-plaintext highlighter-rouge">GRANT SELECT,INSERT ON db.* TO 'u'@'%';</code> — Assigns specific privileges on database objects to a user</li>
+  <li><strong>REVOKE</strong>: <code class="language-plaintext highlighter-rouge">REVOKE INSERT ON db.* FROM 'u'@'%';</code> — Withdraws previously granted privileges from a user</li>
+  <li><strong>SHOW GRANTS</strong>: <code class="language-plaintext highlighter-rouge">SHOW GRANTS FOR 'u'@'%';</code> — Displays the exact privilege statements for a given user</li>
+  <li><strong>FLUSH PRIVILEGES</strong>: <code class="language-plaintext highlighter-rouge">FLUSH PRIVILEGES;</code> — Reloads the grant tables from memory after direct modification of privilege tables</li>
+  <li><strong>SET PASSWORD</strong>: <code class="language-plaintext highlighter-rouge">ALTER USER USER() IDENTIFIED BY 'new';</code> — Changes the password for the current user account</li>
+  <li><strong>RESET MASTER</strong>: <code class="language-plaintext highlighter-rouge">RESET MASTER;</code> — Clears all binary log files and resets the replication master’s position</li>
+  <li><strong>KILL</strong>: <code class="language-plaintext highlighter-rouge">KILL 1234;</code> — Terminates a specific database connection or running query thread</li>
+  <li><strong>SHOW PROCESSLIST</strong>: <code class="language-plaintext highlighter-rouge">SHOW PROCESSLIST;</code> — Lists all active connections and what each thread is currently executing</li>
+  <li><strong>SHOW STATUS</strong>: <code class="language-plaintext highlighter-rouge">SHOW STATUS LIKE 'Threads%';</code> — Returns server status counters for monitoring performance and activity</li>
+  <li><strong>SHOW VARIABLES</strong>: <code class="language-plaintext highlighter-rouge">SHOW VARIABLES LIKE 'max_connections';</code> — Displays MySQL system configuration parameters and their current values</li>
+  <li><strong>SHOW ENGINE INNODB STATUS</strong>: <code class="language-plaintext highlighter-rouge">SHOW ENGINE INNODB STATUS;</code> — Provides detailed InnoDB diagnostics including transactions, locks, and I/O</li>
+  <li><strong>Connection test</strong>: <code class="language-plaintext highlighter-rouge">SELECT 1;</code> — Simple query to verify the database connection is alive and responding</li>
+</ul>
+
+  </main>
+</div>
+
+<script>
+  (function() {
+    var search = document.getElementById('cheatSearch');
+    if (search) {
+      search.addEventListener('input', function() {
+        var q = this.value.toLowerCase();
+        document.querySelectorAll('.cheatsheet-main li').forEach(function(li) {
+          li.classList.toggle('hidden', q && !li.textContent.toLowerCase().includes(q));
+        });
+        document.querySelectorAll('.cheatsheet-main h3').forEach(function(h3) {
+          var next = h3.nextElementSibling;
+          var visible = next && next.tagName === 'UL' && Array.from(next.querySelectorAll('li')).some(function(li) { return !li.classList.contains('hidden'); });
+          h3.style.display = (!q || visible) ? '' : 'none';
+          if (next && next.tagName === 'UL') next.style.display = (!q || visible) ? '' : 'none';
+        });
+      });
+    }
+
+    var headers = document.querySelectorAll('.unit-header');
+    headers.forEach(function(h) {
+      h.addEventListener('click', function() {
+        var sub = this.nextElementSibling;
+        sub.classList.toggle('show');
+        this.classList.toggle('active');
+      });
+    });
+
+    document.getElementById('sidebarToggle')?.addEventListener('click', function() {
+      document.getElementById('cheatSidebar').classList.toggle('open');
+    });
+
+    var links = document.querySelectorAll('.subtopic-link');
+    links.forEach(function(link) {
+      link.addEventListener('click', function() {
+        links.forEach(function(l) { l.classList.remove('active'); });
+        this.classList.add('active');
+        if (window.innerWidth <= 850) {
+          document.getElementById('cheatSidebar').classList.remove('open');
+        }
+      });
+    });
+  })();
+</script>
+
+  </div>
+
+  <footer>
+    <div class="footer-links">
+      <a href="/about/">About the Creator</a>
+      <a href="mailto:contact@dinesh-raya.dev">Contact Dinesh</a>
+      <a href="/privacy/">Privacy</a>
+      <a href="/terms/">Terms</a>
+    </div>
+    <div class="copyright">
+      &copy; 2026 RAYA &middot; Built by Dinesh Raya
+    </div>
+    <div class="footer-social">
+      <a href="https://github.com/Dinesh-raya" target="_blank" rel="noopener" aria-label="GitHub">
+        <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      </a>
+      <a href="https://linkedin.com/in/dinesh-raya" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      </a>
+    </div>
+  </footer>
+
+  <div id="searchOverlay"><div class="search-modal"><button class="search-close" id="searchClose">&times;</button><div class="search-input-wrap"><input type="text" id="searchInput" placeholder="Search pages and posts..." autocomplete="off"></div><div id="searchStatus">Type to search...</div><ul id="searchResults"></ul></div></div>
+
+  <button class="scroll-top-btn" id="scrollTopBtn" aria-label="Scroll to top">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"></polyline></svg>
+  </button>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha384-203J0SNzyqHby3iU6hzvzltrWi/M41wOP5Gu+BiJMz5nwKykbkUx8Kp7iti0Lpli" crossorigin="anonymous"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js');
+    }
+  </script>
+  <script>
+    (function() {
+      var stored = localStorage.getItem('theme');
+      var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      var isDark = stored ? stored === 'dark' : prefersDark;
+      if (isDark) document.documentElement.classList.add('dark');
+      var themeBtn = document.getElementById('themeToggle');
+      var themeBtnMob = document.getElementById('themeToggleMobile');
+      function setTheme(dark) {
+        isDark = dark;
+        document.documentElement.classList.toggle('dark', dark);
+        localStorage.setItem('theme', dark ? 'dark' : 'light');
+        themeBtn && (themeBtn.textContent = dark ? '☀️' : '🌙');
+        themeBtnMob && (themeBtnMob.innerHTML = dark ? '☀️ Light' : '🌙 Dark');
+      }
+      function toggleTheme() { setTheme(!isDark); }
+      themeBtn && themeBtn.addEventListener('click', toggleTheme);
+      themeBtnMob && themeBtnMob.addEventListener('click', toggleTheme);
+
+      var toggle = document.getElementById('menuToggle');
+      var nav = document.getElementById('mobileNav');
+      var overlay = document.getElementById('mobileOverlay');
+      if (toggle && nav && overlay) {
+        var links = Array.prototype.slice.call(nav.querySelectorAll('a'));
+        function isOpen() { return nav.classList.contains('open'); }
+        function closeMenu() {
+          nav.classList.remove('open');
+          overlay.classList.remove('active');
+          document.body.style.overflow = '';
+          toggle.focus();
+        }
+        function openMenu(focusTarget) {
+          nav.classList.add('open');
+          overlay.classList.add('active');
+          document.body.style.overflow = 'hidden';
+          if (focusTarget && focusTarget.focus) focusTarget.focus();
+          else if (links.length) links[0].focus();
+        }
+        function toggleMenu() {
+          if (isOpen()) closeMenu();
+          else openMenu();
+        }
+        toggle.addEventListener('click', toggleMenu);
+        overlay.addEventListener('click', closeMenu);
+        links.forEach(function(link) {
+          link.addEventListener('click', closeMenu);
+        });
+        nav.addEventListener('keydown', function(e) {
+          if (e.key === 'Escape') { closeMenu(); return; }
+          if (e.key !== 'Tab') return;
+          var active = document.activeElement;
+          var idx = links.indexOf(active);
+          if (idx === -1) return;
+          e.preventDefault();
+          if (e.shiftKey) {
+            idx = idx === 0 ? links.length - 1 : idx - 1;
+          } else {
+            idx = idx === links.length - 1 ? 0 : idx + 1;
+          }
+          links[idx].focus();
+        });
+        document.addEventListener('keydown', function(e) {
+          e.key === 'Escape' && isOpen() && closeMenu();
+        });
+      }
+
+      var searchBtn = document.getElementById('searchBtn');
+      var searchOverlay = document.getElementById('searchOverlay');
+      var searchClose = document.getElementById('searchClose');
+      var searchInput = document.getElementById('searchInput');
+      var searchResults = document.getElementById('searchResults');
+      var searchStatus = document.getElementById('searchStatus');
+      var lunrIndex = null;
+      var searchTimer = null;
+      var docs = {};
+
+      function openSearch() {
+        if (!searchOverlay) return;
+        searchOverlay.classList.add('active');
+        setTimeout(function() {
+          searchInput && searchInput.focus();
+        }, 100);
+      }
+      function closeSearch() {
+        searchOverlay && searchOverlay.classList.remove('active');
+      }
+
+      function stripHTML(str) {
+        return str.replace(/<[^>]*>/g, '');
+      }
+
+      function doSearch() {
+        searchTimer = null;
+        var query = searchInput.value.trim();
+        if (query.length < 2) {
+          searchResults.innerHTML = '';
+          searchStatus.textContent = 'Type to search...';
+          return;
+        }
+        if (!lunrIndex) {
+          searchStatus.textContent = 'Loading search index...';
+          return;
+        }
+        searchStatus.textContent = 'Searching...';
+        try {
+          var results = lunrIndex.search(query);
+          if (results.length === 0) {
+            searchStatus.textContent = 'No results found.';
+            searchResults.innerHTML = '';
+            return;
+          }
+          searchStatus.textContent = '';
+          searchResults.innerHTML = results.slice(0, 12).map(function(r) {
+            var doc = docs[r.ref];
+            if (!doc) return '';
+            var content = doc.content || '';
+            var idx = content.toLowerCase().indexOf(query.toLowerCase());
+            var start = idx > 40 ? idx - 40 : 0;
+            var excerpt = content.substring(start, start + 160);
+            return '<li><a href="' + doc.url + '"><div class="result-title">' + doc.title + '</div><div class="result-excerpt">' + stripHTML(excerpt) + '</div></a></li>';
+          }).join('');
+        } catch (e) {
+          searchStatus.textContent = 'Search error.';
+        }
+      }
+
+      function onSearchInput() {
+        searchTimer && clearTimeout(searchTimer);
+        searchTimer = setTimeout(doSearch, 200);
+      }
+
+      function loadSearchIndex() {
+        fetch('/search.json').then(function(res) {
+          return res.json();
+        }).then(function(data) {
+          docs = {};
+          var items = [];
+          data.forEach(function(d, i) {
+            if (d.title && d.url) {
+              var item = { title: d.title, url: d.url, content: d.content || '' };
+              items.push(item);
+              docs[i] = item;
+            }
+          });
+          lunrIndex = lunr(function() {
+            this.ref('ref');
+            this.field('title');
+            this.field('content');
+            var self = this;
+            items.forEach(function(item, idx) {
+              item.ref = idx;
+              self.add(item);
+            });
+          });
+        }).catch(function(err) {
+          searchStatus && (searchStatus.textContent = 'Search unavailable.');
+        });
+      }
+
+      searchBtn && searchBtn.addEventListener('click', openSearch);
+      searchClose && searchClose.addEventListener('click', closeSearch);
+      searchOverlay && searchOverlay.addEventListener('click', function(e) {
+        if (e.target === searchOverlay) closeSearch();
+      });
+      searchInput && searchInput.addEventListener('input', onSearchInput);
+      document.addEventListener('keydown', function(e) {
+        if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+          e.preventDefault();
+          openSearch();
+        }
+        if (e.key === 'Escape' && searchOverlay && searchOverlay.classList.contains('active')) {
+          closeSearch();
+        }
+      });
+      loadSearchIndex();
+    })();
+
+    // Active nav state
+    (function() {
+      var path = window.location.pathname;
+      document.querySelectorAll('header nav a, .mobile-nav a').forEach(function(a) {
+        var href = a.getAttribute('href');
+        if (href === '/' && path === '/') { a.classList.add('active'); return; }
+        if (href && href !== '/' && path.indexOf(href) === 0) { a.classList.add('active'); }
+      });
+    })();
+
+    // Scroll to top
+    (function() {
+      var btn = document.getElementById('scrollTopBtn');
+      if (!btn) return;
+      window.addEventListener('scroll', function() {
+        btn.classList.toggle('visible', window.scrollY > 400);
+      });
+      btn.addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    })();
+  </script>
+</body>
+</html>

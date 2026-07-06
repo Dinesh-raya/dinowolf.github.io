@@ -1,0 +1,2850 @@
+{
+  "schema": {
+    "channels": {
+      "columns": [
+        {
+          "name": "channel_id",
+          "type": "VARCHAR PRIMARY KEY"
+        },
+        {
+          "name": "channel_name",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "subscriber_count",
+          "type": "BIGINT"
+        },
+        {
+          "name": "view_count",
+          "type": "BIGINT"
+        },
+        {
+          "name": "country",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "subscriber_hidden",
+          "type": "BOOLEAN"
+        },
+        {
+          "name": "default_language",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "published_at",
+          "type": "DATE"
+        },
+        {
+          "name": "video_count",
+          "type": "INT"
+        }
+      ]
+    },
+    "videos": {
+      "columns": [
+        {
+          "name": "video_id",
+          "type": "VARCHAR PRIMARY KEY"
+        },
+        {
+          "name": "channel_id",
+          "type": "VARCHAR REFERENCES channels(channel_id)"
+        },
+        {
+          "name": "title",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "publish_date",
+          "type": "DATE"
+        },
+        {
+          "name": "definition",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "duration",
+          "type": "INT"
+        },
+        {
+          "name": "privacy_status",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "embeddable",
+          "type": "BOOLEAN"
+        },
+        {
+          "name": "made_for_kids",
+          "type": "BOOLEAN"
+        },
+        {
+          "name": "caption",
+          "type": "BOOLEAN"
+        },
+        {
+          "name": "upload_status",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "live_broadcast_content",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "views",
+          "type": "BIGINT"
+        },
+        {
+          "name": "likes",
+          "type": "BIGINT"
+        },
+        {
+          "name": "comment_count",
+          "type": "INT"
+        },
+        {
+          "name": "comments_disabled",
+          "type": "BOOLEAN"
+        }
+      ]
+    },
+    "video_stats": {
+      "columns": [
+        {
+          "name": "stat_id",
+          "type": "INT PRIMARY KEY"
+        },
+        {
+          "name": "video_id",
+          "type": "VARCHAR REFERENCES videos(video_id)"
+        },
+        {
+          "name": "views",
+          "type": "BIGINT"
+        },
+        {
+          "name": "likes",
+          "type": "BIGINT"
+        },
+        {
+          "name": "comments",
+          "type": "INT"
+        },
+        {
+          "name": "watch_time_hours",
+          "type": "FLOAT"
+        }
+      ]
+    },
+    "comments": {
+      "columns": [
+        {
+          "name": "comment_id",
+          "type": "VARCHAR PRIMARY KEY"
+        },
+        {
+          "name": "video_id",
+          "type": "VARCHAR REFERENCES videos(video_id)"
+        },
+        {
+          "name": "channel_id",
+          "type": "VARCHAR REFERENCES channels(channel_id)"
+        },
+        {
+          "name": "author_name",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "text",
+          "type": "TEXT"
+        },
+        {
+          "name": "like_count",
+          "type": "INT"
+        },
+        {
+          "name": "published_at",
+          "type": "DATE"
+        }
+      ]
+    },
+    "replies": {
+      "columns": [
+        {
+          "name": "reply_id",
+          "type": "VARCHAR PRIMARY KEY"
+        },
+        {
+          "name": "comment_id",
+          "type": "VARCHAR REFERENCES comments(comment_id)"
+        },
+        {
+          "name": "author_name",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "text",
+          "type": "TEXT"
+        },
+        {
+          "name": "like_count",
+          "type": "INT"
+        },
+        {
+          "name": "published_at",
+          "type": "DATE"
+        }
+      ]
+    },
+    "playlists": {
+      "columns": [
+        {
+          "name": "playlist_id",
+          "type": "VARCHAR PRIMARY KEY"
+        },
+        {
+          "name": "channel_id",
+          "type": "VARCHAR REFERENCES channels(channel_id)"
+        },
+        {
+          "name": "title",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "item_count",
+          "type": "INT"
+        },
+        {
+          "name": "privacy_status",
+          "type": "VARCHAR"
+        }
+      ]
+    },
+    "playlist_items": {
+      "columns": [
+        {
+          "name": "playlist_item_id",
+          "type": "VARCHAR PRIMARY KEY"
+        },
+        {
+          "name": "playlist_id",
+          "type": "VARCHAR REFERENCES playlists(playlist_id)"
+        },
+        {
+          "name": "video_id",
+          "type": "VARCHAR REFERENCES videos(video_id)"
+        },
+        {
+          "name": "position",
+          "type": "INT"
+        },
+        {
+          "name": "added_at",
+          "type": "DATE"
+        }
+      ]
+    }
+  },
+  "problems": [
+    {
+      "id": 1,
+      "title": "Channel Names and Subscribers",
+      "difficulty": "Easy",
+      "topics": [
+        "SELECT"
+      ],
+      "description": "Write a SQL query to display the channel_name and subscriber_count for all channels.",
+      "tables": [
+        "channels"
+      ],
+      "hint": "Use a simple SELECT with column names from one table.",
+      "solution": "SELECT channel_name, subscriber_count FROM channels;",
+      "explanation": "The query selects only the requested columns from the channels table. SELECT specifies which columns to retrieve, FROM specifies the table.",
+      "schema": "CREATE TABLE channels (channel_id VARCHAR PRIMARY KEY, channel_name VARCHAR, subscriber_count BIGINT, view_count BIGINT, country VARCHAR, subscriber_hidden BOOLEAN, default_language VARCHAR, published_at DATE, video_count INT);",
+      "sample_data": {
+        "channels": "INSERT INTO channels (channel_id, channel_name, subscriber_count, view_count, country, subscriber_hidden, default_language, published_at, video_count) VALUES ('C101','Alpha Tech',2500000,92000000,'US',false,'en','2015-03-12',120),('C102','Data With Mira',1800000,71000000,'IN',false,'en','2017-08-05',340),('C103','SQL Zone',950000,40000000,'UK',false,'en','2019-01-20',89),('C104','CodeCraft',3200000,150000000,'US',true,'en','2014-06-01',560),('C105','Analytics Hub',500000,18000000,'IN',false,'hi','2020-11-15',45)"
+      },
+      "expected_output": {
+        "columns": [
+          "channel_name",
+          "subscriber_count"
+        ],
+        "rows": [
+          [
+            "Alpha Tech",
+            2500000
+          ],
+          [
+            "Data With Mira",
+            1800000
+          ],
+          [
+            "SQL Zone",
+            950000
+          ],
+          [
+            "CodeCraft",
+            3200000
+          ],
+          [
+            "Analytics Hub",
+            500000
+          ]
+        ]
+      }
+    },
+    {
+      "id": 2,
+      "title": "First 10 Videos by Publish Date",
+      "difficulty": "Easy",
+      "topics": [
+        "SELECT, ORDER BY, LIMIT"
+      ],
+      "description": "Write a query to display the video_id, title, and publish_date for the first 10 most recently published videos.",
+      "tables": [
+        "videos"
+      ],
+      "hint": "Use ORDER BY with DESC on publish_date, then LIMIT 10.",
+      "solution": "SELECT video_id, title, publish_date FROM videos ORDER BY publish_date DESC LIMIT 10;",
+      "explanation": "ORDER BY publish_date DESC sorts newest first. LIMIT 10 returns only the first 10 rows.",
+      "schema": "CREATE TABLE videos (video_id VARCHAR PRIMARY KEY, channel_id VARCHAR REFERENCES channels(channel_id), title VARCHAR, publish_date DATE, definition VARCHAR, duration INT, privacy_status VARCHAR, embeddable BOOLEAN, made_for_kids BOOLEAN, caption BOOLEAN, upload_status VARCHAR, live_broadcast_content VARCHAR, views BIGINT, likes BIGINT, comment_count INT, comments_disabled BOOLEAN);",
+      "sample_data": {
+        "videos": "INSERT INTO videos (video_id, channel_id, title, publish_date, definition, duration, privacy_status, embeddable, made_for_kids, caption, upload_status, live_broadcast_content, views, likes, comment_count, comments_disabled) VALUES ('V201','C101','Getting Started with Python','2024-12-01','hd',1200,'public',true,false,true,'processed','none',150000,12000,340,false),('V202','C102','SQL Masterclass Part 1','2024-11-28','hd',2400,'public',true,false,true,'processed','none',89000,8900,156,false),('V203','C101','Data Science 101','2024-11-25','hd',1800,'public',true,false,false,'processed','none',230000,18500,520,false),('V204','C103','Learn Pandas in 1 Hour','2024-11-20','hd',3600,'public',true,false,true,'processed','none',67000,5400,89,false),('V205','C104','Machine Learning Basics','2024-11-18','hd',2700,'public',true,false,true,'processed','none',450000,34000,890,false),('V206','C102','Advanced SQL Queries','2024-11-15','hd',1800,'public',true,false,false,'processed','upcoming',120000,10200,230,false),('V207','C105','Excel Tips & Tricks','2024-11-10','sd',900,'public',true,false,true,'processed','none',34000,2800,45,false),('V208','C104','Deep Learning Explained','2024-11-05','hd',2400,'public',true,false,true,'processed','none',560000,42000,1100,false),('V209','C101','CSS Flexbox Guide','2024-11-01','hd',1500,'public',true,false,false,'processed','none',98000,7600,180,false),('V210','C103','Power BI Dashboard','2024-10-28','hd',1200,'unlisted',true,false,true,'processed','none',45000,3800,67,false),('V211','C102','Database Normalization','2024-10-25','hd',2100,'public',true,false,true,'processed','none',76000,6100,134,false),('V212','C105','Tableau for Beginners','2024-10-20','sd',1800,'public',true,false,true,'processed','none',28000,2100,34,false)"
+      },
+      "expected_output": {
+        "columns": [
+          "video_id",
+          "title",
+          "publish_date"
+        ],
+        "rows": [
+          [
+            "V201",
+            "Getting Started with Python",
+            "2024-12-01"
+          ],
+          [
+            "V202",
+            "SQL Masterclass Part 1",
+            "2024-11-28"
+          ],
+          [
+            "V203",
+            "Data Science 101",
+            "2024-11-25"
+          ],
+          [
+            "V204",
+            "Learn Pandas in 1 Hour",
+            "2024-11-20"
+          ],
+          [
+            "V205",
+            "Machine Learning Basics",
+            "2024-11-18"
+          ],
+          [
+            "V206",
+            "Advanced SQL Queries",
+            "2024-11-15"
+          ],
+          [
+            "V207",
+            "Excel Tips & Tricks",
+            "2024-11-10"
+          ],
+          [
+            "V208",
+            "Deep Learning Explained",
+            "2024-11-05"
+          ],
+          [
+            "V209",
+            "CSS Flexbox Guide",
+            "2024-11-01"
+          ],
+          [
+            "V210",
+            "Power BI Dashboard",
+            "2024-10-28"
+          ]
+        ]
+      }
+    },
+    {
+      "id": 3,
+      "title": "Channels from India",
+      "difficulty": "Easy",
+      "topics": [
+        "WHERE"
+      ],
+      "description": "Write a SQL query to display all channel details for channels located in India.",
+      "tables": [
+        "channels"
+      ],
+      "hint": "Use WHERE clause to filter rows where country = 'IN'.",
+      "solution": "SELECT * FROM channels WHERE country = 'IN';",
+      "explanation": "The WHERE clause filters rows based on a condition. Use single quotes for string comparison.",
+      "schema": "CREATE TABLE channels (channel_id VARCHAR PRIMARY KEY, channel_name VARCHAR, subscriber_count BIGINT, view_count BIGINT, country VARCHAR, subscriber_hidden BOOLEAN, default_language VARCHAR, published_at DATE, video_count INT);",
+      "sample_data": {
+        "channels": "INSERT INTO channels (channel_id, channel_name, subscriber_count, view_count, country, subscriber_hidden, default_language, published_at, video_count) VALUES ('C101','Alpha Tech',2500000,92000000,'US',false,'en','2015-03-12',120),('C102','Data With Mira',1800000,71000000,'IN',false,'en','2017-08-05',340),('C103','SQL Zone',950000,40000000,'UK',false,'en','2019-01-20',89),('C104','CodeCraft',3200000,150000000,'US',true,'en','2014-06-01',560),('C105','Analytics Hub',500000,18000000,'IN',false,'hi','2020-11-15',45),('C106','LearnTech India',1200000,45000000,'IN',false,'hi','2018-03-22',210)"
+      },
+      "expected_output": {
+        "columns": [
+          "channel_id",
+          "channel_name",
+          "subscriber_count",
+          "view_count",
+          "country",
+          "subscriber_hidden",
+          "default_language",
+          "published_at",
+          "video_count"
+        ],
+        "rows": [
+          [
+            "C102",
+            "Data With Mira",
+            1800000,
+            71000000,
+            "IN",
+            0,
+            "en",
+            "2017-08-05",
+            340
+          ],
+          [
+            "C105",
+            "Analytics Hub",
+            500000,
+            18000000,
+            "IN",
+            0,
+            "hi",
+            "2020-11-15",
+            45
+          ],
+          [
+            "C106",
+            "LearnTech India",
+            1200000,
+            45000000,
+            "IN",
+            0,
+            "hi",
+            "2018-03-22",
+            210
+          ]
+        ]
+      }
+    },
+    {
+      "id": 4,
+      "title": "Public Videos",
+      "difficulty": "Easy",
+      "topics": [
+        "WHERE"
+      ],
+      "description": "Write a query to display all videos that have a privacy status of 'public'.",
+      "tables": [
+        "videos"
+      ],
+      "hint": "Filter using WHERE privacy_status = 'public'.",
+      "solution": "SELECT * FROM videos WHERE privacy_status = 'public';",
+      "explanation": "WHERE clause filters rows. Videos can be public, unlisted, or private.",
+      "schema": "CREATE TABLE videos (video_id VARCHAR PRIMARY KEY, channel_id VARCHAR REFERENCES channels(channel_id), title VARCHAR, publish_date DATE, definition VARCHAR, duration INT, privacy_status VARCHAR, embeddable BOOLEAN, made_for_kids BOOLEAN, caption BOOLEAN, upload_status VARCHAR, live_broadcast_content VARCHAR, views BIGINT, likes BIGINT, comment_count INT, comments_disabled BOOLEAN);",
+      "sample_data": {
+        "videos": "INSERT INTO videos (video_id, channel_id, title, publish_date, definition, duration, privacy_status, embeddable, made_for_kids, caption, upload_status, live_broadcast_content, views, likes, comment_count, comments_disabled) VALUES ('V201','C101','Getting Started with Python','2024-12-01','hd',1200,'public',true,false,true,'processed','none',150000,12000,340,false),('V202','C102','SQL Masterclass Part 1','2024-11-28','hd',2400,'private',true,false,true,'processed','none',0,0,0,true),('V203','C101','Data Science 101','2024-11-25','hd',1800,'public',true,false,false,'processed','none',230000,18500,520,false),('V204','C103','Learn Pandas in 1 Hour','2024-11-20','hd',3600,'unlisted',true,false,true,'processed','none',67000,5400,89,false),('V205','C104','Machine Learning Basics','2024-11-18','hd',2700,'public',true,false,true,'processed','none',450000,34000,890,false),('V206','C102','Advanced SQL Queries','2024-11-15','hd',1800,'public',true,false,false,'processed','upcoming',120000,10200,230,false)"
+      },
+      "expected_output": {
+        "columns": [
+          "video_id",
+          "channel_id",
+          "title",
+          "publish_date",
+          "definition",
+          "duration",
+          "privacy_status",
+          "embeddable",
+          "made_for_kids",
+          "caption",
+          "upload_status",
+          "live_broadcast_content",
+          "views",
+          "likes",
+          "comment_count",
+          "comments_disabled"
+        ],
+        "rows": [
+          [
+            "V201",
+            "C101",
+            "Getting Started with Python",
+            "2024-12-01",
+            "hd",
+            1200,
+            "public",
+            1,
+            0,
+            1,
+            "processed",
+            "none",
+            150000,
+            12000,
+            340,
+            0
+          ],
+          [
+            "V203",
+            "C101",
+            "Data Science 101",
+            "2024-11-25",
+            "hd",
+            1800,
+            "public",
+            1,
+            0,
+            0,
+            "processed",
+            "none",
+            230000,
+            18500,
+            520,
+            0
+          ],
+          [
+            "V205",
+            "C104",
+            "Machine Learning Basics",
+            "2024-11-18",
+            "hd",
+            2700,
+            "public",
+            1,
+            0,
+            1,
+            "processed",
+            "none",
+            450000,
+            34000,
+            890,
+            0
+          ],
+          [
+            "V206",
+            "C102",
+            "Advanced SQL Queries",
+            "2024-11-15",
+            "hd",
+            1800,
+            "public",
+            1,
+            0,
+            0,
+            "processed",
+            "upcoming",
+            120000,
+            10200,
+            230,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "id": 5,
+      "title": "HD Videos",
+      "difficulty": "Easy",
+      "topics": [
+        "WHERE"
+      ],
+      "description": "Write a query to display all videos that are in HD definition.",
+      "tables": [
+        "videos"
+      ],
+      "hint": "Filter using WHERE definition = 'hd'.",
+      "solution": "SELECT * FROM videos WHERE definition = 'hd';",
+      "explanation": "The definition column stores video quality - 'hd' for high definition, 'sd' for standard.",
+      "schema": "CREATE TABLE videos (video_id VARCHAR PRIMARY KEY, channel_id VARCHAR REFERENCES channels(channel_id), title VARCHAR, publish_date DATE, definition VARCHAR, duration INT, privacy_status VARCHAR, embeddable BOOLEAN, made_for_kids BOOLEAN, caption BOOLEAN, upload_status VARCHAR, live_broadcast_content VARCHAR, views BIGINT, likes BIGINT, comment_count INT, comments_disabled BOOLEAN);",
+      "sample_data": {
+        "videos": "INSERT INTO videos (video_id, channel_id, title, publish_date, definition, duration, privacy_status, embeddable, made_for_kids, caption, upload_status, live_broadcast_content, views, likes, comment_count, comments_disabled) VALUES ('V201','C101','Getting Started with Python','2024-12-01','hd',1200,'public',true,false,true,'processed','none',150000,12000,340,false),('V202','C102','SQL Masterclass Part 1','2024-11-28','hd',2400,'public',true,false,true,'processed','none',89000,8900,156,false),('V203','C101','Data Science 101','2024-11-25','sd',1800,'public',true,false,false,'processed','none',230000,18500,520,false),('V204','C103','Learn Pandas in 1 Hour','2024-11-20','hd',3600,'public',true,false,true,'processed','none',67000,5400,89,false),('V205','C104','Machine Learning Basics','2024-11-18','hd',2700,'public',true,false,true,'processed','none',450000,34000,890,false),('V207','C105','Excel Tips & Tricks','2024-11-10','sd',900,'public',true,false,true,'processed','none',34000,2800,45,false)"
+      },
+      "expected_output": {
+        "columns": [
+          "video_id",
+          "channel_id",
+          "title",
+          "publish_date",
+          "definition",
+          "duration",
+          "privacy_status",
+          "embeddable",
+          "made_for_kids",
+          "caption",
+          "upload_status",
+          "live_broadcast_content",
+          "views",
+          "likes",
+          "comment_count",
+          "comments_disabled"
+        ],
+        "rows": [
+          [
+            "V201",
+            "C101",
+            "Getting Started with Python",
+            "2024-12-01",
+            "hd",
+            1200,
+            "public",
+            1,
+            0,
+            1,
+            "processed",
+            "none",
+            150000,
+            12000,
+            340,
+            0
+          ],
+          [
+            "V202",
+            "C102",
+            "SQL Masterclass Part 1",
+            "2024-11-28",
+            "hd",
+            2400,
+            "public",
+            1,
+            0,
+            1,
+            "processed",
+            "none",
+            89000,
+            8900,
+            156,
+            0
+          ],
+          [
+            "V204",
+            "C103",
+            "Learn Pandas in 1 Hour",
+            "2024-11-20",
+            "hd",
+            3600,
+            "public",
+            1,
+            0,
+            1,
+            "processed",
+            "none",
+            67000,
+            5400,
+            89,
+            0
+          ],
+          [
+            "V205",
+            "C104",
+            "Machine Learning Basics",
+            "2024-11-18",
+            "hd",
+            2700,
+            "public",
+            1,
+            0,
+            1,
+            "processed",
+            "none",
+            450000,
+            34000,
+            890,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "id": 6,
+      "title": "Videos with Captions",
+      "difficulty": "Easy",
+      "topics": [
+        "WHERE"
+      ],
+      "description": "Display all videos that have captions enabled.",
+      "tables": [
+        "videos"
+      ],
+      "hint": "Filter using WHERE caption = true.",
+      "solution": "SELECT * FROM videos WHERE caption = true;",
+      "explanation": "The caption column is a boolean field indicating whether closed captions are available.",
+      "schema": "CREATE TABLE videos (video_id VARCHAR PRIMARY KEY, channel_id VARCHAR REFERENCES channels(channel_id), title VARCHAR, publish_date DATE, definition VARCHAR, duration INT, privacy_status VARCHAR, embeddable BOOLEAN, made_for_kids BOOLEAN, caption BOOLEAN, upload_status VARCHAR, live_broadcast_content VARCHAR, views BIGINT, likes BIGINT, comment_count INT, comments_disabled BOOLEAN);",
+      "sample_data": {
+        "videos": "INSERT INTO videos (video_id, channel_id, title, publish_date, definition, duration, privacy_status, embeddable, made_for_kids, caption, upload_status, live_broadcast_content, views, likes, comment_count, comments_disabled) VALUES ('V201','C101','Getting Started with Python','2024-12-01','hd',1200,'public',true,false,true,'processed','none',150000,12000,340,false),('V202','C102','SQL Masterclass Part 1','2024-11-28','hd',2400,'public',true,false,true,'processed','none',89000,8900,156,false),('V203','C101','Data Science 101','2024-11-25','hd',1800,'public',true,false,false,'processed','none',230000,18500,520,false),('V204','C103','Learn Pandas in 1 Hour','2024-11-20','hd',3600,'public',true,false,false,'processed','none',67000,5400,89,false),('V205','C104','Machine Learning Basics','2024-11-18','hd',2700,'public',true,false,true,'processed','none',450000,34000,890,false)"
+      },
+      "expected_output": {
+        "columns": [
+          "video_id",
+          "channel_id",
+          "title",
+          "publish_date",
+          "definition",
+          "duration",
+          "privacy_status",
+          "embeddable",
+          "made_for_kids",
+          "caption",
+          "upload_status",
+          "live_broadcast_content",
+          "views",
+          "likes",
+          "comment_count",
+          "comments_disabled"
+        ],
+        "rows": [
+          [
+            "V201",
+            "C101",
+            "Getting Started with Python",
+            "2024-12-01",
+            "hd",
+            1200,
+            "public",
+            1,
+            0,
+            1,
+            "processed",
+            "none",
+            150000,
+            12000,
+            340,
+            0
+          ],
+          [
+            "V202",
+            "C102",
+            "SQL Masterclass Part 1",
+            "2024-11-28",
+            "hd",
+            2400,
+            "public",
+            1,
+            0,
+            1,
+            "processed",
+            "none",
+            89000,
+            8900,
+            156,
+            0
+          ],
+          [
+            "V205",
+            "C104",
+            "Machine Learning Basics",
+            "2024-11-18",
+            "hd",
+            2700,
+            "public",
+            1,
+            0,
+            1,
+            "processed",
+            "none",
+            450000,
+            34000,
+            890,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "id": 7,
+      "title": "Channels with Hidden Subscriber Count",
+      "difficulty": "Easy",
+      "topics": [
+        "WHERE"
+      ],
+      "description": "Display all channels that have their subscriber count hidden.",
+      "tables": [
+        "channels"
+      ],
+      "hint": "Filter using WHERE subscriber_hidden = true.",
+      "solution": "SELECT * FROM channels WHERE subscriber_hidden = true;",
+      "explanation": "Some channels choose to hide their subscriber count. This is stored as a boolean flag.",
+      "schema": "CREATE TABLE channels (channel_id VARCHAR PRIMARY KEY, channel_name VARCHAR, subscriber_count BIGINT, view_count BIGINT, country VARCHAR, subscriber_hidden BOOLEAN, default_language VARCHAR, published_at DATE, video_count INT);",
+      "sample_data": {
+        "channels": "INSERT INTO channels (channel_id, channel_name, subscriber_count, view_count, country, subscriber_hidden, default_language, published_at, video_count) VALUES ('C101','Alpha Tech',2500000,92000000,'US',false,'en','2015-03-12',120),('C102','Data With Mira',1800000,71000000,'IN',false,'en','2017-08-05',340),('C103','SQL Zone',950000,40000000,'UK',false,'en','2019-01-20',89),('C104','CodeCraft',3200000,150000000,'US',true,'en','2014-06-01',560),('C105','Analytics Hub',500000,18000000,'IN',false,'hi','2020-11-15',45),('C106','LearnTech India',1200000,45000000,'IN',false,'hi','2018-03-22',210),('C107','Secret Channel',100000,5000000,'JP',true,'ja','2021-07-01',15)"
+      },
+      "expected_output": {
+        "columns": [
+          "channel_id",
+          "channel_name",
+          "subscriber_count",
+          "view_count",
+          "country",
+          "subscriber_hidden",
+          "default_language",
+          "published_at",
+          "video_count"
+        ],
+        "rows": [
+          [
+            "C104",
+            "CodeCraft",
+            3200000,
+            150000000,
+            "US",
+            1,
+            "en",
+            "2014-06-01",
+            560
+          ],
+          [
+            "C107",
+            "Secret Channel",
+            100000,
+            5000000,
+            "JP",
+            1,
+            "ja",
+            "2021-07-01",
+            15
+          ]
+        ]
+      }
+    },
+    {
+      "id": 8,
+      "title": "Successfully Processed Videos",
+      "difficulty": "Easy",
+      "topics": [
+        "WHERE"
+      ],
+      "description": "Display all videos that have been successfully processed (upload_status = 'processed').",
+      "tables": [
+        "videos"
+      ],
+      "hint": "Filter using WHERE upload_status = 'processed'.",
+      "solution": "SELECT * FROM videos WHERE upload_status = 'processed';",
+      "explanation": "The upload_status indicates whether a video has finished processing after upload.",
+      "schema": "CREATE TABLE videos (video_id VARCHAR PRIMARY KEY, channel_id VARCHAR REFERENCES channels(channel_id), title VARCHAR, publish_date DATE, definition VARCHAR, duration INT, privacy_status VARCHAR, embeddable BOOLEAN, made_for_kids BOOLEAN, caption BOOLEAN, upload_status VARCHAR, live_broadcast_content VARCHAR, views BIGINT, likes BIGINT, comment_count INT, comments_disabled BOOLEAN);",
+      "sample_data": {
+        "videos": "INSERT INTO videos (video_id, channel_id, title, publish_date, definition, duration, privacy_status, embeddable, made_for_kids, caption, upload_status, live_broadcast_content, views, likes, comment_count, comments_disabled) VALUES ('V201','C101','Getting Started with Python','2024-12-01','hd',1200,'public',true,false,true,'processed','none',150000,12000,340,false),('V202','C102','SQL Masterclass Part 1','2024-11-28','hd',2400,'public',true,false,true,'failed','none',0,0,0,true),('V203','C101','Data Science 101','2024-11-25','hd',1800,'public',true,false,false,'processed','none',230000,18500,520,false),('V204','C103','Learn Pandas in 1 Hour','2024-11-20','hd',3600,'public',true,false,true,'processed','none',67000,5400,89,false),('V205','C104','Machine Learning Basics','2024-11-18','hd',2700,'public',true,false,true,'processed','none',450000,34000,890,false),('V206','C102','Advanced SQL Queries','2024-11-15','hd',1800,'public',true,false,false,'processing','upcoming',0,0,0,false)"
+      },
+      "expected_output": {
+        "columns": [
+          "video_id",
+          "channel_id",
+          "title",
+          "publish_date",
+          "definition",
+          "duration",
+          "privacy_status",
+          "embeddable",
+          "made_for_kids",
+          "caption",
+          "upload_status",
+          "live_broadcast_content",
+          "views",
+          "likes",
+          "comment_count",
+          "comments_disabled"
+        ],
+        "rows": [
+          [
+            "V201",
+            "C101",
+            "Getting Started with Python",
+            "2024-12-01",
+            "hd",
+            1200,
+            "public",
+            1,
+            0,
+            1,
+            "processed",
+            "none",
+            150000,
+            12000,
+            340,
+            0
+          ],
+          [
+            "V203",
+            "C101",
+            "Data Science 101",
+            "2024-11-25",
+            "hd",
+            1800,
+            "public",
+            1,
+            0,
+            0,
+            "processed",
+            "none",
+            230000,
+            18500,
+            520,
+            0
+          ],
+          [
+            "V204",
+            "C103",
+            "Learn Pandas in 1 Hour",
+            "2024-11-20",
+            "hd",
+            3600,
+            "public",
+            1,
+            0,
+            1,
+            "processed",
+            "none",
+            67000,
+            5400,
+            89,
+            0
+          ],
+          [
+            "V205",
+            "C104",
+            "Machine Learning Basics",
+            "2024-11-18",
+            "hd",
+            2700,
+            "public",
+            1,
+            0,
+            1,
+            "processed",
+            "none",
+            450000,
+            34000,
+            890,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "id": 9,
+      "title": "Embeddable Videos",
+      "difficulty": "Easy",
+      "topics": [
+        "WHERE"
+      ],
+      "description": "Display all videos that can be embedded on other websites.",
+      "tables": [
+        "videos"
+      ],
+      "hint": "Filter using WHERE embeddable = true.",
+      "solution": "SELECT * FROM videos WHERE embeddable = true;",
+      "explanation": "The embeddable column indicates if a video can be embedded on external websites.",
+      "schema": "CREATE TABLE videos (video_id VARCHAR PRIMARY KEY, channel_id VARCHAR REFERENCES channels(channel_id), title VARCHAR, publish_date DATE, definition VARCHAR, duration INT, privacy_status VARCHAR, embeddable BOOLEAN, made_for_kids BOOLEAN, caption BOOLEAN, upload_status VARCHAR, live_broadcast_content VARCHAR, views BIGINT, likes BIGINT, comment_count INT, comments_disabled BOOLEAN);",
+      "sample_data": {
+        "videos": "INSERT INTO videos (video_id, channel_id, title, publish_date, definition, duration, privacy_status, embeddable, made_for_kids, caption, upload_status, live_broadcast_content, views, likes, comment_count, comments_disabled) VALUES ('V201','C101','Getting Started with Python','2024-12-01','hd',1200,'public',true,false,true,'processed','none',150000,12000,340,false),('V202','C102','SQL Masterclass Part 1','2024-11-28','hd',2400,'public',true,false,true,'processed','none',89000,8900,156,false),('V203','C101','Data Science 101','2024-11-25','hd',1800,'public',true,false,false,'processed','none',230000,18500,520,false),('V204','C103','Learn Pandas in 1 Hour','2024-11-20','hd',3600,'public',false,false,true,'processed','none',67000,5400,89,false),('V205','C104','Machine Learning Basics','2024-11-18','hd',2700,'public',true,false,true,'processed','none',450000,34000,890,false)"
+      },
+      "expected_output": {
+        "columns": [
+          "video_id",
+          "channel_id",
+          "title",
+          "publish_date",
+          "definition",
+          "duration",
+          "privacy_status",
+          "embeddable",
+          "made_for_kids",
+          "caption",
+          "upload_status",
+          "live_broadcast_content",
+          "views",
+          "likes",
+          "comment_count",
+          "comments_disabled"
+        ],
+        "rows": [
+          [
+            "V201",
+            "C101",
+            "Getting Started with Python",
+            "2024-12-01",
+            "hd",
+            1200,
+            "public",
+            1,
+            0,
+            1,
+            "processed",
+            "none",
+            150000,
+            12000,
+            340,
+            0
+          ],
+          [
+            "V202",
+            "C102",
+            "SQL Masterclass Part 1",
+            "2024-11-28",
+            "hd",
+            2400,
+            "public",
+            1,
+            0,
+            1,
+            "processed",
+            "none",
+            89000,
+            8900,
+            156,
+            0
+          ],
+          [
+            "V203",
+            "C101",
+            "Data Science 101",
+            "2024-11-25",
+            "hd",
+            1800,
+            "public",
+            1,
+            0,
+            0,
+            "processed",
+            "none",
+            230000,
+            18500,
+            520,
+            0
+          ],
+          [
+            "V205",
+            "C104",
+            "Machine Learning Basics",
+            "2024-11-18",
+            "hd",
+            2700,
+            "public",
+            1,
+            0,
+            1,
+            "processed",
+            "none",
+            450000,
+            34000,
+            890,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "id": 10,
+      "title": "Made for Kids Videos",
+      "difficulty": "Easy",
+      "topics": [
+        "WHERE"
+      ],
+      "description": "Display all videos that are marked as made for kids.",
+      "tables": [
+        "videos"
+      ],
+      "hint": "Filter using WHERE made_for_kids = true.",
+      "solution": "SELECT * FROM videos WHERE made_for_kids = true;",
+      "explanation": "The made_for_kids column indicates content created specifically for children.",
+      "schema": "CREATE TABLE videos (video_id VARCHAR PRIMARY KEY, channel_id VARCHAR REFERENCES channels(channel_id), title VARCHAR, publish_date DATE, definition VARCHAR, duration INT, privacy_status VARCHAR, embeddable BOOLEAN, made_for_kids BOOLEAN, caption BOOLEAN, upload_status VARCHAR, live_broadcast_content VARCHAR, views BIGINT, likes BIGINT, comment_count INT, comments_disabled BOOLEAN);",
+      "sample_data": {
+        "videos": "INSERT INTO videos (video_id, channel_id, title, publish_date, definition, duration, privacy_status, embeddable, made_for_kids, caption, upload_status, live_broadcast_content, views, likes, comment_count, comments_disabled) VALUES ('V201','C101','Getting Started with Python','2024-12-01','hd',1200,'public',true,false,true,'processed','none',150000,12000,340,false),('V202','C102','Kids Learning ABC','2024-11-28','hd',600,'public',true,true,true,'processed','none',890000,45000,1200,false),('V203','C101','Data Science 101','2024-11-25','hd',1800,'public',true,false,false,'processed','none',230000,18500,520,false),('V204','C103','Nursery Rhymes','2024-11-20','hd',900,'public',true,true,true,'processed','none',1500000,78000,2300,false),('V205','C104','Machine Learning Basics','2024-11-18','hd',2700,'public',true,false,true,'processed','none',450000,34000,890,false)"
+      },
+      "expected_output": {
+        "columns": [
+          "video_id",
+          "channel_id",
+          "title",
+          "publish_date",
+          "definition",
+          "duration",
+          "privacy_status",
+          "embeddable",
+          "made_for_kids",
+          "caption",
+          "upload_status",
+          "live_broadcast_content",
+          "views",
+          "likes",
+          "comment_count",
+          "comments_disabled"
+        ],
+        "rows": [
+          [
+            "V202",
+            "C102",
+            "Kids Learning ABC",
+            "2024-11-28",
+            "hd",
+            600,
+            "public",
+            1,
+            1,
+            1,
+            "processed",
+            "none",
+            890000,
+            45000,
+            1200,
+            0
+          ],
+          [
+            "V204",
+            "C103",
+            "Nursery Rhymes",
+            "2024-11-20",
+            "hd",
+            900,
+            "public",
+            1,
+            1,
+            1,
+            "processed",
+            "none",
+            1500000,
+            78000,
+            2300,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "id": 11,
+      "title": "Total Number of Channels",
+      "difficulty": "Easy",
+      "topics": [
+        "COUNT"
+      ],
+      "description": "Write a query to count the total number of channels in the database.",
+      "tables": [
+        "channels"
+      ],
+      "hint": "Use COUNT(*) to count all rows.",
+      "solution": "SELECT COUNT(*) AS total_channels FROM channels;",
+      "explanation": "COUNT(*) counts all rows in the table. The AS keyword creates an alias for the output column.",
+      "schema": "CREATE TABLE channels (channel_id VARCHAR PRIMARY KEY, channel_name VARCHAR, subscriber_count BIGINT, view_count BIGINT, country VARCHAR, subscriber_hidden BOOLEAN, default_language VARCHAR, published_at DATE, video_count INT);",
+      "sample_data": {
+        "channels": "INSERT INTO channels (channel_id, channel_name, subscriber_count, view_count, country, subscriber_hidden, default_language, published_at, video_count) VALUES ('C101','Alpha Tech',2500000,92000000,'US',false,'en','2015-03-12',120),('C102','Data With Mira',1800000,71000000,'IN',false,'en','2017-08-05',340),('C103','SQL Zone',950000,40000000,'UK',false,'en','2019-01-20',89),('C104','CodeCraft',3200000,150000000,'US',true,'en','2014-06-01',560),('C105','Analytics Hub',500000,18000000,'IN',false,'hi','2020-11-15',45)"
+      },
+      "expected_output": {
+        "columns": [
+          "total_channels"
+        ],
+        "rows": [
+          [
+            5
+          ]
+        ]
+      }
+    },
+    {
+      "id": 12,
+      "title": "Total Number of Videos",
+      "difficulty": "Easy",
+      "topics": [
+        "COUNT"
+      ],
+      "description": "Write a query to count the total number of videos in the database.",
+      "tables": [
+        "videos"
+      ],
+      "hint": "Use COUNT(*) to count all video rows.",
+      "solution": "SELECT COUNT(*) AS total_videos FROM videos;",
+      "explanation": "COUNT(*) counts every row, including those with null values.",
+      "schema": "CREATE TABLE videos (video_id VARCHAR PRIMARY KEY, channel_id VARCHAR REFERENCES channels(channel_id), title VARCHAR, publish_date DATE, definition VARCHAR, duration INT, privacy_status VARCHAR, embeddable BOOLEAN, made_for_kids BOOLEAN, caption BOOLEAN, upload_status VARCHAR, live_broadcast_content VARCHAR, views BIGINT, likes BIGINT, comment_count INT, comments_disabled BOOLEAN);",
+      "sample_data": {
+        "videos": "INSERT INTO videos (video_id, channel_id, title, publish_date, definition, duration, privacy_status, embeddable, made_for_kids, caption, upload_status, live_broadcast_content, views, likes, comment_count, comments_disabled) VALUES ('V201','C101','Getting Started with Python','2024-12-01','hd',1200,'public',true,false,true,'processed','none',150000,12000,340,false),('V202','C102','SQL Masterclass Part 1','2024-11-28','hd',2400,'public',true,false,true,'processed','none',89000,8900,156,false),('V203','C101','Data Science 101','2024-11-25','hd',1800,'public',true,false,false,'processed','none',230000,18500,520,false),('V204','C103','Learn Pandas in 1 Hour','2024-11-20','hd',3600,'public',true,false,true,'processed','none',67000,5400,89,false),('V205','C104','Machine Learning Basics','2024-11-18','hd',2700,'public',true,false,true,'processed','none',450000,34000,890,false)"
+      },
+      "expected_output": {
+        "columns": [
+          "total_videos"
+        ],
+        "rows": [
+          [
+            5
+          ]
+        ]
+      }
+    },
+    {
+      "id": 13,
+      "title": "Video Count by Privacy Status",
+      "difficulty": "Easy",
+      "topics": [
+        "GROUP BY"
+      ],
+      "description": "Count how many videos exist for each privacy status.",
+      "tables": [
+        "videos"
+      ],
+      "hint": "Use GROUP BY privacy_status with COUNT(*).",
+      "solution": "SELECT privacy_status, COUNT(*) AS video_count FROM videos GROUP BY privacy_status;",
+      "explanation": "GROUP BY groups rows that have the same values. COUNT(*) then counts each group.",
+      "schema": "CREATE TABLE videos (video_id VARCHAR PRIMARY KEY, channel_id VARCHAR REFERENCES channels(channel_id), title VARCHAR, publish_date DATE, definition VARCHAR, duration INT, privacy_status VARCHAR, embeddable BOOLEAN, made_for_kids BOOLEAN, caption BOOLEAN, upload_status VARCHAR, live_broadcast_content VARCHAR, views BIGINT, likes BIGINT, comment_count INT, comments_disabled BOOLEAN);",
+      "sample_data": {
+        "videos": "INSERT INTO videos (video_id, channel_id, title, publish_date, definition, duration, privacy_status, embeddable, made_for_kids, caption, upload_status, live_broadcast_content, views, likes, comment_count, comments_disabled) VALUES ('V201','C101','Getting Started with Python','2024-12-01','hd',1200,'public',true,false,true,'processed','none',150000,12000,340,false),('V202','C102','SQL Masterclass Part 1','2024-11-28','hd',2400,'private',true,false,true,'processed','none',0,0,0,true),('V203','C101','Data Science 101','2024-11-25','hd',1800,'public',true,false,false,'processed','none',230000,18500,520,false),('V204','C103','Learn Pandas in 1 Hour','2024-11-20','hd',3600,'unlisted',true,false,true,'processed','none',67000,5400,89,false),('V205','C104','Machine Learning Basics','2024-11-18','hd',2700,'public',true,false,true,'processed','none',450000,34000,890,false),('V206','C102','Advanced SQL Queries','2024-11-15','hd',1800,'public',true,false,false,'processed','upcoming',120000,10200,230,false)"
+      },
+      "expected_output": {
+        "columns": [
+          "privacy_status",
+          "video_count"
+        ],
+        "rows": [
+          [
+            "private",
+            1
+          ],
+          [
+            "public",
+            4
+          ],
+          [
+            "unlisted",
+            1
+          ]
+        ]
+      }
+    },
+    {
+      "id": 14,
+      "title": "Video Count by Definition",
+      "difficulty": "Easy",
+      "topics": [
+        "GROUP BY"
+      ],
+      "description": "Count how many videos exist for each video definition type (HD/SD).",
+      "tables": [
+        "videos"
+      ],
+      "hint": "Use GROUP BY definition with COUNT(*).",
+      "solution": "SELECT definition, COUNT(*) AS video_count FROM videos GROUP BY definition;",
+      "explanation": "Grouping by categorical columns helps understand distribution across categories.",
+      "schema": "CREATE TABLE videos (video_id VARCHAR PRIMARY KEY, channel_id VARCHAR REFERENCES channels(channel_id), title VARCHAR, publish_date DATE, definition VARCHAR, duration INT, privacy_status VARCHAR, embeddable BOOLEAN, made_for_kids BOOLEAN, caption BOOLEAN, upload_status VARCHAR, live_broadcast_content VARCHAR, views BIGINT, likes BIGINT, comment_count INT, comments_disabled BOOLEAN);",
+      "sample_data": {
+        "videos": "INSERT INTO videos (video_id, channel_id, title, publish_date, definition, duration, privacy_status, embeddable, made_for_kids, caption, upload_status, live_broadcast_content, views, likes, comment_count, comments_disabled) VALUES ('V201','C101','Getting Started with Python','2024-12-01','hd',1200,'public',true,false,true,'processed','none',150000,12000,340,false),('V202','C102','SQL Masterclass Part 1','2024-11-28','hd',2400,'public',true,false,true,'processed','none',89000,8900,156,false),('V203','C101','Data Science 101','2024-11-25','sd',1800,'public',true,false,false,'processed','none',230000,18500,520,false),('V204','C103','Learn Pandas in 1 Hour','2024-11-20','hd',3600,'public',true,false,true,'processed','none',67000,5400,89,false),('V205','C104','Machine Learning Basics','2024-11-18','hd',2700,'public',true,false,true,'processed','none',450000,34000,890,false),('V207','C105','Excel Tips & Tricks','2024-11-10','sd',900,'public',true,false,true,'processed','none',34000,2800,45,false)"
+      },
+      "expected_output": {
+        "columns": [
+          "definition",
+          "video_count"
+        ],
+        "rows": [
+          [
+            "hd",
+            4
+          ],
+          [
+            "sd",
+            2
+          ]
+        ]
+      }
+    },
+    {
+      "id": 15,
+      "title": "Channel Count by Country",
+      "difficulty": "Easy",
+      "topics": [
+        "GROUP BY"
+      ],
+      "description": "Count how many channels exist for each country.",
+      "tables": [
+        "channels"
+      ],
+      "hint": "Use GROUP BY country with COUNT(*).",
+      "solution": "SELECT country, COUNT(*) AS channel_count FROM channels GROUP BY country;",
+      "explanation": "This shows the geographic distribution of YouTube channels.",
+      "schema": "CREATE TABLE channels (channel_id VARCHAR PRIMARY KEY, channel_name VARCHAR, subscriber_count BIGINT, view_count BIGINT, country VARCHAR, subscriber_hidden BOOLEAN, default_language VARCHAR, published_at DATE, video_count INT);",
+      "sample_data": {
+        "channels": "INSERT INTO channels (channel_id, channel_name, subscriber_count, view_count, country, subscriber_hidden, default_language, published_at, video_count) VALUES ('C101','Alpha Tech',2500000,92000000,'US',false,'en','2015-03-12',120),('C102','Data With Mira',1800000,71000000,'IN',false,'en','2017-08-05',340),('C103','SQL Zone',950000,40000000,'UK',false,'en','2019-01-20',89),('C104','CodeCraft',3200000,150000000,'US',true,'en','2014-06-01',560),('C105','Analytics Hub',500000,18000000,'IN',false,'hi','2020-11-15',45),('C106','LearnTech India',1200000,45000000,'IN',false,'hi','2018-03-22',210),('C107','Coding Japan',800000,30000000,'JP',false,'ja','2016-09-10',150)"
+      },
+      "expected_output": {
+        "columns": [
+          "country",
+          "channel_count"
+        ],
+        "rows": [
+          [
+            "IN",
+            3
+          ],
+          [
+            "JP",
+            1
+          ],
+          [
+            "UK",
+            1
+          ],
+          [
+            "US",
+            2
+          ]
+        ]
+      }
+    },
+    {
+      "id": 16,
+      "title": "Average Subscriber Count",
+      "difficulty": "Easy",
+      "topics": [
+        "AVG"
+      ],
+      "description": "Calculate the average subscriber count across all channels.",
+      "tables": [
+        "channels"
+      ],
+      "hint": "Use AVG(subscriber_count).",
+      "solution": "SELECT AVG(subscriber_count) AS avg_subscribers FROM channels;",
+      "explanation": "AVG() calculates the arithmetic mean of a numeric column, ignoring null values.",
+      "schema": "CREATE TABLE channels (channel_id VARCHAR PRIMARY KEY, channel_name VARCHAR, subscriber_count BIGINT, view_count BIGINT, country VARCHAR, subscriber_hidden BOOLEAN, default_language VARCHAR, published_at DATE, video_count INT);",
+      "sample_data": {
+        "channels": "INSERT INTO channels (channel_id, channel_name, subscriber_count, view_count, country, subscriber_hidden, default_language, published_at, video_count) VALUES ('C101','Alpha Tech',2500000,92000000,'US',false,'en','2015-03-12',120),('C102','Data With Mira',1800000,71000000,'IN',false,'en','2017-08-05',340),('C103','SQL Zone',950000,40000000,'UK',false,'en','2019-01-20',89),('C104','CodeCraft',3200000,150000000,'US',true,'en','2014-06-01',560),('C105','Analytics Hub',500000,18000000,'IN',false,'hi','2020-11-15',45)"
+      },
+      "expected_output": {
+        "columns": [
+          "avg_subscribers"
+        ],
+        "rows": [
+          [
+            1790000
+          ]
+        ]
+      }
+    },
+    {
+      "id": 17,
+      "title": "Maximum and Minimum Subscribers",
+      "difficulty": "Easy",
+      "topics": [
+        "MAX, MIN"
+      ],
+      "description": "Find the channel with the most subscribers and the one with the fewest.",
+      "tables": [
+        "channels"
+      ],
+      "hint": "Use MAX() and MIN() on subscriber_count.",
+      "solution": "SELECT MAX(subscriber_count) AS max_subscribers, MIN(subscriber_count) AS min_subscribers FROM channels;",
+      "explanation": "MAX() and MIN() return the largest and smallest values in a column.",
+      "schema": "CREATE TABLE channels (channel_id VARCHAR PRIMARY KEY, channel_name VARCHAR, subscriber_count BIGINT, view_count BIGINT, country VARCHAR, subscriber_hidden BOOLEAN, default_language VARCHAR, published_at DATE, video_count INT);",
+      "sample_data": {
+        "channels": "INSERT INTO channels (channel_id, channel_name, subscriber_count, view_count, country, subscriber_hidden, default_language, published_at, video_count) VALUES ('C101','Alpha Tech',2500000,92000000,'US',false,'en','2015-03-12',120),('C102','Data With Mira',1800000,71000000,'IN',false,'en','2017-08-05',340),('C103','SQL Zone',950000,40000000,'UK',false,'en','2019-01-20',89),('C104','CodeCraft',3200000,150000000,'US',true,'en','2014-06-01',560),('C105','Analytics Hub',500000,18000000,'IN',false,'hi','2020-11-15',45)"
+      },
+      "expected_output": {
+        "columns": [
+          "max_subscribers",
+          "min_subscribers"
+        ],
+        "rows": [
+          [
+            3200000,
+            500000
+          ]
+        ]
+      }
+    },
+    {
+      "id": 18,
+      "title": "Total Channel Views",
+      "difficulty": "Easy",
+      "topics": [
+        "SUM"
+      ],
+      "description": "Calculate the total view count across all channels.",
+      "tables": [
+        "channels"
+      ],
+      "hint": "Use SUM(view_count).",
+      "solution": "SELECT SUM(view_count) AS total_views FROM channels;",
+      "explanation": "SUM() adds up all values in a numeric column.",
+      "schema": "CREATE TABLE channels (channel_id VARCHAR PRIMARY KEY, channel_name VARCHAR, subscriber_count BIGINT, view_count BIGINT, country VARCHAR, subscriber_hidden BOOLEAN, default_language VARCHAR, published_at DATE, video_count INT);",
+      "sample_data": {
+        "channels": "INSERT INTO channels (channel_id, channel_name, subscriber_count, view_count, country, subscriber_hidden, default_language, published_at, video_count) VALUES ('C101','Alpha Tech',2500000,92000000,'US',false,'en','2015-03-12',120),('C102','Data With Mira',1800000,71000000,'IN',false,'en','2017-08-05',340),('C103','SQL Zone',950000,40000000,'UK',false,'en','2019-01-20',89),('C104','CodeCraft',3200000,150000000,'US',true,'en','2014-06-01',560),('C105','Analytics Hub',500000,18000000,'IN',false,'hi','2020-11-15',45)"
+      },
+      "expected_output": {
+        "columns": [
+          "total_views"
+        ],
+        "rows": [
+          [
+            371000000
+          ]
+        ]
+      }
+    },
+    {
+      "id": 19,
+      "title": "Videos Without Comment Count",
+      "difficulty": "Easy",
+      "topics": [
+        "null"
+      ],
+      "description": "Find all videos where the comment_count is null (comments disabled).",
+      "tables": [
+        "videos"
+      ],
+      "hint": "Use WHERE comment_count IS null.",
+      "solution": "SELECT * FROM videos WHERE comment_count IS null;",
+      "explanation": "null represents missing or unknown data. Use IS null operator to check for null values, not = null.",
+      "schema": "CREATE TABLE videos (video_id VARCHAR PRIMARY KEY, channel_id VARCHAR REFERENCES channels(channel_id), title VARCHAR, publish_date DATE, definition VARCHAR, duration INT, privacy_status VARCHAR, embeddable BOOLEAN, made_for_kids BOOLEAN, caption BOOLEAN, upload_status VARCHAR, live_broadcast_content VARCHAR, views BIGINT, likes BIGINT, comment_count INT, comments_disabled BOOLEAN);",
+      "sample_data": {
+        "videos": "INSERT INTO videos (video_id, channel_id, title, publish_date, definition, duration, privacy_status, embeddable, made_for_kids, caption, upload_status, live_broadcast_content, views, likes, comment_count, comments_disabled) VALUES ('V201','C101','Getting Started with Python','2024-12-01','hd',1200,'public',true,false,true,'processed','none',150000,12000,340,false),('V202','C102','SQL Masterclass Part 1','2024-11-28','hd',2400,'public',true,false,true,'processed','none',89000,8900,null,true),('V203','C101','Data Science 101','2024-11-25','hd',1800,'public',true,false,false,'processed','none',230000,18500,520,false),('V204','C103','Learn Pandas in 1 Hour','2024-11-20','hd',3600,'public',true,false,true,'processed','none',67000,5400,null,true),('V205','C104','Machine Learning Basics','2024-11-18','hd',2700,'public',true,false,true,'processed','none',450000,34000,890,false)"
+      },
+      "expected_output": {
+        "columns": [
+          "video_id",
+          "channel_id",
+          "title",
+          "publish_date",
+          "definition",
+          "duration",
+          "privacy_status",
+          "embeddable",
+          "made_for_kids",
+          "caption",
+          "upload_status",
+          "live_broadcast_content",
+          "views",
+          "likes",
+          "comment_count",
+          "comments_disabled"
+        ],
+        "rows": [
+          [
+            "V202",
+            "C102",
+            "SQL Masterclass Part 1",
+            "2024-11-28",
+            "hd",
+            2400,
+            "public",
+            1,
+            0,
+            1,
+            "processed",
+            "none",
+            89000,
+            8900,
+            null,
+            1
+          ],
+          [
+            "V204",
+            "C103",
+            "Learn Pandas in 1 Hour",
+            "2024-11-20",
+            "hd",
+            3600,
+            "public",
+            1,
+            0,
+            1,
+            "processed",
+            "none",
+            67000,
+            5400,
+            null,
+            1
+          ]
+        ]
+      }
+    },
+    {
+      "id": 20,
+      "title": "Average Views per Video",
+      "difficulty": "Easy",
+      "topics": [
+        "AVG"
+      ],
+      "description": "Calculate the average number of views per video.",
+      "tables": [
+        "videos"
+      ],
+      "hint": "Use AVG(views).",
+      "solution": "SELECT AVG(views) AS avg_views FROM videos;",
+      "explanation": "AVG() works on any numeric column to find the central tendency.",
+      "schema": "CREATE TABLE videos (video_id VARCHAR PRIMARY KEY, channel_id VARCHAR REFERENCES channels(channel_id), title VARCHAR, publish_date DATE, definition VARCHAR, duration INT, privacy_status VARCHAR, embeddable BOOLEAN, made_for_kids BOOLEAN, caption BOOLEAN, upload_status VARCHAR, live_broadcast_content VARCHAR, views BIGINT, likes BIGINT, comment_count INT, comments_disabled BOOLEAN);",
+      "sample_data": {
+        "videos": "INSERT INTO videos (video_id, channel_id, title, publish_date, definition, duration, privacy_status, embeddable, made_for_kids, caption, upload_status, live_broadcast_content, views, likes, comment_count, comments_disabled) VALUES ('V201','C101','Getting Started with Python','2024-12-01','hd',1200,'public',true,false,true,'processed','none',150000,12000,340,false),('V202','C102','SQL Masterclass Part 1','2024-11-28','hd',2400,'public',true,false,true,'processed','none',89000,8900,156,false),('V203','C101','Data Science 101','2024-11-25','hd',1800,'public',true,false,false,'processed','none',230000,18500,520,false),('V204','C103','Learn Pandas in 1 Hour','2024-11-20','hd',3600,'public',true,false,true,'processed','none',67000,5400,89,false),('V205','C104','Machine Learning Basics','2024-11-18','hd',2700,'public',true,false,true,'processed','none',450000,34000,890,false)"
+      },
+      "expected_output": {
+        "columns": [
+          "avg_views"
+        ],
+        "rows": [
+          [
+            197200
+          ]
+        ]
+      }
+    },
+    {
+      "id": 21,
+      "title": "Top 5 Countries by Number of Channels",
+      "difficulty": "Medium",
+      "topics": [
+        "GROUP BY, ORDER BY, LIMIT"
+      ],
+      "description": "Find the top 5 countries with the most YouTube channels.",
+      "tables": [
+        "channels"
+      ],
+      "hint": "Use GROUP BY, ORDER BY COUNT(*) DESC, LIMIT 5.",
+      "solution": "SELECT country, COUNT(*) AS channel_count FROM channels GROUP BY country ORDER BY channel_count DESC LIMIT 5;",
+      "explanation": "Combining GROUP BY with ORDER BY and LIMIT finds the top N groups.",
+      "schema": "CREATE TABLE channels (channel_id VARCHAR PRIMARY KEY, channel_name VARCHAR, subscriber_count BIGINT, view_count BIGINT, country VARCHAR, subscriber_hidden BOOLEAN, default_language VARCHAR, published_at DATE, video_count INT);",
+      "sample_data": {
+        "channels": "INSERT INTO channels (channel_id, channel_name, subscriber_count, view_count, country, subscriber_hidden, default_language, published_at, video_count) VALUES ('C101','Alpha Tech',2500000,92000000,'US',false,'en','2015-03-12',120),('C102','Data With Mira',1800000,71000000,'IN',false,'en','2017-08-05',340),('C103','SQL Zone',950000,40000000,'UK',false,'en','2019-01-20',89),('C104','CodeCraft',3200000,150000000,'US',true,'en','2014-06-01',560),('C105','Analytics Hub',500000,18000000,'IN',false,'hi','2020-11-15',45),('C106','LearnTech India',1200000,45000000,'IN',false,'hi','2018-03-22',210),('C107','Coding Japan',800000,30000000,'JP',false,'ja','2016-09-10',150),('C108','Brazil Tech',600000,22000000,'BR',false,'pt','2020-01-05',80),('C109','Germany Codes',1100000,48000000,'DE',false,'de','2017-04-18',175),('C110','France AI',900000,35000000,'FR',false,'fr','2018-07-30',130),('C111','UK Tech Hub',700000,25000000,'UK',false,'en','2019-11-12',95)"
+      },
+      "expected_output": {
+        "columns": [
+          "country",
+          "channel_count"
+        ],
+        "rows": [
+          [
+            "IN",
+            3
+          ],
+          [
+            "US",
+            2
+          ],
+          [
+            "UK",
+            2
+          ],
+          [
+            "JP",
+            1
+          ],
+          [
+            "FR",
+            1
+          ]
+        ]
+      }
+    },
+    {
+      "id": 22,
+      "title": "Top 10 Channels by Subscribers",
+      "difficulty": "Medium",
+      "topics": [
+        "ORDER BY, LIMIT"
+      ],
+      "description": "List the top 10 channels with the most subscribers.",
+      "tables": [
+        "channels"
+      ],
+      "hint": "Use ORDER BY subscriber_count DESC LIMIT 10.",
+      "solution": "SELECT channel_name, subscriber_count FROM channels ORDER BY subscriber_count DESC LIMIT 10;",
+      "explanation": "Sort by subscriber_count in descending order and show only the top 10.",
+      "schema": "CREATE TABLE channels (channel_id VARCHAR PRIMARY KEY, channel_name VARCHAR, subscriber_count BIGINT, view_count BIGINT, country VARCHAR, subscriber_hidden BOOLEAN, default_language VARCHAR, published_at DATE, video_count INT);",
+      "sample_data": {
+        "channels": "INSERT INTO channels (channel_id, channel_name, subscriber_count, view_count, country, subscriber_hidden, default_language, published_at, video_count) VALUES ('C101','Alpha Tech',2500000,92000000,'US',false,'en','2015-03-12',120),('C102','Data With Mira',1800000,71000000,'IN',false,'en','2017-08-05',340),('C103','SQL Zone',950000,40000000,'UK',false,'en','2019-01-20',89),('C104','CodeCraft',3200000,150000000,'US',true,'en','2014-06-01',560),('C105','Analytics Hub',500000,18000000,'IN',false,'hi','2020-11-15',45),('C106','LearnTech India',1200000,45000000,'IN',false,'hi','2018-03-22',210),('C107','Coding Japan',800000,30000000,'JP',false,'ja','2016-09-10',150),('C108','Brazil Tech',600000,22000000,'BR',false,'pt','2020-01-05',80),('C109','Germany Codes',1100000,48000000,'DE',false,'de','2017-04-18',175),('C110','France AI',900000,35000000,'FR',false,'fr','2018-07-30',130),('C111','UK Tech Hub',700000,25000000,'UK',false,'en','2019-11-12',95),('C112','Data Science Pro',4000000,180000000,'US',false,'en','2013-02-20',890)"
+      },
+      "expected_output": {
+        "columns": [
+          "channel_name",
+          "subscriber_count"
+        ],
+        "rows": [
+          [
+            "Data Science Pro",
+            4000000
+          ],
+          [
+            "CodeCraft",
+            3200000
+          ],
+          [
+            "Alpha Tech",
+            2500000
+          ],
+          [
+            "Data With Mira",
+            1800000
+          ],
+          [
+            "LearnTech India",
+            1200000
+          ],
+          [
+            "Germany Codes",
+            1100000
+          ],
+          [
+            "SQL Zone",
+            950000
+          ],
+          [
+            "France AI",
+            900000
+          ],
+          [
+            "Coding Japan",
+            800000
+          ],
+          [
+            "UK Tech Hub",
+            700000
+          ]
+        ]
+      }
+    },
+    {
+      "id": 23,
+      "title": "Top 10 Videos by Views",
+      "difficulty": "Medium",
+      "topics": [
+        "JOIN, ORDER BY"
+      ],
+      "description": "Display the top 10 most viewed videos along with their channel names.",
+      "tables": [
+        "videos",
+        "channels"
+      ],
+      "hint": "Use JOIN to combine videos with channels, then ORDER BY views DESC LIMIT 10.",
+      "solution": "SELECT v.title, v.views, c.channel_name FROM videos v JOIN channels c ON v.channel_id = c.channel_id ORDER BY v.views DESC LIMIT 10;",
+      "explanation": "JOIN combines rows from two tables based on a related column. v and c are table aliases.",
+      "schema": "CREATE TABLE videos (video_id VARCHAR PRIMARY KEY, channel_id VARCHAR REFERENCES channels(channel_id), title VARCHAR, publish_date DATE, definition VARCHAR, duration INT, privacy_status VARCHAR, embeddable BOOLEAN, made_for_kids BOOLEAN, caption BOOLEAN, upload_status VARCHAR, live_broadcast_content VARCHAR, views BIGINT, likes BIGINT, comment_count INT, comments_disabled BOOLEAN); CREATE TABLE channels (channel_id VARCHAR PRIMARY KEY, channel_name VARCHAR, subscriber_count BIGINT, view_count BIGINT, country VARCHAR, subscriber_hidden BOOLEAN, default_language VARCHAR, published_at DATE, video_count INT);",
+      "sample_data": {
+        "videos": "INSERT INTO videos (video_id, channel_id, title, publish_date, definition, duration, privacy_status, embeddable, made_for_kids, caption, upload_status, live_broadcast_content, views, likes, comment_count, comments_disabled) VALUES ('V201','C101','Getting Started with Python','2024-12-01','hd',1200,'public',true,false,true,'processed','none',150000,12000,340,false),('V202','C102','SQL Masterclass Part 1','2024-11-28','hd',2400,'public',true,false,true,'processed','none',89000,8900,156,false),('V203','C101','Data Science 101','2024-11-25','hd',1800,'public',true,false,false,'processed','none',230000,18500,520,false),('V204','C103','Learn Pandas in 1 Hour','2024-11-20','hd',3600,'public',true,false,true,'processed','none',67000,5400,89,false),('V205','C104','Machine Learning Basics','2024-11-18','hd',2700,'public',true,false,true,'processed','none',450000,34000,890,false),('V206','C102','Advanced SQL Queries','2024-11-15','hd',1800,'public',true,false,false,'processed','upcoming',120000,10200,230,false)",
+        "channels": "INSERT INTO channels (channel_id, channel_name, subscriber_count, view_count, country, subscriber_hidden, default_language, published_at, video_count) VALUES ('C101','Alpha Tech',2500000,92000000,'US',false,'en','2015-03-12',120),('C102','Data With Mira',1800000,71000000,'IN',false,'en','2017-08-05',340),('C103','SQL Zone',950000,40000000,'UK',false,'en','2019-01-20',89),('C104','CodeCraft',3200000,150000000,'US',true,'en','2014-06-01',560)"
+      },
+      "expected_output": {
+        "columns": [
+          "title",
+          "views",
+          "channel_name"
+        ],
+        "rows": [
+          [
+            "Machine Learning Basics",
+            450000,
+            "CodeCraft"
+          ],
+          [
+            "Data Science 101",
+            230000,
+            "Alpha Tech"
+          ],
+          [
+            "Getting Started with Python",
+            150000,
+            "Alpha Tech"
+          ],
+          [
+            "Advanced SQL Queries",
+            120000,
+            "Data With Mira"
+          ],
+          [
+            "SQL Masterclass Part 1",
+            89000,
+            "Data With Mira"
+          ],
+          [
+            "Learn Pandas in 1 Hour",
+            67000,
+            "SQL Zone"
+          ]
+        ]
+      }
+    },
+    {
+      "id": 24,
+      "title": "Number of Videos per Channel",
+      "difficulty": "Medium",
+      "topics": [
+        "GROUP BY"
+      ],
+      "description": "Count how many videos each channel has uploaded.",
+      "tables": [
+        "videos",
+        "channels"
+      ],
+      "hint": "Use JOIN + GROUP BY + COUNT.",
+      "solution": "SELECT c.channel_name, COUNT(v.video_id) AS video_count FROM channels c LEFT JOIN videos v ON c.channel_id = v.channel_id GROUP BY c.channel_name;",
+      "explanation": "LEFT JOIN ensures channels with zero videos also appear in the result.",
+      "schema": "CREATE TABLE videos (video_id VARCHAR PRIMARY KEY, channel_id VARCHAR REFERENCES channels(channel_id), title VARCHAR, publish_date DATE, definition VARCHAR, duration INT, privacy_status VARCHAR, embeddable BOOLEAN, made_for_kids BOOLEAN, caption BOOLEAN, upload_status VARCHAR, live_broadcast_content VARCHAR, views BIGINT, likes BIGINT, comment_count INT, comments_disabled BOOLEAN); CREATE TABLE channels (channel_id VARCHAR PRIMARY KEY, channel_name VARCHAR, subscriber_count BIGINT, view_count BIGINT, country VARCHAR, subscriber_hidden BOOLEAN, default_language VARCHAR, published_at DATE, video_count INT);",
+      "sample_data": {
+        "videos": "INSERT INTO videos (video_id, channel_id, title, publish_date, definition, duration, privacy_status, embeddable, made_for_kids, caption, upload_status, live_broadcast_content, views, likes, comment_count, comments_disabled) VALUES ('V201','C101','Getting Started with Python','2024-12-01','hd',1200,'public',true,false,true,'processed','none',150000,12000,340,false),('V202','C102','SQL Masterclass Part 1','2024-11-28','hd',2400,'public',true,false,true,'processed','none',89000,8900,156,false),('V203','C101','Data Science 101','2024-11-25','hd',1800,'public',true,false,false,'processed','none',230000,18500,520,false),('V204','C103','Learn Pandas in 1 Hour','2024-11-20','hd',3600,'public',true,false,true,'processed','none',67000,5400,89,false),('V205','C104','Machine Learning Basics','2024-11-18','hd',2700,'public',true,false,true,'processed','none',450000,34000,890,false)",
+        "channels": "INSERT INTO channels (channel_id, channel_name, subscriber_count, view_count, country, subscriber_hidden, default_language, published_at, video_count) VALUES ('C101','Alpha Tech',2500000,92000000,'US',false,'en','2015-03-12',120),('C102','Data With Mira',1800000,71000000,'IN',false,'en','2017-08-05',340),('C103','SQL Zone',950000,40000000,'UK',false,'en','2019-01-20',89),('C104','CodeCraft',3200000,150000000,'US',true,'en','2014-06-01',560),('C105','Analytics Hub',500000,18000000,'IN',false,'hi','2020-11-15',45)"
+      },
+      "expected_output": {
+        "columns": [
+          "channel_name",
+          "video_count"
+        ],
+        "rows": [
+          [
+            "Alpha Tech",
+            2
+          ],
+          [
+            "Analytics Hub",
+            0
+          ],
+          [
+            "CodeCraft",
+            1
+          ],
+          [
+            "Data With Mira",
+            1
+          ],
+          [
+            "SQL Zone",
+            1
+          ]
+        ]
+      }
+    },
+    {
+      "id": 25,
+      "title": "Channels with More Than 1000 Videos",
+      "difficulty": "Medium",
+      "topics": [
+        "GROUP BY, HAVING"
+      ],
+      "description": "Find channels that have uploaded more than 1000 videos.",
+      "tables": [
+        "channels"
+      ],
+      "hint": "Use WHERE video_count > 1000.",
+      "solution": "SELECT channel_name, video_count FROM channels WHERE video_count > 1000;",
+      "explanation": "Filter numeric columns with comparison operators like >, <, >=, <=.",
+      "schema": "CREATE TABLE channels (channel_id VARCHAR PRIMARY KEY, channel_name VARCHAR, subscriber_count BIGINT, view_count BIGINT, country VARCHAR, subscriber_hidden BOOLEAN, default_language VARCHAR, published_at DATE, video_count INT);",
+      "sample_data": {
+        "channels": "INSERT INTO channels (channel_id, channel_name, subscriber_count, view_count, country, subscriber_hidden, default_language, published_at, video_count) VALUES ('C101','Alpha Tech',2500000,92000000,'US',false,'en','2015-03-12',120),('C102','Data With Mira',1800000,71000000,'IN',false,'en','2017-08-05',340),('C103','SQL Zone',950000,40000000,'UK',false,'en','2019-01-20',89),('C104','CodeCraft',3200000,150000000,'US',true,'en','2014-06-01',560),('C105','Analytics Hub',500000,18000000,'IN',false,'hi','2020-11-15',45),('C106','Big Uploader',1500000,80000000,'US',false,'en','2012-05-01',2500),('C107','Daily Vlogs',2000000,95000000,'US',false,'en','2016-08-15',5000),('C108','Content Factory',3000000,200000000,'US',false,'en','2011-03-10',10000)"
+      },
+      "expected_output": {
+        "columns": [
+          "channel_name",
+          "video_count"
+        ],
+        "rows": [
+          [
+            "Big Uploader",
+            2500
+          ],
+          [
+            "Daily Vlogs",
+            5000
+          ],
+          [
+            "Content Factory",
+            10000
+          ]
+        ]
+      }
+    },
+    {
+      "id": 26,
+      "title": "Count Videos by Live Broadcast Content",
+      "difficulty": "Medium",
+      "topics": [
+        "GROUP BY"
+      ],
+      "description": "Count how many videos exist for each live broadcast content type.",
+      "tables": [
+        "videos"
+      ],
+      "hint": "Use GROUP BY live_broadcast_content.",
+      "solution": "SELECT live_broadcast_content, COUNT(*) AS video_count FROM videos GROUP BY live_broadcast_content;",
+      "explanation": "Grouping by categorical columns reveals distribution across categories.",
+      "schema": "CREATE TABLE videos (video_id VARCHAR PRIMARY KEY, channel_id VARCHAR REFERENCES channels(channel_id), title VARCHAR, publish_date DATE, definition VARCHAR, duration INT, privacy_status VARCHAR, embeddable BOOLEAN, made_for_kids BOOLEAN, caption BOOLEAN, upload_status VARCHAR, live_broadcast_content VARCHAR, views BIGINT, likes BIGINT, comment_count INT, comments_disabled BOOLEAN);",
+      "sample_data": {
+        "videos": "INSERT INTO videos (video_id, channel_id, title, publish_date, definition, duration, privacy_status, embeddable, made_for_kids, caption, upload_status, live_broadcast_content, views, likes, comment_count, comments_disabled) VALUES ('V201','C101','Getting Started with Python','2024-12-01','hd',1200,'public',true,false,true,'processed','none',150000,12000,340,false),('V202','C102','SQL Masterclass Part 1','2024-11-28','hd',2400,'public',true,false,true,'processed','none',89000,8900,156,false),('V203','C101','Data Science 101','2024-11-25','hd',1800,'public',true,false,false,'processed','upcoming',230000,18500,520,false),('V204','C103','Learn Pandas in 1 Hour','2024-11-20','hd',3600,'public',true,false,true,'processed','none',67000,5400,89,false),('V205','C104','Machine Learning Basics','2024-11-18','hd',2700,'public',true,false,true,'processed','none',450000,34000,890,false),('V206','C102','Live Q&A Session','2024-12-05','hd',3600,'public',true,false,true,'processed','live',50000,4000,120,false),('V207','C105','Weekly Live Stream','2024-12-03','hd',5400,'public',true,false,true,'processed','live',35000,2800,78,false)"
+      },
+      "expected_output": {
+        "columns": [
+          "live_broadcast_content",
+          "video_count"
+        ],
+        "rows": [
+          [
+            "live",
+            2
+          ],
+          [
+            "none",
+            4
+          ],
+          [
+            "upcoming",
+            1
+          ]
+        ]
+      }
+    },
+    {
+      "id": 27,
+      "title": "Most Common Default Languages",
+      "difficulty": "Medium",
+      "topics": [
+        "GROUP BY, WHERE"
+      ],
+      "description": "Find the most common default languages used by channels.",
+      "tables": [
+        "channels"
+      ],
+      "hint": "Use GROUP BY default_language ORDER BY COUNT(*) DESC.",
+      "solution": "SELECT default_language, COUNT(*) AS language_count FROM channels GROUP BY default_language ORDER BY language_count DESC;",
+      "explanation": "Group then sort by the count to find the most common values.",
+      "schema": "CREATE TABLE channels (channel_id VARCHAR PRIMARY KEY, channel_name VARCHAR, subscriber_count BIGINT, view_count BIGINT, country VARCHAR, subscriber_hidden BOOLEAN, default_language VARCHAR, published_at DATE, video_count INT);",
+      "sample_data": {
+        "channels": "INSERT INTO channels (channel_id, channel_name, subscriber_count, view_count, country, subscriber_hidden, default_language, published_at, video_count) VALUES ('C101','Alpha Tech',2500000,92000000,'US',false,'en','2015-03-12',120),('C102','Data With Mira',1800000,71000000,'IN',false,'en','2017-08-05',340),('C103','SQL Zone',950000,40000000,'UK',false,'en','2019-01-20',89),('C104','CodeCraft',3200000,150000000,'US',true,'en','2014-06-01',560),('C105','Analytics Hub',500000,18000000,'IN',false,'hi','2020-11-15',45),('C106','LearnTech India',1200000,45000000,'IN',false,'hi','2018-03-22',210),('C107','Coding Japan',800000,30000000,'JP',false,'ja','2016-09-10',150)"
+      },
+      "expected_output": {
+        "columns": [
+          "default_language",
+          "language_count"
+        ],
+        "rows": [
+          [
+            "en",
+            4
+          ],
+          [
+            "hi",
+            2
+          ],
+          [
+            "ja",
+            1
+          ]
+        ]
+      }
+    },
+    {
+      "id": 28,
+      "title": "Channels with Very High Video Count",
+      "difficulty": "Medium",
+      "topics": [
+        "WHERE"
+      ],
+      "description": "Find channels that have more than 500 videos uploaded.",
+      "tables": [
+        "channels"
+      ],
+      "hint": "Use WHERE video_count > 500.",
+      "solution": "SELECT channel_name, video_count FROM channels WHERE video_count > 500;",
+      "explanation": "Filter numeric columns to find channels above a threshold.",
+      "schema": "CREATE TABLE channels (channel_id VARCHAR PRIMARY KEY, channel_name VARCHAR, subscriber_count BIGINT, view_count BIGINT, country VARCHAR, subscriber_hidden BOOLEAN, default_language VARCHAR, published_at DATE, video_count INT);",
+      "sample_data": {
+        "channels": "INSERT INTO channels (channel_id, channel_name, subscriber_count, view_count, country, subscriber_hidden, default_language, published_at, video_count) VALUES ('C101','Alpha Tech',2500000,92000000,'US',false,'en','2015-03-12',120),('C102','Data With Mira',1800000,71000000,'IN',false,'en','2017-08-05',340),('C103','SQL Zone',950000,40000000,'UK',false,'en','2019-01-20',89),('C104','CodeCraft',3200000,150000000,'US',true,'en','2014-06-01',560),('C105','Analytics Hub',500000,18000000,'IN',false,'hi','2020-11-15',45),('C106','Big Uploader',1500000,80000000,'US',false,'en','2012-05-01',2500),('C107','Content Factory',3000000,200000000,'US',false,'en','2011-03-10',10000)"
+      },
+      "expected_output": {
+        "columns": [
+          "channel_name",
+          "video_count"
+        ],
+        "rows": [
+          [
+            "CodeCraft",
+            560
+          ],
+          [
+            "Big Uploader",
+            2500
+          ],
+          [
+            "Content Factory",
+            10000
+          ]
+        ]
+      }
+    },
+    {
+      "id": 29,
+      "title": "Videos Published in 2024",
+      "difficulty": "Medium",
+      "topics": [
+        "Date Functions"
+      ],
+      "description": "Display all videos that were published in the year 2024.",
+      "tables": [
+        "videos"
+      ],
+      "hint": "Use WHERE strftime('%Y', publish_date) = '2024'.",
+      "solution": "SELECT * FROM videos WHERE strftime('%Y', publish_date) = '2024';",
+      "explanation": "strftime extracts parts of a date. %Y returns the 4-digit year.",
+      "schema": "CREATE TABLE videos (video_id VARCHAR PRIMARY KEY, channel_id VARCHAR REFERENCES channels(channel_id), title VARCHAR, publish_date DATE, definition VARCHAR, duration INT, privacy_status VARCHAR, embeddable BOOLEAN, made_for_kids BOOLEAN, caption BOOLEAN, upload_status VARCHAR, live_broadcast_content VARCHAR, views BIGINT, likes BIGINT, comment_count INT, comments_disabled BOOLEAN);",
+      "sample_data": {
+        "videos": "INSERT INTO videos (video_id, channel_id, title, publish_date, definition, duration, privacy_status, embeddable, made_for_kids, caption, upload_status, live_broadcast_content, views, likes, comment_count, comments_disabled) VALUES ('V201','C101','Getting Started with Python','2024-12-01','hd',1200,'public',true,false,true,'processed','none',150000,12000,340,false),('V202','C102','SQL Masterclass Part 1','2024-11-28','hd',2400,'public',true,false,true,'processed','none',89000,8900,156,false),('V203','C101','Data Science 101','2023-12-25','hd',1800,'public',true,false,false,'processed','upcoming',230000,18500,520,false),('V204','C103','Learn Pandas in 1 Hour','2023-11-20','hd',3600,'public',true,false,true,'processed','none',67000,5400,89,false),('V205','C104','Machine Learning Basics','2024-11-18','hd',2700,'public',true,false,true,'processed','none',450000,34000,890,false),('V206','C102','Advanced SQL Queries','2024-10-15','hd',1800,'public',true,false,false,'processed','upcoming',120000,10200,230,false)"
+      },
+      "expected_output": {
+        "columns": [
+          "video_id",
+          "channel_id",
+          "title",
+          "publish_date",
+          "definition",
+          "duration",
+          "privacy_status",
+          "embeddable",
+          "made_for_kids",
+          "caption",
+          "upload_status",
+          "live_broadcast_content",
+          "views",
+          "likes",
+          "comment_count",
+          "comments_disabled"
+        ],
+        "rows": [
+          [
+            "V201",
+            "C101",
+            "Getting Started with Python",
+            "2024-12-01",
+            "hd",
+            1200,
+            "public",
+            1,
+            0,
+            1,
+            "processed",
+            "none",
+            150000,
+            12000,
+            340,
+            0
+          ],
+          [
+            "V202",
+            "C102",
+            "SQL Masterclass Part 1",
+            "2024-11-28",
+            "hd",
+            2400,
+            "public",
+            1,
+            0,
+            1,
+            "processed",
+            "none",
+            89000,
+            8900,
+            156,
+            0
+          ],
+          [
+            "V205",
+            "C104",
+            "Machine Learning Basics",
+            "2024-11-18",
+            "hd",
+            2700,
+            "public",
+            1,
+            0,
+            1,
+            "processed",
+            "none",
+            450000,
+            34000,
+            890,
+            0
+          ],
+          [
+            "V206",
+            "C102",
+            "Advanced SQL Queries",
+            "2024-10-15",
+            "hd",
+            1800,
+            "public",
+            1,
+            0,
+            0,
+            "processed",
+            "upcoming",
+            120000,
+            10200,
+            230,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "id": 30,
+      "title": "Video Count by Year",
+      "difficulty": "Medium",
+      "topics": [
+        "GROUP BY, Date Functions"
+      ],
+      "description": "Count how many videos were published each year.",
+      "tables": [
+        "videos"
+      ],
+      "hint": "Use GROUP BY strftime('%Y', publish_date).",
+      "solution": "SELECT strftime('%Y', publish_date) AS year, COUNT(*) AS video_count FROM videos GROUP BY year;",
+      "explanation": "Extract year from dates, then group and count.",
+      "schema": "CREATE TABLE videos (video_id VARCHAR PRIMARY KEY, channel_id VARCHAR REFERENCES channels(channel_id), title VARCHAR, publish_date DATE, definition VARCHAR, duration INT, privacy_status VARCHAR, embeddable BOOLEAN, made_for_kids BOOLEAN, caption BOOLEAN, upload_status VARCHAR, live_broadcast_content VARCHAR, views BIGINT, likes BIGINT, comment_count INT, comments_disabled BOOLEAN);",
+      "sample_data": {
+        "videos": "INSERT INTO videos (video_id, channel_id, title, publish_date, definition, duration, privacy_status, embeddable, made_for_kids, caption, upload_status, live_broadcast_content, views, likes, comment_count, comments_disabled) VALUES ('V201','C101','Getting Started with Python','2024-12-01','hd',1200,'public',true,false,true,'processed','none',150000,12000,340,false),('V202','C102','SQL Masterclass Part 1','2024-11-28','hd',2400,'public',true,false,true,'processed','none',89000,8900,156,false),('V203','C101','Data Science 101','2023-12-25','hd',1800,'public',true,false,false,'processed','upcoming',230000,18500,520,false),('V204','C103','Learn Pandas in 1 Hour','2023-11-20','hd',3600,'public',true,false,true,'processed','none',67000,5400,89,false),('V205','C104','Machine Learning Basics','2024-11-18','hd',2700,'public',true,false,true,'processed','none',450000,34000,890,false),('V206','C102','Advanced SQL Queries','2025-01-15','hd',1800,'public',true,false,false,'processed','upcoming',120000,10200,230,false)"
+      },
+      "expected_output": {
+        "columns": [
+          "year",
+          "video_count"
+        ],
+        "rows": [
+          [
+            "2023",
+            2
+          ],
+          [
+            "2024",
+            3
+          ],
+          [
+            "2025",
+            1
+          ]
+        ]
+      }
+    },
+    {
+      "id": 31,
+      "title": "Video Title with Channel Name",
+      "difficulty": "Medium",
+      "topics": [
+        "INNER JOIN"
+      ],
+      "description": "Display each video title alongside its channel name using a JOIN.",
+      "tables": [
+        "videos",
+        "channels"
+      ],
+      "hint": "Use INNER JOIN on channel_id.",
+      "solution": "SELECT v.title, c.channel_name FROM videos v JOIN channels c ON v.channel_id = c.channel_id;",
+      "explanation": "JOIN combines rows from two tables. v and c are aliases for brevity.",
+      "schema": "CREATE TABLE videos (video_id VARCHAR PRIMARY KEY, channel_id VARCHAR REFERENCES channels(channel_id), title VARCHAR, publish_date DATE, definition VARCHAR, duration INT, privacy_status VARCHAR, embeddable BOOLEAN, made_for_kids BOOLEAN, caption BOOLEAN, upload_status VARCHAR, live_broadcast_content VARCHAR, views BIGINT, likes BIGINT, comment_count INT, comments_disabled BOOLEAN); CREATE TABLE channels (channel_id VARCHAR PRIMARY KEY, channel_name VARCHAR, subscriber_count BIGINT, view_count BIGINT, country VARCHAR, subscriber_hidden BOOLEAN, default_language VARCHAR, published_at DATE, video_count INT);",
+      "sample_data": {
+        "videos": "INSERT INTO videos (video_id, channel_id, title, publish_date, definition, duration, privacy_status, embeddable, made_for_kids, caption, upload_status, live_broadcast_content, views, likes, comment_count, comments_disabled) VALUES ('V201','C101','Getting Started with Python','2024-12-01','hd',1200,'public',true,false,true,'processed','none',150000,12000,340,false),('V202','C102','SQL Masterclass Part 1','2024-11-28','hd',2400,'public',true,false,true,'processed','none',89000,8900,156,false),('V203','C101','Data Science 101','2024-11-25','hd',1800,'public',true,false,false,'processed','none',230000,18500,520,false)",
+        "channels": "INSERT INTO channels (channel_id, channel_name, subscriber_count, view_count, country, subscriber_hidden, default_language, published_at, video_count) VALUES ('C101','Alpha Tech',2500000,92000000,'US',false,'en','2015-03-12',120),('C102','Data With Mira',1800000,71000000,'IN',false,'en','2017-08-05',340)"
+      },
+      "expected_output": {
+        "columns": [
+          "title",
+          "channel_name"
+        ],
+        "rows": [
+          [
+            "Getting Started with Python",
+            "Alpha Tech"
+          ],
+          [
+            "SQL Masterclass Part 1",
+            "Data With Mira"
+          ],
+          [
+            "Data Science 101",
+            "Alpha Tech"
+          ]
+        ]
+      }
+    },
+    {
+      "id": 32,
+      "title": "Top 10 Channels by Total Video Views",
+      "difficulty": "Medium",
+      "topics": [
+        "Multi-table JOIN, GROUP BY"
+      ],
+      "description": "Find the top 10 channels by total views across all their videos.",
+      "tables": [
+        "videos",
+        "channels"
+      ],
+      "hint": "Use JOIN + GROUP BY + SUM(v.views) + ORDER BY DESC + LIMIT 10.",
+      "solution": "SELECT c.channel_name, SUM(v.views) AS total_views FROM videos v JOIN channels c ON v.channel_id = c.channel_id GROUP BY c.channel_name ORDER BY total_views DESC LIMIT 10;",
+      "explanation": "Multi-table JOINs allow aggregating related data across tables.",
+      "schema": "CREATE TABLE videos (video_id VARCHAR PRIMARY KEY, channel_id VARCHAR REFERENCES channels(channel_id), title VARCHAR, publish_date DATE, definition VARCHAR, duration INT, privacy_status VARCHAR, embeddable BOOLEAN, made_for_kids BOOLEAN, caption BOOLEAN, upload_status VARCHAR, live_broadcast_content VARCHAR, views BIGINT, likes BIGINT, comment_count INT, comments_disabled BOOLEAN); CREATE TABLE channels (channel_id VARCHAR PRIMARY KEY, channel_name VARCHAR, subscriber_count BIGINT, view_count BIGINT, country VARCHAR, subscriber_hidden BOOLEAN, default_language VARCHAR, published_at DATE, video_count INT);",
+      "sample_data": {
+        "videos": "INSERT INTO videos (video_id, channel_id, title, publish_date, definition, duration, privacy_status, embeddable, made_for_kids, caption, upload_status, live_broadcast_content, views, likes, comment_count, comments_disabled) VALUES ('V201','C101','Getting Started with Python','2024-12-01','hd',1200,'public',true,false,true,'processed','none',150000,12000,340,false),('V202','C102','SQL Masterclass Part 1','2024-11-28','hd',2400,'public',true,false,true,'processed','none',89000,8900,156,false),('V203','C101','Data Science 101','2024-11-25','hd',1800,'public',true,false,false,'processed','none',230000,18500,520,false),('V204','C103','Learn Pandas in 1 Hour','2024-11-20','hd',3600,'public',true,false,true,'processed','none',67000,5400,89,false),('V205','C104','Machine Learning Basics','2024-11-18','hd',2700,'public',true,false,true,'processed','none',450000,34000,890,false),('V206','C102','Advanced SQL Queries','2024-10-15','hd',1800,'public',true,false,true,'processed','none',120000,10200,230,false)",
+        "channels": "INSERT INTO channels (channel_id, channel_name, subscriber_count, view_count, country, subscriber_hidden, default_language, published_at, video_count) VALUES ('C101','Alpha Tech',2500000,92000000,'US',false,'en','2015-03-12',120),('C102','Data With Mira',1800000,71000000,'IN',false,'en','2017-08-05',340),('C103','SQL Zone',950000,40000000,'UK',false,'en','2019-01-20',89),('C104','CodeCraft',3200000,150000000,'US',true,'en','2014-06-01',560)"
+      },
+      "expected_output": {
+        "columns": [
+          "channel_name",
+          "total_views"
+        ],
+        "rows": [
+          [
+            "CodeCraft",
+            450000
+          ],
+          [
+            "Alpha Tech",
+            380000
+          ],
+          [
+            "Data With Mira",
+            209000
+          ],
+          [
+            "SQL Zone",
+            67000
+          ]
+        ]
+      }
+    },
+    {
+      "id": 33,
+      "title": "Compare Channel Views vs Summed Video Views",
+      "difficulty": "Medium",
+      "topics": [
+        "JOIN, Aggregation"
+      ],
+      "description": "Compare the view_count from channels table with the sum of views from videos table.",
+      "tables": [
+        "videos",
+        "channels"
+      ],
+      "hint": "Use JOIN + GROUP BY + SUM, compare with channel view_count.",
+      "solution": "SELECT c.channel_name, c.view_count AS channel_views, SUM(v.views) AS summed_video_views FROM channels c JOIN videos v ON c.channel_id = v.channel_id GROUP BY c.channel_name;",
+      "explanation": "This comparison can reveal discrepancies between aggregated and stored values.",
+      "schema": "CREATE TABLE videos (video_id VARCHAR PRIMARY KEY, channel_id VARCHAR REFERENCES channels(channel_id), title VARCHAR, publish_date DATE, definition VARCHAR, duration INT, privacy_status VARCHAR, embeddable BOOLEAN, made_for_kids BOOLEAN, caption BOOLEAN, upload_status VARCHAR, live_broadcast_content VARCHAR, views BIGINT, likes BIGINT, comment_count INT, comments_disabled BOOLEAN); CREATE TABLE channels (channel_id VARCHAR PRIMARY KEY, channel_name VARCHAR, subscriber_count BIGINT, view_count BIGINT, country VARCHAR, subscriber_hidden BOOLEAN, default_language VARCHAR, published_at DATE, video_count INT);",
+      "sample_data": {
+        "videos": "INSERT INTO videos (video_id, channel_id, title, publish_date, definition, duration, privacy_status, embeddable, made_for_kids, caption, upload_status, live_broadcast_content, views, likes, comment_count, comments_disabled) VALUES ('V201','C101','Getting Started with Python','2024-12-01','hd',1200,'public',true,false,true,'processed','none',150000,12000,340,false),('V203','C101','Data Science 101','2024-11-25','hd',1800,'public',true,false,false,'processed','none',230000,18500,520,false),('V202','C102','SQL Masterclass Part 1','2024-11-28','hd',2400,'public',true,false,true,'processed','none',89000,8900,156,false)",
+        "channels": "INSERT INTO channels (channel_id, channel_name, subscriber_count, view_count, country, subscriber_hidden, default_language, published_at, video_count) VALUES ('C101','Alpha Tech',2500000,92000000,'US',false,'en','2015-03-12',120),('C102','Data With Mira',1800000,71000000,'IN',false,'en','2017-08-05',340)"
+      },
+      "expected_output": {
+        "columns": [
+          "channel_name",
+          "channel_views",
+          "summed_video_views"
+        ],
+        "rows": [
+          [
+            "Alpha Tech",
+            92000000,
+            380000
+          ],
+          [
+            "Data With Mira",
+            71000000,
+            89000
+          ]
+        ]
+      }
+    },
+    {
+      "id": 34,
+      "title": "Mismatch Between Channel Video Count and Dataset Video Count",
+      "difficulty": "Medium",
+      "topics": [
+        "LEFT JOIN, HAVING"
+      ],
+      "description": "Find channels where the actual video count differs from the stored video_count.",
+      "tables": [
+        "videos",
+        "channels"
+      ],
+      "hint": "Use LEFT JOIN + GROUP BY + HAVING to find mismatches.",
+      "solution": "SELECT c.channel_name, c.video_count AS stored_count, COUNT(v.video_id) AS actual_count FROM channels c LEFT JOIN videos v ON c.channel_id = v.channel_id GROUP BY c.channel_name HAVING stored_count != actual_count;",
+      "explanation": "LEFT JOIN ensures all channels appear. HAVING filters groups after aggregation.",
+      "schema": "CREATE TABLE videos (video_id VARCHAR PRIMARY KEY, channel_id VARCHAR REFERENCES channels(channel_id), title VARCHAR, publish_date DATE, definition VARCHAR, duration INT, privacy_status VARCHAR, embeddable BOOLEAN, made_for_kids BOOLEAN, caption BOOLEAN, upload_status VARCHAR, live_broadcast_content VARCHAR, views BIGINT, likes BIGINT, comment_count INT, comments_disabled BOOLEAN); CREATE TABLE channels (channel_id VARCHAR PRIMARY KEY, channel_name VARCHAR, subscriber_count BIGINT, view_count BIGINT, country VARCHAR, subscriber_hidden BOOLEAN, default_language VARCHAR, published_at DATE, video_count INT);",
+      "sample_data": {
+        "videos": "INSERT INTO videos (video_id, channel_id, title, publish_date, definition, duration, privacy_status, embeddable, made_for_kids, caption, upload_status, live_broadcast_content, views, likes, comment_count, comments_disabled) VALUES ('V201','C101','Getting Started with Python','2024-12-01','hd',1200,'public',true,false,true,'processed','none',150000,12000,340,false),('V203','C101','Data Science 101','2024-11-25','hd',1800,'public',true,false,false,'processed','none',230000,18500,520,false),('V202','C102','SQL Masterclass Part 1','2024-11-28','hd',2400,'public',true,false,true,'processed','none',89000,8900,156,false)",
+        "channels": "INSERT INTO channels (channel_id, channel_name, subscriber_count, view_count, country, subscriber_hidden, default_language, published_at, video_count) VALUES ('C101','Alpha Tech',2500000,92000000,'US',false,'en','2015-03-12',120),('C102','Data With Mira',1800000,71000000,'IN',false,'en','2017-08-05',340),('C103','SQL Zone',950000,40000000,'UK',false,'en','2019-01-20',89)"
+      },
+      "expected_output": {
+        "columns": [
+          "channel_name",
+          "stored_count",
+          "actual_count"
+        ],
+        "rows": [
+          [
+            "Alpha Tech",
+            120,
+            2
+          ],
+          [
+            "Data With Mira",
+            340,
+            1
+          ],
+          [
+            "SQL Zone",
+            89,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "id": 35,
+      "title": "Average Views per Video by Channel",
+      "difficulty": "Medium",
+      "topics": [
+        "JOIN, AVG"
+      ],
+      "description": "Calculate the average views per video for each channel.",
+      "tables": [
+        "videos",
+        "channels"
+      ],
+      "hint": "Use JOIN + GROUP BY + AVG.",
+      "solution": "SELECT c.channel_name, AVG(v.views) AS avg_views FROM videos v JOIN channels c ON v.channel_id = c.channel_id GROUP BY c.channel_name;",
+      "explanation": "AVG within groups shows performance differences between channels.",
+      "schema": "CREATE TABLE videos (video_id VARCHAR PRIMARY KEY, channel_id VARCHAR REFERENCES channels(channel_id), title VARCHAR, publish_date DATE, definition VARCHAR, duration INT, privacy_status VARCHAR, embeddable BOOLEAN, made_for_kids BOOLEAN, caption BOOLEAN, upload_status VARCHAR, live_broadcast_content VARCHAR, views BIGINT, likes BIGINT, comment_count INT, comments_disabled BOOLEAN); CREATE TABLE channels (channel_id VARCHAR PRIMARY KEY, channel_name VARCHAR, subscriber_count BIGINT, view_count BIGINT, country VARCHAR, subscriber_hidden BOOLEAN, default_language VARCHAR, published_at DATE, video_count INT);",
+      "sample_data": {
+        "videos": "INSERT INTO videos (video_id, channel_id, title, publish_date, definition, duration, privacy_status, embeddable, made_for_kids, caption, upload_status, live_broadcast_content, views, likes, comment_count, comments_disabled) VALUES ('V201','C101','Getting Started with Python','2024-12-01','hd',1200,'public',true,false,true,'processed','none',150000,12000,340,false),('V203','C101','Data Science 101','2024-11-25','hd',1800,'public',true,false,false,'processed','none',230000,18500,520,false),('V202','C102','SQL Masterclass Part 1','2024-11-28','hd',2400,'public',true,false,true,'processed','none',89000,8900,156,false)",
+        "channels": "INSERT INTO channels (channel_id, channel_name, subscriber_count, view_count, country, subscriber_hidden, default_language, published_at, video_count) VALUES ('C101','Alpha Tech',2500000,92000000,'US',false,'en','2015-03-12',120),('C102','Data With Mira',1800000,71000000,'IN',false,'en','2017-08-05',340)"
+      },
+      "expected_output": {
+        "columns": [
+          "channel_name",
+          "avg_views"
+        ],
+        "rows": [
+          [
+            "Alpha Tech",
+            190000
+          ],
+          [
+            "Data With Mira",
+            89000
+          ]
+        ]
+      }
+    },
+    {
+      "id": 36,
+      "title": "Total Likes by Channel",
+      "difficulty": "Medium",
+      "topics": [
+        "JOIN, SUM"
+      ],
+      "description": "Calculate the total number of likes received by each channel across all videos.",
+      "tables": [
+        "videos",
+        "channels"
+      ],
+      "hint": "Use JOIN + GROUP BY + SUM(likes).",
+      "solution": "SELECT c.channel_name, SUM(v.likes) AS total_likes FROM videos v JOIN channels c ON v.channel_id = c.channel_id GROUP BY c.channel_name;",
+      "explanation": "SUM adds up all like counts per channel.",
+      "schema": "CREATE TABLE videos (video_id VARCHAR PRIMARY KEY, channel_id VARCHAR REFERENCES channels(channel_id), title VARCHAR, publish_date DATE, definition VARCHAR, duration INT, privacy_status VARCHAR, embeddable BOOLEAN, made_for_kids BOOLEAN, caption BOOLEAN, upload_status VARCHAR, live_broadcast_content VARCHAR, views BIGINT, likes BIGINT, comment_count INT, comments_disabled BOOLEAN); CREATE TABLE channels (channel_id VARCHAR PRIMARY KEY, channel_name VARCHAR, subscriber_count BIGINT, view_count BIGINT, country VARCHAR, subscriber_hidden BOOLEAN, default_language VARCHAR, published_at DATE, video_count INT);",
+      "sample_data": {
+        "videos": "INSERT INTO videos (video_id, channel_id, title, publish_date, definition, duration, privacy_status, embeddable, made_for_kids, caption, upload_status, live_broadcast_content, views, likes, comment_count, comments_disabled) VALUES ('V201','C101','Getting Started with Python','2024-12-01','hd',1200,'public',true,false,true,'processed','none',150000,12000,340,false),('V203','C101','Data Science 101','2024-11-25','hd',1800,'public',true,false,false,'processed','none',230000,18500,520,false),('V202','C102','SQL Masterclass Part 1','2024-11-28','hd',2400,'public',true,false,true,'processed','none',89000,8900,156,false),('V206','C102','Advanced SQL Queries','2024-10-15','hd',1800,'public',true,false,true,'processed','none',120000,10200,230,false)",
+        "channels": "INSERT INTO channels (channel_id, channel_name, subscriber_count, view_count, country, subscriber_hidden, default_language, published_at, video_count) VALUES ('C101','Alpha Tech',2500000,92000000,'US',false,'en','2015-03-12',120),('C102','Data With Mira',1800000,71000000,'IN',false,'en','2017-08-05',340)"
+      },
+      "expected_output": {
+        "columns": [
+          "channel_name",
+          "total_likes"
+        ],
+        "rows": [
+          [
+            "Alpha Tech",
+            30500
+          ],
+          [
+            "Data With Mira",
+            19100
+          ]
+        ]
+      }
+    },
+    {
+      "id": 37,
+      "title": "Videos Belonging to Indian Channels",
+      "difficulty": "Medium",
+      "topics": [
+        "JOIN, WHERE"
+      ],
+      "description": "Display all videos uploaded by channels based in India.",
+      "tables": [
+        "videos",
+        "channels"
+      ],
+      "hint": "Use JOIN + WHERE country = 'IN'.",
+      "solution": "SELECT v.title, c.channel_name FROM videos v JOIN channels c ON v.channel_id = c.channel_id WHERE c.country = 'IN';",
+      "explanation": "Filter after joining to narrow results to specific countries.",
+      "schema": "CREATE TABLE videos (video_id VARCHAR PRIMARY KEY, channel_id VARCHAR REFERENCES channels(channel_id), title VARCHAR, publish_date DATE, definition VARCHAR, duration INT, privacy_status VARCHAR, embeddable BOOLEAN, made_for_kids BOOLEAN, caption BOOLEAN, upload_status VARCHAR, live_broadcast_content VARCHAR, views BIGINT, likes BIGINT, comment_count INT, comments_disabled BOOLEAN); CREATE TABLE channels (channel_id VARCHAR PRIMARY KEY, channel_name VARCHAR, subscriber_count BIGINT, view_count BIGINT, country VARCHAR, subscriber_hidden BOOLEAN, default_language VARCHAR, published_at DATE, video_count INT);",
+      "sample_data": {
+        "videos": "INSERT INTO videos (video_id, channel_id, title, publish_date, definition, duration, privacy_status, embeddable, made_for_kids, caption, upload_status, live_broadcast_content, views, likes, comment_count, comments_disabled) VALUES ('V201','C101','Getting Started with Python','2024-12-01','hd',1200,'public',true,false,true,'processed','none',150000,12000,340,false),('V202','C102','SQL Masterclass Part 1','2024-11-28','hd',2400,'public',true,false,true,'processed','none',89000,8900,156,false),('V203','C103','Learn Pandas in 1 Hour','2024-11-20','hd',3600,'public',true,false,true,'processed','none',67000,5400,89,false)",
+        "channels": "INSERT INTO channels (channel_id, channel_name, subscriber_count, view_count, country, subscriber_hidden, default_language, published_at, video_count) VALUES ('C101','Alpha Tech',2500000,92000000,'US',false,'en','2015-03-12',120),('C102','Data With Mira',1800000,71000000,'IN',false,'en','2017-08-05',340),('C103','SQL Zone',950000,40000000,'UK',false,'en','2019-01-20',89)"
+      },
+      "expected_output": {
+        "columns": [
+          "title",
+          "channel_name"
+        ],
+        "rows": [
+          [
+            "SQL Masterclass Part 1",
+            "Data With Mira"
+          ]
+        ]
+      }
+    },
+    {
+      "id": 38,
+      "title": "Top 5 Channels by Total Comments",
+      "difficulty": "Medium",
+      "topics": [
+        "JOIN, SUM, LIMIT"
+      ],
+      "description": "Find the top 5 channels with the highest total comment count across all videos.",
+      "tables": [
+        "videos",
+        "channels"
+      ],
+      "hint": "Use JOIN + GROUP BY + SUM(comment_count) + ORDER BY DESC + LIMIT 5.",
+      "solution": "SELECT c.channel_name, SUM(v.comment_count) AS total_comments FROM videos v JOIN channels c ON v.channel_id = c.channel_id GROUP BY c.channel_name ORDER BY total_comments DESC LIMIT 5;",
+      "explanation": "Aggregate across joined tables to find top performers.",
+      "schema": "CREATE TABLE videos (video_id VARCHAR PRIMARY KEY, channel_id VARCHAR REFERENCES channels(channel_id), title VARCHAR, publish_date DATE, definition VARCHAR, duration INT, privacy_status VARCHAR, embeddable BOOLEAN, made_for_kids BOOLEAN, caption BOOLEAN, upload_status VARCHAR, live_broadcast_content VARCHAR, views BIGINT, likes BIGINT, comment_count INT, comments_disabled BOOLEAN); CREATE TABLE channels (channel_id VARCHAR PRIMARY KEY, channel_name VARCHAR, subscriber_count BIGINT, view_count BIGINT, country VARCHAR, subscriber_hidden BOOLEAN, default_language VARCHAR, published_at DATE, video_count INT);",
+      "sample_data": {
+        "videos": "INSERT INTO videos (video_id, channel_id, title, publish_date, definition, duration, privacy_status, embeddable, made_for_kids, caption, upload_status, live_broadcast_content, views, likes, comment_count, comments_disabled) VALUES ('V201','C101','Getting Started with Python','2024-12-01','hd',1200,'public',true,false,true,'processed','none',150000,12000,340,false),('V203','C101','Data Science 101','2024-11-25','hd',1800,'public',true,false,false,'processed','none',230000,18500,520,false),('V202','C102','SQL Masterclass Part 1','2024-11-28','hd',2400,'public',true,false,true,'processed','none',89000,8900,156,false),('V206','C102','Advanced SQL Queries','2024-10-15','hd',1800,'public',true,false,true,'processed','none',120000,10200,230,false),('V204','C104','Machine Learning Basics','2024-11-18','hd',2700,'public',true,false,true,'processed','none',450000,34000,890,false),('V205','C103','Learn Pandas in 1 Hour','2024-11-20','hd',3600,'public',true,false,true,'processed','none',67000,5400,89,false)",
+        "channels": "INSERT INTO channels (channel_id, channel_name, subscriber_count, view_count, country, subscriber_hidden, default_language, published_at, video_count) VALUES ('C101','Alpha Tech',2500000,92000000,'US',false,'en','2015-03-12',120),('C102','Data With Mira',1800000,71000000,'IN',false,'en','2017-08-05',340),('C103','SQL Zone',950000,40000000,'UK',false,'en','2019-01-20',89),('C104','CodeCraft',3200000,150000000,'US',true,'en','2014-06-01',560)"
+      },
+      "expected_output": {
+        "columns": [
+          "channel_name",
+          "total_comments"
+        ],
+        "rows": [
+          [
+            "CodeCraft",
+            890
+          ],
+          [
+            "Alpha Tech",
+            860
+          ],
+          [
+            "Data With Mira",
+            386
+          ],
+          [
+            "SQL Zone",
+            89
+          ]
+        ]
+      }
+    },
+    {
+      "id": 39,
+      "title": "Videos from Channels with More Than 1 Million Subscribers",
+      "difficulty": "Medium",
+      "topics": [
+        "JOIN, WHERE"
+      ],
+      "description": "Display all videos from channels that have over 1 million subscribers.",
+      "tables": [
+        "videos",
+        "channels"
+      ],
+      "hint": "Use JOIN + WHERE subscriber_count > 1000000.",
+      "solution": "SELECT v.title, c.channel_name, c.subscriber_count FROM videos v JOIN channels c ON v.channel_id = c.channel_id WHERE c.subscriber_count > 1000000;",
+      "explanation": "Filter on joined table columns to narrow results by channel attributes.",
+      "schema": "CREATE TABLE videos (video_id VARCHAR PRIMARY KEY, channel_id VARCHAR REFERENCES channels(channel_id), title VARCHAR, publish_date DATE, definition VARCHAR, duration INT, privacy_status VARCHAR, embeddable BOOLEAN, made_for_kids BOOLEAN, caption BOOLEAN, upload_status VARCHAR, live_broadcast_content VARCHAR, views BIGINT, likes BIGINT, comment_count INT, comments_disabled BOOLEAN); CREATE TABLE channels (channel_id VARCHAR PRIMARY KEY, channel_name VARCHAR, subscriber_count BIGINT, view_count BIGINT, country VARCHAR, subscriber_hidden BOOLEAN, default_language VARCHAR, published_at DATE, video_count INT);",
+      "sample_data": {
+        "videos": "INSERT INTO videos (video_id, channel_id, title, publish_date, definition, duration, privacy_status, embeddable, made_for_kids, caption, upload_status, live_broadcast_content, views, likes, comment_count, comments_disabled) VALUES ('V201','C101','Getting Started with Python','2024-12-01','hd',1200,'public',true,false,true,'processed','none',150000,12000,340,false),('V202','C102','SQL Masterclass Part 1','2024-11-28','hd',2400,'public',true,false,true,'processed','none',89000,8900,156,false),('V203','C103','Learn Pandas in 1 Hour','2024-11-20','hd',3600,'public',true,false,true,'processed','none',67000,5400,89,false)",
+        "channels": "INSERT INTO channels (channel_id, channel_name, subscriber_count, view_count, country, subscriber_hidden, default_language, published_at, video_count) VALUES ('C101','Alpha Tech',2500000,92000000,'US',false,'en','2015-03-12',120),('C102','Data With Mira',1800000,71000000,'IN',false,'en','2017-08-05',340),('C103','SQL Zone',950000,40000000,'UK',false,'en','2019-01-20',89)"
+      },
+      "expected_output": {
+        "columns": [
+          "title",
+          "channel_name",
+          "subscriber_count"
+        ],
+        "rows": [
+          [
+            "Getting Started with Python",
+            "Alpha Tech",
+            2500000
+          ],
+          [
+            "SQL Masterclass Part 1",
+            "Data With Mira",
+            1800000
+          ]
+        ]
+      }
+    },
+    {
+      "id": 40,
+      "title": "Channels with No Videos in the Dataset",
+      "difficulty": "Medium",
+      "topics": [
+        "LEFT JOIN"
+      ],
+      "description": "Find channels that have no videos recorded in the videos table.",
+      "tables": [
+        "videos",
+        "channels"
+      ],
+      "hint": "Use LEFT JOIN + WHERE v.video_id IS NULL.",
+      "solution": "SELECT c.channel_name FROM channels c LEFT JOIN videos v ON c.channel_id = v.channel_id WHERE v.video_id IS NULL;",
+      "explanation": "LEFT JOIN keeps all left-side rows. Filtering for NULL finds non-matching rows.",
+      "schema": "CREATE TABLE videos (video_id VARCHAR PRIMARY KEY, channel_id VARCHAR REFERENCES channels(channel_id), title VARCHAR, publish_date DATE, definition VARCHAR, duration INT, privacy_status VARCHAR, embeddable BOOLEAN, made_for_kids BOOLEAN, caption BOOLEAN, upload_status VARCHAR, live_broadcast_content VARCHAR, views BIGINT, likes BIGINT, comment_count INT, comments_disabled BOOLEAN); CREATE TABLE channels (channel_id VARCHAR PRIMARY KEY, channel_name VARCHAR, subscriber_count BIGINT, view_count BIGINT, country VARCHAR, subscriber_hidden BOOLEAN, default_language VARCHAR, published_at DATE, video_count INT);",
+      "sample_data": {
+        "videos": "INSERT INTO videos (video_id, channel_id, title, publish_date, definition, duration, privacy_status, embeddable, made_for_kids, caption, upload_status, live_broadcast_content, views, likes, comment_count, comments_disabled) VALUES ('V201','C101','Getting Started with Python','2024-12-01','hd',1200,'public',true,false,true,'processed','none',150000,12000,340,false),('V202','C102','SQL Masterclass Part 1','2024-11-28','hd',2400,'public',true,false,true,'processed','none',89000,8900,156,false)",
+        "channels": "INSERT INTO channels (channel_id, channel_name, subscriber_count, view_count, country, subscriber_hidden, default_language, published_at, video_count) VALUES ('C101','Alpha Tech',2500000,92000000,'US',false,'en','2015-03-12',120),('C102','Data With Mira',1800000,71000000,'IN',false,'en','2017-08-05',340),('C103','SQL Zone',950000,40000000,'UK',false,'en','2019-01-20',89)"
+      },
+      "expected_output": {
+        "columns": [
+          "channel_name"
+        ],
+        "rows": [
+          [
+            "SQL Zone"
+          ]
+        ]
+      }
+    },
+    {
+      "id": 41,
+      "title": "Categorize Channels by Subscriber Size",
+      "difficulty": "Hard",
+      "topics": [
+        "CASE WHEN"
+      ],
+      "description": "Use CASE WHEN to categorize channels as Small (<1M), Medium (1-2M), or Large (>2M).",
+      "tables": [
+        "channels"
+      ],
+      "hint": "Use CASE WHEN with subscriber_count ranges.",
+      "solution": "SELECT channel_name, subscriber_count, CASE WHEN subscriber_count < 1000000 THEN 'Small' WHEN subscriber_count <= 2000000 THEN 'Medium' ELSE 'Large' END AS size_category FROM channels;",
+      "explanation": "CASE WHEN creates conditional columns. First matching condition wins.",
+      "schema": "CREATE TABLE channels (channel_id VARCHAR PRIMARY KEY, channel_name VARCHAR, subscriber_count BIGINT, view_count BIGINT, country VARCHAR, subscriber_hidden BOOLEAN, default_language VARCHAR, published_at DATE, video_count INT);",
+      "sample_data": {
+        "channels": "INSERT INTO channels (channel_id, channel_name, subscriber_count, view_count, country, subscriber_hidden, default_language, published_at, video_count) VALUES ('C101','Alpha Tech',2500000,92000000,'US',false,'en','2015-03-12',120),('C102','Data With Mira',1800000,71000000,'IN',false,'en','2017-08-05',340),('C103','SQL Zone',950000,40000000,'UK',false,'en','2019-01-20',89),('C104','CodeCraft',3200000,150000000,'US',true,'en','2014-06-01',560),('C105','Analytics Hub',500000,18000000,'IN',false,'hi','2020-11-15',45)"
+      },
+      "expected_output": {
+        "columns": [
+          "channel_name",
+          "subscriber_count",
+          "size_category"
+        ],
+        "rows": [
+          [
+            "Alpha Tech",
+            2500000,
+            "Large"
+          ],
+          [
+            "Data With Mira",
+            1800000,
+            "Medium"
+          ],
+          [
+            "SQL Zone",
+            950000,
+            "Small"
+          ],
+          [
+            "CodeCraft",
+            3200000,
+            "Large"
+          ],
+          [
+            "Analytics Hub",
+            500000,
+            "Small"
+          ]
+        ]
+      }
+    },
+    {
+      "id": 42,
+      "title": "Videos with Above-Average Views",
+      "difficulty": "Hard",
+      "topics": [
+        "Subquery"
+      ],
+      "description": "Find all videos that have more views than the average across all videos.",
+      "tables": [
+        "videos"
+      ],
+      "hint": "Use a subquery with AVG in WHERE clause.",
+      "solution": "SELECT video_id, title, views FROM videos WHERE views > (SELECT AVG(views) FROM videos);",
+      "explanation": "A subquery in WHERE runs first and returns a value used in the main query.",
+      "schema": "CREATE TABLE videos (video_id VARCHAR PRIMARY KEY, channel_id VARCHAR REFERENCES channels(channel_id), title VARCHAR, publish_date DATE, definition VARCHAR, duration INT, privacy_status VARCHAR, embeddable BOOLEAN, made_for_kids BOOLEAN, caption BOOLEAN, upload_status VARCHAR, live_broadcast_content VARCHAR, views BIGINT, likes BIGINT, comment_count INT, comments_disabled BOOLEAN);",
+      "sample_data": {
+        "videos": "INSERT INTO videos (video_id, channel_id, title, publish_date, definition, duration, privacy_status, embeddable, made_for_kids, caption, upload_status, live_broadcast_content, views, likes, comment_count, comments_disabled) VALUES ('V201','C101','Getting Started with Python','2024-12-01','hd',1200,'public',true,false,true,'processed','none',150000,12000,340,false),('V202','C102','SQL Masterclass Part 1','2024-11-28','hd',2400,'public',true,false,true,'processed','none',89000,8900,156,false),('V203','C101','Data Science 101','2024-11-25','hd',1800,'public',true,false,false,'processed','none',230000,18500,520,false),('V204','C103','Learn Pandas in 1 Hour','2024-11-20','hd',3600,'public',true,false,true,'processed','none',67000,5400,89,false),('V205','C104','Machine Learning Basics','2024-11-18','hd',2700,'public',true,false,true,'processed','none',450000,34000,890,false)"
+      },
+      "expected_output": {
+        "columns": [
+          "video_id",
+          "title",
+          "views"
+        ],
+        "rows": [
+          [
+            "V203",
+            "Data Science 101",
+            230000
+          ],
+          [
+            "V205",
+            "Machine Learning Basics",
+            450000
+          ]
+        ]
+      }
+    },
+    {
+      "id": 43,
+      "title": "Channels with Above-Average Channel Video Views",
+      "difficulty": "Hard",
+      "topics": [
+        "GROUP BY, HAVING, Subquery"
+      ],
+      "description": "Find channels whose total video views exceed the average across all channels.",
+      "tables": [
+        "videos",
+        "channels"
+      ],
+      "hint": "Use GROUP BY + HAVING with subquery.",
+      "solution": "SELECT c.channel_name, SUM(v.views) AS total_views FROM videos v JOIN channels c ON v.channel_id = c.channel_id GROUP BY c.channel_name HAVING total_views > (SELECT AVG(total) FROM (SELECT SUM(views) AS total FROM videos GROUP BY channel_id));",
+      "explanation": "HAVING filters groups using aggregated values, including results from subqueries.",
+      "schema": "CREATE TABLE videos (video_id VARCHAR PRIMARY KEY, channel_id VARCHAR REFERENCES channels(channel_id), title VARCHAR, publish_date DATE, definition VARCHAR, duration INT, privacy_status VARCHAR, embeddable BOOLEAN, made_for_kids BOOLEAN, caption BOOLEAN, upload_status VARCHAR, live_broadcast_content VARCHAR, views BIGINT, likes BIGINT, comment_count INT, comments_disabled BOOLEAN); CREATE TABLE channels (channel_id VARCHAR PRIMARY KEY, channel_name VARCHAR, subscriber_count BIGINT, view_count BIGINT, country VARCHAR, subscriber_hidden BOOLEAN, default_language VARCHAR, published_at DATE, video_count INT);",
+      "sample_data": {
+        "videos": "INSERT INTO videos (video_id, channel_id, title, publish_date, definition, duration, privacy_status, embeddable, made_for_kids, caption, upload_status, live_broadcast_content, views, likes, comment_count, comments_disabled) VALUES ('V201','C101','Getting Started with Python','2024-12-01','hd',1200,'public',true,false,true,'processed','none',150000,12000,340,false),('V203','C101','Data Science 101','2024-11-25','hd',1800,'public',true,false,false,'processed','none',230000,18500,520,false),('V202','C102','SQL Masterclass Part 1','2024-11-28','hd',2400,'public',true,false,true,'processed','none',89000,8900,156,false),('V204','C103','Learn Pandas in 1 Hour','2024-11-20','hd',3600,'public',true,false,true,'processed','none',67000,5400,89,false)",
+        "channels": "INSERT INTO channels (channel_id, channel_name, subscriber_count, view_count, country, subscriber_hidden, default_language, published_at, video_count) VALUES ('C101','Alpha Tech',2500000,92000000,'US',false,'en','2015-03-12',120),('C102','Data With Mira',1800000,71000000,'IN',false,'en','2017-08-05',340),('C103','SQL Zone',950000,40000000,'UK',false,'en','2019-01-20',89)"
+      },
+      "expected_output": {
+        "columns": [
+          "channel_name",
+          "total_views"
+        ],
+        "rows": [
+          [
+            "Alpha Tech",
+            380000
+          ]
+        ]
+      }
+    },
+    {
+      "id": 44,
+      "title": "Most Viewed Video per Channel",
+      "difficulty": "Hard",
+      "topics": [
+        "Correlated Subquery"
+      ],
+      "description": "For each channel, find the video with the highest view count.",
+      "tables": [
+        "videos",
+        "channels"
+      ],
+      "hint": "Use a correlated subquery to find the max views per channel.",
+      "solution": "SELECT c.channel_name, v.title, v.views FROM videos v JOIN channels c ON v.channel_id = c.channel_id WHERE v.views = (SELECT MAX(v2.views) FROM videos v2 WHERE v2.channel_id = v.channel_id);",
+      "explanation": "A correlated subquery references the outer query and runs for each row.",
+      "schema": "CREATE TABLE videos (video_id VARCHAR PRIMARY KEY, channel_id VARCHAR REFERENCES channels(channel_id), title VARCHAR, publish_date DATE, definition VARCHAR, duration INT, privacy_status VARCHAR, embeddable BOOLEAN, made_for_kids BOOLEAN, caption BOOLEAN, upload_status VARCHAR, live_broadcast_content VARCHAR, views BIGINT, likes BIGINT, comment_count INT, comments_disabled BOOLEAN); CREATE TABLE channels (channel_id VARCHAR PRIMARY KEY, channel_name VARCHAR, subscriber_count BIGINT, view_count BIGINT, country VARCHAR, subscriber_hidden BOOLEAN, default_language VARCHAR, published_at DATE, video_count INT);",
+      "sample_data": {
+        "videos": "INSERT INTO videos (video_id, channel_id, title, publish_date, definition, duration, privacy_status, embeddable, made_for_kids, caption, upload_status, live_broadcast_content, views, likes, comment_count, comments_disabled) VALUES ('V201','C101','Getting Started with Python','2024-12-01','hd',1200,'public',true,false,true,'processed','none',150000,12000,340,false),('V203','C101','Data Science 101','2024-11-25','hd',1800,'public',true,false,false,'processed','none',230000,18500,520,false),('V202','C102','SQL Masterclass Part 1','2024-11-28','hd',2400,'public',true,false,true,'processed','none',89000,8900,156,false)",
+        "channels": "INSERT INTO channels (channel_id, channel_name, subscriber_count, view_count, country, subscriber_hidden, default_language, published_at, video_count) VALUES ('C101','Alpha Tech',2500000,92000000,'US',false,'en','2015-03-12',120),('C102','Data With Mira',1800000,71000000,'IN',false,'en','2017-08-05',340)"
+      },
+      "expected_output": {
+        "columns": [
+          "channel_name",
+          "title",
+          "views"
+        ],
+        "rows": [
+          [
+            "Alpha Tech",
+            "Data Science 101",
+            230000
+          ],
+          [
+            "Data With Mira",
+            "SQL Masterclass Part 1",
+            89000
+          ]
+        ]
+      }
+    },
+    {
+      "id": 45,
+      "title": "Channels Where Likes Exceed Comments",
+      "difficulty": "Hard",
+      "topics": [
+        "GROUP BY, HAVING"
+      ],
+      "description": "Find channels where the total likes across all videos exceed total comments.",
+      "tables": [
+        "videos",
+        "channels"
+      ],
+      "hint": "Use GROUP BY + HAVING SUM(likes) > SUM(comment_count).",
+      "solution": "SELECT c.channel_name, SUM(v.likes) AS total_likes, SUM(v.comment_count) AS total_comments FROM videos v JOIN channels c ON v.channel_id = c.channel_id GROUP BY c.channel_name HAVING total_likes > total_comments;",
+      "explanation": "HAVING can compare two aggregate expressions within each group.",
+      "schema": "CREATE TABLE videos (video_id VARCHAR PRIMARY KEY, channel_id VARCHAR REFERENCES channels(channel_id), title VARCHAR, publish_date DATE, definition VARCHAR, duration INT, privacy_status VARCHAR, embeddable BOOLEAN, made_for_kids BOOLEAN, caption BOOLEAN, upload_status VARCHAR, live_broadcast_content VARCHAR, views BIGINT, likes BIGINT, comment_count INT, comments_disabled BOOLEAN); CREATE TABLE channels (channel_id VARCHAR PRIMARY KEY, channel_name VARCHAR, subscriber_count BIGINT, view_count BIGINT, country VARCHAR, subscriber_hidden BOOLEAN, default_language VARCHAR, published_at DATE, video_count INT);",
+      "sample_data": {
+        "videos": "INSERT INTO videos (video_id, channel_id, title, publish_date, definition, duration, privacy_status, embeddable, made_for_kids, caption, upload_status, live_broadcast_content, views, likes, comment_count, comments_disabled) VALUES ('V201','C101','Getting Started with Python','2024-12-01','hd',1200,'public',true,false,true,'processed','none',150000,12000,340,false),('V203','C101','Data Science 101','2024-11-25','hd',1800,'public',true,false,false,'processed','none',230000,18500,520,false),('V202','C102','SQL Masterclass Part 1','2024-11-28','hd',2400,'public',true,false,true,'processed','none',89000,8900,156,false),('V206','C102','Advanced SQL Queries','2024-10-15','hd',1800,'public',true,false,true,'processed','none',120000,10200,230,false)",
+        "channels": "INSERT INTO channels (channel_id, channel_name, subscriber_count, view_count, country, subscriber_hidden, default_language, published_at, video_count) VALUES ('C101','Alpha Tech',2500000,92000000,'US',false,'en','2015-03-12',120),('C102','Data With Mira',1800000,71000000,'IN',false,'en','2017-08-05',340)"
+      },
+      "expected_output": {
+        "columns": [
+          "channel_name",
+          "total_likes",
+          "total_comments"
+        ],
+        "rows": [
+          [
+            "Alpha Tech",
+            30500,
+            860
+          ],
+          [
+            "Data With Mira",
+            19100,
+            386
+          ]
+        ]
+      }
+    },
+    {
+      "id": 46,
+      "title": "Rank Channels by Total Video Views",
+      "difficulty": "Medium",
+      "topics": [
+        "CTE, Window Function"
+      ],
+      "description": "Rank channels based on total video views using a window function.",
+      "tables": [
+        "videos",
+        "channels"
+      ],
+      "hint": "Use CTE with SUM + RANK() window function.",
+      "solution": "WITH channel_views AS (SELECT c.channel_name, SUM(v.views) AS total_views FROM videos v JOIN channels c ON v.channel_id = c.channel_id GROUP BY c.channel_name) SELECT channel_name, total_views, RANK() OVER (ORDER BY total_views DESC) AS rank FROM channel_views;",
+      "explanation": "CTEs (WITH) create temporary named result sets. RANK() assigns a rank to each row.",
+      "schema": "CREATE TABLE videos (video_id VARCHAR PRIMARY KEY, channel_id VARCHAR REFERENCES channels(channel_id), title VARCHAR, publish_date DATE, definition VARCHAR, duration INT, privacy_status VARCHAR, embeddable BOOLEAN, made_for_kids BOOLEAN, caption BOOLEAN, upload_status VARCHAR, live_broadcast_content VARCHAR, views BIGINT, likes BIGINT, comment_count INT, comments_disabled BOOLEAN); CREATE TABLE channels (channel_id VARCHAR PRIMARY KEY, channel_name VARCHAR, subscriber_count BIGINT, view_count BIGINT, country VARCHAR, subscriber_hidden BOOLEAN, default_language VARCHAR, published_at DATE, video_count INT);",
+      "sample_data": {
+        "videos": "INSERT INTO videos (video_id, channel_id, title, publish_date, definition, duration, privacy_status, embeddable, made_for_kids, caption, upload_status, live_broadcast_content, views, likes, comment_count, comments_disabled) VALUES ('V201','C101','Getting Started with Python','2024-12-01','hd',1200,'public',true,false,true,'processed','none',150000,12000,340,false),('V203','C101','Data Science 101','2024-11-25','hd',1800,'public',true,false,false,'processed','none',230000,18500,520,false),('V202','C102','SQL Masterclass Part 1','2024-11-28','hd',2400,'public',true,false,true,'processed','none',89000,8900,156,false),('V204','C103','Learn Pandas in 1 Hour','2024-11-20','hd',3600,'public',true,false,true,'processed','none',67000,5400,89,false)",
+        "channels": "INSERT INTO channels (channel_id, channel_name, subscriber_count, view_count, country, subscriber_hidden, default_language, published_at, video_count) VALUES ('C101','Alpha Tech',2500000,92000000,'US',false,'en','2015-03-12',120),('C102','Data With Mira',1800000,71000000,'IN',false,'en','2017-08-05',340),('C103','SQL Zone',950000,40000000,'UK',false,'en','2019-01-20',89)"
+      },
+      "expected_output": {
+        "columns": [
+          "channel_name",
+          "total_views",
+          "rank"
+        ],
+        "rows": [
+          [
+            "Alpha Tech",
+            380000,
+            1
+          ],
+          [
+            "Data With Mira",
+            89000,
+            2
+          ],
+          [
+            "SQL Zone",
+            67000,
+            3
+          ]
+        ]
+      }
+    },
+    {
+      "id": 47,
+      "title": "Top 3 Most Viewed Videos Within Each Channel",
+      "difficulty": "Hard",
+      "topics": [
+        "CTE, ROW_NUMBER"
+      ],
+      "description": "For each channel, find the 3 most viewed videos.",
+      "tables": [
+        "videos",
+        "channels"
+      ],
+      "hint": "Use CTE with ROW_NUMBER() partitioned by channel.",
+      "solution": "WITH ranked_videos AS (SELECT c.channel_name, v.title, v.views, ROW_NUMBER() OVER (PARTITION BY v.channel_id ORDER BY v.views DESC) AS rn FROM videos v JOIN channels c ON v.channel_id = c.channel_id) SELECT channel_name, title, views FROM ranked_videos WHERE rn <= 3;",
+      "explanation": "ROW_NUMBER() with PARTITION BY resets the count for each channel.",
+      "schema": "CREATE TABLE videos (video_id VARCHAR PRIMARY KEY, channel_id VARCHAR REFERENCES channels(channel_id), title VARCHAR, publish_date DATE, definition VARCHAR, duration INT, privacy_status VARCHAR, embeddable BOOLEAN, made_for_kids BOOLEAN, caption BOOLEAN, upload_status VARCHAR, live_broadcast_content VARCHAR, views BIGINT, likes BIGINT, comment_count INT, comments_disabled BOOLEAN); CREATE TABLE channels (channel_id VARCHAR PRIMARY KEY, channel_name VARCHAR, subscriber_count BIGINT, view_count BIGINT, country VARCHAR, subscriber_hidden BOOLEAN, default_language VARCHAR, published_at DATE, video_count INT);",
+      "sample_data": {
+        "videos": "INSERT INTO videos (video_id, channel_id, title, publish_date, definition, duration, privacy_status, embeddable, made_for_kids, caption, upload_status, live_broadcast_content, views, likes, comment_count, comments_disabled) VALUES ('V201','C101','Getting Started with Python','2024-12-01','hd',1200,'public',true,false,true,'processed','none',150000,12000,340,false),('V203','C101','Data Science 101','2024-11-25','hd',1800,'public',true,false,false,'processed','none',230000,18500,520,false),('V209','C101','CSS Flexbox Guide','2024-11-01','hd',1500,'public',true,false,false,'processed','none',98000,7600,180,false),('V202','C102','SQL Masterclass Part 1','2024-11-28','hd',2400,'public',true,false,true,'processed','none',89000,8900,156,false),('V206','C102','Advanced SQL Queries','2024-10-15','hd',1800,'public',true,false,true,'processed','none',120000,10200,230,false),('V211','C102','Database Normalization','2024-10-25','hd',2100,'public',true,false,true,'processed','none',76000,6100,134,false)",
+        "channels": "INSERT INTO channels (channel_id, channel_name, subscriber_count, view_count, country, subscriber_hidden, default_language, published_at, video_count) VALUES ('C101','Alpha Tech',2500000,92000000,'US',false,'en','2015-03-12',120),('C102','Data With Mira',1800000,71000000,'IN',false,'en','2017-08-05',340)"
+      },
+      "expected_output": {
+        "columns": [
+          "channel_name",
+          "title",
+          "views"
+        ],
+        "rows": [
+          [
+            "Alpha Tech",
+            "Data Science 101",
+            230000
+          ],
+          [
+            "Alpha Tech",
+            "Getting Started with Python",
+            150000
+          ],
+          [
+            "Alpha Tech",
+            "CSS Flexbox Guide",
+            98000
+          ],
+          [
+            "Data With Mira",
+            "Advanced SQL Queries",
+            120000
+          ],
+          [
+            "Data With Mira",
+            "SQL Masterclass Part 1",
+            89000
+          ],
+          [
+            "Data With Mira",
+            "Database Normalization",
+            76000
+          ]
+        ]
+      }
+    },
+    {
+      "id": 48,
+      "title": "Monthly Upload Trend by Channel",
+      "difficulty": "Hard",
+      "topics": [
+        "Date Functions, GROUP BY"
+      ],
+      "description": "Show how many videos each channel uploaded per month.",
+      "tables": [
+        "videos",
+        "channels"
+      ],
+      "hint": "Use strftime + GROUP BY on channel and month.",
+      "solution": "SELECT c.channel_name, strftime('%Y-%m', v.publish_date) AS month, COUNT(*) AS video_count FROM videos v JOIN channels c ON v.channel_id = c.channel_id GROUP BY c.channel_name, month ORDER BY c.channel_name, month;",
+      "explanation": "Extract year-month from dates to group by monthly periods.",
+      "schema": "CREATE TABLE videos (video_id VARCHAR PRIMARY KEY, channel_id VARCHAR REFERENCES channels(channel_id), title VARCHAR, publish_date DATE, definition VARCHAR, duration INT, privacy_status VARCHAR, embeddable BOOLEAN, made_for_kids BOOLEAN, caption BOOLEAN, upload_status VARCHAR, live_broadcast_content VARCHAR, views BIGINT, likes BIGINT, comment_count INT, comments_disabled BOOLEAN); CREATE TABLE channels (channel_id VARCHAR PRIMARY KEY, channel_name VARCHAR, subscriber_count BIGINT, view_count BIGINT, country VARCHAR, subscriber_hidden BOOLEAN, default_language VARCHAR, published_at DATE, video_count INT);",
+      "sample_data": {
+        "videos": "INSERT INTO videos (video_id, channel_id, title, publish_date, definition, duration, privacy_status, embeddable, made_for_kids, caption, upload_status, live_broadcast_content, views, likes, comment_count, comments_disabled) VALUES ('V201','C101','Getting Started with Python','2024-12-01','hd',1200,'public',true,false,true,'processed','none',150000,12000,340,false),('V203','C101','Data Science 101','2024-11-25','hd',1800,'public',true,false,false,'processed','none',230000,18500,520,false),('V209','C101','CSS Flexbox Guide','2024-11-01','hd',1500,'public',true,false,false,'processed','none',98000,7600,180,false),('V202','C102','SQL Masterclass Part 1','2024-11-28','hd',2400,'public',true,false,true,'processed','none',89000,8900,156,false),('V206','C102','Advanced SQL Queries','2024-10-15','hd',1800,'public',true,false,true,'processed','none',120000,10200,230,false)",
+        "channels": "INSERT INTO channels (channel_id, channel_name, subscriber_count, view_count, country, subscriber_hidden, default_language, published_at, video_count) VALUES ('C101','Alpha Tech',2500000,92000000,'US',false,'en','2015-03-12',120),('C102','Data With Mira',1800000,71000000,'IN',false,'en','2017-08-05',340)"
+      },
+      "expected_output": {
+        "columns": [
+          "channel_name",
+          "month",
+          "video_count"
+        ],
+        "rows": [
+          [
+            "Alpha Tech",
+            "2024-11",
+            2
+          ],
+          [
+            "Alpha Tech",
+            "2024-12",
+            1
+          ],
+          [
+            "Data With Mira",
+            "2024-10",
+            1
+          ],
+          [
+            "Data With Mira",
+            "2024-11",
+            1
+          ]
+        ]
+      }
+    },
+    {
+      "id": 49,
+      "title": "Month with Highest Upload Volume",
+      "difficulty": "Hard",
+      "topics": [
+        "CTE, Aggregation"
+      ],
+      "description": "Find which month had the highest total video uploads across all channels.",
+      "tables": [
+        "videos"
+      ],
+      "hint": "Use CTE with GROUP BY + ORDER BY + LIMIT 1.",
+      "solution": "WITH monthly_counts AS (SELECT strftime('%Y-%m', publish_date) AS month, COUNT(*) AS upload_count FROM videos GROUP BY month) SELECT month, upload_count FROM monthly_counts ORDER BY upload_count DESC LIMIT 1;",
+      "explanation": "CTEs make complex queries readable. Combine with aggregation for clear insights.",
+      "schema": "CREATE TABLE videos (video_id VARCHAR PRIMARY KEY, channel_id VARCHAR REFERENCES channels(channel_id), title VARCHAR, publish_date DATE, definition VARCHAR, duration INT, privacy_status VARCHAR, embeddable BOOLEAN, made_for_kids BOOLEAN, caption BOOLEAN, upload_status VARCHAR, live_broadcast_content VARCHAR, views BIGINT, likes BIGINT, comment_count INT, comments_disabled BOOLEAN);",
+      "sample_data": {
+        "videos": "INSERT INTO videos (video_id, channel_id, title, publish_date, definition, duration, privacy_status, embeddable, made_for_kids, caption, upload_status, live_broadcast_content, views, likes, comment_count, comments_disabled) VALUES ('V201','C101','Getting Started with Python','2024-12-01','hd',1200,'public',true,false,true,'processed','none',150000,12000,340,false),('V202','C102','SQL Masterclass Part 1','2024-11-28','hd',2400,'public',true,false,true,'processed','none',89000,8900,156,false),('V203','C101','Data Science 101','2024-11-25','hd',1800,'public',true,false,false,'processed','none',230000,18500,520,false),('V204','C103','Learn Pandas in 1 Hour','2024-11-20','hd',3600,'public',true,false,true,'processed','none',67000,5400,89,false),('V205','C104','Machine Learning Basics','2024-10-18','hd',2700,'public',true,false,true,'processed','none',450000,34000,890,false)"
+      },
+      "expected_output": {
+        "columns": [
+          "month",
+          "upload_count"
+        ],
+        "rows": [
+          [
+            "2024-11",
+            3
+          ]
+        ]
+      }
+    },
+    {
+      "id": 50,
+      "title": "Latest Video Performing Above Channel Average",
+      "difficulty": "Hard",
+      "topics": [
+        "CTE, Window Function, JOIN"
+      ],
+      "description": "Find the most recent video from each channel that has above-average views for that channel.",
+      "tables": [
+        "videos",
+        "channels"
+      ],
+      "hint": "Use CTE + Window Function + JOIN — find latest video per channel that exceeds channel avg.",
+      "solution": "WITH channel_avg AS (SELECT channel_id, AVG(views) AS avg_views FROM videos GROUP BY channel_id), ranked_videos AS (SELECT v.channel_id, v.title, v.views, v.publish_date, ROW_NUMBER() OVER (PARTITION BY v.channel_id ORDER BY v.publish_date DESC) AS rn FROM videos v JOIN channel_avg ca ON v.channel_id = ca.channel_id WHERE v.views > ca.avg_views) SELECT c.channel_name, rv.title, rv.views, rv.publish_date FROM ranked_videos rv JOIN channels c ON rv.channel_id = c.channel_id WHERE rv.rn = 1;",
+      "explanation": "Combine CTEs, window functions, and JOINs for advanced analytics.",
+      "schema": "CREATE TABLE videos (video_id VARCHAR PRIMARY KEY, channel_id VARCHAR REFERENCES channels(channel_id), title VARCHAR, publish_date DATE, definition VARCHAR, duration INT, privacy_status VARCHAR, embeddable BOOLEAN, made_for_kids BOOLEAN, caption BOOLEAN, upload_status VARCHAR, live_broadcast_content VARCHAR, views BIGINT, likes BIGINT, comment_count INT, comments_disabled BOOLEAN); CREATE TABLE channels (channel_id VARCHAR PRIMARY KEY, channel_name VARCHAR, subscriber_count BIGINT, view_count BIGINT, country VARCHAR, subscriber_hidden BOOLEAN, default_language VARCHAR, published_at DATE, video_count INT);",
+      "sample_data": {
+        "videos": "INSERT INTO videos (video_id, channel_id, title, publish_date, definition, duration, privacy_status, embeddable, made_for_kids, caption, upload_status, live_broadcast_content, views, likes, comment_count, comments_disabled) VALUES ('V201','C101','Getting Started with Python','2024-12-01','hd',1200,'public',true,false,true,'processed','none',150000,12000,340,false),('V203','C101','Data Science 101','2024-11-25','hd',1800,'public',true,false,false,'processed','none',230000,18500,520,false),('V209','C101','CSS Flexbox Guide','2024-11-01','hd',1500,'public',true,false,false,'processed','none',98000,7600,180,false),('V202','C102','SQL Masterclass Part 1','2024-11-28','hd',2400,'public',true,false,true,'processed','none',89000,8900,156,false),('V206','C102','Advanced SQL Queries','2024-10-15','hd',1800,'public',true,false,true,'processed','none',120000,10200,230,false)",
+        "channels": "INSERT INTO channels (channel_id, channel_name, subscriber_count, view_count, country, subscriber_hidden, default_language, published_at, video_count) VALUES ('C101','Alpha Tech',2500000,92000000,'US',false,'en','2015-03-12',120),('C102','Data With Mira',1800000,71000000,'IN',false,'en','2017-08-05',340)"
+      },
+      "expected_output": {
+        "columns": [
+          "channel_name",
+          "title",
+          "views",
+          "publish_date"
+        ],
+        "rows": [
+          [
+            "Alpha Tech",
+            "Data Science 101",
+            230000,
+            "2024-11-25"
+          ],
+          [
+            "Data With Mira",
+            "Advanced SQL Queries",
+            120000,
+            "2024-10-15"
+          ]
+        ]
+      }
+    }
+  ]
+}

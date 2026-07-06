@@ -1,0 +1,137 @@
+[
+
+  
+
+  
+
+  
+    
+    
+  {"title":"Excel 250+ Formulas","url":"/excel-250-formulas/","content":"Excel 250+ FormulasBasic Aggregations Formulas SUM() = =SUM(B2:B10) : Calculates the total of selected numbers AVERAGE() = =AVERAGE(C2:C10) : Returns the arithmetic mean of values COUNT() = =COUNT(A2:A10) : Counts cells that contain numeric values COUNTA() = =COUNTA(A2:A10) : Counts all non-empty cells in a range COUNTBLANK() = =COUNTBLANK(A2:A10) : Counts empty cells within a range MAX() = =MAX(D2:D10) : Finds the highest value in a dataset MIN() = =MIN(D2:D10) : Finds the lowest value in a dataset LARGE() = =LARGE(D2:D10,3) : Returns the nth largest value from a set SMALL() = =SMALL(D2:D10,2) : Returns the nth smallest value from a set SUBTOTAL() = =SUBTOTAL(109,E2:E10) : Performs aggregations on filtered or visible rows only AGGREGATE() = =AGGREGATE(14,6,F2:F10) : Applies aggregate functions with options to ignore errors or hidden rows SUMPRODUCT() = =SUMPRODUCT(B2:B10,C2:C10) : Multiplies arrays element-wise and returns the sum of products SUMIF() = =SUMIF(A2:A10,\"East\",B2:B10) : Adds values that meet a single specified condition SUMIFS() = =SUMIFS(B2:B10,A2:A10,\"East\",C2:C10,\"&gt;100\") : Adds values that meet multiple criteria COUNTIF() = =COUNTIF(A2:A10,\"&lt;&gt;\"&amp;\"\") : Counts cells matching a single condition COUNTIFS() = =COUNTIFS(A2:A10,\"East\",C2:C10,\"&gt;100\") : Counts cells matching multiple conditions AVERAGEIF() = =AVERAGEIF(A2:A10,\"East\",B2:B10) : Calculates average based on one condition AVERAGEIFS() = =AVERAGEIFS(B2:B10,A2:A10,\"East\",C2:C10,\"&gt;100\") : Calculates average based on multiple conditionsDate &amp; Time Formulas TODAY() = =TODAY() : Returns the current date, updates daily NOW() = =NOW() : Returns the current date and time together DATE() = =DATE(2025,4,23) : Creates a date from individual year, month, and day values DATEVALUE() = =DATEVALUE(\"23-Apr-2025\") : Converts a date stored as text into a serial date number TIME() = =TIME(14,30,0) : Constructs a time value from hours, minutes, and seconds TIMEVALUE() = =TIMEVALUE(\"14:30\") : C...","type":"page"},
+    
+  
+
+  
+    
+    
+  {"title":"Excel Project","url":"/excel-project/","content":"Excel: 50 Real-World Formula Challenges Solve practical Excel problems using real datasets — SUM, VLOOKUP, INDEX-MATCH, and more. Interactive editor with instant validation. 0/50 Loading problems...","type":"page"},
+    
+  
+
+  
+    
+    
+  {"title":"About the Creator","url":"/about/","content":"About the Creator Data analyst &middot; Engineer &middot; Builder Hi, I'm Dinesh Raya. I build interactive tools and resources that make data analytics skills accessible to everyone. This platform grew from a simple idea: the best way to learn SQL, Excel, and Python is by doing — with real problems, real data, and instant feedback. Every project on this site runs entirely in your browser, so you can start learning without installing anything. What You'll Find Here SQL Project — 50 YouTube analytics challenges from basic SELECTs to CTEs and window functions, validated in-browser with SQLite Excel Project — 50 formula challenges across 28 categories, from SUM to SUMPRODUCT, evaluated live with HyperFormula Python Project — 50 coding challenges covering basics, pandas, and numpy, running on Pyodide (CPython in the browser) Cheatsheets — Quick-reference guides covering 250+ formulas across SQL, Excel, Power BI, and Tableau Tech Stack Jekyll + GitHub Pages for static hosting SQL.js (WebAssembly SQLite), Pyodide (WebAssembly CPython), HyperFormula CodeMirror for the editor, lunr.js for full-text search Decap CMS for content management Get in Touch Have feedback, a bug report, or an idea for a new project? Reach out at contact@dinesh-raya.dev or find me on GitHub.","type":"page"},
+    
+  
+
+  
+    
+    
+  {"title":"SQL Project","url":"/sql-project/","content":"SQL: 50 Real-Time YouTube Analytics Challenges Solve simple to advanced SQL problems using real YouTube data, just like a Data Analyst. 0/50 Loading problems...","type":"page"},
+    
+  
+
+  
+    
+    
+  {"title":"Python Project","url":"/python-project/","content":"Python: 50 Hands-On Coding Challenges Solve real Python problems — from basic variables to Pandas data analysis. Interactive editor with instant validation. 0/50 Loading problems...","type":"page"},
+    
+  
+
+  
+
+  
+    
+    
+  {"title":"Cheatsheet","url":"/cheatsheet/","content":"CheatsheetSelect a subject to start learning. Excel 250+ Formulas Power BI 250+ Formulas Tableau 250+ Formulas SQL 250+ Formulas","type":"page"},
+    
+  
+
+  
+    
+    
+  {"title":"Privacy Policy","url":"/privacy/","content":"Privacy Policy Last updated: July 2026 Information We Collect We do not collect personal data. This site is statically generated and does not use databases, cookies, or tracking scripts. Third-Party Services This site is hosted on GitHub Pages. GitHub may collect standard server logs. Refer to GitHub's Privacy Statement for details. Contact If you have questions about this policy, reach out via the Contact page.","type":"page"},
+    
+  
+
+  
+    
+    
+  {"title":"Terms & Conditions","url":"/terms/","content":"Terms and Conditions Last updated: July 01, 2026 Welcome to our website. By accessing and using this site, you agree to comply with and be bound by the following Terms and Conditions. Use of Content This website is created for educational purposes only. All content related to SQL, data analysis, and programming theory is provided to help students and beginners learn concepts. You may read and learn from the content freely. You may not copy, republish, or redistribute the content without permission. Accuracy of Information We strive to keep the information accurate and up to date. However: We do not guarantee that all content is error-free Examples and explanations are for learning purposes only User Responsibilities By using this website, you agree: Not to misuse the content Not to attempt to harm or disrupt the website Not to use the site for illegal or unauthorized purposes External Links Our website may contain links to external websites for reference. We are not responsible for the content or practices of those websites. Advertisements This website may display advertisements to support free educational content. We are not responsible for the products or services advertised. Limitation of Liability We shall not be held liable for: Any losses or damages arising from the use of this website Misinterpretation of educational content Changes to These Terms We reserve the right to update or change these Terms and Conditions at any time. Changes will be posted on this page. Contact Information If you have any questions about these Terms and Conditions, please contact us.","type":"page"},
+    
+  
+
+  
+    
+    
+  {"title":"Contact","url":"/contact/","content":"Contact Have questions or feedback? Reach out to us. Email: drraya2026@outlook.com","type":"page"},
+    
+  
+
+  
+    
+    
+  {"title":"Power BI 250+ Formulas","url":"/power-bi-250-formulas/","content":"Power BI 250+ FormulasBasic Aggregations FormulasMAX(): MAX( Profit ) : Returns the highest value from the specified columnCOUNT(): COUNT( Order ID ) : Counts non-blank rows in a columnCOUNTA(): COUNTA( Comments ) : Counts all values including text and blanksDISTINCTCOUNT(): DISTINCTCOUNT( Customer ID ) : Counts unique values in a columnCOUNTROWS(): COUNTROWS( Orders ) : Returns the number of rows in a table or table expressionCOUNTX(): COUNTX( Products, Products[OnHand] ) : Iterates over a table counting rows that match a per-row expressionDIVIDE(): DIVIDE( Sales, Orders ) : Performs safe division with handling for zero denominatorsPRODUCT(): PRODUCT( Quantity ) : Multiplies all values in a column togetherPERCENTILE.EXC(): PERCENTILE.EXC( Sales,0.9 ) : Returns the 90th percentile using the exclusive methodMEDIAN(): MEDIAN( Profit ) : Returns the median value within the current filter contextSTDEV.P(): STDEV.P( Sales ) : Calculates the population standard deviationVAR.S(): VAR.S( Profit ) : Computes the sample varianceDate &amp; Time FormulasTODAY(): TODAY() : Returns the current date based on the model timezoneNOW(): NOW() : Returns the current date and timeYEAR(): YEAR( Orders[Order Date] ) : Extracts the year component from a dateMONTH(): MONTH( Orders[Order Date] ) : Returns the month number from a dateDAY(): DAY( Orders[Order Date] ) : Returns the day of the monthHOUR(): HOUR( Orders[Order DateTime] ) : Extracts the hour component from a datetimeEOMONTH(): EOMONTH( Orders[Order Date],0 ) : Returns the last day of the month with an optional offsetDATE(): DATE( 2025,4,23 ) : Constructs a date from year, month, and day valuesDATEVALUE(): DATEVALUE( Orders[DateText] ) : Converts a text string to a dateDATEDIFF(): DATEDIFF( Orders[Order Date], Orders[Ship Date], DAY ) : Returns the interval between two dates in the specified unitDATEADD(): DATEADD( Dates[Date], -1, YEAR ) : Shifts a date column forward or backward by a given intervalSAMEPERIODLASTYEAR(): SAMEPERI...","type":"page"},
+    
+  
+
+  
+
+  
+
+  
+    
+    
+  {"title":"Solve Excel Problem","url":"/excel-project/solve/","content":"Back to Questions Solution Data Loading... Hint Expected Output: Explanation: Solution Formula Copy Code Reset Mark Solved Formula Editor Initializing... Evaluate &raquo;","type":"page"},
+    
+  
+
+  
+    
+    
+  {"title":"Solve SQL Problem","url":"/sql-project/solve/","content":"Back to Questions Solution Tables: Uses SQLite for in-browser validation. Syntax may differ in PostgreSQL, BigQuery, or Snowflake (e.g., date functions, string concatenation). Loading... Hint Input: Output: Explanation: Solution SQL Query Copy Code Reset Mark Solved SQL Editor Initializing... Run SQL &raquo;","type":"page"},
+    
+  
+
+  
+    
+    
+  {"title":"Solve Python Problem","url":"/python-project/solve/","content":"Back to Questions Solution Setup Code Hint Expected Output: Explanation: Solution Code Copy Code Reset Mark Solved Python Editor Initializing Python... Run &raquo;","type":"page"},
+    
+  
+
+  
+    
+    
+  {"title":"SQL 250+ Formulas","url":"/sql-250-formulas/","content":"## SQL 250+ FormulasBasic Retrieval Formulas- **SELECT**: `SELECT first_name, last_name FROM employees;` — Pulls particular columns from a database table- **SELECT ***: `SELECT * FROM products;` — Grabs every column, handy for initial data exploration- **DISTINCT**: `SELECT DISTINCT country FROM customers;` — Eliminates duplicate rows to show only unique values- **FROM (sub-query)**: `SELECT * FROM (SELECT * FROM sales WHERE year=2025) AS y25;` — Uses an inner query result as a virtual input table- **AS (alias)**: `SELECT price AS unit_price FROM sales;` — Gives a column or table a temporary friendly name- **Literals**: `SELECT 'John' AS name, 123 AS num, NULL AS nothing;` — Inserts hard-coded values straight into the output- **Expression (arith)**: `SELECT price*qty AS total FROM order_items;` — Calculates new values directly inside the query- **ORDER BY**: `SELECT * FROM students ORDER BY score DESC;` — Sorts the result set by one or more columns- **ASC / DESC**: `SELECT * FROM flights ORDER BY depart_dt ASC;` — Chooses ascending (low-to-high) or descending (high-to-low) sort order- **LIMIT**: `SELECT * FROM logs LIMIT 100;` — Cuts the output to only the first N rows- **OFFSET**: `SELECT * FROM logs LIMIT 50 OFFSET 100;` — Skips a number of rows before returning results, great for pagination- **FETCH FIRST**: `SELECT * FROM employees ORDER BY hire_date FETCH FIRST 5 ROWS ONLY;` — ANSI-standard way to restrict row count- **TOP (T-SQL)**: `SELECT TOP 10 * FROM Customers;` — SQL Server's non-standard equivalent of LIMIT- **User Variable**: `SET @row_num:=0; SELECT @row_num:=@row_num+1 AS n, name FROM people;` — Stores a value in a session variable for reuse later- **USE (DB)**: `USE sakila;` — Switches the active database context- **SHOW DATABASES**: `SHOW DATABASES;` — Lists every database on the server- **SHOW TABLES**: `SHOW TABLES FROM sakila;` — Lists every table inside a specific database- **DESCRIBE / DESC**: `DESC employees;` — Shows the column structure (...","type":"page"},
+    
+  
+
+  
+    
+    
+  {"title":"Tableau 250+ Formulas","url":"/tableau-250-formulas/","content":"## Tableau 250+ FormulasBasic Aggregations Formulas- `SUM()` : `SUM([Sales])` : Adds up all values in the selected field- `AVG()` : `AVG([Discount])` : Computes the arithmetic mean- `MIN()` : `MIN([Order Date])` : Returns the earliest or smallest value- `MAX()` : `MAX([Profit])` : Returns the latest or greatest value- `COUNT()` : `COUNT([Order ID])` : Counts records that are not null- `COUNTD()` : `COUNTD([Customer ID])` : Counts unique values in a field- `ATTR()` : `ATTR([Region])` : Returns the value if all rows match, otherwise asterisk- `TOTAL()` : `TOTAL(SUM([Sales]))` : Computes grand total within the table calc partition- `ZN()` : `ZN([Profit])` : Replaces null values with zero- `SIZE()` : `SIZE()` : Returns the row count in the current partitionDate Functions- `TODAY()` : `TODAY()` : Returns the current date- `NOW()` : `NOW()` : Returns the current date and time- `YEAR()` : `YEAR([Order Date])` : Extracts the year from a date- `MONTH()` : `MONTH([Order Date])` : Returns the month as a number- `DAY()` : `DAY([Order Date])` : Returns the day of the month- `DATENAME()` : `DATENAME('weekday',[Order Date])` : Returns the full textual name of a date part- `DATEPART()` : `DATEPART('quarter',[Order Date])` : Returns a numeric date part- `DATEDIFF()` : `DATEDIFF('day',[Order Date],[Ship Date])` : Calculates the difference between two dates- `DATEADD()` : `DATEADD('year',1,[Order Date])` : Adds an interval to a date- `DATETRUNC()` : `DATETRUNC('month',[Order Date])` : Truncates a date to the specified precision- `MAKEDATE()` : `MAKEDATE(2025,4,23)` : Constructs a date from year, month, and day- `MAKETIME()` : `MAKETIME(14,30,0)` : Constructs a time value- `DATEPARSE()` : `DATEPARSE('dd-MMM-yyyy','23-Apr-2025')` : Converts a custom-formatted string to a date- `MIN()` : `MIN([Order Date])` : Returns the earliest date in the partition- `MAX()` : `MAX([Order Date])` : Returns the latest date in the partitionLogical & Type Formulas- `IF / THEN / ELSE` : `IF [Profit]>0 T...","type":"page"},
+    
+  
+
+  
+
+
+  
+  {"title":"Building a Data Pipeline with Python and SQLite","url":"/posts/data-pipeline-python-sqlite/","content":"A data pipeline is a series of steps that moves data from a source to a destination, transforming it along the way. In production environments, you might use Airflow, dbt, or Spark. But for personal projects and small teams, Python + SQLite is surprisingly capable.This article builds a complete ETL pipeline — Extract, Transform, Load — using the YouTube Data API as the source.The Architecture[YouTube API] → [Extract: requests] → [Transform: pandas] → [Load: SQLite] → [Analysis]We’ll write a Python script that: Fetches channel statistics from the YouTube API Cleans and normalizes the data with pandas Loads it into a local SQLite database Runs a summary queryStep 1: ExtractFirst, fetch data from an API. We’ll use a mock API call — in production, replace with the actual YouTube Data API:import requestsimport jsonimport timedef extract_channel_data(api_key, channel_ids): \"\"\"Fetch channel statistics from YouTube API.\"\"\" url = \"https://www.googleapis.com/youtube/v3/channels\" all_channels = [] # Process in batches of 50 (API limit per request) for i in range(0, len(channel_ids), 50): batch = channel_ids[i:i+50] params = { 'part': 'snippet,statistics', 'id': ','.join(batch), 'key': api_key } response = requests.get(url, params=params) response.raise_for_status() data = response.json() for item in data.get('items', []): channel = { 'channel_id': item['id'], 'channel_name': item['snippet']['title'], 'subscriber_count': int(item['statistics'].get('subscriberCount', 0)), 'view_count': int(item['statistics'].get('viewCount', 0)), 'video_count': int(item['statistics'].get('videoCount', 0)), 'country': item['snippet'].get('country', 'Unknown'), 'published_at': item['snippet']['publishedAt'] } all_channels.append(channel) time.sleep(0.1) # Rate limiting return all_channelsThe extract function is responsible for one thing: getting raw data from the source. No transformation. No cleaning. Just fetch and return.Extracting from a CSVIf your source is a file instead of an API:import ...","type":"post"},
+
+  
+  {"title":"CTEs and Window Functions in SQL: Beyond the Basics","url":"/posts/ctes-window-functions-sql/","content":"Two of the most powerful SQL features are Common Table Expressions (CTEs) and Window Functions. Together, they let you write queries that would otherwise require complex subqueries or application-level code.This article uses the YouTube Analytics schema from our SQL Project to show practical examples you can run yourself.The SchemaWe’ll work with these two tables:CREATE TABLE channels ( channel_id VARCHAR PRIMARY KEY, channel_name VARCHAR, subscriber_count BIGINT, country VARCHAR, published_at DATE);CREATE TABLE videos ( video_id VARCHAR PRIMARY KEY, channel_id VARCHAR REFERENCES channels(channel_id), title VARCHAR, publish_date DATE, views BIGINT, likes BIGINT);Common Table Expressions (CTEs)A CTE is a temporary named result set that exists only within a single query. Think of it as a “view” for one query.Basic CTEWITH big_channels AS ( SELECT channel_id, channel_name, subscriber_count FROM channels WHERE subscriber_count &gt; 1000000)SELECT c.channel_name, v.title, v.viewsFROM big_channels cJOIN videos v ON c.channel_id = v.channel_idORDER BY v.views DESC;Without a CTE, you’d either write a subquery or create a view. The CTE makes the query read top-to-bottom: first define big_channels, then join it with videos.Multiple CTEsYou can define multiple CTEs in one WITH clause:WITHchannel_stats AS ( SELECT channel_id, COUNT(*) AS video_count, AVG(views) AS avg_views FROM videos GROUP BY channel_id),us_channels AS ( SELECT channel_id, channel_name FROM channels WHERE country = 'US')SELECT uc.channel_name, cs.video_count, cs.avg_viewsFROM us_channels ucJOIN channel_stats cs ON uc.channel_id = cs.channel_idORDER BY cs.avg_views DESC;Each CTE can reference previous ones in the same WITH block, but the order matters — a CTE can only reference those defined before it.Recursive CTERecursive CTEs are useful for hierarchical data like comment threads:WITH RECURSIVE comment_thread AS ( -- Base case: top-level comments SELECT comment_id, parent_comment_id, text, 1 AS depth FROM...","type":"post"},
+
+  
+  {"title":"Data Cleaning with Python and Pandas: A Real-World Guide","url":"/posts/data-cleaning-pandas/","content":"In practice, 80% of data analysis is cleaning data. Raw data is never clean — it has missing values, inconsistent formats, duplicate rows, and outliers that will break your analysis.This article walks through a realistic data cleaning workflow using pandas. We’ll start with a messy CSV and end with a clean, analysis-ready dataset.The DatasetLet’s create a realistic messy dataset — YouTube video analytics export with common problems:import pandas as pdimport numpy as npdf = pd.DataFrame({ 'video_id': ['V1', 'V2', 'V2', 'V3', 'V4', 'V5', 'V6', None, 'V7'], 'title': [ 'Intro to SQL', 'Advanced Python', 'Advanced Python', 'Data Cleaning', 'Pandas 101', None, 'SQL Joins', 'Missing ID Video', 'Final Video' ], 'views': [5000, 12000, 12000, None, 3000, 4500, 8000, 200, 10000], 'duration_seconds': [600, '900', '900', 1200, 300, 450, None, 100, 750], 'published_date': [ '2026-01-15', '2026/02/20', '2026/02/20', '01-03-2026', '2026-04-10', None, '2026-05-20', 'invalid-date', '2026-06-01' ], 'category': ['Education', 'Tech', 'Tech', None, 'Education', 'Tech', 'Education', 'Tech', 'Education']})This dataset has: duplicates, missing values, mixed date formats, string-duration where integers belong, a null ID, and an outlier. Let’s clean it.Step 1: Understand the Shape of the MessBefore cleaning anything, get a baseline:df.info()RangeIndex: 9 entries, 0 to 8Data columns:video_id 7 non-null objecttitle 8 non-null objectviews 8 non-null float64duration_seconds 7 non-null objectpublished_date 8 non-null objectcategory 8 non-null objectImmediate problems visible: video_id has 7 non-null values out of 9 rows — missing IDs duration_seconds is object (string), not int — mixed types published_date is object — needs parsing Multiple columns have nullsStep 2: Remove DuplicatesDuplicate rows inflate metrics and bias analysis. Find and remove them:# Check for duplicatesprint(df.duplicated())print(df.duplicated().sum()) # Count duplicates# See which rows are duplicatesprint(df[df.duplicated...","type":"post"},
+
+  
+  {"title":"SQL Query Optimization: How Your Database Executes Queries","url":"/posts/sql-query-optimization/","content":"SQL is declarative: you write what you want, not how to get it. The database decides the “how”. But when a query is slow, understanding that “how” is the difference between guessing and fixing.This article shows you how SQLite executes queries, how to read execution plans, and how to write queries that play to the database’s strengths.EXPLAIN QUERY PLANEvery major database has a way to show you how it plans to execute a query. In SQLite:EXPLAIN QUERY PLANSELECT c.channel_name, v.titleFROM channels cJOIN videos v ON c.channel_id = v.channel_idWHERE c.subscriber_count &gt; 1000000;Output:QUERY PLAN|--SCAN channels|--SEARCH videos USING INDEX idx_videos_channel_idThis tells you: SCAN channels — SQLite is reading every row in the channels table (a full table scan) SEARCH videos USING INDEX — SQLite found an index to quickly locate matching videosA full table scan isn’t always bad. If the table has only 50 rows, a scan is faster than using an index. The problem is when large tables get scanned repeatedly.Indexes: The Foundation of Fast QueriesAn index is a separate data structure (usually a B-tree) that maps column values to row locations. Without an index, finding rows by a WHERE clause requires scanning every row.-- Create an index on the column you filter byCREATE INDEX idx_channels_subscribers ON channels(subscriber_count);-- Now this query uses the index:SELECT * FROM channels WHERE subscriber_count &gt; 1000000;Which Columns to IndexIndex columns that appear in: WHERE clauses JOIN conditions ORDER BY and GROUP BY columnsDon’t index everything. Each index slows down writes (INSERT/UPDATE/DELETE) and consumes disk space. Index the columns that matter for your read queries.Composite IndexesWhen you filter or sort by multiple columns, a composite index can help:CREATE INDEX idx_videos_channel_publish ON videos(channel_id, publish_date);This single index covers queries that filter by channel_id alone, or by channel_id + publish_date together. The order matters: put t...","type":"post"},
+
+  
+  {"title":"Python for Data Analysis: Pandas vs SQL","url":"/posts/pandas-vs-sql/","content":"If you work with data, you’ve probably used both SQL and Python’s pandas library. They overlap heavily — both let you filter, group, join, and aggregate data. But they think about data differently.This article walks through common data operations side by side. You’ll see the SQL query and the equivalent pandas code for each. By the end, you’ll know when to reach for each tool and how to translate between them.The SetupWe’ll use a simple dataset of YouTube channel statistics:-- SQL tableCREATE TABLE channels ( channel_id TEXT PRIMARY KEY, channel_name TEXT, subscriber_count INT, view_count INT, country TEXT, video_count INT);# pandas DataFrameimport pandas as pdchannels = pd.DataFrame({ 'channel_id': ['UC1', 'UC2', 'UC3'], 'channel_name': ['DataCamp', 'freeCodeCamp', 'Khan Academy'], 'subscriber_count': [3000000, 4500000, 1200000], 'view_count': [150000000, 280000000, 90000000], 'country': ['US', 'US', 'US'], 'video_count': [1500, 2200, 800]})Selecting ColumnsSQL: SELECT channel_name, subscriber_count FROM channels;# pandaschannels[['channel_name', 'subscriber_count']]Both return a subset of columns. In pandas, you pass a list of column names inside the brackets. One difference: pandas returns a DataFrame when you pass a list, but a Series when you pass a single string.Filtering RowsSQL: SELECT * FROM channels WHERE subscriber_count &gt; 2000000;channels[channels['subscriber_count'] &gt; 2000000]The boolean mask is pandas’ equivalent of WHERE. The condition channels['subscriber_count'] &gt; 2000000 produces a Series of True/False values, and indexing with it keeps only the matching rows.Multiple conditions:SQL: SELECT * FROM channels WHERE subscriber_count &gt; 2000000 AND country = 'US';channels[(channels['subscriber_count'] &gt; 2000000) &amp; (channels['country'] == 'US')]Use &amp; instead of and, | instead of OR. The parentheses around each condition are required — operator precedence will break your query without them.Adding Calculated ColumnsSQL: SELECT chan...","type":"post"},
+
+{}
+]

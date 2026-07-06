@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tableau 250+ Formulas | RAYA</title>
+  <meta name="description" content="Over 250 Tableau formulas explained — aggregations, table calculations, LOD expressions, date functions, and more.">
+  <meta property="og:title" content="Tableau 250+ Formulas | RAYA">
+  <meta property="og:description" content="Over 250 Tableau formulas explained — aggregations, table calculations, LOD expressions, date functions, and more.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://dinesh-raya.github.io/tableau-250-formulas/">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" type="image/svg+xml" href="/raya.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="alternate" type="application/atom+xml" title="RAYA Blog" href="/atom.xml">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "RAYA",
+    "url": "https://dinesh-raya.github.io",
+    "description": "RAYA — Learn data analytics, SQL, Excel, Power BI, and Tableau with free cheatsheets and tutorials."
+  }
+  </script>
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Tableau 250+ Formulas",
+    "url": "https://dinesh-raya.github.io/tableau-250-formulas/",
+    "description": "Over 250 Tableau formulas explained — aggregations, table calculations, LOD expressions, date functions, and more.",
+    "publisher": { "@type": "Organization", "name": "RAYA" },
+    "datePublished": null
+  }
+  </script>
+  
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #F3F3F3;
+      --surface: #ffffff;
+      --surface-alt: #fdfdfd;
+      --text: #111111;
+      --text-secondary: #333333;
+      --text-muted: #666666;
+      --text-light: #888888;
+      --border: #dddddd;
+      --border-light: #eeeeee;
+      --card-shadow: 0 4px 24px rgba(0,0,0,0.06);
+      --card-shadow-hover: 0 8px 32px rgba(0,0,0,0.12);
+      --inline-code-bg: #f0f0f0;
+      --blockquote-bg: #f8f8f8;
+      --blockquote-color: #555555;
+      --table-header-bg: #f8f8f8;
+      --table-border: #e0e0e0;
+      --h3-card-color: #111827;
+      --icon-bg: #ffffff;
+      --copyright-color: #666666;
+      --footer-link: #cccccc;
+      --back-link: #666666;
+      --back-link-hover: #111111;
+      --link-color: #000000;
+      --hr-color: #eeeeee;
+      --accent: #276EF1;
+      --accent-hover: #1e5bc0;
+      --border-radius: 20px;
+    }
+    html.dark {
+      --bg: #0f0f0f;
+      --surface: #1a1a1a;
+      --surface-alt: #222222;
+      --text: #e5e5e5;
+      --text-secondary: #b0b0b0;
+      --text-muted: #888888;
+      --text-light: #666666;
+      --border: #333333;
+      --border-light: #2a2a2a;
+      --card-shadow: 0 4px 24px rgba(0,0,0,0.4);
+      --card-shadow-hover: 0 8px 32px rgba(0,0,0,0.6);
+      --inline-code-bg: #2a2a2a;
+      --blockquote-bg: #1a1a1a;
+      --blockquote-color: #999999;
+      --table-header-bg: #222222;
+      --table-border: #333333;
+      --h3-card-color: #e5e5e5;
+      --icon-bg: #1a1a1a;
+      --copyright-color: #888888;
+      --footer-link: #666666;
+      --back-link: #999999;
+      --back-link-hover: #ffffff;
+      --link-color: #e5e5e5;
+      --hr-color: #333333;
+    }
+    html { scroll-padding-top: 80px; }
+    * {
+      -webkit-tap-highlight-color: transparent;
+    }
+    body {
+      margin: 0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      -webkit-font-smoothing: antialiased;
+    }
+    header {
+      background: #000;
+      color: #fff;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    header .logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    header .logo a {
+      display: block;
+    }
+    header .logo img {
+      height: 40px;
+      display: block;
+    }
+    .logo-by {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      opacity: 0.7;
+    }
+    header nav {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+    header nav a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 400;
+      opacity: 0.8;
+      transition: opacity 0.2s;
+    }
+    header nav a:hover {
+      opacity: 1;
+    }
+    header nav a.active, .mobile-nav a.active {
+      font-weight: 700;
+      opacity: 1;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+    .theme-toggle {
+      background: none;
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #fff;
+      font-size: 1rem;
+      cursor: pointer;
+      padding: 6px 10px;
+      line-height: 1;
+      border-radius: 6px;
+      transition: border-color 0.2s, opacity 0.2s;
+      opacity: 0.7;
+    }
+    .theme-toggle:hover { opacity: 1; border-color: rgba(255,255,255,0.5); }
+    .search-btn {
+      background: none;
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #fff;
+      font-size: 1rem;
+      cursor: pointer;
+      padding: 6px 10px;
+      line-height: 1;
+      border-radius: 6px;
+      transition: border-color 0.2s, opacity 0.2s;
+      opacity: 0.7;
+    }
+    .search-btn:hover { opacity: 1; border-color: rgba(255,255,255,0.5); }
+    #searchOverlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      z-index: 2000;
+      align-items: flex-start;
+      justify-content: center;
+      padding-top: 80px;
+    }
+    #searchOverlay.active { display: flex; }
+    #searchOverlay .search-modal {
+      background: var(--surface);
+      border-radius: 12px;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.3);
+      width: 90%;
+      max-width: 640px;
+      max-height: 80vh;
+      overflow-y: auto;
+      padding: 20px;
+    }
+    #searchOverlay .search-input-wrap { margin-bottom: 16px; }
+    #searchOverlay .search-input-wrap input {
+      width: 100%; padding: 12px 16px; border: 2px solid var(--border);
+      border-radius: 8px; font-size: 1rem; background: var(--bg);
+      color: var(--text); outline: none; box-sizing: border-box;
+    }
+    #searchOverlay .search-input-wrap input:focus {
+      border-color: var(--accent);
+    }
+    #searchResults { list-style: none; padding: 0; margin: 0; }
+    #searchResults li { padding: 10px 12px; border-radius: 6px; cursor: pointer; }
+    #searchResults li:hover, #searchResults li.selected { background: var(--accent-light, rgba(39,110,241,0.1)); }
+    #searchResults a { color: var(--text); text-decoration: none; display: block; }
+    #searchResults .result-title { font-weight: 600; margin-bottom: 2px; }
+    #searchResults .result-url { font-size: 0.78rem; color: var(--accent); }
+    #searchResults .result-excerpt { font-size: 0.82rem; color: var(--text-muted); margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    #searchStatus { color: var(--text-muted); font-size: 0.85rem; text-align: center; padding: 20px 0; }
+    .search-close {
+      float: right;
+      background: none;
+      border: none;
+      font-size: 1.4rem;
+      cursor: pointer;
+      color: var(--text-muted);
+      padding: 0 4px;
+      line-height: 1;
+    }
+    .search-close:hover { color: var(--text); }
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 1.6rem;
+      cursor: pointer;
+      padding: 4px;
+      line-height: 1;
+      -webkit-appearance: none;
+    }
+    .container {
+      max-width: 1600px;
+      margin: 0 auto;
+      padding: 24px 20px;
+      flex: 1;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    footer {
+      background: #000;
+      color: #fff;
+      padding: 20px 40px;
+      margin-top: auto;
+    }
+    footer .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    footer .footer-links a {
+      color: var(--footer-link);
+      text-decoration: none;
+      font-size: 14px;
+      transition: color 0.2s;
+    }
+    footer .footer-links a:hover {
+      color: #fff;
+    }
+    footer .copyright {
+      text-align: center;
+      margin-top: 10px;
+      color: var(--copyright-color);
+      font-size: 0.8rem;
+    }
+    footer .footer-social {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 12px;
+    }
+    footer .footer-social a {
+      color: var(--footer-link);
+      transition: color 0.2s;
+      display: inline-flex;
+      align-items: center;
+      padding: 6px;
+    }
+    footer .footer-social a:hover {
+      color: #fff;
+    }
+
+    .page { max-width: 720px; margin: 0 auto; }
+    .page h1 { font-size: 2em; margin-bottom: 8px; }
+    .page h2 { font-size: 1.3em; margin: 28px 0 12px; }
+    .page p { font-size: 17px; line-height: 1.7; color: var(--text-secondary); margin-bottom: 16px; }
+    .page ul { margin: 0 0 20px; padding-left: 24px; }
+    .page li { font-size: 17px; line-height: 1.7; color: var(--text-secondary); margin-bottom: 8px; }
+
+    .mobile-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.6);
+      z-index: 998;
+    }
+    .mobile-overlay.active {
+      display: block;
+    }
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      top: 70px;
+      left: 0;
+      width: 85%;
+      max-width: 320px;
+      height: calc(100vh - 70px);
+      background: #000;
+      z-index: 999;
+      flex-direction: column;
+      padding: 20px;
+      box-sizing: border-box;
+      transform: translateX(-100%);
+      transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+      box-shadow: 4px 0 16px rgba(0,0,0,0.3);
+    }
+    .mobile-nav.open {
+      transform: translateX(0);
+    }
+    .mobile-nav a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 16px;
+      padding: 14px 12px;
+      border-radius: 6px;
+      transition: background 0.2s;
+    }
+    .mobile-nav a:hover {
+      background: rgba(255,255,255,0.05);
+    }
+
+    @media (max-width: 850px) {
+      header {
+        padding: 16px 20px;
+      }
+      header nav {
+        display: none;
+      }
+      .menu-toggle {
+        display: block;
+      }
+      .mobile-nav {
+        display: flex;
+      }
+      .container {
+        padding: 16px;
+      }
+      footer {
+        padding: 20px 10px;
+      }
+      footer .footer-links a {
+        font-size: 0.75rem;
+      }
+    }
+
+    /* Scroll to Top */
+    .scroll-top-btn {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(10px);
+      transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
+      z-index: 999;
+      padding: 0;
+    }
+    .scroll-top-btn.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    .scroll-top-btn:hover {
+      opacity: 0.9;
+    }
+
+    /* Global Skeleton Loading */
+    @keyframes shimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+    .skeleton {
+      background: linear-gradient(90deg, var(--border-light) 25%, #e8e8e8 50%, var(--border-light) 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.5s ease-in-out infinite;
+      border-radius: 4px;
+    }
+    .skeleton-line { height: 14px; margin-bottom: 8px; width: 100%; }
+    .skeleton-line:nth-child(2) { width: 85%; }
+    .skeleton-line:nth-child(3) { width: 70%; }
+    .skeleton-block { height: 100px; margin-bottom: 12px; }
+    .skeleton-ring { width: 44px; height: 44px; border-radius: 50%; }
+    .dark .skeleton {
+      background: linear-gradient(90deg, #222 25%, #333 50%, #222 75%);
+      background-size: 200% 100%;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="mobile-overlay" id="mobileOverlay"></div>
+  <div class="mobile-nav" id="mobileNav">
+    <a href="/">Home</a>
+    <a href="/cheatsheet/">Cheatsheet</a>
+    <a href="/sql-project/">SQL Project</a>
+    <a href="/excel-project/">Excel Project</a>
+    <a href="/python-project/">Python Project</a>
+    <a href="/admin/">Manage</a>
+    <button class="theme-toggle" id="themeToggleMobile" aria-label="Toggle dark mode" style="margin-top:12px;width:100%;text-align:center;padding:12px;border-color:rgba(255,255,255,0.15);font-size:15px">🌙 Dark Mode</button>
+  </div>
+
+  <header>
+    <div class="logo">
+      <a href="/"><img src="/raya.svg" alt="RAYA"></a>
+      <span class="logo-by">by Dinesh Raya</span>
+    </div>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/cheatsheet/">Cheatsheet</a>
+      <a href="/sql-project/">SQL Project</a>
+      <a href="/excel-project/">Excel Project</a>
+      <a href="/python-project/">Python Project</a>
+      <a href="/admin/">Manage</a>
+    </nav>
+    <button class="search-btn" id="searchBtn" aria-label="Search">🔍</button>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">🌙</button>
+    <button class="menu-toggle" id="menuToggle">☰</button>
+  </header>
+
+  <div class="container">
+    <style>
+  .cheatsheet-wrap {
+    display: flex;
+    gap: 32px;
+    align-items: flex-start;
+  }
+  .cheatsheet-sidebar {
+    width: 280px;
+    flex-shrink: 0;
+    background: #000;
+    color: #fff;
+    border-radius: 16px;
+    padding: 20px;
+    position: sticky;
+    top: 90px;
+    max-height: calc(100vh - 110px);
+    overflow-y: auto;
+  }
+  .cheatsheet-sidebar::-webkit-scrollbar {
+    width: 6px;
+  }
+  .cheatsheet-sidebar::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 3px;
+  }
+  .sidebar-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 24px;
+    padding-left: 12px;
+    letter-spacing: -0.02em;
+  }
+  .unit-wrap {
+    margin-bottom: 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 8px;
+  }
+  .unit-wrap:last-child {
+    border-bottom: none;
+  }
+  .unit-header {
+    padding: 14px 12px;
+    cursor: pointer;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #b0b0b0;
+    letter-spacing: 0.01em;
+    transition: all 0.2s;
+  }
+  .unit-header:hover {
+    color: #fff;
+    background: rgba(255,255,255,0.05);
+  }
+  .unit-header.active {
+    color: #fff;
+    background: rgba(255,255,255,0.08);
+  }
+  .subtopics {
+    display: none;
+    padding-left: 0;
+    margin-top: 4px;
+  }
+  .subtopics.show {
+    display: block;
+    animation: slideDown 0.3s ease-out;
+  }
+  @keyframes slideDown {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .subtopic-link {
+    display: block;
+    padding: 10px 12px 10px 24px;
+    text-decoration: none;
+    color: #888;
+    font-size: 0.9rem;
+    border-left: 2px solid transparent;
+    margin-bottom: 2px;
+    transition: all 0.2s;
+  }
+  .subtopic-link:hover {
+    color: #fff;
+    border-left-color: rgba(255,255,255,0.3);
+    padding-left: 28px;
+  }
+  .subtopic-link.active {
+    color: #fff;
+    border-left-color: #276EF1;
+    background: rgba(255,255,255,0.03);
+  }
+  .cheatsheet-main {
+    flex: 1;
+    min-width: 0;
+    background: var(--surface);
+    border-radius: 16px;
+    padding: 32px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+  }
+  .cheatsheet-main h2 {
+    margin-top: 0;
+    font-size: 1.5em;
+  }
+  .cheatsheet-main h3 {
+    font-size: 1.15em;
+    margin: 32px 0 16px;
+    padding-top: 8px;
+    scroll-margin-top: 100px;
+  }
+  .cheatsheet-main h3:first-of-type {
+    margin-top: 0;
+  }
+  .cheatsheet-main ul {
+    padding-left: 20px;
+  }
+  .cheatsheet-main li {
+    margin-bottom: 8px;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+  .cheatsheet-main code {
+    background: var(--inline-code-bg);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.9em;
+  }
+  .cheatsheet-main li.hidden {
+    display: none;
+  }
+
+  #cheatSearch {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: inherit;
+    outline: none;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+  }
+  #cheatSearch:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px rgba(39,110,241,0.15);
+  }
+
+  .menu-toggle-sidebar {
+    display: none;
+    background: #000;
+    color: #fff;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-bottom: 16px;
+    width: 100%;
+    font-weight: 600;
+  }
+  .menu-toggle-sidebar:hover {
+    background: #222;
+  }
+
+  @media (max-width: 850px) {
+    .cheatsheet-wrap {
+      flex-direction: column;
+    }
+    .cheatsheet-sidebar {
+      width: 100%;
+      position: static;
+      max-height: none;
+      display: none;
+    }
+    .cheatsheet-sidebar.open {
+      display: block;
+    }
+    .menu-toggle-sidebar {
+      display: block;
+    }
+    .cheatsheet-main {
+      padding: 20px;
+    }
+  }
+</style>
+
+<button class="menu-toggle-sidebar" id="sidebarToggle">☰ Categories</button>
+
+<div class="cheatsheet-wrap">
+  <aside class="cheatsheet-sidebar" id="cheatSidebar">
+    <div class="sidebar-title">Tableau 250+ Formulas</div>
+    
+    <div class="unit-wrap">
+      <div class="unit-header" data-target="basic-aggregations">
+        <span>Basic Aggregations</span>
+        <span style="font-size:0.8rem;">&#9660;</span>
+      </div>
+      <div class="subtopics" data-parent="basic-aggregations">
+        <a href="#basic-aggregations" class="subtopic-link">Basic Aggregations</a>
+      </div>
+    </div>
+    
+    <div class="unit-wrap">
+      <div class="unit-header" data-target="date-functions">
+        <span>Date Functions</span>
+        <span style="font-size:0.8rem;">&#9660;</span>
+      </div>
+      <div class="subtopics" data-parent="date-functions">
+        <a href="#date-functions" class="subtopic-link">Date Functions</a>
+      </div>
+    </div>
+    
+    <div class="unit-wrap">
+      <div class="unit-header" data-target="logical-type">
+        <span>Logical & Type</span>
+        <span style="font-size:0.8rem;">&#9660;</span>
+      </div>
+      <div class="subtopics" data-parent="logical-type">
+        <a href="#logical-type" class="subtopic-link">Logical & Type</a>
+      </div>
+    </div>
+    
+    <div class="unit-wrap">
+      <div class="unit-header" data-target="mapping-geo">
+        <span>Mapping & Geo</span>
+        <span style="font-size:0.8rem;">&#9660;</span>
+      </div>
+      <div class="subtopics" data-parent="mapping-geo">
+        <a href="#mapping-geo" class="subtopic-link">Mapping & Geo</a>
+      </div>
+    </div>
+    
+    <div class="unit-wrap">
+      <div class="unit-header" data-target="number-functions">
+        <span>Number Functions</span>
+        <span style="font-size:0.8rem;">&#9660;</span>
+      </div>
+      <div class="subtopics" data-parent="number-functions">
+        <a href="#number-functions" class="subtopic-link">Number Functions</a>
+      </div>
+    </div>
+    
+    <div class="unit-wrap">
+      <div class="unit-header" data-target="string-functions">
+        <span>String Functions</span>
+        <span style="font-size:0.8rem;">&#9660;</span>
+      </div>
+      <div class="subtopics" data-parent="string-functions">
+        <a href="#string-functions" class="subtopic-link">String Functions</a>
+      </div>
+    </div>
+    
+    <div class="unit-wrap">
+      <div class="unit-header" data-target="table-calculations">
+        <span>Table Calculations</span>
+        <span style="font-size:0.8rem;">&#9660;</span>
+      </div>
+      <div class="subtopics" data-parent="table-calculations">
+        <a href="#table-calculations" class="subtopic-link">Table Calculations</a>
+      </div>
+    </div>
+    
+    <div class="unit-wrap">
+      <div class="unit-header" data-target="dashboards-actions">
+        <span>Dashboards & Actions</span>
+        <span style="font-size:0.8rem;">&#9660;</span>
+      </div>
+      <div class="subtopics" data-parent="dashboards-actions">
+        <a href="#dashboards-actions" class="subtopic-link">Dashboards & Actions</a>
+      </div>
+    </div>
+    
+    <div class="unit-wrap">
+      <div class="unit-header" data-target="lod">
+        <span>Level of Detail (LOD)</span>
+        <span style="font-size:0.8rem;">&#9660;</span>
+      </div>
+      <div class="subtopics" data-parent="lod">
+        <a href="#lod" class="subtopic-link">Level of Detail (LOD)</a>
+      </div>
+    </div>
+    
+    <div class="unit-wrap">
+      <div class="unit-header" data-target="statistical-analytics">
+        <span>Statistical & Analytics</span>
+        <span style="font-size:0.8rem;">&#9660;</span>
+      </div>
+      <div class="subtopics" data-parent="statistical-analytics">
+        <a href="#statistical-analytics" class="subtopic-link">Statistical & Analytics</a>
+      </div>
+    </div>
+    
+    <div class="unit-wrap">
+      <div class="unit-header" data-target="user-security">
+        <span>User Functions & Security</span>
+        <span style="font-size:0.8rem;">&#9660;</span>
+      </div>
+      <div class="subtopics" data-parent="user-security">
+        <a href="#user-security" class="subtopic-link">User Functions & Security</a>
+      </div>
+    </div>
+    
+  </aside>
+
+  <main class="cheatsheet-main">
+    <input type="text" id="cheatSearch" placeholder="Search formulas..." autocomplete="off">
+    <h2 id="tableau-250-formulas">Tableau 250+ Formulas</h2>
+
+<h3 id="basic-aggregations">Basic Aggregations Formulas</h3>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">SUM()</code> : <code class="language-plaintext highlighter-rouge">SUM([Sales])</code> : Adds up all values in the selected field</li>
+  <li><code class="language-plaintext highlighter-rouge">AVG()</code> : <code class="language-plaintext highlighter-rouge">AVG([Discount])</code> : Computes the arithmetic mean</li>
+  <li><code class="language-plaintext highlighter-rouge">MIN()</code> : <code class="language-plaintext highlighter-rouge">MIN([Order Date])</code> : Returns the earliest or smallest value</li>
+  <li><code class="language-plaintext highlighter-rouge">MAX()</code> : <code class="language-plaintext highlighter-rouge">MAX([Profit])</code> : Returns the latest or greatest value</li>
+  <li><code class="language-plaintext highlighter-rouge">COUNT()</code> : <code class="language-plaintext highlighter-rouge">COUNT([Order ID])</code> : Counts records that are not null</li>
+  <li><code class="language-plaintext highlighter-rouge">COUNTD()</code> : <code class="language-plaintext highlighter-rouge">COUNTD([Customer ID])</code> : Counts unique values in a field</li>
+  <li><code class="language-plaintext highlighter-rouge">ATTR()</code> : <code class="language-plaintext highlighter-rouge">ATTR([Region])</code> : Returns the value if all rows match, otherwise asterisk</li>
+  <li><code class="language-plaintext highlighter-rouge">TOTAL()</code> : <code class="language-plaintext highlighter-rouge">TOTAL(SUM([Sales]))</code> : Computes grand total within the table calc partition</li>
+  <li><code class="language-plaintext highlighter-rouge">ZN()</code> : <code class="language-plaintext highlighter-rouge">ZN([Profit])</code> : Replaces null values with zero</li>
+  <li><code class="language-plaintext highlighter-rouge">SIZE()</code> : <code class="language-plaintext highlighter-rouge">SIZE()</code> : Returns the row count in the current partition</li>
+</ul>
+
+<h3 id="date-functions">Date Functions</h3>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">TODAY()</code> : <code class="language-plaintext highlighter-rouge">TODAY()</code> : Returns the current date</li>
+  <li><code class="language-plaintext highlighter-rouge">NOW()</code> : <code class="language-plaintext highlighter-rouge">NOW()</code> : Returns the current date and time</li>
+  <li><code class="language-plaintext highlighter-rouge">YEAR()</code> : <code class="language-plaintext highlighter-rouge">YEAR([Order Date])</code> : Extracts the year from a date</li>
+  <li><code class="language-plaintext highlighter-rouge">MONTH()</code> : <code class="language-plaintext highlighter-rouge">MONTH([Order Date])</code> : Returns the month as a number</li>
+  <li><code class="language-plaintext highlighter-rouge">DAY()</code> : <code class="language-plaintext highlighter-rouge">DAY([Order Date])</code> : Returns the day of the month</li>
+  <li><code class="language-plaintext highlighter-rouge">DATENAME()</code> : <code class="language-plaintext highlighter-rouge">DATENAME('weekday',[Order Date])</code> : Returns the full textual name of a date part</li>
+  <li><code class="language-plaintext highlighter-rouge">DATEPART()</code> : <code class="language-plaintext highlighter-rouge">DATEPART('quarter',[Order Date])</code> : Returns a numeric date part</li>
+  <li><code class="language-plaintext highlighter-rouge">DATEDIFF()</code> : <code class="language-plaintext highlighter-rouge">DATEDIFF('day',[Order Date],[Ship Date])</code> : Calculates the difference between two dates</li>
+  <li><code class="language-plaintext highlighter-rouge">DATEADD()</code> : <code class="language-plaintext highlighter-rouge">DATEADD('year',1,[Order Date])</code> : Adds an interval to a date</li>
+  <li><code class="language-plaintext highlighter-rouge">DATETRUNC()</code> : <code class="language-plaintext highlighter-rouge">DATETRUNC('month',[Order Date])</code> : Truncates a date to the specified precision</li>
+  <li><code class="language-plaintext highlighter-rouge">MAKEDATE()</code> : <code class="language-plaintext highlighter-rouge">MAKEDATE(2025,4,23)</code> : Constructs a date from year, month, and day</li>
+  <li><code class="language-plaintext highlighter-rouge">MAKETIME()</code> : <code class="language-plaintext highlighter-rouge">MAKETIME(14,30,0)</code> : Constructs a time value</li>
+  <li><code class="language-plaintext highlighter-rouge">DATEPARSE()</code> : <code class="language-plaintext highlighter-rouge">DATEPARSE('dd-MMM-yyyy','23-Apr-2025')</code> : Converts a custom-formatted string to a date</li>
+  <li><code class="language-plaintext highlighter-rouge">MIN()</code> : <code class="language-plaintext highlighter-rouge">MIN([Order Date])</code> : Returns the earliest date in the partition</li>
+  <li><code class="language-plaintext highlighter-rouge">MAX()</code> : <code class="language-plaintext highlighter-rouge">MAX([Order Date])</code> : Returns the latest date in the partition</li>
+</ul>
+
+<h3 id="logical-type">Logical &amp; Type Formulas</h3>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">IF / THEN / ELSE</code> : <code class="language-plaintext highlighter-rouge">IF [Profit]&gt;0 THEN 'Positive' ELSE 'Negative' END</code> : Applies row-level conditional logic</li>
+  <li><code class="language-plaintext highlighter-rouge">IIF()</code> : <code class="language-plaintext highlighter-rouge">IIF([Ship Mode]='Same Day',1,0)</code> : Inline conditional with three arguments</li>
+  <li><code class="language-plaintext highlighter-rouge">CASE</code> : <code class="language-plaintext highlighter-rouge">CASE [Segment] WHEN 'Consumer' THEN 1 WHEN 'Corporate' THEN 2 END</code> : Evaluates multiple equality conditions cleanly</li>
+  <li><code class="language-plaintext highlighter-rouge">AND / OR / NOT</code> : <code class="language-plaintext highlighter-rouge">IF [Profit]&gt;0 AND [Sales]&gt;1000 THEN 'Top' END</code> : Combines boolean expressions</li>
+  <li><code class="language-plaintext highlighter-rouge">ISNULL()</code> : <code class="language-plaintext highlighter-rouge">ISNULL([Postal Code])</code> : Tests whether a value is null</li>
+  <li><code class="language-plaintext highlighter-rouge">ZN()</code> : <code class="language-plaintext highlighter-rouge">ZN([Profit])</code> : Converts null values to zero</li>
+  <li><code class="language-plaintext highlighter-rouge">NULLIF()</code> : <code class="language-plaintext highlighter-rouge">NULLIF([Sales],0)</code> : Returns null when the two expressions are equal</li>
+  <li><code class="language-plaintext highlighter-rouge">IFNULL()</code> : <code class="language-plaintext highlighter-rouge">IFNULL([State],'Unknown')</code> : Replaces null values with a fallback</li>
+  <li><code class="language-plaintext highlighter-rouge">INT()</code> : <code class="language-plaintext highlighter-rouge">INT([Order ID])</code> : Casts a value to an integer</li>
+  <li><code class="language-plaintext highlighter-rouge">FLOAT()</code> : <code class="language-plaintext highlighter-rouge">FLOAT([Quantity])</code> : Casts a value to a floating-point number</li>
+</ul>
+
+<h3 id="mapping-geo">Mapping &amp; Geo Formulas</h3>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">MAKEPOINT()</code> : <code class="language-plaintext highlighter-rouge">MAKEPOINT([Lat],[Lon])</code> : Creates a spatial point from latitude and longitude</li>
+  <li><code class="language-plaintext highlighter-rouge">MAKELINE()</code> : <code class="language-plaintext highlighter-rouge">MAKELINE([Start], [End])</code> : Creates a line between two spatial points for routes</li>
+  <li><code class="language-plaintext highlighter-rouge">DISTANCE()</code> : <code class="language-plaintext highlighter-rouge">DISTANCE([Start],[End],'mile')</code> : Computes the distance between two points in given units</li>
+  <li><code class="language-plaintext highlighter-rouge">BUFFER()</code> : <code class="language-plaintext highlighter-rouge">BUFFER([Point],10,'km')</code> : Generates a radius around a location (available from 2020.4)</li>
+  <li><code class="language-plaintext highlighter-rouge">AREA()</code> : <code class="language-plaintext highlighter-rouge">AREA([Polygon])</code> : Calculates the surface area of a polygon</li>
+  <li><code class="language-plaintext highlighter-rouge">HEXBIN()</code> : <code class="language-plaintext highlighter-rouge">HEXBIN([Lon],[Lat])</code> : Creates a hexagonal density grid for spatial clustering</li>
+  <li><code class="language-plaintext highlighter-rouge">REGION()</code> : <code class="language-plaintext highlighter-rouge">[Postal Code] recognized</code> : Automatically assigns geographic roles</li>
+  <li><code class="language-plaintext highlighter-rouge">Spatial Join</code> : <code class="language-plaintext highlighter-rouge">Join two spatial layers on intersection</code> : Combines polygon or point layers based on spatial overlap</li>
+</ul>
+
+<h3 id="number-functions">Number Functions</h3>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">ABS()</code> : <code class="language-plaintext highlighter-rouge">ABS([Profit])</code> : Returns the absolute value of a number</li>
+  <li><code class="language-plaintext highlighter-rouge">CEILING()</code> : <code class="language-plaintext highlighter-rouge">CEILING([Discount])</code> : Rounds a number up to the nearest integer</li>
+  <li><code class="language-plaintext highlighter-rouge">FLOOR()</code> : <code class="language-plaintext highlighter-rouge">FLOOR([Discount])</code> : Rounds a number down to the nearest integer</li>
+  <li><code class="language-plaintext highlighter-rouge">ROUND()</code> : <code class="language-plaintext highlighter-rouge">ROUND([Sales],0)</code> : Rounds a number to a specified number of decimals</li>
+  <li><code class="language-plaintext highlighter-rouge">POWER()</code> : <code class="language-plaintext highlighter-rouge">POWER([Sales],2)</code> : Raises a number to a given exponent</li>
+  <li><code class="language-plaintext highlighter-rouge">SQRT()</code> : <code class="language-plaintext highlighter-rouge">SQRT([Sales])</code> : Returns the square root of a number</li>
+  <li><code class="language-plaintext highlighter-rouge">LOG()</code> : <code class="language-plaintext highlighter-rouge">LOG([Sales])</code> : Returns the natural logarithm of a number</li>
+  <li><code class="language-plaintext highlighter-rouge">LOG(,base)</code> : <code class="language-plaintext highlighter-rouge">LOG([Sales],10)</code> : Returns the base-10 logarithm of a number</li>
+  <li><code class="language-plaintext highlighter-rouge">PI()</code> : <code class="language-plaintext highlighter-rouge">PI()</code> : Returns the mathematical constant pi</li>
+  <li><code class="language-plaintext highlighter-rouge">RANDOM()</code> : <code class="language-plaintext highlighter-rouge">RANDOM()</code> : Generates a random number between 0 and 1 (available from 2024.1)</li>
+  <li><code class="language-plaintext highlighter-rouge">MOD()</code> : <code class="language-plaintext highlighter-rouge">MOD([Row ID],2)</code> : Returns the remainder of a division operation</li>
+  <li><code class="language-plaintext highlighter-rouge">SIGN()</code> : <code class="language-plaintext highlighter-rouge">SIGN([Profit])</code> : Returns 1 for positive, -1 for negative, and 0 for zero</li>
+</ul>
+
+<h3 id="string-functions">String Functions Formulas</h3>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">LEFT()</code> : <code class="language-plaintext highlighter-rouge">LEFT([Product Name],3)</code> : Returns the leftmost N characters</li>
+  <li><code class="language-plaintext highlighter-rouge">RIGHT()</code> : <code class="language-plaintext highlighter-rouge">RIGHT([Category],2)</code> : Returns the rightmost N characters</li>
+  <li><code class="language-plaintext highlighter-rouge">MID()</code> : <code class="language-plaintext highlighter-rouge">MID([SKU],2,4)</code> : Extracts a substring starting at a given position</li>
+  <li><code class="language-plaintext highlighter-rouge">LEN()</code> : <code class="language-plaintext highlighter-rouge">LEN([State])</code> : Returns the length of a string</li>
+  <li><code class="language-plaintext highlighter-rouge">LOWER()</code> : <code class="language-plaintext highlighter-rouge">LOWER([City])</code> : Converts text to lowercase</li>
+  <li><code class="language-plaintext highlighter-rouge">UPPER()</code> : <code class="language-plaintext highlighter-rouge">UPPER([City])</code> : Converts text to uppercase</li>
+  <li><code class="language-plaintext highlighter-rouge">TRIM()</code> : <code class="language-plaintext highlighter-rouge">TRIM([Ship Mode])</code> : Removes leading and trailing spaces</li>
+  <li><code class="language-plaintext highlighter-rouge">REPLACE()</code> : <code class="language-plaintext highlighter-rouge">REPLACE([Phone],'-','')</code> : Substitutes all occurrences of a substring</li>
+  <li><code class="language-plaintext highlighter-rouge">SPLIT()</code> : <code class="language-plaintext highlighter-rouge">SPLIT([Email],'@',1)</code> : Splits a string on a delimiter and returns a token</li>
+  <li><code class="language-plaintext highlighter-rouge">FIND()</code> : <code class="language-plaintext highlighter-rouge">FIND([Email],'@')</code> : Returns the position of a substring within a string</li>
+  <li><code class="language-plaintext highlighter-rouge">CONTAINS()</code> : <code class="language-plaintext highlighter-rouge">CONTAINS([Comment],'urgent')</code> : Checks whether a string contains a substring</li>
+  <li><code class="language-plaintext highlighter-rouge">STARTSWITH()</code> : <code class="language-plaintext highlighter-rouge">STARTSWITH([City],'New')</code> : Checks whether a string starts with a given prefix</li>
+  <li><code class="language-plaintext highlighter-rouge">ENDSWITH()</code> : <code class="language-plaintext highlighter-rouge">ENDSWITH([City],'ville')</code> : Checks whether a string ends with a given suffix</li>
+  <li><code class="language-plaintext highlighter-rouge">ASCII()</code> : <code class="language-plaintext highlighter-rouge">ASCII('A')</code> : Returns the ASCII code of a character</li>
+  <li><code class="language-plaintext highlighter-rouge">CHAR()</code> : <code class="language-plaintext highlighter-rouge">CHAR(65)</code> : Returns the character corresponding to an ASCII code</li>
+  <li><code class="language-plaintext highlighter-rouge">STR()</code> : <code class="language-plaintext highlighter-rouge">STR([Order ID])</code> : Converts a number to its string representation</li>
+  <li><code class="language-plaintext highlighter-rouge">SPACE()</code> : <code class="language-plaintext highlighter-rouge">SPACE(5)</code> : Returns a string of N spaces</li>
+  <li><code class="language-plaintext highlighter-rouge">URLENCODE()</code> : <code class="language-plaintext highlighter-rouge">URLENCODE([URL])</code> : Encodes special characters in a URL string</li>
+</ul>
+
+<h3 id="table-calculations">Table Calculations Formulas</h3>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">WINDOW_SUM()</code> : <code class="language-plaintext highlighter-rouge">WINDOW_SUM(SUM([Sales]))</code> : Sums values across the window defined by compute-using</li>
+  <li><code class="language-plaintext highlighter-rouge">WINDOW_AVG()</code> : <code class="language-plaintext highlighter-rouge">WINDOW_AVG(AVG([Profit]))</code> : Averages values across the window</li>
+  <li><code class="language-plaintext highlighter-rouge">WINDOW_MIN()</code> : <code class="language-plaintext highlighter-rouge">WINDOW_MIN(MIN([Sales]))</code> : Returns the minimum across the window</li>
+  <li><code class="language-plaintext highlighter-rouge">WINDOW_MAX()</code> : <code class="language-plaintext highlighter-rouge">WINDOW_MAX(MAX([Sales]))</code> : Returns the maximum across the window</li>
+  <li><code class="language-plaintext highlighter-rouge">RUNNING_SUM()</code> : <code class="language-plaintext highlighter-rouge">RUNNING_SUM(SUM([Sales]))</code> : Computes a cumulative running total</li>
+  <li><code class="language-plaintext highlighter-rouge">RUNNING_AVG()</code> : <code class="language-plaintext highlighter-rouge">RUNNING_AVG(AVG([Profit]))</code> : Computes a cumulative running average</li>
+  <li><code class="language-plaintext highlighter-rouge">RUNNING_MIN()</code> : <code class="language-plaintext highlighter-rouge">RUNNING_MIN(MIN([Profit]))</code> : Computes a cumulative minimum</li>
+  <li><code class="language-plaintext highlighter-rouge">RUNNING_MAX()</code> : <code class="language-plaintext highlighter-rouge">RUNNING_MAX(MAX([Profit]))</code> : Computes a cumulative maximum</li>
+  <li><code class="language-plaintext highlighter-rouge">LOOKUP()</code> : <code class="language-plaintext highlighter-rouge">LOOKUP(SUM([Sales]),-1)</code> : References a value from a relative row offset</li>
+  <li><code class="language-plaintext highlighter-rouge">FIRST()</code> : <code class="language-plaintext highlighter-rouge">FIRST()</code> : Returns the index offset from the first row in the partition</li>
+  <li><code class="language-plaintext highlighter-rouge">LAST()</code> : <code class="language-plaintext highlighter-rouge">LAST()</code> : Returns the index offset from the last row in the partition</li>
+  <li><code class="language-plaintext highlighter-rouge">INDEX()</code> : <code class="language-plaintext highlighter-rouge">INDEX()</code> : Returns the sequential row number</li>
+  <li><code class="language-plaintext highlighter-rouge">RANK()</code> : <code class="language-plaintext highlighter-rouge">RANK(SUM([Sales]))</code> : Ranks values allowing gaps</li>
+  <li><code class="language-plaintext highlighter-rouge">RANK_DENSE()</code> : <code class="language-plaintext highlighter-rouge">RANK_DENSE(SUM([Sales]))</code> : Ranks values without gaps</li>
+  <li><code class="language-plaintext highlighter-rouge">RANK_PERCENTILE()</code> : <code class="language-plaintext highlighter-rouge">RANK_PERCENTILE(SUM([Sales]))</code> : Ranks values as a percentile between 0 and 1</li>
+  <li><code class="language-plaintext highlighter-rouge">PERCENTILE()</code> : <code class="language-plaintext highlighter-rouge">PERCENTILE([Sales],0.9)</code> : Returns the 90th percentile within the window</li>
+  <li><code class="language-plaintext highlighter-rouge">WINDOW_PERCENTILE()</code> : <code class="language-plaintext highlighter-rouge">WINDOW_PERCENTILE(SUM([Sales]),0.75)</code> : Computes the percentile across the window</li>
+  <li><code class="language-plaintext highlighter-rouge">NTILE()</code> : <code class="language-plaintext highlighter-rouge">NTILE(4)</code> : Buckets rows into N roughly equal groups</li>
+  <li><code class="language-plaintext highlighter-rouge">WINDOW_STDEV()</code> : <code class="language-plaintext highlighter-rouge">WINDOW_STDEV(SUM([Sales]))</code> : Computes the standard deviation across the window</li>
+  <li><code class="language-plaintext highlighter-rouge">WINDOW_VAR()</code> : <code class="language-plaintext highlighter-rouge">WINDOW_VAR(SUM([Sales]))</code> : Computes the variance across the window</li>
+</ul>
+
+<h3 id="dashboards-actions">Dashboards &amp; Actions Formulas</h3>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Show Filter</code> : <code class="language-plaintext highlighter-rouge">Right-click dimension &gt; Show Filter</code> : Displays an interactive filter for end users</li>
+  <li><code class="language-plaintext highlighter-rouge">Dashboard Action Filter</code> : <code class="language-plaintext highlighter-rouge">Dashboard &gt; Actions &gt; Add Filter</code> : Passes selections between dashboard sheets</li>
+  <li><code class="language-plaintext highlighter-rouge">Highlight Action</code> : <code class="language-plaintext highlighter-rouge">Add Highlight</code> : Emphasizes related marks across views</li>
+  <li><code class="language-plaintext highlighter-rouge">URL Action</code> : <code class="language-plaintext highlighter-rouge">Add URL Action</code> : Opens an external link when a mark is clicked</li>
+  <li><code class="language-plaintext highlighter-rouge">Parameter Action</code> : <code class="language-plaintext highlighter-rouge">Add Parameter Action</code> : Updates a parameter value through click or hover interaction</li>
+  <li><code class="language-plaintext highlighter-rouge">Set Action</code> : <code class="language-plaintext highlighter-rouge">Add Set Action</code> : Modifies set membership through dashboard interaction</li>
+  <li><code class="language-plaintext highlighter-rouge">Story Point</code> : <code class="language-plaintext highlighter-rouge">New Story</code> : Creates a sequence of dashboard pages for narrative flow</li>
+  <li><code class="language-plaintext highlighter-rouge">Device Layout</code> : <code class="language-plaintext highlighter-rouge">Dashboard &gt; Device Preview</code> : Optimizes the dashboard layout for mobile screens</li>
+</ul>
+
+<h3 id="lod">Level of Detail (LOD) Formulas</h3>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">{ FIXED : ... }</code> : <code class="language-plaintext highlighter-rouge">{ FIXED : SUM([Sales]) }</code> : Computes an aggregate at the total level regardless of view dimensions</li>
+  <li><code class="language-plaintext highlighter-rouge">{ FIXED [State] : ... }</code> : <code class="language-plaintext highlighter-rouge">{ FIXED [State] : AVG([Profit]) }</code> : Computes a state-level aggregate independent of the view</li>
+  <li><code class="language-plaintext highlighter-rouge">{ INCLUDE [Product] : ... }</code> : <code class="language-plaintext highlighter-rouge">{ INCLUDE [Product] : SUM([Sales]) }</code> : Adds finer granularity beyond the view level</li>
+  <li><code class="language-plaintext highlighter-rouge">{ EXCLUDE [Region] : ... }</code> : <code class="language-plaintext highlighter-rouge">{ EXCLUDE [Region] : AVG([Sales]) }</code> : Removes a dimension from the aggregation level</li>
+  <li><code class="language-plaintext highlighter-rouge">LOD + DATE</code> : <code class="language-plaintext highlighter-rouge">{ FIXED DATETRUNC('month',[Order Date]) : SUM([Sales]) }</code> : Computes monthly totals independent of view filters</li>
+  <li><code class="language-plaintext highlighter-rouge">ATTR() with LOD</code> : <code class="language-plaintext highlighter-rouge">IF { FIXED : COUNTD([Customer ID]) } &gt;100 THEN 'Large' END</code> : Uses LOD inside a logical calculation</li>
+  <li><code class="language-plaintext highlighter-rouge">FIXED &amp; PARAM</code> : <code class="language-plaintext highlighter-rouge">{ FIXED : SUM( IF [Segment]=[p.Segment] THEN [Sales] END ) }</code> : Creates dynamic totals driven by a parameter</li>
+  <li><code class="language-plaintext highlighter-rouge">LOD Nested</code> : <code class="language-plaintext highlighter-rouge">{ FIXED [Category] : AVG( { FIXED [Sub-Category] : SUM([Sales]) } ) }</code> : Nests LOD expressions for meta-aggregation</li>
+  <li><code class="language-plaintext highlighter-rouge">LOD Filtering</code> : <code class="language-plaintext highlighter-rouge">IF { EXCLUDE [Customer ID] : SUM([Sales]) } &gt; 1000 THEN 'VIP' END</code> : Filters rows based on group-level metrics</li>
+  <li><code class="language-plaintext highlighter-rouge">REFERENCE</code> : <code class="language-plaintext highlighter-rouge">SUM([Sales]) / { FIXED : SUM([Sales]) }</code> : Computes a percentage of the overall total</li>
+</ul>
+
+<h3 id="statistical-analytics">Statistical &amp; Analytics Formulas</h3>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">MEDIAN()</code> : <code class="language-plaintext highlighter-rouge">MEDIAN([Sales])</code> : Returns the median value of a field</li>
+  <li><code class="language-plaintext highlighter-rouge">STDEV()</code> : <code class="language-plaintext highlighter-rouge">STDEV([Sales])</code> : Computes the sample standard deviation</li>
+  <li><code class="language-plaintext highlighter-rouge">VAR()</code> : <code class="language-plaintext highlighter-rouge">VAR([Sales])</code> : Computes the sample variance</li>
+  <li><code class="language-plaintext highlighter-rouge">CORR()</code> : <code class="language-plaintext highlighter-rouge">CORR([Sales],[Profit])</code> : Computes the correlation coefficient between two fields</li>
+  <li><code class="language-plaintext highlighter-rouge">COVAR()</code> : <code class="language-plaintext highlighter-rouge">COVAR([Sales],[Profit])</code> : Computes the covariance between two fields</li>
+  <li><code class="language-plaintext highlighter-rouge">TRENDLINE</code> : <code class="language-plaintext highlighter-rouge">Add Trend Line (Linear)</code> : Visualizes a linear regression trend on a chart</li>
+  <li><code class="language-plaintext highlighter-rouge">FORECAST</code> : <code class="language-plaintext highlighter-rouge">Enable Forecast</code> : Projects future values using exponential smoothing</li>
+  <li><code class="language-plaintext highlighter-rouge">REFERENCE LINE</code> : <code class="language-plaintext highlighter-rouge">Add average reference line</code> : Displays a benchmark line across the axis</li>
+  <li><code class="language-plaintext highlighter-rouge">CLUSTER</code> : <code class="language-plaintext highlighter-rouge">Analytics &gt; Cluster</code> : Applies automated k-means segmentation to the data</li>
+  <li><code class="language-plaintext highlighter-rouge">BOX PLOT</code> : <code class="language-plaintext highlighter-rouge">Show Box Plot</code> : Visualizes the five-number summary distribution</li>
+  <li><code class="language-plaintext highlighter-rouge">PERCENTILE()</code> : <code class="language-plaintext highlighter-rouge">PERCENTILE([Sales],0.95)</code> : Returns the 95th percentile value at the row level</li>
+  <li><code class="language-plaintext highlighter-rouge">QUANTILE()</code> : <code class="language-plaintext highlighter-rouge">QUANTILE([Sales],0.25)</code> : Returns the quartile value at a given threshold</li>
+  <li><code class="language-plaintext highlighter-rouge">Z-SCORE</code> : <code class="language-plaintext highlighter-rouge">(SUM([Sales])-WINDOW_AVG(SUM([Sales])))/WINDOW_STDEV(SUM([Sales]))</code> : Standardizes a metric by mean and standard deviation</li>
+  <li><code class="language-plaintext highlighter-rouge">BIN()</code> : <code class="language-plaintext highlighter-rouge">BIN([Age],5)</code> : Groups continuous values into fixed-size bins</li>
+  <li><code class="language-plaintext highlighter-rouge">Histogram</code> : <code class="language-plaintext highlighter-rouge">Show Me &gt; Histogram</code> : Creates a distribution view of a single measure</li>
+</ul>
+
+<h3 id="user-security">User Functions &amp; Security Formulas</h3>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">USERNAME()</code> : <code class="language-plaintext highlighter-rouge">USERNAME()</code> : Returns the current Tableau Server or Tableau Cloud username</li>
+  <li><code class="language-plaintext highlighter-rouge">ISMEMBEROF()</code> : <code class="language-plaintext highlighter-rouge">ISMEMBEROF('Sales')</code> : Checks whether the current user belongs to a specified group</li>
+  <li><code class="language-plaintext highlighter-rouge">FULLNAME()</code> : <code class="language-plaintext highlighter-rouge">FULLNAME()</code> : Displays the full display name of the current user</li>
+  <li><code class="language-plaintext highlighter-rouge">TODAY() filter</code> : <code class="language-plaintext highlighter-rouge">TODAY()=DATE([Login Date])</code> : Implements row-level security based on the current date</li>
+  <li><code class="language-plaintext highlighter-rouge">PASSWORD()</code> : <code class="language-plaintext highlighter-rouge">PASSWORD('secret')</code> : Encrypts a string for use in Tableau Prep</li>
+  <li><code class="language-plaintext highlighter-rouge">ROW LEVEL SECURITY</code> : <code class="language-plaintext highlighter-rouge">User filter with security table</code> : Restricts data access per user based on a security mapping</li>
+</ul>
+
+  </main>
+</div>
+
+<script>
+  (function() {
+    var search = document.getElementById('cheatSearch');
+    if (search) {
+      search.addEventListener('input', function() {
+        var q = this.value.toLowerCase();
+        document.querySelectorAll('.cheatsheet-main li').forEach(function(li) {
+          li.classList.toggle('hidden', q && !li.textContent.toLowerCase().includes(q));
+        });
+        document.querySelectorAll('.cheatsheet-main h3').forEach(function(h3) {
+          var next = h3.nextElementSibling;
+          var visible = next && next.tagName === 'UL' && Array.from(next.querySelectorAll('li')).some(function(li) { return !li.classList.contains('hidden'); });
+          h3.style.display = (!q || visible) ? '' : 'none';
+          if (next && next.tagName === 'UL') next.style.display = (!q || visible) ? '' : 'none';
+        });
+      });
+    }
+
+    var headers = document.querySelectorAll('.unit-header');
+    headers.forEach(function(h) {
+      h.addEventListener('click', function() {
+        var sub = this.nextElementSibling;
+        sub.classList.toggle('show');
+        this.classList.toggle('active');
+      });
+    });
+
+    document.getElementById('sidebarToggle')?.addEventListener('click', function() {
+      document.getElementById('cheatSidebar').classList.toggle('open');
+    });
+
+    var links = document.querySelectorAll('.subtopic-link');
+    links.forEach(function(link) {
+      link.addEventListener('click', function() {
+        links.forEach(function(l) { l.classList.remove('active'); });
+        this.classList.add('active');
+        if (window.innerWidth <= 850) {
+          document.getElementById('cheatSidebar').classList.remove('open');
+        }
+      });
+    });
+  })();
+</script>
+
+  </div>
+
+  <footer>
+    <div class="footer-links">
+      <a href="/about/">About the Creator</a>
+      <a href="mailto:contact@dinesh-raya.dev">Contact Dinesh</a>
+      <a href="/privacy/">Privacy</a>
+      <a href="/terms/">Terms</a>
+    </div>
+    <div class="copyright">
+      &copy; 2026 RAYA &middot; Built by Dinesh Raya
+    </div>
+    <div class="footer-social">
+      <a href="https://github.com/Dinesh-raya" target="_blank" rel="noopener" aria-label="GitHub">
+        <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      </a>
+      <a href="https://linkedin.com/in/dinesh-raya" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      </a>
+    </div>
+  </footer>
+
+  <div id="searchOverlay"><div class="search-modal"><button class="search-close" id="searchClose">&times;</button><div class="search-input-wrap"><input type="text" id="searchInput" placeholder="Search pages and posts..." autocomplete="off"></div><div id="searchStatus">Type to search...</div><ul id="searchResults"></ul></div></div>
+
+  <button class="scroll-top-btn" id="scrollTopBtn" aria-label="Scroll to top">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"></polyline></svg>
+  </button>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha384-203J0SNzyqHby3iU6hzvzltrWi/M41wOP5Gu+BiJMz5nwKykbkUx8Kp7iti0Lpli" crossorigin="anonymous"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js');
+    }
+  </script>
+  <script>
+    (function() {
+      var stored = localStorage.getItem('theme');
+      var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      var isDark = stored ? stored === 'dark' : prefersDark;
+      if (isDark) document.documentElement.classList.add('dark');
+      var themeBtn = document.getElementById('themeToggle');
+      var themeBtnMob = document.getElementById('themeToggleMobile');
+      function setTheme(dark) {
+        isDark = dark;
+        document.documentElement.classList.toggle('dark', dark);
+        localStorage.setItem('theme', dark ? 'dark' : 'light');
+        themeBtn && (themeBtn.textContent = dark ? '☀️' : '🌙');
+        themeBtnMob && (themeBtnMob.innerHTML = dark ? '☀️ Light' : '🌙 Dark');
+      }
+      function toggleTheme() { setTheme(!isDark); }
+      themeBtn && themeBtn.addEventListener('click', toggleTheme);
+      themeBtnMob && themeBtnMob.addEventListener('click', toggleTheme);
+
+      var toggle = document.getElementById('menuToggle');
+      var nav = document.getElementById('mobileNav');
+      var overlay = document.getElementById('mobileOverlay');
+      if (toggle && nav && overlay) {
+        var links = Array.prototype.slice.call(nav.querySelectorAll('a'));
+        function isOpen() { return nav.classList.contains('open'); }
+        function closeMenu() {
+          nav.classList.remove('open');
+          overlay.classList.remove('active');
+          document.body.style.overflow = '';
+          toggle.focus();
+        }
+        function openMenu(focusTarget) {
+          nav.classList.add('open');
+          overlay.classList.add('active');
+          document.body.style.overflow = 'hidden';
+          if (focusTarget && focusTarget.focus) focusTarget.focus();
+          else if (links.length) links[0].focus();
+        }
+        function toggleMenu() {
+          if (isOpen()) closeMenu();
+          else openMenu();
+        }
+        toggle.addEventListener('click', toggleMenu);
+        overlay.addEventListener('click', closeMenu);
+        links.forEach(function(link) {
+          link.addEventListener('click', closeMenu);
+        });
+        nav.addEventListener('keydown', function(e) {
+          if (e.key === 'Escape') { closeMenu(); return; }
+          if (e.key !== 'Tab') return;
+          var active = document.activeElement;
+          var idx = links.indexOf(active);
+          if (idx === -1) return;
+          e.preventDefault();
+          if (e.shiftKey) {
+            idx = idx === 0 ? links.length - 1 : idx - 1;
+          } else {
+            idx = idx === links.length - 1 ? 0 : idx + 1;
+          }
+          links[idx].focus();
+        });
+        document.addEventListener('keydown', function(e) {
+          e.key === 'Escape' && isOpen() && closeMenu();
+        });
+      }
+
+      var searchBtn = document.getElementById('searchBtn');
+      var searchOverlay = document.getElementById('searchOverlay');
+      var searchClose = document.getElementById('searchClose');
+      var searchInput = document.getElementById('searchInput');
+      var searchResults = document.getElementById('searchResults');
+      var searchStatus = document.getElementById('searchStatus');
+      var lunrIndex = null;
+      var searchTimer = null;
+      var docs = {};
+
+      function openSearch() {
+        if (!searchOverlay) return;
+        searchOverlay.classList.add('active');
+        setTimeout(function() {
+          searchInput && searchInput.focus();
+        }, 100);
+      }
+      function closeSearch() {
+        searchOverlay && searchOverlay.classList.remove('active');
+      }
+
+      function stripHTML(str) {
+        return str.replace(/<[^>]*>/g, '');
+      }
+
+      function doSearch() {
+        searchTimer = null;
+        var query = searchInput.value.trim();
+        if (query.length < 2) {
+          searchResults.innerHTML = '';
+          searchStatus.textContent = 'Type to search...';
+          return;
+        }
+        if (!lunrIndex) {
+          searchStatus.textContent = 'Loading search index...';
+          return;
+        }
+        searchStatus.textContent = 'Searching...';
+        try {
+          var results = lunrIndex.search(query);
+          if (results.length === 0) {
+            searchStatus.textContent = 'No results found.';
+            searchResults.innerHTML = '';
+            return;
+          }
+          searchStatus.textContent = '';
+          searchResults.innerHTML = results.slice(0, 12).map(function(r) {
+            var doc = docs[r.ref];
+            if (!doc) return '';
+            var content = doc.content || '';
+            var idx = content.toLowerCase().indexOf(query.toLowerCase());
+            var start = idx > 40 ? idx - 40 : 0;
+            var excerpt = content.substring(start, start + 160);
+            return '<li><a href="' + doc.url + '"><div class="result-title">' + doc.title + '</div><div class="result-excerpt">' + stripHTML(excerpt) + '</div></a></li>';
+          }).join('');
+        } catch (e) {
+          searchStatus.textContent = 'Search error.';
+        }
+      }
+
+      function onSearchInput() {
+        searchTimer && clearTimeout(searchTimer);
+        searchTimer = setTimeout(doSearch, 200);
+      }
+
+      function loadSearchIndex() {
+        fetch('/search.json').then(function(res) {
+          return res.json();
+        }).then(function(data) {
+          docs = {};
+          var items = [];
+          data.forEach(function(d, i) {
+            if (d.title && d.url) {
+              var item = { title: d.title, url: d.url, content: d.content || '' };
+              items.push(item);
+              docs[i] = item;
+            }
+          });
+          lunrIndex = lunr(function() {
+            this.ref('ref');
+            this.field('title');
+            this.field('content');
+            var self = this;
+            items.forEach(function(item, idx) {
+              item.ref = idx;
+              self.add(item);
+            });
+          });
+        }).catch(function(err) {
+          searchStatus && (searchStatus.textContent = 'Search unavailable.');
+        });
+      }
+
+      searchBtn && searchBtn.addEventListener('click', openSearch);
+      searchClose && searchClose.addEventListener('click', closeSearch);
+      searchOverlay && searchOverlay.addEventListener('click', function(e) {
+        if (e.target === searchOverlay) closeSearch();
+      });
+      searchInput && searchInput.addEventListener('input', onSearchInput);
+      document.addEventListener('keydown', function(e) {
+        if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+          e.preventDefault();
+          openSearch();
+        }
+        if (e.key === 'Escape' && searchOverlay && searchOverlay.classList.contains('active')) {
+          closeSearch();
+        }
+      });
+      loadSearchIndex();
+    })();
+
+    // Active nav state
+    (function() {
+      var path = window.location.pathname;
+      document.querySelectorAll('header nav a, .mobile-nav a').forEach(function(a) {
+        var href = a.getAttribute('href');
+        if (href === '/' && path === '/') { a.classList.add('active'); return; }
+        if (href && href !== '/' && path.indexOf(href) === 0) { a.classList.add('active'); }
+      });
+    })();
+
+    // Scroll to top
+    (function() {
+      var btn = document.getElementById('scrollTopBtn');
+      if (!btn) return;
+      window.addEventListener('scroll', function() {
+        btn.classList.toggle('visible', window.scrollY > 400);
+      });
+      btn.addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    })();
+  </script>
+</body>
+</html>
