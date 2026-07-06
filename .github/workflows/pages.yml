@@ -16,7 +16,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/jekyll-build-pages@v1
-      - run: npx pagefind --source _site
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npx --yes pagefind --source _site
       - uses: actions/upload-pages-artifact@v3
   deploy:
     needs: build

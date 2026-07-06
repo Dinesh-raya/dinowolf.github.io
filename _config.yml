@@ -6,3 +6,4 @@ permalink: /posts/:title/
 markdown: kramdown
 exclude:
   - sql-project/generate.js
+  - pagefind.yml
