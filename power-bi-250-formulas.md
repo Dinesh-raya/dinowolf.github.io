@@ -306,7 +306,7 @@ Table.RemoveRows : Table.RemoveRows(Source,0,1) : Removes a specified number of 
 
 Table.FillUp : Table.FillUp(Source,{"Col"}) : Fills null values with the value from the row below
 
-Table.Transposbe : Table.Transpose(Source) : Swaps rows and columns in a table
+Table.Transpose : Table.Transpose(Source) : Swaps rows and columns in a table
 
 Text.EndsWith : Text.EndsWith([Col],"Ltd") : Checks whether a text value ends with a specified substring
 
