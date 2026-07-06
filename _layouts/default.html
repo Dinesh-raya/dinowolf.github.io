@@ -46,6 +46,34 @@
       --accent-hover: #1e5bc0;
       --border-radius: 20px;
     }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0f0f0f;
+        --surface: #1a1a1a;
+        --surface-alt: #222222;
+        --text: #e5e5e5;
+        --text-secondary: #b0b0b0;
+        --text-muted: #888888;
+        --text-light: #666666;
+        --border: #333333;
+        --border-light: #2a2a2a;
+        --card-shadow: 0 4px 24px rgba(0,0,0,0.4);
+        --card-shadow-hover: 0 8px 32px rgba(0,0,0,0.6);
+        --inline-code-bg: #2a2a2a;
+        --blockquote-bg: #1a1a1a;
+        --blockquote-color: #999999;
+        --table-header-bg: #222222;
+        --table-border: #333333;
+        --h3-card-color: #e5e5e5;
+        --icon-bg: #1a1a1a;
+        --copyright-color: #888888;
+        --footer-link: #666666;
+        --back-link: #999999;
+        --back-link-hover: #ffffff;
+        --link-color: #e5e5e5;
+        --hr-color: #333333;
+      }
+    }
     html { scroll-padding-top: 80px; }
     * {
       -webkit-tap-highlight-color: transparent;
@@ -267,18 +295,46 @@
       var nav = document.getElementById('mobileNav');
       var overlay = document.getElementById('mobileOverlay');
       if (toggle && nav && overlay) {
-        function openMenu() {
-          nav.classList.toggle('open');
-          overlay.classList.toggle('active');
-          document.body.style.overflow = nav.classList.contains('open') ? 'hidden' : '';
+        var links = Array.prototype.slice.call(nav.querySelectorAll('a'));
+        function isOpen() { return nav.classList.contains('open'); }
+        function closeMenu() {
+          nav.classList.remove('open');
+          overlay.classList.remove('active');
+          document.body.style.overflow = '';
+          toggle.focus();
         }
-        toggle.addEventListener('click', openMenu);
-        overlay.addEventListener('click', openMenu);
-        nav.querySelectorAll('a').forEach(function(link) {
-          link.addEventListener('click', function() {
-            nav.classList.remove('open');
-            overlay.classList.remove('active');
-          });
+        function openMenu(focusTarget) {
+          nav.classList.add('open');
+          overlay.classList.add('active');
+          document.body.style.overflow = 'hidden';
+          if (focusTarget && focusTarget.focus) focusTarget.focus();
+          else if (links.length) links[0].focus();
+        }
+        function toggleMenu() {
+          if (isOpen()) closeMenu();
+          else openMenu();
+        }
+        toggle.addEventListener('click', toggleMenu);
+        overlay.addEventListener('click', closeMenu);
+        links.forEach(function(link) {
+          link.addEventListener('click', closeMenu);
+        });
+        nav.addEventListener('keydown', function(e) {
+          if (e.key === 'Escape') { closeMenu(); return; }
+          if (e.key !== 'Tab') return;
+          var active = document.activeElement;
+          var idx = links.indexOf(active);
+          if (idx === -1) return;
+          e.preventDefault();
+          if (e.shiftKey) {
+            idx = idx === 0 ? links.length - 1 : idx - 1;
+          } else {
+            idx = idx === links.length - 1 ? 0 : idx + 1;
+          }
+          links[idx].focus();
+        });
+        document.addEventListener('keydown', function(e) {
+          if (e.key === 'Escape' && isOpen()) closeMenu();
         });
       }
     })();
