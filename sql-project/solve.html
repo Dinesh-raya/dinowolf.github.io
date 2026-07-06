@@ -1,0 +1,93 @@
+---
+layout: default
+title: Solve SQL Problem
+description: Interactive SQL editor with live query execution using SQL.js (browser-based SQLite).
+---
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/codemirror.min.css">
+<link rel="stylesheet" href="/sql-project/assets/sql-editor.css">
+
+<div class="sql-project-page">
+  <a href="/sql-project/" id="backLink" class="back-link">&larr; Back to Questions</a>
+
+  <div class="solve-header">
+    <span class="id-badge" id="problemNumber" style="background:var(--accent);color:#fff;border-radius:6px;padding:4px 14px;font-size:1em;font-weight:600;"></span>
+    <h1 id="problemTitle" style="flex:1;"></h1>
+    <span id="problemDifficulty" class="difficulty"></span>
+  </div>
+
+  <div class="solve-layout">
+    <div class="solve-left">
+      <div class="panel">
+        <div class="panel-header">Description</div>
+        <div class="panel-body">
+          <p class="description-text" id="problemDescription"></p>
+          <div style="margin-top:12px;font-size:0.85em;color:var(--text-muted)">
+            <strong>Topics:</strong> <span id="problemTopics"></span><br>
+            <strong>Tables:</strong> <span id="problemTables"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-header">Schema</div>
+        <div class="panel-body" id="schemaDisplay">
+          <div class="loading">Loading...</div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-header">Expected Output</div>
+        <div class="panel-body" id="expectedOutput">
+          <div class="loading">Loading...</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="solve-right">
+      <div class="panel">
+        <div class="panel-header">
+          <span>SQL Editor</span>
+          <span class="editor-status">Initializing...</span>
+        </div>
+        <div class="sql-editor-container">
+          <div id="editorContainer"></div>
+        </div>
+        <div class="editor-toolbar">
+          <button class="run-btn" id="runBtn">Run SQL &raquo;</button>
+          <button class="reset-btn" id="resetBtn">Reset</button>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-header">
+          <span>Result</span>
+        </div>
+        <div class="panel-body" id="resultArea">
+          <div class="result-empty">Click "Run SQL" to execute the query and see results here.</div>
+        </div>
+      </div>
+
+      <div>
+        <button class="toggle-btn" id="toggleHint">Show Hint</button>
+        <button class="toggle-btn" id="toggleSolution" style="margin-left:8px;">Show Solution</button>
+      </div>
+
+      <div class="hint-box" id="hintBox" style="display:none;">
+        <strong>Hint</strong>
+        <p id="hintText" style="margin:4px 0 0;"></p>
+      </div>
+
+      <div class="solution-box" id="solutionBox" style="display:none;">
+        <strong>Solution</strong>
+        <pre id="solutionSQL"></pre>
+        <p id="solutionExplanation" style="margin:8px 0 0;font-size:0.9em;color:var(--text-secondary);"></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/codemirror.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.18/mode/sql/sql.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sql.js@1.10.3/dist/sql-wasm.js"></script>
+<script src="/sql-project/assets/sql-editor.js"></script>

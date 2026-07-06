@@ -3,3 +3,5 @@ description: "RAYA — Learn data analytics, SQL, Excel, Power BI, and Tableau w
 url: "https://dinesh-raya.github.io"
 permalink: /posts/:title/
 markdown: kramdown
+exclude:
+  - sql-project/generate.js

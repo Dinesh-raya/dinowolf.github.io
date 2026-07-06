@@ -1,0 +1,88 @@
+---
+layout: default
+title: SQL Project
+description: Solve 50 real-time YouTube Analytics SQL challenges - from basic SELECT to advanced CTEs and window functions.
+---
+
+<div class="sql-project-page">
+  <h1>SQL: 50 Real-Time YouTube Analytics Challenges</h1>
+  <p style="font-size:1.05em;color:var(--text-secondary);margin-bottom:24px;line-height:1.6">
+    Solve simple to advanced SQL problems using real YouTube data, just like a Data Analyst.
+  </p>
+
+  <div id="problemList">
+    <div class="loading">Loading problems...</div>
+  </div>
+</div>
+
+<script>
+(function() {
+  var container = document.getElementById('problemList');
+  fetch('/sql-project/problems.json')
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      var problems = data.problems;
+      var categories = [
+        { name: 'SELECT', ids: [1,2,3,4,5,6,7,8,9,10] },
+        { name: 'COUNT', ids: [11,12] },
+        { name: 'GROUP BY', ids: [13,14,15] },
+        { name: 'AVG', ids: [16] },
+        { name: 'MAX, MIN', ids: [17] },
+        { name: 'SUM', ids: [18] },
+        { name: 'NULL Handling', ids: [19] },
+        { name: 'AVG', ids: [20] },
+        { name: 'GROUP BY, ORDER BY, LIMIT', ids: [21,22] },
+        { name: 'JOIN, ORDER BY', ids: [23] },
+        { name: 'GROUP BY', ids: [24,25,26,27] },
+        { name: 'WHERE', ids: [28] },
+        { name: 'Date Functions', ids: [29] },
+        { name: 'GROUP BY, Date Functions', ids: [30] },
+        { name: 'INNER JOIN', ids: [31] },
+        { name: 'Multi-table JOIN, GROUP BY', ids: [32] },
+        { name: 'JOIN, Aggregation', ids: [33] },
+        { name: 'LEFT JOIN, HAVING', ids: [34] },
+        { name: 'JOIN, AVG', ids: [35] },
+        { name: 'JOIN, SUM', ids: [36] },
+        { name: 'JOIN, WHERE', ids: [37,39] },
+        { name: 'JOIN, SUM, LIMIT', ids: [38] },
+        { name: 'LEFT JOIN', ids: [40] },
+        { name: 'CASE WHEN', ids: [41] },
+        { name: 'Subquery', ids: [42] },
+        { name: 'GROUP BY, HAVING, Subquery', ids: [43] },
+        { name: 'Correlated Subquery', ids: [44] },
+        { name: 'GROUP BY, HAVING', ids: [45] },
+        { name: 'CTE, Window Function', ids: [46,47] },
+        { name: 'Date Functions, GROUP BY', ids: [48] },
+        { name: 'CTE, Aggregation', ids: [49] },
+        { name: 'CTE, Window Function, JOIN', ids: [50] }
+      ];
+      var pMap = {};
+      problems.forEach(function(p) { pMap[p.id] = p; });
+      var html = '';
+      categories.forEach(function(cat) {
+        html += '<div class="category-group">';
+        html += '<h3>' + escapeHtml(cat.name) + '</h3>';
+        html += '<div class="problem-grid">';
+        cat.ids.forEach(function(id) {
+          var p = pMap[id];
+          if (!p) return;
+          html += '<a href="/sql-project/solve.html?id=' + id + '" class="problem-card">';
+          html += '<span class="id-badge">' + id + '</span>';
+          html += '<div class="info"><div class="title">' + escapeHtml(p.title) + '</div>';
+          html += '<div class="topics">' + escapeHtml(p.topics.join(', ')) + '</div></div>';
+          html += '<span class="difficulty ' + p.difficulty.toLowerCase() + '">' + p.difficulty + '</span>';
+          html += '</a>';
+        });
+        html += '</div></div>';
+      });
+      container.innerHTML = html;
+    })
+    .catch(function(err) {
+      container.innerHTML = '<div class="result-error">Failed to load problems: ' + err.message + '</div>';
+    });
+
+  function escapeHtml(v) {
+    return String(v).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+})();
+</script>
