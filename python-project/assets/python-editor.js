@@ -29,9 +29,10 @@
       showError('Pyodide library failed to load. Check your internet connection.');
       return;
     }
+    var el = document.getElementById('resultArea');
+    if (el) el.innerHTML = '<div class="result-loading"><div class="spinner"></div><span>Starting Python environment...</span></div>';
     var statusEl = document.getElementById('editorStatus');
-    if (statusEl) statusEl.textContent = 'Downloading Python (~45 MB)...';
-    showError('Python environment is loading (~45 MB). Please wait...');
+    if (statusEl) statusEl.textContent = 'Starting Python...';
     loadPyodide({
       indexURL: 'https://cdn.jsdelivr.net/pyodide/v0.25.1/full/',
       packages: ['pandas', 'numpy']
@@ -39,11 +40,11 @@
       pyodide = py;
       pyodideReady = true;
       if (statusEl) statusEl.textContent = 'Ready';
-      document.getElementById('resultArea').innerHTML = '<div class="result-empty">Click "Run" to execute the Python code and see output.</div>';
+      if (el) el.innerHTML = '<div class="result-empty">Click "Run" to execute the Python code and see output.</div>';
       loadProblem();
     }).catch(function(err) {
       console.error('Pyodide init failed:', err);
-      showError('Failed to initialize Python: ' + (err.message || err));
+      showError('Failed to initialize Python. Try refreshing the page.');
     });
   }
 
