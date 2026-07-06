@@ -33,14 +33,18 @@
   align-items: center;
   gap: 10px;
   border: 1px solid var(--border-light);
-  transition: border-color 0.2s, box-shadow 0.2s;
+  transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
   cursor: pointer;
   text-decoration: none;
   color: inherit;
 }
 .problem-card:hover {
   border-color: var(--accent);
-  box-shadow: 0 2px 12px rgba(39, 110, 241, 0.1);
+  box-shadow: 0 4px 20px rgba(39, 110, 241, 0.15);
+  transform: translateY(-2px);
+}
+.problem-card:active {
+  transform: translateY(0);
 }
 .problem-card .id-badge {
   background: var(--accent);
@@ -112,7 +116,13 @@
   border-radius: 12px;
   border: 1px solid var(--border-light);
   overflow: hidden;
+  animation: panelIn 0.3s ease both;
 }
+.solve-left .panel:nth-child(1) { animation-delay:0s; }
+.solve-left .panel:nth-child(2) { animation-delay:0.08s; }
+.solve-left .panel:nth-child(3) { animation-delay:0.16s; }
+.solve-right .panel:nth-child(1) { animation-delay:0.05s; }
+.solve-right .panel:nth-child(2) { animation-delay:0.13s; }
 .panel-header {
   padding: 10px 14px;
   font-size: 0.85em;
@@ -167,6 +177,12 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+.data-table tbody tr:nth-child(even) {
+  background: rgba(0,0,0,0.02);
+}
+.data-table tbody tr:hover {
+  background: rgba(39, 110, 241, 0.06);
+}
 .data-table tr:last-child td {
   border-bottom: none;
 }
@@ -198,6 +214,9 @@
   cursor: pointer;
   transition: background 0.2s;
   font-family: inherit;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
 }
 .run-btn:hover {
   background: var(--accent-hover);
@@ -205,6 +224,21 @@
 .run-btn:disabled {
   opacity: 0.6;
   cursor: not-allowed;
+}
+.run-btn .spinner {
+  display: none;
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+.run-btn.loading .spinner {
+  display: inline-block;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
 }
 .reset-btn {
   background: transparent;
@@ -286,10 +320,13 @@
   font-size: 0.82em;
   cursor: pointer;
   font-family: inherit;
-  transition: border-color 0.2s;
+  transition: border-color 0.2s, color 0.2s;
 }
 .toggle-btn:hover {
   border-color: var(--accent);
+}
+.solved-btn {
+  margin-left: auto;
 }
 .description-text {
   font-size: 0.95em;
@@ -312,6 +349,19 @@
 }
 .back-link:hover {
   color: var(--back-link-hover);
+}
+
+@keyframes cardIn {
+  from { opacity:0; transform:translateY(8px); }
+  to { opacity:1; transform:translateY(0); }
+}
+@keyframes panelIn {
+  from { opacity:0; transform:translateY(12px); }
+  to { opacity:1; transform:translateY(0); }
+}
+.problem-card.solved {
+  border-color: #b7ebc0;
+  background: #f0fdf4;
 }
 
 @media (max-width: 850px) {

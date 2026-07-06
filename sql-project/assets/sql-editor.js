@@ -246,6 +246,22 @@
       });
     }
 
+    var markBtn = document.getElementById('markSolvedBtn');
+    if (markBtn) {
+      var solved = {};
+      try { var st = localStorage.getItem('sqlSolved'); if (st) solved = JSON.parse(st); } catch(e) {}
+      if (solved[problem.id]) { markBtn.textContent = '\u2713 Solved'; markBtn.style.borderColor = '#0d7c34'; markBtn.style.color = '#0d7c34'; }
+      markBtn.addEventListener('click', function () {
+        try {
+          var s = {};
+          var st = localStorage.getItem('sqlSolved'); if (st) s = JSON.parse(st);
+          if (s[problem.id]) { delete s[problem.id]; markBtn.textContent = 'Mark Solved'; markBtn.style.borderColor = ''; markBtn.style.color = ''; }
+          else { s[problem.id] = true; markBtn.textContent = '\u2713 Solved'; markBtn.style.borderColor = '#0d7c34'; markBtn.style.color = '#0d7c34'; }
+          localStorage.setItem('sqlSolved', JSON.stringify(s));
+        } catch(e) {}
+      });
+    }
+
     document.title = '#' + problem.id + ' ' + problem.title + ' | SQL Project';
   }
 

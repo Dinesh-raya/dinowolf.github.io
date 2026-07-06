@@ -68,9 +68,10 @@ description: Interactive SQL editor with live query execution using SQL.js (brow
         </div>
       </div>
 
-      <div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
         <button class="toggle-btn" id="toggleHint">Show Hint</button>
-        <button class="toggle-btn" id="toggleSolution" style="margin-left:8px;">Show Solution</button>
+        <button class="toggle-btn" id="toggleSolution">Show Solution</button>
+        <button class="toggle-btn solved-btn" id="markSolvedBtn">Mark Solved</button>
       </div>
 
       <div class="hint-box" id="hintBox" style="display:none;">

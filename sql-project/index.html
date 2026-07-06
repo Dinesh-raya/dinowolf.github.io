@@ -5,10 +5,18 @@ description: Solve 50 real-time YouTube Analytics SQL challenges - from basic SE
 ---
 
 <div class="sql-project-page">
-  <h1>SQL: 50 Real-Time YouTube Analytics Challenges</h1>
-  <p style="font-size:1.05em;color:var(--text-secondary);margin-bottom:24px;line-height:1.6">
+  <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:8px;">
+    <img src="https://play-lh.googleusercontent.com/6am0i3walYwNLc08QOOhRJttQENNGkhlKajXSERf3JnPVRQczIyxw2w3DxeMRTOSdsY" alt="" style="width:48px;height:48px;border-radius:12px;">
+    <h1 style="margin:0;flex:1;">SQL: 50 Real-Time YouTube Analytics Challenges</h1>
+  </div>
+  <p style="font-size:1.05em;color:var(--text-secondary);margin-bottom:16px;line-height:1.6">
     Solve simple to advanced SQL problems using real YouTube data, just like a Data Analyst.
   </p>
+
+  <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:20px;">
+    <input type="text" id="problemSearch" placeholder="Search problems..." style="flex:1;min-width:200px;padding:10px 14px;border:1px solid var(--border);border-radius:8px;font-size:0.9em;background:var(--surface);color:var(--text);outline:none;font-family:inherit;">
+    <span id="statsBar" style="font-size:0.85em;color:var(--text-muted);white-space:nowrap;"></span>
+  </div>
 
   <div id="problemList">
     <div class="loading">Loading problems...</div>
@@ -18,6 +26,19 @@ description: Solve 50 real-time YouTube Analytics SQL challenges - from basic SE
 <script>
 (function() {
   var container = document.getElementById('problemList');
+  var searchInput = document.getElementById('problemSearch');
+  var statsBar = document.getElementById('statsBar');
+
+  function escapeHtml(v) {
+    return String(v).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+
+  var solved = {};
+  try {
+    var stored = localStorage.getItem('sqlSolved');
+    if (stored) solved = JSON.parse(stored);
+  } catch(e) {}
+
   fetch('/sql-project/problems.json')
     .then(function(r) { return r.json(); })
     .then(function(data) {
@@ -58,31 +79,46 @@ description: Solve 50 real-time YouTube Analytics SQL challenges - from basic SE
       ];
       var pMap = {};
       problems.forEach(function(p) { pMap[p.id] = p; });
-      var html = '';
-      categories.forEach(function(cat) {
-        html += '<div class="category-group">';
-        html += '<h3>' + escapeHtml(cat.name) + '</h3>';
-        html += '<div class="problem-grid">';
-        cat.ids.forEach(function(id) {
-          var p = pMap[id];
-          if (!p) return;
-          html += '<a href="/sql-project/solve?id=' + id + '" class="problem-card">';
-          html += '<span class="id-badge">' + id + '</span>';
-          html += '<div class="info"><div class="title">' + escapeHtml(p.title) + '</div>';
-          html += '<div class="topics">' + escapeHtml(p.topics.join(', ')) + '</div></div>';
-          html += '<span class="difficulty ' + p.difficulty.toLowerCase() + '">' + p.difficulty + '</span>';
-          html += '</a>';
+
+      function render(filter) {
+        var total = 0, shown = 0, solvedCount = 0;
+        var f = (filter || '').toLowerCase();
+        var html = '';
+        categories.forEach(function(cat) {
+          var catCards = [];
+          cat.ids.forEach(function(id) {
+            var p = pMap[id];
+            if (!p) return;
+            total++;
+            if (f && p.title.toLowerCase().indexOf(f) === -1 && p.topics.join(' ').toLowerCase().indexOf(f) === -1 && p.difficulty.toLowerCase().indexOf(f) === -1) return;
+            shown++;
+            if (solved[id]) solvedCount++;
+            catCards.push({ id: id, p: p });
+          });
+          if (catCards.length === 0) return;
+          html += '<div class="category-group" style="animation:panelIn 0.3s ease both;">';
+          html += '<h3>' + escapeHtml(cat.name) + '</h3>';
+          html += '<div class="problem-grid">';
+          catCards.forEach(function(c, idx) {
+            html += '<a href="/sql-project/solve?id=' + c.id + '" class="problem-card' + (solved[c.id] ? ' solved' : '') + '" style="animation:cardIn 0.25s ease both;animation-delay:' + (idx * 0.03) + 's;">';
+            if (solved[c.id]) html += '<span style="color:#0d7c34;font-size:1em;flex-shrink:0;">&#10003;</span>';
+            html += '<span class="id-badge">' + c.id + '</span>';
+            html += '<div class="info"><div class="title">' + escapeHtml(c.p.title) + '</div>';
+            html += '<div class="topics">' + escapeHtml(c.p.topics.join(', ')) + '</div></div>';
+            html += '<span class="difficulty ' + c.p.difficulty.toLowerCase() + '">' + c.p.difficulty + '</span>';
+            html += '</a>';
+          });
+          html += '</div></div>';
         });
-        html += '</div></div>';
-      });
-      container.innerHTML = html;
+        container.innerHTML = html || '<div class="result-empty" style="margin-top:40px;">No problems match your search.</div>';
+        statsBar.textContent = solvedCount + '/' + shown + ' solved  \u00B7  ' + shown + ' problems';
+      }
+
+      render('');
+      searchInput.addEventListener('input', function() { render(this.value); });
     })
     .catch(function(err) {
       container.innerHTML = '<div class="result-error">Failed to load problems: ' + err.message + '</div>';
     });
-
-  function escapeHtml(v) {
-    return String(v).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-  }
 })();
 </script>
