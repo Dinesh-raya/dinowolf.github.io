@@ -341,7 +341,7 @@
 
     _.setupCopyBtn();
 
-    _.setupSolvedBtn('sqlSolved', problem.id);
+    _.setupSolvedBtn('sql', problem.id);
 
     document.title = '#' + problem.id + ' ' + problem.title + ' | SQL Project';
     var ld = document.getElementById('problemLd');

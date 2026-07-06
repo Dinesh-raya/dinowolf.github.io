@@ -67,27 +67,69 @@
     });
   };
 
-  S.setupSolvedBtn = function (storageKey, problemId) {
+  var RAYA_KEY = 'raya_analytics_progress';
+
+  S.migrateProgress = function () {
+    try {
+      var cur = JSON.parse(localStorage.getItem(RAYA_KEY));
+      if (cur && cur.sql) return;
+    } catch (e) {}
+    var p = { sql: [], excel: [], python: [] };
+    ['sql', 'excel', 'python'].forEach(function (t) {
+      try {
+        var old = JSON.parse(localStorage.getItem(t + 'Solved'));
+        if (old) { p[t] = Object.keys(old); localStorage.removeItem(t + 'Solved'); }
+      } catch (e) {}
+    });
+    try { localStorage.setItem(RAYA_KEY, JSON.stringify(p)); } catch (e) {}
+  };
+
+  S.getProgress = function (track) {
+    try {
+      var d = JSON.parse(localStorage.getItem(RAYA_KEY));
+      if (d && d[track]) return d[track];
+    } catch (e) {}
+    return [];
+  };
+
+  S.saveSolved = function (track, id) {
+    try {
+      var d = JSON.parse(localStorage.getItem(RAYA_KEY)) || { sql: [], excel: [], python: [] };
+      if (!d[track]) d[track] = [];
+      var sid = String(id);
+      if (d[track].indexOf(sid) === -1) { d[track].push(sid); localStorage.setItem(RAYA_KEY, JSON.stringify(d)); }
+    } catch (e) {}
+  };
+
+  S.removeSolved = function (track, id) {
+    try {
+      var d = JSON.parse(localStorage.getItem(RAYA_KEY)) || { sql: [], excel: [], python: [] };
+      if (!d[track]) d[track] = [];
+      var sid = String(id);
+      var idx = d[track].indexOf(sid);
+      if (idx !== -1) { d[track].splice(idx, 1); localStorage.setItem(RAYA_KEY, JSON.stringify(d)); }
+    } catch (e) {}
+  };
+
+  S.isSolved = function (track, id) {
+    return S.getProgress(track).indexOf(String(id)) !== -1;
+  };
+
+  S.setupSolvedBtn = function (track, problemId) {
     var btn = document.getElementById('markSolvedBtn');
     if (!btn) return;
-    var solved = {};
-    try { var st = localStorage.getItem(storageKey); if (st) solved = JSON.parse(st); } catch (e) {}
-    if (solved[problemId]) { btn.textContent = '\u2713 Solved'; btn.classList.add('completed'); }
+    S.migrateProgress();
+    if (S.isSolved(track, problemId)) { btn.textContent = '\u2713 Solved'; btn.classList.add('completed'); }
     btn.addEventListener('click', function () {
-      try {
-        var s = {};
-        var st = localStorage.getItem(storageKey); if (st) s = JSON.parse(st);
-        if (s[problemId]) {
-          delete s[problemId];
-          btn.textContent = 'Mark Solved';
-          btn.classList.remove('completed');
-        } else {
-          s[problemId] = true;
-          btn.textContent = '\u2713 Solved';
-          btn.classList.add('completed');
-        }
-        localStorage.setItem(storageKey, JSON.stringify(s));
-      } catch (e) {}
+      if (S.isSolved(track, problemId)) {
+        S.removeSolved(track, problemId);
+        btn.textContent = 'Mark Solved';
+        btn.classList.remove('completed');
+      } else {
+        S.saveSolved(track, problemId);
+        btn.textContent = '\u2713 Solved';
+        btn.classList.add('completed');
+      }
     });
   };
 

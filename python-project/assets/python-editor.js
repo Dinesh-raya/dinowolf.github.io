@@ -233,7 +233,7 @@ __stdout.getvalue()
 
     _.setupCopyBtn();
 
-    _.setupSolvedBtn('pythonSolved', problem.id);
+    _.setupSolvedBtn('python', problem.id);
 
     document.title = '#' + problem.id + ' ' + problem.title + ' | Python Project';
     var ld = document.getElementById('problemLd');

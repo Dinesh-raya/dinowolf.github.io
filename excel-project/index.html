@@ -48,8 +48,18 @@ description: Solve 50 real-world Excel formula challenges - from basic SUM to ad
 
   var solved = {};
   try {
-    var stored = localStorage.getItem('excelSolved');
-    if (stored) solved = JSON.parse(stored);
+    var stored = localStorage.getItem('raya_analytics_progress');
+    if (stored) {
+      var data = JSON.parse(stored);
+      if (data && data.excel) { data.excel.forEach(function(id) { solved[id] = true; }); }
+    }
+    var old = localStorage.getItem('excelSolved');
+    if (old && !stored) {
+      solved = JSON.parse(old);
+      var p = { sql: [], excel: Object.keys(solved), python: [] };
+      localStorage.setItem('raya_analytics_progress', JSON.stringify(p));
+      localStorage.removeItem('excelSolved');
+    }
   } catch(e) {}
 
   function updateProgressRing() {

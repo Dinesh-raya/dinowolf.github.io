@@ -48,8 +48,18 @@ description: Solve 50 hands-on Python challenges - from variables and loops to P
 
   var solved = {};
   try {
-    var stored = localStorage.getItem('pythonSolved');
-    if (stored) solved = JSON.parse(stored);
+    var stored = localStorage.getItem('raya_analytics_progress');
+    if (stored) {
+      var data = JSON.parse(stored);
+      if (data && data.python) { data.python.forEach(function(id) { solved[id] = true; }); }
+    }
+    var old = localStorage.getItem('pythonSolved');
+    if (old && !stored) {
+      solved = JSON.parse(old);
+      var p = { sql: [], excel: [], python: Object.keys(solved) };
+      localStorage.setItem('raya_analytics_progress', JSON.stringify(p));
+      localStorage.removeItem('pythonSolved');
+    }
   } catch(e) {}
 
   function updateProgressRing() {

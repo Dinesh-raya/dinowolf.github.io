@@ -286,7 +286,7 @@
 
     _.setupCopyBtn();
 
-    _.setupSolvedBtn('excelSolved', problem.id);
+    _.setupSolvedBtn('excel', problem.id);
 
     document.title = '#' + problem.id + ' ' + problem.title + ' | Excel Project';
     var ld = document.getElementById('problemLd');

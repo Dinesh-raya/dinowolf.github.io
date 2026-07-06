@@ -42,6 +42,19 @@ description: RAYA — free cheatsheets and tutorials for Excel, Power BI, Tablea
   .hw-card-icon img { width: 100%; height: 100%; object-fit: contain; padding: 6px; box-sizing: border-box; }
   .hw-card-inner h3 { font-size: 0.85rem; margin: 0; font-weight: 600; line-height: 1.3; color: var(--h3-card-color); word-break: break-word; }
 
+  .hero-teaser-container {
+    max-width: 600px;
+    margin: 20px auto 0;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+  .hero-teaser-container video {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
   @media (max-width: 900px) {
     .hw-featured-grid { grid-template-columns: 1fr; }
   }
@@ -67,6 +80,12 @@ description: RAYA — free cheatsheets and tutorials for Excel, Power BI, Tablea
       <div class="hw-stat"><span class="hw-stat-num">250+</span><span class="hw-stat-label">Formulas</span></div>
       <div class="hw-stat"><span class="hw-stat-num">4</span><span class="hw-stat-label">Subjects</span></div>
       <div class="hw-stat"><span class="hw-stat-num" id="hwSolvedCount">0</span><span class="hw-stat-label">Solved</span></div>
+    </div>
+    <div class="hero-teaser-container">
+      <video autoplay muted loop playsinline preload="auto">
+        <source src="/assets/videos/editor-preview.webm" type="video/webm">
+        <source src="/assets/videos/editor-preview.mp4" type="video/mp4">
+      </video>
     </div>
   </div>
 
@@ -163,52 +182,42 @@ description: RAYA — free cheatsheets and tutorials for Excel, Power BI, Tablea
 
 <script>
 (function() {
-  var solved = {};
-  try { var st = localStorage.getItem('sqlSolved'); if (st) solved = JSON.parse(st); } catch(e) {}
-  var count = Object.keys(solved).length;
-  var total = 50;
-  var pct = Math.round(count / total * 100);
+  var progress = { sql: [], excel: [], python: [] };
+  try {
+    var stored = localStorage.getItem('raya_analytics_progress');
+    if (stored) {
+      var d = JSON.parse(stored);
+      if (d) progress = d;
+    }
+    ['sql','excel','python'].forEach(function(t) {
+      var old = localStorage.getItem(t + 'Solved');
+      if (old && !stored) {
+        var oldSolved = JSON.parse(old);
+        progress[t] = Object.keys(oldSolved);
+        localStorage.removeItem(t + 'Solved');
+        localStorage.setItem('raya_analytics_progress', JSON.stringify(progress));
+      }
+    });
+  } catch(e) {}
 
-  var ring = document.getElementById('hwRingFg');
-  var label = document.getElementById('hwRingLabel');
-  if (ring && label) {
-    var circumference = 2 * Math.PI * 18;
-    var offset = circumference - (pct / 100) * circumference;
-    ring.setAttribute('stroke-dasharray', circumference);
-    ring.setAttribute('stroke-dashoffset', offset);
-    label.textContent = pct + '%';
+  function updateRing(ringId, labelId, count, total) {
+    var ring = document.getElementById(ringId);
+    var label = document.getElementById(labelId);
+    if (ring && label) {
+      var pct = Math.round(count / total * 100);
+      var circumference = 2 * Math.PI * 18;
+      var offset = circumference - (pct / 100) * circumference;
+      ring.setAttribute('stroke-dasharray', circumference);
+      ring.setAttribute('stroke-dashoffset', offset);
+      label.textContent = pct + '%';
+    }
   }
 
-  var excelSolved = {};
-  try { var es = localStorage.getItem('excelSolved'); if (es) excelSolved = JSON.parse(es); } catch(e) {}
-  var excelCount = Object.keys(excelSolved).length;
-  var excelPct = Math.round(excelCount / 50 * 100);
-  var excelRing = document.getElementById('hwExcelRingFg');
-  var excelLabel = document.getElementById('hwExcelRingLabel');
-  if (excelRing && excelLabel) {
-    var exCircumference = 2 * Math.PI * 18;
-    var exOffset = exCircumference - (excelPct / 100) * exCircumference;
-    excelRing.setAttribute('stroke-dasharray', exCircumference);
-    excelRing.setAttribute('stroke-dashoffset', exOffset);
-    excelLabel.textContent = excelPct + '%';
-  }
+  updateRing('hwRingFg', 'hwRingLabel', progress.sql.length, 50);
+  updateRing('hwExcelRingFg', 'hwExcelRingLabel', progress.excel.length, 50);
+  updateRing('hwPythonRingFg', 'hwPythonRingLabel', progress.python.length, 50);
 
-  var pythonSolved = {};
-  try { var ps = localStorage.getItem('pythonSolved'); if (ps) pythonSolved = JSON.parse(ps); } catch(e) {}
-  var pythonCount = Object.keys(pythonSolved).length;
-  var pythonPct = Math.round(pythonCount / 50 * 100);
-  var pythonRing = document.getElementById('hwPythonRingFg');
-  var pythonLabel = document.getElementById('hwPythonRingLabel');
-  if (pythonRing && pythonLabel) {
-    var pyCircumference = 2 * Math.PI * 18;
-    var pyOffset = pyCircumference - (pythonPct / 100) * pyCircumference;
-    pythonRing.setAttribute('stroke-dasharray', pyCircumference);
-    pythonRing.setAttribute('stroke-dashoffset', pyOffset);
-    pythonLabel.textContent = pythonPct + '%';
-  }
-
-  var solvedTotal = count + excelCount + pythonCount;
   var solvedEl = document.getElementById('hwSolvedCount');
-  if (solvedEl) solvedEl.textContent = solvedTotal;
+  if (solvedEl) solvedEl.textContent = progress.sql.length + progress.excel.length + progress.python.length;
 })();
 </script>

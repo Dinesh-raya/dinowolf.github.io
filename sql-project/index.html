@@ -47,8 +47,18 @@ description: Solve 50 real-time YouTube Analytics SQL challenges - from basic SE
 
   var solved = {};
   try {
-    var stored = localStorage.getItem('sqlSolved');
-    if (stored) solved = JSON.parse(stored);
+    var stored = localStorage.getItem('raya_analytics_progress');
+    if (stored) {
+      var data = JSON.parse(stored);
+      if (data && data.sql) { data.sql.forEach(function(id) { solved[id] = true; }); }
+    }
+    var old = localStorage.getItem('sqlSolved');
+    if (old && !stored) {
+      solved = JSON.parse(old);
+      var p = { sql: Object.keys(solved), excel: [], python: [] };
+      localStorage.setItem('raya_analytics_progress', JSON.stringify(p));
+      localStorage.removeItem('sqlSolved');
+    }
   } catch(e) {}
 
   function updateProgressRing() {
