@@ -84,7 +84,7 @@
 
   function initHF(problem) {
     if (!HYPERFORMULA_LIB) { showError('HyperFormula library not loaded.'); return false; }
-    hf = HYPERFORMULA_LIB.buildEmpty();
+    hf = HYPERFORMULA_LIB.buildEmpty({ licenseKey: 'gpl-v3' });
     hf.addSheet('Sheet1');
     sheetId = 0;
     var cellData = problem.cell_data || {};
@@ -134,6 +134,7 @@
     var formula = editor.getValue().trim();
     if (!formula) { showError('Please enter a formula.'); return; }
     if (formula.charAt(0) !== '=') formula = '=' + formula;
+    formula = formula.replace(/\bFALSE\b/g, '0').replace(/\bTRUE\b/g, '1');
     var runBtn = document.getElementById('runBtn');
     var statusEl = document.getElementById('editorStatus');
     if (runBtn) runBtn.disabled = true;
