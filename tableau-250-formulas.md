@@ -89,7 +89,7 @@ categories:
 - `POWER()` : `POWER([Sales],2)` : Raises a number to a given exponent
 - `SQRT()` : `SQRT([Sales])` : Returns the square root of a number
 - `LOG()` : `LOG([Sales])` : Returns the natural logarithm of a number
-- `LOG10()` : `LOG([Sales],10)` : Returns the base-10 logarithm of a number
+- `LOG(,base)` : `LOG([Sales],10)` : Returns the base-10 logarithm of a number
 - `PI()` : `PI()` : Returns the mathematical constant pi
 - `RANDOM()` : `RANDOM()` : Generates a random number between 0 and 1 (available from 2024.1)
 - `MOD()` : `MOD([Row ID],2)` : Returns the remainder of a division operation
@@ -115,7 +115,7 @@ categories:
 - `SPACE()` : `SPACE(5)` : Returns a string of N spaces
 - `URLENCODE()` : `URLENCODE([URL])` : Encodes special characters in a URL string
 
-<h3 id="table-calculations">Table Calculations Formuulas</h3>
+<h3 id="table-calculations">Table Calculations Formulas</h3>
 - `WINDOW_SUM()` : `WINDOW_SUM(SUM([Sales]))` : Sums values across the window defined by compute-using
 - `WINDOW_AVG()` : `WINDOW_AVG(AVG([Profit]))` : Averages values across the window
 - `WINDOW_MIN()` : `WINDOW_MIN(MIN([Sales]))` : Returns the minimum across the window

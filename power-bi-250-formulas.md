@@ -184,7 +184,7 @@ ISNUMBER(): ISNUMBER( Value ) : Checks whether a value is numeric
 
 ISTEXT(): ISTEXT( Value ) : Checks whether a value is text
 
-ERROR(): IFERROR( Expression, 0 ) : Catches errors and returns an alternative value instead
+ERROR(): ERROR( "Message" ) : Creates a custom error that stops evaluation
 
 HASONEVALUE(): HASONEVALUE( Customer[State] ) : Tests whether a column has only one distinct value in the current context
 

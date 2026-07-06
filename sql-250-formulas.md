@@ -367,11 +367,11 @@ categories:
 - **REVOKE**: `REVOKE INSERT ON db.* FROM 'u'@'%';` — Withdraws previously granted privileges from a user
 - **SHOW GRANTS**: `SHOW GRANTS FOR 'u'@'%';` — Displays the exact privilege statements for a given user
 - **FLUSH PRIVILEGES**: `FLUSH PRIVILEGES;` — Reloads the grant tables from memory after direct modification of privilege tables
-- **SET PASSWORD**: `SET PASSWORD = PASSWORD('new');` — Changes the password for the current user account
+- **SET PASSWORD**: `ALTER USER USER() IDENTIFIED BY 'new';` — Changes the password for the current user account
 - **RESET MASTER**: `RESET MASTER;` — Clears all binary log files and resets the replication master's position
 - **KILL**: `KILL 1234;` — Terminates a specific database connection or running query thread
 - **SHOW PROCESSLIST**: `SHOW PROCESSLIST;` — Lists all active connections and what each thread is currently executing
 - **SHOW STATUS**: `SHOW STATUS LIKE 'Threads%';` — Returns server status counters for monitoring performance and activity
 - **SHOW VARIABLES**: `SHOW VARIABLES LIKE 'max_connections';` — Displays MySQL system configuration parameters and their current values
 - **SHOW ENGINE INNODB STATUS**: `SHOW ENGINE INNODB STATUS;` — Provides detailed InnoDB diagnostics including transactions, locks, and I/O
-- **PING**: `SELECT 1;` — Simple query to verify the database connection is alive and responding
+- **Connection test**: `SELECT 1;` — Simple query to verify the database connection is alive and responding

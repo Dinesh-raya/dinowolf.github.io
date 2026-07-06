@@ -116,7 +116,7 @@ categories:
 - `FORMULATEXT()` = `=FORMULATEXT(A2)` : Displays the formula from a referenced cell as a text string
 - `N()` = `=N(A2)` : Converts a value to a number; returns 0 for text values
 - `T()` = `=T(A2)` : Returns the text from a value or blank if the value is not text
-- `INFO()` = `=INFO("obversion")` : Returns details about the current operating environment
+- `INFO()` = `=INFO("osversion")` : Returns details about the current operating environment
 - `ERROR.TYPE()` = `=ERROR.TYPE(A2)` : Returns a number that corresponds to a specific error type
 
 <h3 id="logical-error">Logical & Error Handling Formulas</h3>
