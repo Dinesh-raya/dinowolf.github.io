@@ -130,6 +130,25 @@ layout: default
     border-radius: 4px;
     font-size: 0.9em;
   }
+  .cheatsheet-main li.hidden {
+    display: none;
+  }
+
+  #cheatSearch {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: inherit;
+    outline: none;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+  }
+  #cheatSearch:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px rgba(39,110,241,0.15);
+  }
 
   .menu-toggle-sidebar {
     display: none;
@@ -189,12 +208,29 @@ layout: default
   </aside>
 
   <main class="cheatsheet-main">
+    <input type="text" id="cheatSearch" placeholder="Search formulas..." autocomplete="off">
     {{ content }}
   </main>
 </div>
 
 <script>
   (function() {
+    var search = document.getElementById('cheatSearch');
+    if (search) {
+      search.addEventListener('input', function() {
+        var q = this.value.toLowerCase();
+        document.querySelectorAll('.cheatsheet-main li').forEach(function(li) {
+          li.classList.toggle('hidden', q && !li.textContent.toLowerCase().includes(q));
+        });
+        document.querySelectorAll('.cheatsheet-main h3').forEach(function(h3) {
+          var next = h3.nextElementSibling;
+          var visible = next && next.tagName === 'UL' && Array.from(next.querySelectorAll('li')).some(function(li) { return !li.classList.contains('hidden'); });
+          h3.style.display = (!q || visible) ? '' : 'none';
+          if (next && next.tagName === 'UL') next.style.display = (!q || visible) ? '' : 'none';
+        });
+      });
+    }
+
     var headers = document.querySelectorAll('.unit-header');
     headers.forEach(function(h) {
       h.addEventListener('click', function() {
