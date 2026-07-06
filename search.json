@@ -14,6 +14,20 @@
   
     
     
+  {"title":"Links","url":"/resources/links/","content":"Dinesh Raya Data analytics educator &mdash; free interactive projects and cheatsheets GitHub github.com/Dinesh-raya &rarr; LinkedIn linkedin.com/in/dinesh-raya &rarr; RAYA &middot; dinesh-raya.github.io","type":"page"},
+    
+  
+
+  
+    
+    
+  {"title":"Resources","url":"/resources/","content":"Resources Free guides and books to help you master data analytics — read online or download. &rarr; All My Links in One Place Guides Quick-reference guides for the tools you use most. Print them, bookmark them, keep them handy. SQL 250+ formulas covering everything from SELECT to window functions. View Guide Excel 250+ formulas from SUM to SUMPRODUCT with real examples. View Guide Python Hands-on coding challenges from variables to Pandas. View Project Power BI &amp; Tableau DAX, Power Query, and Tableau calc fields in two cheat sheets. Browse All Books Free data analytics books — read directly in your browser or download for offline reading. S SQL Performance Explained Markus Winand Everything developers need to know about SQL indexing and performance. Covers B-tree indexes, indexing strategies, and query optimization. SQL Performance Read Online Download P Python Crash Course, 3rd Ed Eric Matthes A hands-on introduction to Python programming. Covers basics, data structures, classes, and three real-world projects including data visualization. Python Beginner Read Online Download R SQL: The Complete Reference, 3rd Ed James Groff, Paul Weinberg, Andrew J. Oppel Comprehensive SQL reference covering DML, DDL, transactions, security, and advanced query techniques across multiple database platforms. SQL Reference Read Online Download N Naked Statistics Charles Wheelan A fun, accessible guide to statistics. Covers probability, regression, Bayes theorem, and data analysis concepts without the jargon. Statistics Beginner Read Online Download D Designing Data-Intensive Applications Martin Kleppmann The big ideas behind reliable, scalable, and maintainable systems. Covers distributed databases, stream processing, and batch processing. Systems Advanced Read Online Download","type":"page"},
+    
+  
+
+  
+    
+    
   {"title":"Excel Project","url":"/excel-project/","content":"Excel: 50 Real-World Formula Challenges Solve practical Excel problems using real datasets — SUM, VLOOKUP, INDEX-MATCH, and more. Interactive editor with instant validation. 0/50 Loading problems...","type":"page"},
     
   
@@ -73,6 +87,13 @@
     
     
   {"title":"Power BI 250+ Formulas","url":"/power-bi-250-formulas/","content":"Power BI 250+ FormulasBasic Aggregations FormulasMAX(): MAX( Profit ) : Returns the highest value from the specified columnCOUNT(): COUNT( Order ID ) : Counts non-blank rows in a columnCOUNTA(): COUNTA( Comments ) : Counts all values including text and blanksDISTINCTCOUNT(): DISTINCTCOUNT( Customer ID ) : Counts unique values in a columnCOUNTROWS(): COUNTROWS( Orders ) : Returns the number of rows in a table or table expressionCOUNTX(): COUNTX( Products, Products[OnHand] ) : Iterates over a table counting rows that match a per-row expressionDIVIDE(): DIVIDE( Sales, Orders ) : Performs safe division with handling for zero denominatorsPRODUCT(): PRODUCT( Quantity ) : Multiplies all values in a column togetherPERCENTILE.EXC(): PERCENTILE.EXC( Sales,0.9 ) : Returns the 90th percentile using the exclusive methodMEDIAN(): MEDIAN( Profit ) : Returns the median value within the current filter contextSTDEV.P(): STDEV.P( Sales ) : Calculates the population standard deviationVAR.S(): VAR.S( Profit ) : Computes the sample varianceDate &amp; Time FormulasTODAY(): TODAY() : Returns the current date based on the model timezoneNOW(): NOW() : Returns the current date and timeYEAR(): YEAR( Orders[Order Date] ) : Extracts the year component from a dateMONTH(): MONTH( Orders[Order Date] ) : Returns the month number from a dateDAY(): DAY( Orders[Order Date] ) : Returns the day of the monthHOUR(): HOUR( Orders[Order DateTime] ) : Extracts the hour component from a datetimeEOMONTH(): EOMONTH( Orders[Order Date],0 ) : Returns the last day of the month with an optional offsetDATE(): DATE( 2025,4,23 ) : Constructs a date from year, month, and day valuesDATEVALUE(): DATEVALUE( Orders[DateText] ) : Converts a text string to a dateDATEDIFF(): DATEDIFF( Orders[Order Date], Orders[Ship Date], DAY ) : Returns the interval between two dates in the specified unitDATEADD(): DATEADD( Dates[Date], -1, YEAR ) : Shifts a date column forward or backward by a given intervalSAMEPERIODLASTYEAR(): SAMEPERI...","type":"page"},
+    
+  
+
+  
+    
+    
+  {"title":"Read Book","url":"/resources/read/","content":"Resources Loading... Download PDF Full Screen Loading book...","type":"page"},
     
   
 
