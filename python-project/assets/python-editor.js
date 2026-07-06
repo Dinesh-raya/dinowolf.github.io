@@ -37,20 +37,20 @@
       return;
     }
     var statusEl = document.getElementById('editorStatus');
-    if (statusEl) statusEl.textContent = 'Loading Python...';
+    if (statusEl) statusEl.textContent = 'Downloading Python (~45 MB)...';
+    showError('Python environment is loading (~45 MB). Please wait...');
     loadPyodide({
-      indexURL: 'https://cdn.jsdelivr.net/pyodide/v0.25.1/full/'
+      indexURL: 'https://cdn.jsdelivr.net/pyodide/v0.25.1/full/',
+      packages: ['pandas', 'numpy']
     }).then(function(py) {
       pyodide = py;
-      if (statusEl) statusEl.textContent = 'Loading pandas &amp; numpy...';
-      return pyodide.loadPackage(['pandas', 'numpy']);
-    }).then(function() {
       pyodideReady = true;
-      var statusEl = document.getElementById('editorStatus');
       if (statusEl) statusEl.textContent = 'Ready';
+      document.getElementById('resultArea').innerHTML = '<div class="result-empty">Click "Run" to execute the Python code and see output.</div>';
       loadProblem();
     }).catch(function(err) {
-      showError('Failed to initialize Python: ' + err.message);
+      console.error('Pyodide init failed:', err);
+      showError('Failed to initialize Python: ' + (err.message || err));
     });
   }
 
@@ -102,7 +102,7 @@ sys.stdout = __stdout
       // Capture and restore stdout
       var output = pyodide.runPython(`
 sys.stdout = sys.__stdout__
-__result = __stdout.getvalue()
+__stdout.getvalue()
       `);
 
       var captured = String(output || '').replace(/\r\n/g, '\n').replace(/\r/g, '\n');
